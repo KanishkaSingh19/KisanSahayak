@@ -6,7 +6,7 @@ FROM python:3.12-slim
 # Run as an unprivileged user, not root
 RUN useradd -m -u 1000 user
 USER user
-# App settings: Gemini answers + MiniLM search. API keys come from Space secrets, never the image.
+# App settings: Gemini answers + MiniLM search. API keys are passed at run time, never baked into the image.
 ENV HOME=/home/user \
     PATH=/home/user/.local/bin:$PATH \
     PYTHONUNBUFFERED=1 \
