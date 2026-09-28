@@ -1,14 +1,3 @@
----
-title: KisanSahayak
-emoji: 🌾
-colorFrom: green
-colorTo: yellow
-sdk: docker
-app_port: 7860
-pinned: false
-short_description: Multilingual AI farming assistant for Indian farmers
----
-
 # 🌾 KisanSahayak (किसान सहायक) - Phase 2
 
 > **Voice-first Multilingual AI Farming Assistant for Indian Farmers**  
@@ -204,17 +193,11 @@ curl -X POST http://localhost:8000/ask -H "Content-Type: application/json" \
 
 ---
 
-## ☁️ Deploying to Hugging Face Spaces
+## 🐳 Running with Docker
 
-The repo is ready to run as a **Docker Space** (free CPU tier: 2 vCPU, 16 GB RAM). The `Dockerfile` installs CPU-only PyTorch, pre-downloads the MiniLM model, and starts Streamlit on port 7860. The YAML block at the top of this README holds the Space settings.
-
-1. Create a Space at https://huggingface.co/new-space → **SDK: Docker** → **Blank** template → **CPU basic (free)**.
-2. In the Space: **Settings → Variables and secrets → New secret**, add `GEMINI_API_KEY` and `GROQ_API_KEY`. (Never commit `.env`; `.dockerignore` and `.gitignore` keep it out.)
-3. Push this repo to the Space (use a Hugging Face access token with *write* access as the password):
-   ```bash
-   git remote add space https://huggingface.co/spaces/<your-username>/kisansahayak
-   git push space main
-   ```
-4. Watch the **Logs** tab: the first build takes several minutes. The first visit after start-up loads the models (about a minute).
-
-Free Spaces sleep after about 48 hours without visitors; open the link before a demo so it's awake.
+The `Dockerfile` installs CPU-only PyTorch, pre-downloads the MiniLM model, builds the search index, and starts the Streamlit app. API keys are passed at run time, never baked into the image:
+```bash
+docker build -t kisansahayak .
+docker run -p 8501:8501 -e GEMINI_API_KEY=your_key -e GROQ_API_KEY=your_key kisansahayak
+```
+Then open http://localhost:8501. The first visit after start-up loads the models (about a minute).

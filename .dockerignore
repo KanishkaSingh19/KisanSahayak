@@ -1,4 +1,4 @@
-# Never copy secrets into the image; keys are set as Space secrets
+# Never copy secrets into the image; keys are passed at run time (docker run -e ...)
 .env
 .env.*
 !.env.example
