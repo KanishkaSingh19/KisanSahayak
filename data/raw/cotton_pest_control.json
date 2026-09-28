@@ -1,0 +1,23 @@
+{
+  "source_organization": "ICAR-Central Institute for Cotton Research (CICR) Nagpur",
+  "document_title": "Cotton (Narma/Kapas) Pest and Disease Integrated Management",
+  "crop": "Cotton",
+  "season": "Kharif",
+  "publication_year": 2024,
+  "sections": [
+    {
+      "section_title": "Pink Bollworm (Gulabi Sundhi) Integrated Management",
+      "disease_pest_name": "Pink Bollworm (Pectinophora gossypiella)",
+      "symptoms": "Larvae bore into squares, flowers, and developing bolls. Infested flowers do not open properly, showing a characteristic 'rosette flower' appearance. Exit holes with frass visible on mature green bolls; lint staining and seed destruction.",
+      "recommended_action": "Install pheromone traps @ 5 traps/acre for monitoring at 45 days after sowing. When trap catch exceeds ETL of 8 moths/trap/night for 3 consecutive days or 10% damaged green bolls, spray Profenofos 50% EC @ 500 ml or Emamectin Benzoate 5% SG @ 100 g in 150-200 liters of water per acre. Alternatively, release Trichogramma egg parasitoids @ 60,000/acre weekly.",
+      "preventive_measures": "Strictly follow termination of crop by end of January to break the pest cycle. Avoid stacking cotton stalks in fields. Do not allow ratoon cotton."
+    },
+    {
+      "section_title": "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
+      "disease_pest_name": "Whitefly (Bemisia tabaci) and Cotton Leaf Curl Virus",
+      "symptoms": "Adults and nymphs suck sap from undersides of leaves, causing yellowing and downward leaf curling. They transmit Cotton Leaf Curl Virus leading to thickening of veins and enation (leaf-like outgrowths) on lower side of leaves.",
+      "recommended_action": "Spray when ETL is reached (6-8 whitefly adults per leaf across top, middle, bottom leaves). Spray Diafenthiuron 50% WP @ 250 g or Pyriproxyfen 10% EC @ 500 ml or Afidopyropen 50 g/l DC @ 400 ml in 150 liters of water per acre.",
+      "preventive_measures": "Sow recommended CLCuD-tolerant hybrids. Eradicate alternative weed hosts like Kanghi buti (Abutilon indicum) and Peeli buti around borders."
+    }
+  ]
+}

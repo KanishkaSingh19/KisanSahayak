@@ -1,0 +1,32 @@
+# KisanSahayak on Hugging Face Spaces (Docker SDK). Also runs anywhere Docker does:
+#   docker build -t kisansahayak .
+#   docker run -p 7860:7860 -e GEMINI_API_KEY=... -e GROQ_API_KEY=... kisansahayak
+FROM python:3.12-slim
+
+# Hugging Face Spaces run containers as user 1000
+RUN useradd -m -u 1000 user
+USER user
+# App settings: Gemini answers + MiniLM search. API keys come from Space secrets, never the image.
+ENV HOME=/home/user \
+    PATH=/home/user/.local/bin:$PATH \
+    PYTHONUNBUFFERED=1 \
+    HF_HUB_DISABLE_SYMLINKS_WARNING=1 \
+    LLM_PROVIDER=gemini \
+    EMBEDDING_PROVIDER=minilm
+WORKDIR /home/user/app
+
+# CPU-only PyTorch first (much smaller than the default GPU build), then the rest
+RUN pip install --no-cache-dir --user torch --index-url https://download.pytorch.org/whl/cpu
+COPY --chown=user requirements.txt .
+RUN pip install --no-cache-dir --user -r requirements.txt
+
+# Download the multilingual MiniLM model at build time so the app starts faster
+RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')"
+
+COPY --chown=user . .
+
+# Build the FAISS + BM25 search index from data/raw (generated files are not kept in git)
+RUN python -m app.rag.ingest
+
+EXPOSE 7860
+CMD ["streamlit", "run", "frontend/app.py", "--server.port=7860", "--server.address=0.0.0.0", "--server.headless=true"]

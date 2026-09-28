@@ -1,0 +1,34 @@
+# Core Application & Data Validation
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+python-dotenv>=1.0.0
+
+# Mathematical & Search Libraries
+numpy>=1.24.0
+rank-bm25>=0.2.2
+faiss-cpu>=1.7.4
+
+# Multilingual MiniLM embeddings (Optional, EMBEDDING_PROVIDER=minilm)
+# For a smaller CPU-only torch: pip install torch --index-url https://download.pytorch.org/whl/cpu
+sentence-transformers>=3.0.0
+
+# Web Interface
+streamlit>=1.40.0
+requests>=2.31.0
+
+# REST API (uvicorn app.api:app)
+fastapi>=0.110.0
+uvicorn>=0.29.0
+python-multipart>=0.0.9   # voice-note uploads on /ask/voice
+httpx>=0.27.0             # FastAPI TestClient in tests
+
+# LLM Providers (Optional depending on provider chosen)
+google-genai>=1.0.0
+openai>=1.12.0
+
+# Testing
+pytest>=7.4.0
+
+# Speech Services (Phase 2 - Optional / Isolated)
+edge-tts>=6.1.0   # English and Hindi/Hinglish voices
+gTTS>=2.5.0       # Punjabi voice (Edge-TTS has none)

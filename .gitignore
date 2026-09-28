@@ -1,0 +1,32 @@
+# Secrets: API keys live only in .env (copy .env.example to .env)
+.env
+.env.*
+!.env.example
+
+# Generated at runtime / build time (rebuild with: python -m app.rag.ingest)
+data/audio/
+data/indices/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local Claude Code settings
+.claude/settings.local.json
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

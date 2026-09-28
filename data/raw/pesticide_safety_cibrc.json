@@ -1,0 +1,24 @@
+{
+  "source_organization": "Central Insecticides Board & Registration Committee (CIBRC), Ministry of Agriculture & Farmers Welfare",
+  "document_title": "Statutory Pesticide Safety Guidelines & List of Banned Pesticides in India",
+  "crop": "All Crops",
+  "season": "Year-round",
+  "publication_year": 2024,
+  "sections": [
+    {
+      "section_title": "Banned and Strictly Prohibited Insecticides in India",
+      "disease_pest_name": "Regulatory Compliance",
+      "symptoms": "N/A",
+      "recommended_action": "Farmers must never purchase, store, or spray banned pesticides. Completely banned chemicals under the Insecticides Act 1968 include: Endosulfan, Monocrotophos (prohibited on all vegetables), Aldrin, Chlordane, Dieldrin, DDT (agricultural use), Paraquat Dichloride (restricted/strict regulation), Phorate (prohibited for use near residential areas), and Methyl Parathion.",
+      "preventive_measures": "Always purchase inputs only from licensed agricultural dealers with a valid printed tax invoice. Check CIBRC registration number on container labels.",
+      "critical_safety_warning": "Monocrotophos is strictly banned for use on vegetables and fruit crops due to high mammalian toxicity and systemic residues. Violation attracts penalties under the Insecticides Act."
+    },
+    {
+      "section_title": "Personal Protective Equipment (PPE) and Spraying Precautions",
+      "disease_pest_name": "Farmer Health and Safety",
+      "symptoms": "Dizziness, vomiting, pinpoint pupils, excessive salivation indicate pesticide poisoning.",
+      "recommended_action": "In case of accidental exposure or poisoning, immediately wash skin with plenty of cold water and soap. Induce vomiting only if specified on the label. Rush patient to nearest Community Health Centre (CHC) along with the chemical container/label for targeted antidote administration (e.g., Atropine for organophosphates).",
+      "preventive_measures": "Always wear rubber gloves, face mask, eye goggles, and full-sleeve cotton clothing. Never spray against the wind direction. Never eat, smoke, or chew tobacco during chemical handling. Observe mandatory waiting period (Pre-Harvest Interval - PHI) of 7 to 15 days before harvesting treated produce."
+    }
+  ]
+}

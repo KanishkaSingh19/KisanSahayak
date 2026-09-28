@@ -1,0 +1,41 @@
+import argparse
+import sys
+from pathlib import Path
+
+# Add project root to sys.path if run directly
+project_root = Path(__file__).resolve().parent.parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
+from app.config import settings
+from app.rag.chunker import AgriculturalChunker
+from app.rag.hybrid_retriever import HybridRetriever
+
+
+def ingest_documents(raw_dir: Path = settings.RAW_DATA_DIR, index_dir: Path = settings.INDEX_DIR) -> int:
+    """Ingest agricultural raw JSON documents, chunk, index, and serialize."""
+    print(f"Loading raw agricultural documents from: {raw_dir}")
+    chunker = AgriculturalChunker(chunk_size=settings.CHUNK_SIZE, chunk_overlap=settings.CHUNK_OVERLAP)
+    chunks = chunker.load_and_chunk_directory(raw_dir)
+
+    print(f"Extracted {len(chunks)} contextual chunks across all crop advisories.")
+    for idx, c in enumerate(chunks[:3]):
+        print(f"  Sample Chunk [{c.chunk_id}]: {c.text[:80]}...")
+
+    print("Building Hybrid (FAISS Dense + BM25 Sparse) indices...")
+    retriever = HybridRetriever()
+    retriever.build_indices(chunks)
+
+    print(f"Saving indices to: {index_dir}")
+    retriever.save_indices(index_dir)
+    print("Ingestion and indexing completed successfully.")
+    return len(chunks)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Ingest agricultural knowledge base into FAISS and BM25.")
+    parser.add_argument("--raw-dir", type=Path, default=settings.RAW_DATA_DIR, help="Path to raw json documents")
+    parser.add_argument("--index-dir", type=Path, default=settings.INDEX_DIR, help="Path to save index artifacts")
+    args = parser.parse_args()
+
+    ingest_documents(args.raw_dir, args.index_dir)

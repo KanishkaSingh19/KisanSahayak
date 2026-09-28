@@ -1,0 +1,17 @@
+[server]
+# The source watcher scans every loaded module on each rerun; with transformers (MiniLM)
+# loaded that triggers hundreds of failing lazy imports and makes every click slow.
+# Trade-off: restart the app after editing code.
+fileWatcherType = "none"
+
+[client]
+# Hide the developer toolbar (Deploy button etc.) from farmers
+toolbarMode = "minimal"
+
+[theme]
+# Light "wheat field" palette: high contrast for phones in outdoor sunlight
+base = "light"
+primaryColor = "#2F6B2F"
+backgroundColor = "#FBF8F1"
+secondaryBackgroundColor = "#F1ECDD"
+textColor = "#1E2B1E"

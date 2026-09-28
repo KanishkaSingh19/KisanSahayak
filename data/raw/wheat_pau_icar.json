@@ -1,0 +1,38 @@
+{
+  "source_organization": "Punjab Agricultural University (PAU) & ICAR",
+  "document_title": "Wheat (Kanak/Gehun) Package of Practices & Disease Management",
+  "crop": "Wheat",
+  "season": "Rabi",
+  "publication_year": 2024,
+  "sections": [
+    {
+      "section_title": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
+      "disease_pest_name": "Yellow Rust (Puccinia striiformis)",
+      "symptoms": "Yellow powdery pustules arranged in linear rows or stripes along leaf veins. On shaking affected leaves, yellow powder sticks to clothes and hands. Appears in cool, moist, and cloudy weather (10-20°C).",
+      "recommended_action": "Inspect fields regularly from mid-December to February, especially in sub-mountainous tracts. If initial disease foci are spotted, immediately spray Propiconazole 25% EC (Tilt/Bumper) @ 200 ml or Tebuconazole 25.9% EC (Folicur) @ 200 ml in 200 liters of water per acre. Repeat spray after 15 days if cloudy weather persists.",
+      "preventive_measures": "Cultivate resistant varieties like PBW 725, HD 3086, DBW 187 (Karan Vandana), and DBW 222. Avoid monoculture of susceptible older varieties like PBW 343 or HD 2967 in rust-prone areas.",
+      "critical_safety_warning": "Do not spray fungicide during high wind velocity to avoid chemical drift. Always wear protective masks."
+    },
+    {
+      "section_title": "Karnal Bunt (Tilletia indica) Management in Wheat",
+      "disease_pest_name": "Karnal Bunt",
+      "symptoms": "Only a few grains in a spike are partially transformed into a black powdery mass of teliospores. Crushed grains give an unpleasant rotten-fish odor due to trimethylamine.",
+      "recommended_action": "Spray Propiconazole 25% EC @ 200 ml in 200 liters of water per acre at the ear-emergence (boot leaf) stage if weather is cloudy or light rainfall occurs during flowering.",
+      "preventive_measures": "Use disease-free certified seeds. Avoid excessive nitrogenous fertilizers. Avoid continuous wheat cropping in heavily infested fields."
+    },
+    {
+      "section_title": "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages",
+      "disease_pest_name": "Agronomic Practices",
+      "symptoms": "N/A",
+      "recommended_action": "Optimum sowing time for timely sown wheat is October 25 to November 15. Recommended seed rate is 40-45 kg per acre. Fertilizer recommendation is 120 kg Nitrogen (approx 130 kg Urea in splits), 60 kg P2O5 (150 kg SSP or 55 kg DAP), and 40 kg K2O (66 kg MOP) per hectare.",
+      "preventive_measures": "First critical irrigation must be given at Crown Root Initiation (CRI) stage, 20-25 days after sowing. Avoid waterlogging which causes yellowing of seedlings."
+    },
+    {
+      "section_title": "Wheat Aphid (Mahu) Control",
+      "disease_pest_name": "Aphids (Sitobion avenae)",
+      "symptoms": "Small green insects clustering on leaves and earheads during February-March. They suck sap, resulting in shrivelled grain and reduced yield.",
+      "recommended_action": "Spray only when population exceeds Economic Threshold Level (ETL: 5 aphids per earhead). Spray Clothianidin 50% WDG @ 10-12 g per acre or Thiamethoxam 25% WG @ 50 g per acre in 150 liters of water.",
+      "preventive_measures": "Conserve natural predators like ladybird beetles and syrphid fly larvae which naturally control aphid colonies."
+    }
+  ]
+}

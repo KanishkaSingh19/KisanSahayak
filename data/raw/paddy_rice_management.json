@@ -1,0 +1,30 @@
+{
+  "source_organization": "ICAR-National Rice Research Institute (NRRI) & PAU",
+  "document_title": "Paddy / Rice (Jhona/Dhan) Disease and Insect Pest Advisory",
+  "crop": "Paddy (Rice)",
+  "season": "Kharif",
+  "publication_year": 2024,
+  "sections": [
+    {
+      "section_title": "Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy",
+      "disease_pest_name": "Bacterial Leaf Blight (Xanthomonas oryzae pv. oryzae)",
+      "symptoms": "Water-soaked translucent lesions starting from leaf tips and margins, progressing downwards with wavy margins. Lesions turn yellow to straw-colored. In severe cases, wilting known as Kresek stage occurs.",
+      "recommended_action": "Avoid excessive nitrogen/urea application which aggravates BLB. Drain excess water from the affected field for 3-4 days. Spray Streptocycline @ 15 g plus Copper Oxychloride 50% WP @ 500 g in 200 liters of water per acre. Note: Antibiotic sprays have preventive efficacy only.",
+      "preventive_measures": "Sow resistant/tolerant varieties such as PR 126, PR 121, or Pusa Basmati 1847. Practice balanced NPK with recommended potash."
+    },
+    {
+      "section_title": "Brown Planthopper (BPH / Bhoora Tilla) Management",
+      "disease_pest_name": "Brown Planthopper (Nilaparvata lugens)",
+      "symptoms": "BPH nymphs and adults congregate at the base of rice tillers just above the water level. Severe infestation results in circular drying patches in fields called 'hopper burn'.",
+      "recommended_action": "Monitor tiller bases weekly. When ETL of 5-10 hoppers per hill is observed, spray Pymetrozine 50% WDG @ 120 g per acre or Triflumezopyrim 10% SC @ 94 ml per acre. Direct spray strictly towards the base of the plants using a hollow cone nozzle.",
+      "preventive_measures": "Drain water for 2-3 days during peak pest activity. Strictly avoid synthetic pyrethroids (like Cypermethrin or Deltamethrin) as they trigger extreme BPH resurgence by eliminating natural spiders."
+    },
+    {
+      "section_title": "Paddy Sheath Blight Management",
+      "disease_pest_name": "Sheath Blight (Rhizoctonia solani)",
+      "symptoms": "Oval or elliptical greenish-grey spots on leaf sheaths near water level. Spots enlarge with irregular dark brown margins like snake skin pattern.",
+      "recommended_action": "Spray Trifloxystrobin 25% + Tebuconazole 50% WG (Nativo) @ 80-100 g or Hexaconazole 5% SC @ 400 ml in 200 liters of water per acre at early disease appearance.",
+      "preventive_measures": "Keep bunds clean of grassy weeds. Avoid dense planting and excessive nitrogen."
+    }
+  ]
+}

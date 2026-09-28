@@ -1,0 +1,14 @@
+# Never copy secrets into the image; keys are set as Space secrets
+.env
+.env.*
+!.env.example
+
+.git
+.claude
+__pycache__/
+*.py[cod]
+.pytest_cache/
+data/audio/
+data/indices/
+.venv/
+venv/
