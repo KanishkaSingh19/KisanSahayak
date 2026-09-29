@@ -163,7 +163,7 @@ def _new_chat() -> None:
 
 def conversation_history():
     """Finished turns of this farmer's conversation, oldest first (for follow-up questions)."""
-    skip = {"empty", "error", "voice_stt_unavailable"}
+    skip = {"empty", "error", "voice_stt_unavailable", "image_unavailable"}
     return [
         ConversationTurn.from_answer(m["result"])
         for m in st.session_state["messages"]
@@ -222,7 +222,7 @@ def render_answer(result, pipeline, lang: str, msg_id: int, speak_now: bool = Fa
 
     # Problems (voice not understood, empty question, internal error) are plain messages:
     # no crop/verified chips, no Listen button; the technical reason is under Details
-    if result.intent in ("voice_stt_unavailable", "empty", "error"):
+    if result.intent in ("voice_stt_unavailable", "image_unavailable", "empty", "error"):
         st.warning(result.answer)
         reason = meta.get("stt_error") or meta.get("error")
         if reason:
@@ -397,6 +397,8 @@ def main():
             for msg in st.session_state["messages"]:
                 if msg["role"] == "user":
                     with st.chat_message("user", avatar="🧑‍🌾"):
+                        if msg.get("image"):
+                            st.image(msg["image"], width=220)
                         st.markdown(msg["text"])
                 else:
                     with st.chat_message("assistant", avatar="🌾"):
@@ -412,6 +414,32 @@ def main():
         with st.expander(t("upload_instead", lang)):
             audio_file = st.file_uploader(t("upload_label", lang), type=["wav", "mp3", "m4a", "ogg"], key="voice_file")
             send_voice = st.button(t("submit", lang), key="send_voice", disabled=audio_file is None)
+
+        # Photo diagnosis (Gemini Vision); a new key after each photo resets the form
+        st.session_state.setdefault("photo_round", 0)
+        photo_round = st.session_state["photo_round"]
+        with st.expander(t("photo_header", lang)):
+            photo = st.file_uploader(t("photo_upload", lang), type=["jpg", "jpeg", "png", "webp"], key=f"photo_{photo_round}")
+            photo_question = st.text_input(t("photo_question", lang), key=f"photo_q_{photo_round}")
+            send_photo = st.button(t("photo_submit", lang), key=f"send_photo_{photo_round}", disabled=photo is None)
+        if send_photo and photo is not None:
+            image_bytes = photo.getvalue()
+            history = conversation_history()
+            with chat:
+                with st.chat_message("user", avatar="🧑‍🌾"):
+                    st.image(image_bytes, width=220)
+                    st.markdown(photo_question or t("photo_user_label", lang))
+                with st.chat_message("assistant", avatar="🌾"):
+                    with st.spinner(t("spinner_photo", lang)):
+                        result = pipeline.process_image_query(
+                            image_bytes, question=photo_question, language=lang, history=history
+                        )
+            st.session_state["messages"].append(
+                {"role": "user", "text": photo_question or t("photo_user_label", lang), "image": image_bytes}
+            )
+            st.session_state["messages"].append({"role": "assistant", "result": result, "id": len(st.session_state["messages"])})
+            st.session_state["photo_round"] += 1
+            st.rerun()
 
         voice = None  # (audio bytes, filename) of a spoken question
         if recording is not None:

@@ -84,6 +84,7 @@ class AskResponse(BaseModel):
     weather: Optional[Dict[str, Any]] = None
     evidence: List[Evidence] = Field(default_factory=list)
     transcript: Optional[str] = Field(None, description="Voice requests only: what the farmer said")
+    photo_diagnosis: Optional[Dict[str, Any]] = Field(None, description="Photo requests only: what the vision model saw")
     latency_ms: Optional[int] = None
     turn: ConversationTurn = Field(..., description="Append this to `history` for the next question")
 
@@ -117,6 +118,7 @@ def to_response(result: GroundedAnswer) -> AskResponse:
         weather=result.weather_report,
         evidence=[Evidence(citation=c.citation, text=c.text, score=c.score) for c in result.retrieved_chunks],
         transcript=meta.get("stt_transcript"),
+        photo_diagnosis=meta.get("vision"),
         latency_ms=meta.get("latency_ms"),
         turn=ConversationTurn.from_answer(result),
     )
@@ -155,6 +157,29 @@ def ask(request: AskRequest, pipeline: KisanPipeline = Depends(get_pipeline)):
         generate_audio=False,
         history=request.history[-MAX_HISTORY_TURNS:],
     )
+    return to_response(result)
+
+
+@app.post("/ask/image", response_model=AskResponse, tags=["advice"])
+async def ask_image(
+    image: UploadFile = File(..., description="Photo of the affected crop (jpg, png or webp), up to 10 MB"),
+    question: str = Form("", max_length=1000, description="Optional question about the photo"),
+    language: Language = Form("en"),
+    history: str = Form("[]", description="JSON list of earlier `turn` objects"),
+    pipeline: KisanPipeline = Depends(get_pipeline),
+):
+    """Diagnose a crop photo with Gemini Vision; treatment comes from the verified advisories.
+    `photo_diagnosis` in the response holds what the vision model saw."""
+    try:
+        turns = [ConversationTurn(**t) for t in json.loads(history)]
+    except (ValueError, TypeError, ValidationError):
+        raise HTTPException(status_code=422, detail="history must be a JSON list of turn objects")
+    data = await image.read()
+    if not data:
+        raise HTTPException(status_code=422, detail="Empty image file")
+    if len(data) > MAX_AUDIO_BYTES:
+        raise HTTPException(status_code=413, detail="Image file is larger than 10 MB")
+    result = pipeline.process_image_query(data, question=question, language=language, history=turns[-MAX_HISTORY_TURNS:])
     return to_response(result)
 
 

@@ -19,6 +19,8 @@ Farmers ask about crops, pests, pesticides or weather in Hindi, Punjabi, Hinglis
 - **System status sidebar** — shows which LLM and speech-to-text services are actually active.
 - **Voice input** — upload a voice note (WAV/MP3/M4A/OGG), transcribed with Whisper Large v3 via Groq.
 - **Voice output** — tap Listen to hear the answer: English, Hindi and Hinglish via Edge-TTS, Punjabi via gTTS (Edge-TTS has no Punjabi voice).
+- **Real-time voice** — record with the microphone and the question is sent when you stop; answers to spoken questions are read aloud.
+- **Photo diagnosis** — send a photo of a sick plant: Gemini Vision names the likely disease or pest and its confidence, and the treatment comes only from the verified advisories. Unclear photos, healthy plants and crops the advisories don't cover get no treatment, and every photo answer carries an "AI estimate, confirm with your KVK" note.
 - **Language switch** — English (default), Punjabi, Hinglish or Hindi for the UI, the answer, warnings and voice.
 - **Gemini fallback chain** — a busy main model hands over to a backup model, then to the offline template with a visible note.
 - **Scope handling** — greetings and off-topic queries (cricket, movies, politics, …) get a polite redirect.
@@ -33,6 +35,7 @@ Every AI component is optional. Without API keys the app runs fully offline-capa
 |---|---|---|---|
 | Answer generation | Google Gemini (`GEMINI_MODEL`) or OpenAI `gpt-4o-mini` (`OPENAI_MODEL`) | `LLM_PROVIDER` + matching API key | Deterministic template filled from retrieved advisory text |
 | Speech-to-text | Groq-hosted `whisper-large-v3` | `GROQ_API_KEY` | Voice tab asks the farmer to type instead |
+| Photo diagnosis | Gemini Vision (same main/backup models) identifies crop, likely problem and confidence; never gives treatment | `GEMINI_API_KEY` | "Couldn't analyse the photo" message |
 | Text-to-speech | Microsoft Edge-TTS (`en-IN-NeerjaNeural`, `hi-IN-MadhurNeural`); gTTS for Punjabi, since Edge-TTS has no Punjabi voice | `edge-tts` and `gTTS` packages + internet, no key | Text-only answer |
 | Dense embeddings | Hugging Face `paraphrase-multilingual-MiniLM-L12-v2` (384-dim, runs locally) | `EMBEDDING_PROVIDER=minilm` + `sentence-transformers` (one-time ~470 MB model download) | Local embedder |
 | | Gemini `gemini-embedding-001` (768-dim) | `EMBEDDING_PROVIDER=gemini` + `GEMINI_API_KEY` | Local embedder |
@@ -184,6 +187,7 @@ Interactive docs: http://localhost:8000/docs
 |---|---|
 | `POST /ask` | Ask a question: `{"query": "...", "language": "en|pa|hinglish|hi", "history": [...]}` |
 | `POST /ask/voice` | Ask with a voice note (multipart: `audio`, `language`, `history` as JSON) |
+| `POST /ask/image` | Diagnose a crop photo (multipart: `image`, optional `question`, `language`, `history`); `photo_diagnosis` shows what the vision model saw |
 | `GET /weather?place=Delhi&language=en` | Weather with spray and irrigation advice for any place in India |
 | `POST /speak` | Turn text into MP3 speech: `{"text": "...", "language": "pa"}` |
 | `GET /health` | Which services are active (index, LLM, speech-to-text, voices) |

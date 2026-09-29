@@ -204,7 +204,8 @@ class IntentRouter:
         if not history or result.intent in ("greeting", "out_of_scope"):
             return result
 
-        crop_intents = ("crop_question", "general_agriculture", "safety_query")
+        # A photo diagnosis counts as a crop question, so "What is the dose?" after a photo stays on it
+        crop_intents = ("crop_question", "general_agriculture", "safety_query", "image_diagnosis")
         previous = history[-1]
         last_weather = next((turn for turn in reversed(history) if turn.intent == "weather"), None)
         last_crop = next((turn for turn in reversed(history) if turn.intent in crop_intents and turn.crop), None)
@@ -233,8 +234,9 @@ class IntentRouter:
             previous_topic = last_crop.topic if last_crop.topic not in (None, "Agronomy/General") else None
             if names_no_subject:
                 # "What is the dose?" / "Is it dangerous?" -> same crop and pest as before
+                inherited = "crop_question" if last_crop.intent == "image_diagnosis" else last_crop.intent
                 return IntentResult(
-                    intent=result.intent if result.confidence > 0.70 else last_crop.intent,
+                    intent=result.intent if result.confidence > 0.70 else inherited,
                     confidence=0.85,
                     detected_crop=last_crop.crop,
                     detected_topic=previous_topic,

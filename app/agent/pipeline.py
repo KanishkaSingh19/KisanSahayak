@@ -10,6 +10,7 @@ from app.rag.hybrid_retriever import HybridRetriever
 from app.rag.chunker import AgriculturalChunker
 from app.speech.stt import WhisperSTTAdapter
 from app.speech.tts import EdgeTTSAdapter
+from app.tools.vision import CropVision
 from app.tools.weather_tool import AgWeatherTool
 
 # Shown (with a visible note) when the farmer names no place or one that can't be found
@@ -39,7 +40,9 @@ class KisanPipeline:
         weather_tool: Optional[AgWeatherTool] = None,
         stt_adapter: Optional[WhisperSTTAdapter] = None,
         tts_adapter: Optional[EdgeTTSAdapter] = None,
+        vision: Optional[CropVision] = None,
     ):
+        self.vision = vision or CropVision()
         self.router = router or IntentRouter()
         self.guardrails = guardrails or AgriculturalGuardrails()
         self.synthesizer = synthesizer or get_synthesizer()
@@ -100,6 +103,81 @@ class KisanPipeline:
         ans.processing_metadata["stt_transcript"] = transcript
         ans.processing_metadata["input_modality"] = "voice"
         return ans
+
+    def process_image_query(
+        self,
+        image_bytes: bytes,
+        question: str = "",
+        language: Optional[str] = None,
+        history: Optional[List[ConversationTurn]] = None,
+    ) -> GroundedAnswer:
+        """Diagnose a crop photo with Gemini Vision, then answer from the verified advisories.
+
+        The vision model only names the likely problem; treatment and doses come from retrieval +
+        grounded synthesis + guardrails, exactly as for typed questions.
+        """
+        start_time = time.time()
+        lang = normalize_language(language) if language else "hi"
+        question = (question or "").strip()
+
+        def reply(answer: str, intent: str, meta: dict, **extra) -> GroundedAnswer:
+            meta = {"input_modality": "image", "latency_ms": int((time.time() - start_time) * 1000), **meta}
+            return GroundedAnswer(
+                query=question or "[Photo]", intent=intent, answer=answer, detected_language=lang,
+                processing_metadata=meta, **{"citations": [], "retrieved_chunks": [], "is_grounded": True, **extra},
+            )
+
+        diagnosis = self.vision.diagnose(image_bytes, question=question, language=lang)
+        if diagnosis is None:
+            return reply(t("photo_failed", lang), "image_unavailable", {"error": self.vision.last_error})
+
+        meta = {
+            "vision": diagnosis.model_dump(),
+            "detected_crop": diagnosis.crop.title() if diagnosis.covered else None,
+            "detected_topic": diagnosis.problem if diagnosis.identified else None,
+        }
+        if not diagnosis.is_plant:
+            return reply(t("photo_not_plant", lang), "image_diagnosis", meta)
+
+        summary = t(
+            "photo_result", lang, problem=diagnosis.problem, crop=diagnosis.crop_name,
+            confidence=t(f"confidence_{diagnosis.confidence}", lang), summary=diagnosis.summary_local,
+        )
+        if diagnosis.problem.strip().lower() == "healthy":
+            return reply(f"{summary}\n\n{t('photo_healthy', lang)}", "image_diagnosis", meta)
+        if not diagnosis.identified or diagnosis.confidence == "low":
+            return reply(f"{summary}\n\n{t('photo_unclear', lang)}", "image_diagnosis", meta)
+
+        # Search the advisories with what the photo shows, then check they actually cover it
+        search = " ".join(filter(None, [diagnosis.crop_name, diagnosis.problem, diagnosis.visible_symptoms, question]))
+        retrieved = self.retriever.retrieve(search)
+        top_crop = retrieved[0].crop.lower() if retrieved else ""
+        if not diagnosis.covered or diagnosis.crop not in top_crop:
+            return reply(f"{summary}\n\n{t('photo_not_covered', lang)}", "image_diagnosis", meta)
+
+        farmer_question = question or "What is this problem and how should I treat it?"
+        llm_query = (
+            f"The farmer sent a photo of their {diagnosis.crop_name} crop. An image model thinks it most likely shows "
+            f"{diagnosis.problem} ({diagnosis.confidence} confidence). Visible: {diagnosis.visible_symptoms} "
+            f"Farmer's question: {farmer_question}"
+        )
+        draft, source = self.synthesizer.generate(
+            llm_query, retrieved, language=lang if language else None, history=history or []
+        )
+        answer, disclaimers = self.guardrails.enforce_safety(f"{summary}\n\n{draft}", question, language=lang)
+        is_grounded, score = self.guardrails.validate_grounding(draft, [c.text for c in retrieved])
+        meta.update({
+            "answer_source": source,
+            "grounding_score": score,
+            "top_section": retrieved[0].section,
+        })
+        return reply(
+            answer, "image_diagnosis", meta,
+            citations=list(dict.fromkeys(c.citation for c in retrieved)),
+            retrieved_chunks=retrieved,
+            is_grounded=is_grounded,
+            safety_disclaimers=[t("photo_disclaimer", lang)] + disclaimers,
+        )
 
     def process_query(
         self,

@@ -144,3 +144,21 @@ def test_speak_unsupported_language(client):
 
 def test_docs_available(client):
     assert client.get("/openapi.json").json()["info"]["title"] == "KisanSahayak API"
+
+
+def test_ask_image(client, fake):
+    def process_image_query(image_bytes, question="", language=None, history=None):
+        fake.calls.append({"query": question, "language": language, "history": history})
+        return GroundedAnswer(
+            query=question or "[Photo]", intent="image_diagnosis", answer="Most likely yellow rust.", citations=[],
+            retrieved_chunks=[], is_grounded=True, detected_language=language,
+            processing_metadata={"vision": {"crop": "wheat", "problem": "yellow rust", "confidence": "high"}},
+        )
+
+    fake.process_image_query = process_image_query
+    res = client.post("/ask/image", files={"image": ("leaf.jpg", b"\xff\xd8fakejpeg", "image/jpeg")},
+                      data={"question": "What is this?", "language": "hi"})
+    assert res.status_code == 200
+    body = res.json()
+    assert body["intent"] == "image_diagnosis" and body["photo_diagnosis"]["problem"] == "yellow rust"
+    assert client.post("/ask/image", files={"image": ("x.jpg", b"", "image/jpeg")}).status_code == 422
