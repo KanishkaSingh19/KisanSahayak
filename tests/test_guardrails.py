@@ -17,6 +17,20 @@ def test_guardrails_banned_chemical_detection():
     assert clean_violation is False
 
 
+@pytest.mark.parametrize(
+    "text,chemical",
+    [
+        ("क्या सब्जियों में मोनोक्रोटोफॉस डाल सकते हैं?", "monocrotophos"),
+        ("ਕੀ ਸਬਜ਼ੀਆਂ ਉੱਤੇ ਮੋਨੋਕ੍ਰੋਟੋਫ਼ਾਸ ਪਾ ਸਕਦੇ ਹਾਂ?", "monocrotophos"),
+        ("ਕੀ ਸਬਜ਼ੀਆਂ ਉੱਤੇ ਮੋਨੋਕ੍ਰੋਟੋਫ਼ਾਸ ਪਾ ਸਕਦੇ ਹਾਂ?", "monocrotophos"),  # ਫ਼ typed as ਫ + nukta
+        ("कपास में एंडोसल्फान का छिड़काव", "endosulfan"),
+    ],
+)
+def test_guardrails_detect_banned_chemicals_in_hindi_and_punjabi(text, chemical):
+    violation, chems = AgriculturalGuardrails().check_banned_chemicals(text)
+    assert violation is True and chemical in chems
+
+
 def test_guardrails_enforce_safety_disclaimers():
     guardrails = AgriculturalGuardrails()
     ans, disclaimers = guardrails.enforce_safety("Spray Tebuconazole @ 200 ml per acre", "Wheat rust")

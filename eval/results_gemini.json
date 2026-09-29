@@ -1,0 +1,63 @@
+{
+  "retrieval": {
+    "questions": 42,
+    "top1": 41,
+    "top3": 42,
+    "by_language": {
+      "en": {
+        "total": 14,
+        "top1": 13,
+        "top3": 14
+      },
+      "hi": {
+        "total": 10,
+        "top1": 10,
+        "top3": 10
+      },
+      "pa": {
+        "total": 5,
+        "top1": 5,
+        "top3": 5
+      },
+      "hinglish": {
+        "total": 13,
+        "top1": 13,
+        "top3": 13
+      }
+    }
+  },
+  "embedding_fallbacks": 0,
+  "date": "2026-09-29",
+  "embeddings": "gemini",
+  "intent": {
+    "correct": 41,
+    "total": 42
+  },
+  "weather_place": {
+    "correct": 8,
+    "total": 8
+  },
+  "scope": {
+    "correct": 6,
+    "total": 6
+  },
+  "banned_warnings": {
+    "caught": 5,
+    "total": 5,
+    "false_alarms": 0,
+    "checked": 39
+  },
+  "follow_ups": {
+    "correct": 6,
+    "total": 6
+  },
+  "latency_ms": {
+    "median": 516.5578000014648,
+    "p95": 559.8065999802202
+  },
+  "llm": null,
+  "failures": [
+    "Intent: \"White flies under cotton leaves and the leaves are curling, what should I do?\" → general_agriculture, expected crop_question",
+    "Retrieval: \"Aphids on my mustard crop, how to control them?\" → got *Wheat Aphid (Mahu) Control*, expected *Mustard Aphid*"
+  ]
+}

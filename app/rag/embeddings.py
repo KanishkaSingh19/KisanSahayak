@@ -98,6 +98,7 @@ class GeminiEmbedder(BaseEmbeddings):
         self.client = genai.Client(api_key=api_key, http_options=types.HttpOptions(retry_options=retry, timeout=10_000))
         self.model = model
         self._fallback = LocalDenseEmbedder(self.DIMENSION)
+        self.fallback_count = 0  # texts embedded locally because the API call failed
 
     def _embed(self, texts: List[str], task_type: str) -> np.ndarray:
         from google.genai import types
@@ -116,6 +117,7 @@ class GeminiEmbedder(BaseEmbeddings):
             return self._embed([text], "RETRIEVAL_QUERY")[0]
         except Exception as e:
             print(f"[Warning] Gemini embedding failed: {str(e)[:120]}. Using local embedder for this query.")
+            self.fallback_count += 1
             return self._fallback.embed_text(text)
 
     def embed_documents(self, texts: List[str]) -> np.ndarray:
@@ -126,6 +128,7 @@ class GeminiEmbedder(BaseEmbeddings):
                 batches.append(self._embed(batch, "RETRIEVAL_DOCUMENT"))
             except Exception as e:
                 print(f"[Warning] Gemini embedding failed: {str(e)[:120]}. Using local embedder for this batch.")
+                self.fallback_count += len(batch)
                 batches.append(self._fallback.embed_documents(batch))
         if not batches:
             return np.zeros((0, self.DIMENSION), dtype=np.float32)

@@ -1,5 +1,6 @@
 import re
-from typing import List, Tuple
+import unicodedata
+from typing import Dict, List, Tuple
 
 from app.i18n import t
 
@@ -15,7 +16,21 @@ BANNED_PESTICIDES = [
     "paraquat",
 ]
 
+# Hindi (Devanagari) and Punjabi (Gurmukhi) spellings farmers may type for the chemicals above
+BANNED_PESTICIDE_ALIASES: Dict[str, List[str]] = {
+    "monocrotophos": ["मोनोक्रोटोफॉस", "मोनोक्रोटोफोस", "ਮੋਨੋਕ੍ਰੋਟੋਫ਼ਾਸ", "ਮੋਨੋਕ੍ਰੋਟੋਫਾਸ"],
+    "endosulfan": ["एंडोसल्फान", "एन्डोसल्फान", "ਐਂਡੋਸਲਫ਼ਾਨ", "ਐਂਡੋਸਲਫਾਨ"],
+    "ddt": ["डीडीटी", "ਡੀਡੀਟੀ"],
+    "phorate": ["फोरेट", "ਫੋਰੇਟ"],
+    "paraquat": ["पैराक्वाट", "ਪੈਰਾਕੁਆਟ"],
+}
+
 STATUTORY_DISCLAIMER = t("statutory_disclaimer", "hi")
+
+
+def _normalize(text: str) -> str:
+    # NFC gives one encoding for letters like ਫ਼ / फ़ that can be typed two ways
+    return unicodedata.normalize("NFC", text).lower()
 
 
 class AgriculturalGuardrails:
@@ -25,11 +40,13 @@ class AgriculturalGuardrails:
         self.banned_list = banned_list
 
     def check_banned_chemicals(self, text: str) -> Tuple[bool, List[str]]:
-        """Detect any banned or restricted chemical substances."""
+        """Detect banned or restricted chemicals, written in English, Hindi or Punjabi script."""
         found = []
-        clean = text.lower()
+        clean = _normalize(text)
         for chemical in self.banned_list:
-            if re.search(rf"\b{re.escape(chemical)}\b", clean):
+            in_english = re.search(rf"\b{re.escape(chemical)}\b", clean)
+            in_indic = any(_normalize(alias) in clean for alias in BANNED_PESTICIDE_ALIASES.get(chemical, []))
+            if in_english or in_indic:
                 found.append(chemical)
         return len(found) > 0, found
 

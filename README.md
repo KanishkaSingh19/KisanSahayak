@@ -3,6 +3,9 @@
 > **Voice-first Multilingual AI Farming Assistant for Indian Farmers**  
 > *Grounded agricultural RAG (FAISS + BM25 + Reciprocal Rank Fusion) with voice input/output and live ag-weather spray advisories*
 
+### 🚀 Live app: **https://kisansahayak1.streamlit.app/**
+*(Free hosting sleeps when idle: if you see a "wake up" screen, click it and allow about a minute to start.)*
+
 Farmers ask about crops, pests, pesticides or weather in Hindi, Punjabi, Hinglish or English — by text or voice note. Answers are grounded strictly in curated ICAR, PAU Ludhiana and CIBRC advisories, with citations, banned-chemical checks and spray disclaimers.
 
 ---
@@ -190,6 +193,33 @@ For follow-up questions, send the `turn` object from each `/ask` response back i
 curl -X POST http://localhost:8000/ask -H "Content-Type: application/json" \
   -d '{"query": "What is the dose?", "language": "hi", "history": [{"query": "How to control aphids in mustard?", "answer": "...", "intent": "crop_question", "crop": "Mustard", "topic": "Aphid"}]}'
 ```
+
+---
+
+## 📊 Evaluation
+
+`scripts/evaluate.py` scores the assistant on **67 hand-written test questions** in English, Punjabi, Hinglish and Hindi (`eval/test_set.json`), covering all 14 advisory sections, weather, greetings/off-topic, banned pesticides and follow-up questions. The core checks don't call the LLM, so they are repeatable and use no API quota.
+
+| Metric | MiniLM search (local) | Gemini search (live app) |
+|---|---|---|
+| Right advisory ranked 1st | 93% (39/42) | **98% (41/42)** |
+| Right advisory in top 3 | 98% (41/42) | **100% (42/42)** |
+| Question type recognised | 98% (41/42) | 98% (41/42) |
+| Weather: right place detected | 100% (8/8) | 100% (8/8) |
+| Greetings / off-topic handled | 100% (6/6) | 100% (6/6) |
+| Banned-pesticide questions warned (incl. Hindi/Punjabi script) | **100% (5/5)** | **100% (5/5)** |
+| False banned-pesticide warnings | 0 of 39 | 0 of 39 |
+| Follow-up questions kept context | 100% (6/6) | 100% (6/6) |
+| Search + safety time, without LLM (median) | ~36 ms | ~0.5 s |
+
+On 8 real Gemini answers: **8/8** written by Gemini, **8/8** in the requested script, **8/8** with no numbers (doses, dates) that aren't in the source advisories; median 3.3 s.
+
+```bash
+python scripts/evaluate.py                      # offline, uses EMBEDDING_PROVIDER from .env
+python scripts/evaluate.py --embeddings gemini  # the live app's search
+python scripts/evaluate.py --llm 8              # also check 8 real Gemini answers (uses quota)
+```
+Full reports, including every failure: `eval/results_minilm.md`, `eval/results_gemini.md`. The test questions were written by the team, not collected from farmers; a field test set is future work.
 
 ---
 
