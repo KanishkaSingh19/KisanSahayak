@@ -44,6 +44,13 @@ IRRIGATION_KEYWORDS = [
     "सिंचाई", "पानी", "ਸਿੰਚਾਈ", "ਪਾਣੀ",
 ]
 
+SCHEME_KEYWORDS = [
+    "pm kisan", "pm-kisan", "pmkisan", "kisan samman", "samman nidhi", "yojana", "yojna", "scheme",
+    "ekyc", "e-kyc", "6000", "6,000",
+    "पीएम किसान", "पीएम-किसान", "किसान सम्मान", "सम्मान निधि", "योजना",
+    "ਪੀਐਮ ਕਿਸਾਨ", "ਪੀਐਮ-ਕਿਸਾਨ", "ਕਿਸਾਨ ਸਨਮਾਨ", "ਸਨਮਾਨ ਨਿਧੀ", "ਯੋਜਨਾ",
+]
+
 TIME_KEYWORDS = [
     "today", "now", "tonight", "tomorrow", "aaj", "abhi", "kal",
     "आज", "अभी", "कल", "ਅੱਜ", "ਹੁਣ", "ਕੱਲ੍ਹ",
@@ -100,6 +107,16 @@ class IntentRouter:
                 intent="greeting",
                 confidence=0.98,
                 reasoning="Short conversational greeting identified.",
+            )
+
+        # 1b. Government scheme questions (before the off-topic check: "minister" or "government"
+        # appear in legitimate eligibility questions)
+        if any(matches_keyword(k, clean) for k in SCHEME_KEYWORDS):
+            return IntentResult(
+                intent="scheme_query",
+                confidence=0.93,
+                detected_topic="PM-KISAN",
+                reasoning="Question about the PM-KISAN government scheme.",
             )
 
         # 2. Check for explicit Out-of-Scope indicators
@@ -212,6 +229,16 @@ class IntentRouter:
 
         topic = result.detected_topic if result.detected_topic not in (None, "Agronomy/General") else None
         names_no_subject = not result.detected_crop and not topic
+
+        # Scheme follow-ups: "How do I apply?" / "What documents?" right after a PM-KISAN answer
+        if previous.intent == "scheme_query" and names_no_subject and result.intent in crop_intents:
+            return IntentResult(
+                intent="scheme_query",
+                confidence=0.85,
+                detected_topic="PM-KISAN",
+                follow_up_of=previous.query,
+                reasoning="Follow-up to the previous PM-KISAN question.",
+            )
 
         # Weather follow-ups
         if result.intent == "weather":

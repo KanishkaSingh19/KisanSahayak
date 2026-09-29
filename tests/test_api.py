@@ -31,10 +31,11 @@ class FakePipeline:
             retrieved_chunks=[], is_grounded=True, detected_language=language or "en", processing_metadata=meta,
         )
 
-    def process_query(self, query, language=None, generate_audio=True, history=None):
+    def process_query(self, query, language=None, generate_audio=True, history=None, profile=None):
+        self.last_profile = profile
         return self._answer(query, language, history)
 
-    def process_audio_query(self, audio_bytes, filename="x.wav", language=None, generate_audio=True, history=None):
+    def process_audio_query(self, audio_bytes, filename="x.wav", language=None, generate_audio=True, history=None, profile=None):
         return self._answer("sarson mein chepa", language, history, transcript="sarson mein chepa")
 
 
@@ -147,7 +148,7 @@ def test_docs_available(client):
 
 
 def test_ask_image(client, fake):
-    def process_image_query(image_bytes, question="", language=None, history=None):
+    def process_image_query(image_bytes, question="", language=None, history=None, profile=None):
         fake.calls.append({"query": question, "language": language, "history": history})
         return GroundedAnswer(
             query=question or "[Photo]", intent="image_diagnosis", answer="Most likely yellow rust.", citations=[],
@@ -162,3 +163,11 @@ def test_ask_image(client, fake):
     body = res.json()
     assert body["intent"] == "image_diagnosis" and body["photo_diagnosis"]["problem"] == "yellow rust"
     assert client.post("/ask/image", files={"image": ("x.jpg", b"", "image/jpeg")}).status_code == 422
+
+
+def test_ask_passes_profile(client, fake):
+    profile = {"district": "Sangrur", "crops": ["wheat"], "owns_land": True}
+    assert client.post("/ask", json={"query": "Will it rain today?", "profile": profile}).status_code == 200
+    assert fake.last_profile.district == "Sangrur" and fake.last_profile.owns_land is True
+    bad = client.post("/ask/voice", files={"audio": ("n.wav", b"RIFF", "audio/wav")}, data={"profile": "not json"})
+    assert bad.status_code == 422

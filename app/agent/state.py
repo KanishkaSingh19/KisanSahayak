@@ -10,8 +10,41 @@ class AgentQuery(BaseModel):
     language_hint: Optional[str] = None
 
 
+class FarmerProfile(BaseModel):
+    """Optional details a farmer shares to personalise answers. Kept only in their browser session."""
+
+    district: Optional[str] = Field(None, max_length=80)
+    crops: List[str] = Field(default_factory=list, description="e.g. ['wheat', 'mustard']")
+    land_acres: Optional[float] = Field(None, ge=0, le=100000)
+    owns_land: Optional[bool] = Field(None, description="Is cultivable land recorded in the family's name?")
+    # PM-KISAN exclusion categories (see pmkisan.gov.in); None = not answered
+    income_tax_payer: Optional[bool] = None
+    government_employee: Optional[bool] = Field(None, description="Serving/retired govt or PSE employee, not MTS/Class IV/Group D")
+    pension_10k_or_more: Optional[bool] = Field(None, description="Monthly pension of Rs 10,000 or more (not MTS/Class IV/Group D)")
+    registered_professional: Optional[bool] = Field(None, description="Practising doctor, engineer, lawyer, CA or architect")
+    constitutional_post: Optional[bool] = Field(None, description="Present/former constitutional post, minister, MP/MLA/MLC, mayor or district panchayat chair")
+    institutional_landholder: Optional[bool] = None
+    land_acquired_after_feb_2019: Optional[bool] = None
+
+    def is_empty(self) -> bool:
+        return not (self.district or self.crops or self.land_acres is not None or self.owns_land is not None)
+
+    def summary(self) -> str:
+        """One line of context for the LLM (no personal identifiers)."""
+        parts = []
+        if self.district:
+            parts.append(f"district {self.district}")
+        if self.crops:
+            parts.append("grows " + ", ".join(self.crops))
+        if self.land_acres is not None:
+            parts.append(f"{self.land_acres:g} acres")
+        return "Farmer profile: " + "; ".join(parts) + "." if parts else ""
+
+
 class IntentResult(BaseModel):
-    intent: Literal["crop_question", "general_agriculture", "safety_query", "weather", "out_of_scope", "greeting"]
+    intent: Literal[
+        "crop_question", "general_agriculture", "safety_query", "weather", "out_of_scope", "greeting", "scheme_query"
+    ]
     confidence: float
     detected_crop: Optional[str] = None
     detected_topic: Optional[str] = None

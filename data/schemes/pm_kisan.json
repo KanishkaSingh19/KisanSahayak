@@ -1,0 +1,96 @@
+{
+  "scheme": "PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)",
+  "source": "PM-KISAN official website, Department of Agriculture and Farmers Welfare",
+  "source_url": "https://pmkisan.gov.in",
+  "last_verified": "2026-09-30",
+  "sections": [
+    {
+      "id": "benefit",
+      "title": "What PM-KISAN gives",
+      "keywords": ["kitna", "paisa", "amount", "money", "6000", "2000", "installment", "instalment", "kist", "kisht", "benefit", "milta", "कितना", "पैसा", "किस्त", "ਕਿੰਨਾ", "ਪੈਸਾ", "ਕਿਸ਼ਤ", "what is"],
+      "text": {
+        "en": "PM-KISAN is a Central Government scheme, fully funded by the Government of India, running since 1 December 2018. Eligible land-holding farmer families get income support of Rs 6,000 per year in three equal instalments of Rs 2,000, paid directly into their bank accounts. For this scheme, a family means husband, wife and minor children.",
+        "pa": "ਪੀਐਮ-ਕਿਸਾਨ ਕੇਂਦਰ ਸਰਕਾਰ ਦੀ ਯੋਜਨਾ ਹੈ, ਜਿਸ ਦਾ ਪੂਰਾ ਖਰਚਾ ਭਾਰਤ ਸਰਕਾਰ ਦਿੰਦੀ ਹੈ ਅਤੇ ਇਹ 1 ਦਸੰਬਰ 2018 ਤੋਂ ਚੱਲ ਰਹੀ ਹੈ। ਯੋਗ ਜ਼ਮੀਨ ਵਾਲੇ ਕਿਸਾਨ ਪਰਿਵਾਰਾਂ ਨੂੰ ਹਰ ਸਾਲ Rs 6,000 ਦੀ ਆਮਦਨ ਸਹਾਇਤਾ Rs 2,000 ਦੀਆਂ ਤਿੰਨ ਬਰਾਬਰ ਕਿਸ਼ਤਾਂ ਵਿੱਚ ਸਿੱਧੀ ਬੈਂਕ ਖਾਤੇ ਵਿੱਚ ਮਿਲਦੀ ਹੈ। ਇਸ ਯੋਜਨਾ ਵਿੱਚ ਪਰਿਵਾਰ ਦਾ ਮਤਲਬ ਪਤੀ, ਪਤਨੀ ਅਤੇ ਨਾਬਾਲਗ ਬੱਚੇ ਹੈ।",
+        "hinglish": "PM-KISAN Kendra Sarkar ki yojana hai, jiska poora kharcha Bharat Sarkar deti hai, aur yeh 1 December 2018 se chal rahi hai. Yogya zameen wale kisan parivaron ko har saal Rs 6,000 ki aay sahayata Rs 2,000 ki teen barabar kiston mein seedhe bank khate mein milti hai. Is yojana mein parivar ka matlab pati, patni aur nabalig bachche hai.",
+        "hi": "पीएम-किसान केंद्र सरकार की योजना है, जिसका पूरा खर्च भारत सरकार देती है, और यह 1 दिसंबर 2018 से चल रही है। पात्र भूमिधारक किसान परिवारों को हर साल Rs 6,000 की आय सहायता Rs 2,000 की तीन बराबर किस्तों में सीधे बैंक खाते में मिलती है। इस योजना में परिवार का मतलब पति, पत्नी और नाबालिग बच्चे है।"
+      }
+    },
+    {
+      "id": "eligibility",
+      "title": "Who is eligible",
+      "keywords": ["eligible", "eligibility", "kaun", "who", "patr", "yogya", "पात्र", "कौन", "योग्य", "ਯੋਗ", "ਕੌਣ"],
+      "text": {
+        "en": "All land-holding farmer families are eligible, unless the family falls in one of the exclusion categories. The State or UT government identifies eligible families as per the scheme guidelines.",
+        "pa": "ਸਾਰੇ ਜ਼ਮੀਨ ਵਾਲੇ ਕਿਸਾਨ ਪਰਿਵਾਰ ਯੋਗ ਹਨ, ਜਦ ਤੱਕ ਪਰਿਵਾਰ ਕਿਸੇ ਬਾਹਰ ਰੱਖੀ ਗਈ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਨਹੀਂ ਆਉਂਦਾ। ਰਾਜ ਜਾਂ ਕੇਂਦਰ ਸ਼ਾਸਿਤ ਪ੍ਰਦੇਸ਼ ਦੀ ਸਰਕਾਰ ਯੋਜਨਾ ਦੇ ਨਿਯਮਾਂ ਅਨੁਸਾਰ ਯੋਗ ਪਰਿਵਾਰਾਂ ਦੀ ਪਛਾਣ ਕਰਦੀ ਹੈ।",
+        "hinglish": "Sabhi zameen wale kisan parivar yogya hain, jab tak parivar kisi bahar rakhi gayi shreni mein nahi aata. Rajya ya Kendra Shasit Pradesh ki sarkar yojana ke niyamon ke anusaar yogya parivaron ki pehchan karti hai.",
+        "hi": "सभी भूमिधारक किसान परिवार पात्र हैं, जब तक परिवार किसी बाहर रखी गई श्रेणी में नहीं आता। राज्य या केंद्र शासित प्रदेश की सरकार योजना के नियमों के अनुसार पात्र परिवारों की पहचान करती है।"
+      }
+    },
+    {
+      "id": "exclusions",
+      "title": "Who is not eligible",
+      "keywords": ["not eligible", "exclusion", "excluded", "income tax", "pension", "government", "sarkari", "naukri", "doctor", "engineer", "lawyer", "mla", "mp", "पात्र नहीं", "आयकर", "पेंशन", "सरकारी", "ਯੋਗ ਨਹੀਂ", "ਪੈਨਸ਼ਨ", "ਸਰਕਾਰੀ"],
+      "text": {
+        "en": "Not eligible: all institutional landholders; families where a member is a present or former holder of a constitutional post, minister, MP, MLA, MLC, mayor of a municipal corporation or chairperson of a district panchayat; serving or retired officers and employees of Central or State Government, PSEs and government autonomous bodies, and regular employees of local bodies (Multi Tasking Staff, Class IV and Group D employees are NOT excluded); retired pensioners with a monthly pension of Rs 10,000 or more (except Multi Tasking Staff, Class IV and Group D); anyone who paid income tax in the last assessment year; and practising doctors, engineers, lawyers, chartered accountants and architects registered with professional bodies.",
+        "pa": "ਯੋਗ ਨਹੀਂ: ਸਾਰੇ ਸੰਸਥਾਗਤ ਜ਼ਮੀਨ ਮਾਲਕ; ਉਹ ਪਰਿਵਾਰ ਜਿਨ੍ਹਾਂ ਦਾ ਕੋਈ ਮੈਂਬਰ ਮੌਜੂਦਾ ਜਾਂ ਸਾਬਕਾ ਸੰਵਿਧਾਨਕ ਅਹੁਦੇਦਾਰ, ਮੰਤਰੀ, MP, MLA, MLC, ਨਗਰ ਨਿਗਮ ਦਾ ਮੇਅਰ ਜਾਂ ਜ਼ਿਲ੍ਹਾ ਪੰਚਾਇਤ ਦਾ ਚੇਅਰਪਰਸਨ ਹੈ; ਕੇਂਦਰ ਜਾਂ ਰਾਜ ਸਰਕਾਰ, PSE ਅਤੇ ਸਰਕਾਰੀ ਖੁਦਮੁਖਤਿਆਰ ਸੰਸਥਾਵਾਂ ਦੇ ਮੌਜੂਦਾ ਜਾਂ ਸੇਵਾਮੁਕਤ ਅਧਿਕਾਰੀ ਅਤੇ ਕਰਮਚਾਰੀ, ਅਤੇ ਸਥਾਨਕ ਸੰਸਥਾਵਾਂ ਦੇ ਨਿਯਮਤ ਕਰਮਚਾਰੀ (Multi Tasking Staff, Class IV ਅਤੇ Group D ਕਰਮਚਾਰੀ ਬਾਹਰ ਨਹੀਂ ਹਨ); Rs 10,000 ਜਾਂ ਵੱਧ ਮਹੀਨਾਵਾਰ ਪੈਨਸ਼ਨ ਵਾਲੇ ਸੇਵਾਮੁਕਤ ਪੈਨਸ਼ਨਰ (Multi Tasking Staff, Class IV ਅਤੇ Group D ਨੂੰ ਛੱਡ ਕੇ); ਪਿਛਲੇ ਮੁਲਾਂਕਣ ਸਾਲ ਵਿੱਚ ਆਮਦਨ ਕਰ ਭਰਨ ਵਾਲਾ ਹਰ ਵਿਅਕਤੀ; ਅਤੇ ਪੇਸ਼ੇਵਰ ਸੰਸਥਾਵਾਂ ਵਿੱਚ ਦਰਜ ਅਭਿਆਸ ਕਰਦੇ ਡਾਕਟਰ, ਇੰਜੀਨੀਅਰ, ਵਕੀਲ, ਚਾਰਟਰਡ ਅਕਾਊਂਟੈਂਟ ਅਤੇ ਆਰਕੀਟੈਕਟ।",
+        "hinglish": "Yogya nahi: sabhi sansthagat zameen malik; woh parivar jinka koi sadasya vartaman ya poorv samvaidhanik padadhikari, mantri, MP, MLA, MLC, nagar nigam ka mayor ya zila panchayat ka chairperson hai; Kendra ya Rajya Sarkar, PSE aur sarkari swayatt sansthaon ke vartaman ya sevanivritt adhikari aur karmchari, aur sthaniya nikayon ke niyamit karmchari (Multi Tasking Staff, Class IV aur Group D karmchari bahar nahi hain); Rs 10,000 ya zyada masik pension wale sevanivritt pensioner (Multi Tasking Staff, Class IV aur Group D ko chhod kar); pichhle assessment year mein income tax bharne wala har vyakti; aur professional sansthaon mein registered practice karne wale doctor, engineer, vakil, chartered accountant aur architect.",
+        "hi": "पात्र नहीं: सभी संस्थागत भूमिधारक; वे परिवार जिनका कोई सदस्य वर्तमान या पूर्व संवैधानिक पदधारक, मंत्री, MP, MLA, MLC, नगर निगम का महापौर या जिला पंचायत का अध्यक्ष है; केंद्र या राज्य सरकार, PSE और सरकारी स्वायत्त संस्थाओं के वर्तमान या सेवानिवृत्त अधिकारी और कर्मचारी, और स्थानीय निकायों के नियमित कर्मचारी (Multi Tasking Staff, Class IV और Group D कर्मचारी बाहर नहीं हैं); Rs 10,000 या अधिक मासिक पेंशन वाले सेवानिवृत्त पेंशनभोगी (Multi Tasking Staff, Class IV और Group D को छोड़कर); पिछले निर्धारण वर्ष में आयकर भरने वाला हर व्यक्ति; और पेशेवर संस्थाओं में पंजीकृत प्रैक्टिस करने वाले डॉक्टर, इंजीनियर, वकील, चार्टर्ड अकाउंटेंट और आर्किटेक्ट।"
+      }
+    },
+    {
+      "id": "apply",
+      "title": "How to apply",
+      "keywords": ["apply", "register", "registration", "kaise", "form", "documents", "document", "aavedan", "avedan", "अप्लाई", "आवेदन", "पंजीकरण", "रजिस्ट्रेशन", "कैसे", "दस्तावेज", "ਅਰਜ਼ੀ", "ਕਿਵੇਂ", "ਰਜਿਸਟ੍ਰੇਸ਼ਨ", "ਦਸਤਾਵੇਜ਼"],
+      "text": {
+        "en": "Register through 'New Farmer Registration' on pmkisan.gov.in, the PM-KISAN mobile app, a Common Service Centre (CSC), or your state's PM-KISAN nodal officer. Keep your Aadhaar, land record details and bank account details ready.",
+        "pa": "pmkisan.gov.in 'ਤੇ 'New Farmer Registration', ਪੀਐਮ-ਕਿਸਾਨ ਮੋਬਾਈਲ ਐਪ, ਕਾਮਨ ਸਰਵਿਸ ਸੈਂਟਰ (CSC) ਜਾਂ ਆਪਣੇ ਰਾਜ ਦੇ ਪੀਐਮ-ਕਿਸਾਨ ਨੋਡਲ ਅਫ਼ਸਰ ਰਾਹੀਂ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਕਰੋ। ਆਪਣਾ ਆਧਾਰ, ਜ਼ਮੀਨ ਦੇ ਰਿਕਾਰਡ ਦੇ ਵੇਰਵੇ ਅਤੇ ਬੈਂਕ ਖਾਤੇ ਦੇ ਵੇਰਵੇ ਤਿਆਰ ਰੱਖੋ।",
+        "hinglish": "pmkisan.gov.in par 'New Farmer Registration', PM-KISAN mobile app, Common Service Centre (CSC) ya apne rajya ke PM-KISAN nodal officer ke zariye registration karein. Apna Aadhaar, zameen ke record ki jaankari aur bank khate ki jaankari taiyaar rakhein.",
+        "hi": "pmkisan.gov.in पर 'New Farmer Registration', पीएम-किसान मोबाइल ऐप, कॉमन सर्विस सेंटर (CSC) या अपने राज्य के पीएम-किसान नोडल अधिकारी के माध्यम से पंजीकरण करें। अपना आधार, भूमि रिकॉर्ड का विवरण और बैंक खाते का विवरण तैयार रखें।"
+      }
+    },
+    {
+      "id": "ekyc",
+      "title": "eKYC",
+      "keywords": ["ekyc", "e-kyc", "kyc", "aadhaar", "aadhar", "biometric", "आधार", "केवाईसी", "ਆਧਾਰ", "ਕੇਵਾਈਸੀ"],
+      "text": {
+        "en": "eKYC is mandatory for all registered PM-KISAN farmers. Biometric eKYC is available through CSC centres, the PM-KISAN mobile app and state-authorised officials.",
+        "pa": "ਸਾਰੇ ਰਜਿਸਟਰਡ ਪੀਐਮ-ਕਿਸਾਨ ਕਿਸਾਨਾਂ ਲਈ eKYC ਲਾਜ਼ਮੀ ਹੈ। ਬਾਇਓਮੈਟ੍ਰਿਕ eKYC ਕਾਮਨ ਸਰਵਿਸ ਸੈਂਟਰ (CSC), ਪੀਐਮ-ਕਿਸਾਨ ਮੋਬਾਈਲ ਐਪ ਅਤੇ ਰਾਜ ਦੇ ਅਧਿਕਾਰਤ ਅਧਿਕਾਰੀਆਂ ਰਾਹੀਂ ਉਪਲਬਧ ਹੈ।",
+        "hinglish": "Sabhi registered PM-KISAN kisanon ke liye eKYC zaroori hai. Biometric eKYC Common Service Centre (CSC), PM-KISAN mobile app aur rajya ke adhikrit adhikariyon ke zariye uplabdh hai.",
+        "hi": "सभी पंजीकृत पीएम-किसान किसानों के लिए eKYC अनिवार्य है। बायोमेट्रिक eKYC कॉमन सर्विस सेंटर (CSC), पीएम-किसान मोबाइल ऐप और राज्य के अधिकृत अधिकारियों के माध्यम से उपलब्ध है।"
+      }
+    },
+    {
+      "id": "status",
+      "title": "Check status and payments",
+      "keywords": ["status", "check", "payment", "paisa nahi", "not received", "nahi aaya", "kab", "when", "स्थिति", "भुगतान", "नहीं आया", "कब", "ਸਥਿਤੀ", "ਭੁਗਤਾਨ", "ਨਹੀਂ ਆਇਆ", "ਕਦੋਂ", "latest", "installment kab"],
+      "text": {
+        "en": "Check your registration and payments with 'Know Your Status' on pmkisan.gov.in or the PM-KISAN mobile app, or ask the Kisan eMitra chatbot. As of 30 September 2026, the latest (23rd) instalment was released on 20 June 2026.",
+        "pa": "ਆਪਣੀ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਅਤੇ ਭੁਗਤਾਨ pmkisan.gov.in ਜਾਂ ਪੀਐਮ-ਕਿਸਾਨ ਮੋਬਾਈਲ ਐਪ 'ਤੇ 'Know Your Status' ਨਾਲ ਜਾਂਚੋ, ਜਾਂ Kisan eMitra ਚੈਟਬੋਟ ਤੋਂ ਪੁੱਛੋ। 30 ਸਤੰਬਰ 2026 ਤੱਕ, ਸਭ ਤੋਂ ਨਵੀਂ (23ਵੀਂ) ਕਿਸ਼ਤ 20 ਜੂਨ 2026 ਨੂੰ ਜਾਰੀ ਹੋਈ ਸੀ।",
+        "hinglish": "Apna registration aur payment pmkisan.gov.in ya PM-KISAN mobile app par 'Know Your Status' se jaanchein, ya Kisan eMitra chatbot se poochein. 30 September 2026 tak, sabse nayi (23vi) kist 20 June 2026 ko jaari hui thi.",
+        "hi": "अपना पंजीकरण और भुगतान pmkisan.gov.in या पीएम-किसान मोबाइल ऐप पर 'Know Your Status' से जाँचें, या Kisan eMitra चैटबॉट से पूछें। 30 सितंबर 2026 तक, सबसे नई (23वीं) किस्त 20 जून 2026 को जारी हुई थी।"
+      }
+    },
+    {
+      "id": "withheld",
+      "title": "Payments on hold",
+      "keywords": ["withheld", "rok", "ruka", "hold", "stopped", "band", "nahi aaya", "not received", "husband", "wife", "pati", "patni", "2019", "रुका", "रोक", "बंद", "पति", "पत्नी", "ਰੁਕ", "ਬੰਦ", "ਪਤੀ", "ਪਤਨੀ"],
+      "text": {
+        "en": "Some payments are temporarily on hold until physical verification, for suspected exclusion cases such as land ownership acquired after 1 February 2019, or more than one member of the same family receiving benefits (for example both husband and wife). Check 'Know Your Status' for your case.",
+        "pa": "ਕੁਝ ਭੁਗਤਾਨ ਸਰੀਰਕ ਪੜਤਾਲ ਹੋਣ ਤੱਕ ਅਸਥਾਈ ਤੌਰ 'ਤੇ ਰੋਕੇ ਗਏ ਹਨ, ਸ਼ੱਕੀ ਮਾਮਲਿਆਂ ਲਈ ਜਿਵੇਂ 1 ਫ਼ਰਵਰੀ 2019 ਤੋਂ ਬਾਅਦ ਮਿਲੀ ਜ਼ਮੀਨ ਦੀ ਮਾਲਕੀ, ਜਾਂ ਇੱਕੋ ਪਰਿਵਾਰ ਦੇ ਇੱਕ ਤੋਂ ਵੱਧ ਮੈਂਬਰਾਂ ਨੂੰ ਲਾਭ ਮਿਲਣਾ (ਜਿਵੇਂ ਪਤੀ ਅਤੇ ਪਤਨੀ ਦੋਵੇਂ)। ਆਪਣੇ ਮਾਮਲੇ ਲਈ 'Know Your Status' ਜਾਂਚੋ।",
+        "hinglish": "Kuch payment physical verification hone tak asthayi roop se roke gaye hain, sandigdh maamlon ke liye jaise 1 February 2019 ke baad mili zameen ki malkiyat, ya ek hi parivar ke ek se zyada sadasyon ko labh milna (jaise pati aur patni dono). Apne maamle ke liye 'Know Your Status' jaanchein.",
+        "hi": "कुछ भुगतान भौतिक सत्यापन होने तक अस्थायी रूप से रोके गए हैं, संदिग्ध मामलों के लिए जैसे 1 फरवरी 2019 के बाद मिली भूमि का स्वामित्व, या एक ही परिवार के एक से अधिक सदस्यों को लाभ मिलना (जैसे पति और पत्नी दोनों)। अपने मामले के लिए 'Know Your Status' जाँचें।"
+      }
+    },
+    {
+      "id": "help",
+      "title": "Where to get help",
+      "keywords": ["help", "helpline", "complaint", "grievance", "shikayat", "contact", "sampark", "number", "मदद", "शिकायत", "संपर्क", "हेल्पलाइन", "ਮਦਦ", "ਸ਼ਿਕਾਇਤ", "ਸੰਪਰਕ"],
+      "text": {
+        "en": "For problems, raise a query with the Helpdesk / Query Form on pmkisan.gov.in, ask the Kisan eMitra chatbot, visit a Common Service Centre (CSC), or contact your state's PM-KISAN nodal officer (contact list on pmkisan.gov.in).",
+        "pa": "ਸਮੱਸਿਆ ਹੋਣ 'ਤੇ pmkisan.gov.in 'ਤੇ Helpdesk / Query Form ਨਾਲ ਸਵਾਲ ਦਰਜ ਕਰੋ, Kisan eMitra ਚੈਟਬੋਟ ਤੋਂ ਪੁੱਛੋ, ਕਾਮਨ ਸਰਵਿਸ ਸੈਂਟਰ (CSC) ਜਾਓ, ਜਾਂ ਆਪਣੇ ਰਾਜ ਦੇ ਪੀਐਮ-ਕਿਸਾਨ ਨੋਡਲ ਅਫ਼ਸਰ ਨਾਲ ਸੰਪਰਕ ਕਰੋ (ਸੂਚੀ pmkisan.gov.in 'ਤੇ ਹੈ)।",
+        "hinglish": "Samasya hone par pmkisan.gov.in par Helpdesk / Query Form se sawal darj karein, Kisan eMitra chatbot se poochein, Common Service Centre (CSC) jaayein, ya apne rajya ke PM-KISAN nodal officer se sampark karein (soochi pmkisan.gov.in par hai).",
+        "hi": "समस्या होने पर pmkisan.gov.in पर Helpdesk / Query Form से प्रश्न दर्ज करें, Kisan eMitra चैटबॉट से पूछें, कॉमन सर्विस सेंटर (CSC) जाएँ, या अपने राज्य के पीएम-किसान नोडल अधिकारी से संपर्क करें (सूची pmkisan.gov.in पर है)।"
+      }
+    }
+  ]
+}

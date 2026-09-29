@@ -19,7 +19,7 @@ except Exception:
     pass
 
 from app.agent.pipeline import KisanPipeline
-from app.agent.state import ConversationTurn
+from app.agent.state import ConversationTurn, FarmerProfile
 from app.config import settings
 from app.agent.synthesizer import GeminiSynthesizer, OpenAISynthesizer
 from app.i18n import DEFAULT_LANGUAGE, LANGUAGES, SAMPLE_QUESTIONS, t
@@ -315,6 +315,46 @@ def render_answer(result, pipeline, lang: str, msg_id: int, speak_now: bool = Fa
         st.write(f"**Language:** `{result.detected_language}`")
 
 
+def render_profile(lang: str) -> FarmerProfile:
+    """'My farm' form. Kept only in this browser session (Streamlit session state), never stored."""
+    with st.expander(t("profile_header", lang), expanded=False):
+        st.caption(t("profile_privacy", lang))
+        district = st.text_input(t("profile_district", lang), key="p_district")
+        crops = st.multiselect(
+            t("profile_crops", lang), ["wheat", "mustard", "paddy", "cotton"],
+            format_func=lambda c: t(f"crop_{c}", lang), key="p_crops",
+        )
+        land = st.number_input(t("profile_land", lang), min_value=0.0, step=0.5, value=None, key="p_land")
+        owns = st.radio(
+            t("profile_owns_land", lang), ["not_sure", "yes", "no"],
+            format_func=lambda o: t(f"answer_{o}", lang), horizontal=True, key="p_owns",
+        )
+        st.markdown(f"**{t('profile_pmk_header', lang)}**")
+        # Ticked = True; unticked = not answered (the eligibility rules only exclude on a tick)
+        ticks = {
+            field: st.checkbox(t(label, lang), key=f"p_{field}") or None
+            for field, label in [
+                ("income_tax_payer", "pmk_q_income_tax"),
+                ("government_employee", "pmk_q_government"),
+                ("pension_10k_or_more", "pmk_q_pension"),
+                ("registered_professional", "pmk_q_professional"),
+                ("constitutional_post", "pmk_q_constitutional"),
+                ("institutional_landholder", "pmk_q_institutional"),
+                ("land_acquired_after_feb_2019", "pmk_q_after_2019"),
+            ]
+        }
+    profile = FarmerProfile(
+        district=district.strip() or None,
+        crops=crops,
+        land_acres=land,
+        owns_land={"yes": True, "no": False}.get(owns),
+        **ticks,
+    )
+    if not profile.is_empty():
+        st.caption(t("profile_active", lang))
+    return profile
+
+
 def render_weather_card(weather_tool, lang: str) -> None:
     st.markdown(f'<div class="ks-section-title">{t("sidebar_weather_header", lang)}</div>', unsafe_allow_html=True)
     districts = [d.capitalize() for d in sorted(DISTRICT_COORDINATES.keys())]
@@ -374,6 +414,8 @@ def main():
     main_col, side_col = st.columns([2, 1], gap="large")
 
     with side_col:
+        with st.container(border=True, key="card_profile"):
+            profile = render_profile(lang)
         with st.container(border=True, key="card_samples"):
             st.markdown(f'<div class="ks-section-title">{t("samples_header", lang)}</div>', unsafe_allow_html=True)
             for i, q in enumerate(SAMPLE_QUESTIONS[lang]):
@@ -441,7 +483,7 @@ def main():
                 with st.chat_message("assistant", avatar="🌾"):
                     with st.spinner(t("spinner_photo", lang)):
                         result = pipeline.process_image_query(
-                            image_bytes, question=photo_question, language=lang, history=history
+                            image_bytes, question=photo_question, language=lang, history=history, profile=profile
                         )
             st.session_state["messages"].append(
                 {"role": "user", "text": photo_question or t("photo_user_label", lang), "image": image_bytes}
@@ -467,11 +509,13 @@ def main():
                 with st.chat_message("assistant", avatar="🌾"):
                     if prompt:
                         with st.spinner(t("spinner_text", lang)):
-                            result = pipeline.process_query(prompt, language=lang, generate_audio=False, history=history)
+                            result = pipeline.process_query(
+                                prompt, language=lang, generate_audio=False, history=history, profile=profile
+                            )
                     else:
                         with st.spinner(t("spinner_audio", lang)):
                             result = pipeline.process_audio_query(
-                                voice[0], filename=voice[1], language=lang, generate_audio=False, history=history,
+                                voice[0], filename=voice[1], language=lang, generate_audio=False, history=history, profile=profile,
                             )
             user_text = prompt or result.processing_metadata.get("stt_transcript") or t("voice_not_understood", lang)
             st.session_state["messages"].append({"role": "user", "text": user_text})

@@ -18,7 +18,7 @@ from fastapi.responses import FileResponse, RedirectResponse
 from pydantic import BaseModel, Field, ValidationError
 
 from app.agent.pipeline import DEFAULT_WEATHER_DISTRICT, KisanPipeline
-from app.agent.state import ConversationTurn, GroundedAnswer
+from app.agent.state import ConversationTurn, FarmerProfile, GroundedAnswer
 from app.agent.synthesizer import GeminiSynthesizer, OpenAISynthesizer
 from app.config import settings
 
@@ -60,6 +60,9 @@ class AskRequest(BaseModel):
         default_factory=list,
         description="Earlier turns of this conversation (the `turn` field of previous responses), oldest first.",
     )
+    profile: Optional[FarmerProfile] = Field(
+        None, description="Optional farm details: district for weather, crops, and PM-KISAN eligibility answers"
+    )
 
 
 class Evidence(BaseModel):
@@ -100,6 +103,16 @@ class HealthResponse(BaseModel):
     llm: str
     speech_to_text: bool
     text_to_speech: Dict[str, Optional[str]]
+
+
+def parse_profile(raw: str) -> Optional[FarmerProfile]:
+    """Optional farm profile sent as a JSON form field (multipart endpoints)."""
+    if not raw.strip():
+        return None
+    try:
+        return FarmerProfile(**json.loads(raw))
+    except (ValueError, TypeError, ValidationError):
+        raise HTTPException(status_code=422, detail="profile must be a JSON farm profile object")
 
 
 def to_response(result: GroundedAnswer) -> AskResponse:
@@ -156,6 +169,7 @@ def ask(request: AskRequest, pipeline: KisanPipeline = Depends(get_pipeline)):
         language=request.language,
         generate_audio=False,
         history=request.history[-MAX_HISTORY_TURNS:],
+        profile=request.profile,
     )
     return to_response(result)
 
@@ -166,6 +180,7 @@ async def ask_image(
     question: str = Form("", max_length=1000, description="Optional question about the photo"),
     language: Language = Form("en"),
     history: str = Form("[]", description="JSON list of earlier `turn` objects"),
+    profile: str = Form("", description="Optional JSON farm profile"),
     pipeline: KisanPipeline = Depends(get_pipeline),
 ):
     """Diagnose a crop photo with Gemini Vision; treatment comes from the verified advisories.
@@ -179,7 +194,9 @@ async def ask_image(
         raise HTTPException(status_code=422, detail="Empty image file")
     if len(data) > MAX_AUDIO_BYTES:
         raise HTTPException(status_code=413, detail="Image file is larger than 10 MB")
-    result = pipeline.process_image_query(data, question=question, language=language, history=turns[-MAX_HISTORY_TURNS:])
+    result = pipeline.process_image_query(
+        data, question=question, language=language, history=turns[-MAX_HISTORY_TURNS:], profile=parse_profile(profile)
+    )
     return to_response(result)
 
 
@@ -188,6 +205,7 @@ async def ask_voice(
     audio: UploadFile = File(..., description="Voice note (wav, mp3, m4a or ogg), up to 10 MB"),
     language: Language = Form("en"),
     history: str = Form("[]", description="JSON list of earlier `turn` objects"),
+    profile: str = Form("", description="Optional JSON farm profile"),
     pipeline: KisanPipeline = Depends(get_pipeline),
 ):
     """Ask by voice note: transcribed with Whisper, then answered like /ask."""
@@ -206,6 +224,7 @@ async def ask_voice(
         language=language,
         generate_audio=False,
         history=turns[-MAX_HISTORY_TURNS:],
+        profile=parse_profile(profile),
     )
     return to_response(result)
 

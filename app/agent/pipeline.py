@@ -2,7 +2,8 @@ import time
 from typing import List, Optional
 from app.config import settings
 from app.i18n import normalize_language, t
-from app.agent.state import AgentQuery, ConversationTurn, GroundedAnswer, IntentResult
+from app.agent.state import AgentQuery, ConversationTurn, FarmerProfile, GroundedAnswer, IntentResult
+from app.tools.schemes import SchemeGuide, check_eligibility
 from app.agent.router import IntentRouter, weather_topics
 from app.agent.synthesizer import get_synthesizer
 from app.agent.guardrails import AgriculturalGuardrails
@@ -41,8 +42,10 @@ class KisanPipeline:
         stt_adapter: Optional[WhisperSTTAdapter] = None,
         tts_adapter: Optional[EdgeTTSAdapter] = None,
         vision: Optional[CropVision] = None,
+        scheme_guide: Optional[SchemeGuide] = None,
     ):
         self.vision = vision or CropVision()
+        self.scheme_guide = scheme_guide or SchemeGuide()
         self.router = router or IntentRouter()
         self.guardrails = guardrails or AgriculturalGuardrails()
         self.synthesizer = synthesizer or get_synthesizer()
@@ -73,6 +76,7 @@ class KisanPipeline:
         language: Optional[str] = None,
         generate_audio: bool = True,
         history: Optional[List[ConversationTurn]] = None,
+        profile: Optional[FarmerProfile] = None,
     ) -> GroundedAnswer:
         """Process spoken farmer query via Groq Whisper STT with graceful fallback."""
         start_time = time.time()
@@ -98,7 +102,8 @@ class KisanPipeline:
 
         # Transcribed successfully: route into regular grounded processing pipeline
         ans = self.process_query(
-            transcript, user_id=user_id, language=language, generate_audio=generate_audio, history=history
+            transcript, user_id=user_id, language=language, generate_audio=generate_audio, history=history,
+            profile=profile,
         )
         ans.processing_metadata["stt_transcript"] = transcript
         ans.processing_metadata["input_modality"] = "voice"
@@ -110,6 +115,7 @@ class KisanPipeline:
         question: str = "",
         language: Optional[str] = None,
         history: Optional[List[ConversationTurn]] = None,
+        profile: Optional[FarmerProfile] = None,
     ) -> GroundedAnswer:
         """Diagnose a crop photo with Gemini Vision, then answer from the verified advisories.
 
@@ -162,7 +168,8 @@ class KisanPipeline:
             f"Farmer's question: {farmer_question}"
         )
         draft, source = self.synthesizer.generate(
-            llm_query, retrieved, language=lang if language else None, history=history or []
+            llm_query, retrieved, language=lang if language else None, history=history or [],
+            context_note=profile.summary() if profile else "",
         )
         answer, disclaimers = self.guardrails.enforce_safety(f"{summary}\n\n{draft}", question, language=lang)
         is_grounded, score = self.guardrails.validate_grounding(draft, [c.text for c in retrieved])
@@ -179,6 +186,56 @@ class KisanPipeline:
             safety_disclaimers=[t("photo_disclaimer", lang)] + disclaimers,
         )
 
+    def _answer_scheme(self, query, intent_res, lang, language, history, profile, start_time) -> GroundedAnswer:
+        """PM-KISAN answer: rule-based eligibility from the profile + scheme text from the official website."""
+        guide = self.scheme_guide
+        sections = guide.select_sections(" ".join(filter(None, [intent_res.follow_up_of, query])))
+        context = guide.as_context(sections)
+
+        # Eligibility is decided by fixed rules, never by the LLM
+        status, reasons, may_be_withheld = check_eligibility(profile)
+        asked_eligibility = any(s["id"] in ("eligibility", "exclusions") for s in sections)
+        eligibility_text = ""
+        if status == "likely_eligible":
+            eligibility_text = t("pmk_likely_eligible", lang)
+        elif status == "not_eligible":
+            eligibility_text = t("pmk_not_eligible", lang, reasons="; ".join(t(r, lang) for r in reasons))
+        elif asked_eligibility:
+            eligibility_text = t("pmk_needs_info", lang)
+        if may_be_withheld:
+            eligibility_text += "\n\n" + t("pmk_withheld", lang)
+
+        notes = [profile.summary()] if profile and not profile.is_empty() else []
+        if status != "needs_info":
+            notes.append(f"Rule-based PM-KISAN eligibility check from the profile: {status.replace('_', ' ')} "
+                         "(already shown to the farmer; do not contradict it).")
+        draft, source = self.synthesizer.generate(
+            query, context, language=lang if language else None, history=history, context_note=" ".join(notes),
+        )
+        if source != "llm":
+            draft = guide.offline_answer(sections, lang)  # stored official text in the farmer's language
+
+        answer = f"{eligibility_text}\n\n{draft}" if eligibility_text else draft
+        is_grounded, score = self.guardrails.validate_grounding(draft, [c.text for c in context])
+        return GroundedAnswer(
+            query=query,
+            intent="scheme_query",
+            answer=answer,
+            citations=[guide.citation],
+            retrieved_chunks=context,
+            is_grounded=is_grounded or source != "llm",
+            safety_disclaimers=[t("scheme_disclaimer", lang, date=guide.data["last_verified"])],
+            detected_language=lang,
+            processing_metadata={
+                "latency_ms": int((time.time() - start_time) * 1000),
+                "answer_source": source,
+                "detected_topic": "PM-KISAN",
+                "pmk_eligibility": status,
+                "grounding_score": score,
+                "top_section": sections[0]["title"],
+            },
+        )
+
     def process_query(
         self,
         query: str,
@@ -186,12 +243,15 @@ class KisanPipeline:
         generate_audio: bool = True,
         language: Optional[str] = None,
         history: Optional[List[ConversationTurn]] = None,
+        profile: Optional[FarmerProfile] = None,
     ) -> GroundedAnswer:
         """Process farmer query through intent routing, hybrid RAG, synthesis, and guardrails.
 
         `language` ("en", "pa", "hinglish", "hi") sets the reply language; when omitted it is
         detected from the query script. `history` holds earlier turns of the conversation so
         follow-ups ("what is the dose?", "aur Sangrur mein?") keep their crop, pest or place.
+        `profile` (optional) personalises answers: the farmer's district for weather, their crop
+        when none is named, and PM-KISAN eligibility.
         """
         history = history or []
         start_time = time.time()
@@ -251,6 +311,8 @@ class KisanPipeline:
             if intent_res.intent == "weather":
                 lang = detected_lang
                 requested = intent_res.detected_district
+                if not requested and profile and profile.district:
+                    requested = profile.district  # "Will it rain today?" -> the farmer's own district
                 place = self.weather_tool.resolve_place(requested) if requested else None
                 location_note = ""
                 if place is None:
@@ -296,6 +358,16 @@ class KisanPipeline:
                     },
                 )
 
+            # 5b. Government scheme guidance (PM-KISAN)
+            if intent_res.intent == "scheme_query":
+                return self._answer_scheme(clean_query, intent_res, detected_lang, language, history, profile, start_time)
+
+            # No crop named or carried over: use the farmer's crop if their profile lists exactly one we cover
+            if not intent_res.detected_crop and profile:
+                covered = [c for c in profile.crops if c.lower() in ("wheat", "mustard", "paddy", "cotton")]
+                if len(covered) == 1:
+                    intent_res.detected_crop = covered[0].title()
+
             # 6. Hybrid Agricultural Retrieval (FAISS + BM25 + RRF)
             # Add the crop and pest (detected, or carried over from the previous turn) so that
             # short follow-ups like "what is the dose?" still retrieve the right advisory
@@ -309,13 +381,18 @@ class KisanPipeline:
             search_query = " ".join(context_terms + [clean_query])
 
             retrieved = self.retriever.retrieve(search_query)
+            if intent_res.detected_crop:
+                # Equal fusion scores (e.g. wheat vs mustard aphid) must not put another crop first
+                crop = intent_res.detected_crop.lower()
+                retrieved.sort(key=lambda c: (c.crop or "").lower() != crop)
 
             # 7. Response Synthesis
             # Only force an answer language when the farmer chose one; otherwise the LLM mirrors the query
             answer_lang = detected_lang if language else None
             if hasattr(self.synthesizer, "generate"):
                 draft_answer, answer_source = self.synthesizer.generate(
-                    clean_query, retrieved, language=answer_lang, history=history
+                    clean_query, retrieved, language=answer_lang, history=history,
+                    context_note=profile.summary() if profile else "",
                 )
             else:
                 draft_answer, answer_source = self.synthesizer.synthesize(clean_query, retrieved, language=answer_lang), "unknown"

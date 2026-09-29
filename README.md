@@ -21,6 +21,8 @@ Farmers ask about crops, pests, pesticides or weather in Hindi, Punjabi, Hinglis
 - **Voice output** — tap Listen to hear the answer: English, Hindi and Hinglish via Edge-TTS, Punjabi via gTTS (Edge-TTS has no Punjabi voice).
 - **Real-time voice** — record with the microphone and the question is sent when you stop; answers to spoken questions are read aloud.
 - **Photo diagnosis** — send a photo of a sick plant: Gemini Vision names the likely disease or pest and its confidence, and the treatment comes only from the verified advisories. Unclear photos, healthy plants and crops the advisories don't cover get no treatment, and every photo answer carries an "AI estimate, confirm with your KVK" note.
+- **PM-KISAN guidance** — benefit, eligibility, exclusions, how to apply, eKYC, status checks and why an instalment can be held, from the official site ([pmkisan.gov.in](https://pmkisan.gov.in), checked 30 Sep 2026) in all four languages. Eligibility is decided by fixed rules from the farm profile, never by the LLM, and every answer says to confirm on the official portal.
+- **My farm profile (optional)** — district, crops, land and a few yes/no PM-KISAN questions. Used for the local weather when no place is named, for the crop when a question names none (if only one covered crop is listed), and for eligibility. Nothing is stored: it lasts only for the browser session and asks for no name, phone or Aadhaar.
 - **Language switch** — English (default), Punjabi, Hinglish or Hindi for the UI, the answer, warnings and voice.
 - **Gemini fallback chain** — a busy main model hands over to a backup model, then to the offline template with a visible note.
 - **Scope handling** — greetings and off-topic queries (cricket, movies, politics, …) get a polite redirect.
@@ -107,7 +109,10 @@ KisanSahayak/
 │   │   ├── stt.py                # Groq Whisper speech-to-text adapter
 │   │   └── tts.py                # Edge-TTS Hindi/Punjabi speech synthesis
 │   └── tools/
-│       └── weather_tool.py       # Open-Meteo ag-weather & spray window advisory
+│       ├── weather_tool.py       # Open-Meteo ag-weather & spray window advisory
+│       ├── location.py           # Place-name lookup (any place in India)
+│       ├── vision.py             # Gemini Vision crop-photo diagnosis
+│       └── schemes.py            # PM-KISAN sections and rule-based eligibility check
 ├── data/
 │   ├── raw/                      # Curated ICAR, PAU & CIBRC advisories (JSON)
 │   │   ├── wheat_pau_icar.json
@@ -115,6 +120,7 @@ KisanSahayak/
 │   │   ├── paddy_rice_management.json
 │   │   ├── cotton_pest_control.json
 │   │   └── pesticide_safety_cibrc.json
+│   ├── schemes/pm_kisan.json     # PM-KISAN guidance from pmkisan.gov.in (4 languages)
 │   ├── indices/                  # Serialized FAISS & BM25 indices
 │   └── audio/                    # Generated TTS audio files
 ├── frontend/
@@ -185,12 +191,17 @@ Interactive docs: http://localhost:8000/docs
 
 | Endpoint | Purpose |
 |---|---|
-| `POST /ask` | Ask a question: `{"query": "...", "language": "en|pa|hinglish|hi", "history": [...]}` |
-| `POST /ask/voice` | Ask with a voice note (multipart: `audio`, `language`, `history` as JSON) |
-| `POST /ask/image` | Diagnose a crop photo (multipart: `image`, optional `question`, `language`, `history`); `photo_diagnosis` shows what the vision model saw |
+| `POST /ask` | Ask a question: `{"query": "...", "language": "en|pa|hinglish|hi", "history": [...], "profile": {...}}` |
+| `POST /ask/voice` | Ask with a voice note (multipart: `audio`, `language`, `history` and optional `profile` as JSON) |
+| `POST /ask/image` | Diagnose a crop photo (multipart: `image`, optional `question`, `language`, `history`, `profile`); `photo_diagnosis` shows what the vision model saw |
 | `GET /weather?place=Delhi&language=en` | Weather with spray and irrigation advice for any place in India |
 | `POST /speak` | Turn text into MP3 speech: `{"text": "...", "language": "pa"}` |
 | `GET /health` | Which services are active (index, LLM, speech-to-text, voices) |
+
+`profile` is optional; every field can be left out. Example for a PM-KISAN question:
+```bash
+curl -X POST http://localhost:8000/ask -H "Content-Type: application/json"   -d '{"query": "Am I eligible for PM-KISAN?", "language": "pa", "profile": {"district": "Sangrur", "crops": ["wheat"], "owns_land": true, "income_tax_payer": false}}'
+```
 
 For follow-up questions, send the `turn` object from each `/ask` response back in `history` on the next request:
 ```bash

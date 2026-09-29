@@ -81,7 +81,8 @@ class DeterministicGroundedSynthesizer:
         self.translations = load_translations() if translations is None else translations
 
     def generate(
-        self, query: str, chunks: List[RetrievalResult], language: Optional[str] = None, history=None
+        self, query: str, chunks: List[RetrievalResult], language: Optional[str] = None, history=None,
+        context_note: str = "",
     ) -> Tuple[str, str]:
         """Return (answer, source)."""
         source = SOURCE_TEMPLATE_OFFLINE if chunks else SOURCE_NO_RESULTS
@@ -174,7 +175,8 @@ class GeminiSynthesizer:
         self._skip_until: Dict[str, float] = {}  # model -> time until which its quota is exhausted
 
     def generate(
-        self, query: str, chunks: List[RetrievalResult], language: Optional[str] = None, history=None
+        self, query: str, chunks: List[RetrievalResult], language: Optional[str] = None, history=None,
+        context_note: str = "",
     ) -> Tuple[str, str]:
         """Return (answer, source); tries each Gemini model in turn, then the offline template."""
         if not chunks:
@@ -183,7 +185,8 @@ class GeminiSynthesizer:
         context_str = "\n\n".join([f"Source [{c.citation}]:\n{c.text}" for c in chunks])
         prompt = (
             f"{build_system_prompt(context_str, language)}\n\n"
-            f"{format_history(history)}Farmer Query: {query}\n\nGrounded Answer:"
+            f"{format_history(history)}{context_note + chr(10) * 2 if context_note else ''}"
+            f"Farmer Query: {query}\n\nGrounded Answer:"
         )
 
         for model in self.models:
@@ -216,7 +219,8 @@ class OpenAISynthesizer:
         self.fallback = DeterministicGroundedSynthesizer()
 
     def generate(
-        self, query: str, chunks: List[RetrievalResult], language: Optional[str] = None, history=None
+        self, query: str, chunks: List[RetrievalResult], language: Optional[str] = None, history=None,
+        context_note: str = "",
     ) -> Tuple[str, str]:
         """Return (answer, source); falls back to the offline template if OpenAI fails."""
         if not chunks:
@@ -227,7 +231,7 @@ class OpenAISynthesizer:
             resp = self.client.chat.completions.create(
                 model=self.model_name,
                 messages=[
-                    {"role": "system", "content": build_system_prompt(context_str, language)},
+                    {"role": "system", "content": build_system_prompt(context_str, language) + (f"\n{context_note}" if context_note else "")},
                     *[
                         message
                         for turn in (history or [])[-HISTORY_TURNS:]
