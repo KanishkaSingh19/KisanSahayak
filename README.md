@@ -1,4 +1,4 @@
-# 🌾 KisanSahayak (किसान सहायक) - Phase 2
+# 🌾 KisanSahayak (किसान सहायक) 
 
 > **Voice-first Multilingual AI Farming Assistant for Indian Farmers**  
 > *Grounded agricultural RAG (FAISS + BM25 + Reciprocal Rank Fusion) with voice input/output and live ag-weather spray advisories*
