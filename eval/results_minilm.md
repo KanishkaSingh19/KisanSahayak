@@ -12,7 +12,7 @@
 | Banned-pesticide questions warned | **5/5 (100%)** |
 | False banned-pesticide warnings | 0 of 39 questions not about banned pesticides |
 | Follow-up questions kept context | 6/6 (100%) |
-| Response time without LLM (median / p95) | 113 ms / 258 ms |
+| Response time without LLM (median / p95) | 73 ms / 182 ms |
 
 ## Retrieval by language
 

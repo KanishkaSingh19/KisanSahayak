@@ -1,4 +1,5 @@
 import re
+import unicodedata
 from typing import Optional
 from app.agent.state import ConversationTurn, IntentResult
 from app.tools.location import detect_place
@@ -6,7 +7,7 @@ from app.tools.location import detect_place
 # Lexicons for multilingual agricultural intent detection
 CROPS_DICT = {
     "wheat": ["wheat", "gehun", "gehu", "kanak", "गेहूं", "ਕਣਕ"],
-    "mustard": ["mustard", "sarson", "sarsonn", "raya", "सरसों", "ਸਰ੍ਹੋਂ"],
+    "mustard": ["mustard", "sarson", "sarsonn", "raya", "सरसों", "ਸਰ੍ਹੋਂ", "ਸਰੋਂ"],
     "paddy": ["paddy", "rice", "dhan", "jhona", "धान", "ਝੋਨਾ", "ਝੋਨੇ"],
     "cotton": ["cotton", "kapas", "narma", "कपास", "ਨਰਮਾ", "ਨਰਮੇ"],
 }
@@ -59,11 +60,20 @@ OUT_OF_SCOPE_KEYWORDS = [
 ]
 
 
+def normalize_indic(text: str) -> str:
+    """One spelling for letters that can be written several ways.
+
+    Speech-to-text and keyboards mix Gurmukhi bindi (ਂ) and tippi (ੰ), which sound the same
+    (ਕੁਂਗੀ = ਕੁੰਗੀ), and nukta letters can be one character or two (ਫ਼).
+    """
+    return unicodedata.normalize("NFC", text).replace("ਂ", "ੰ")
+
+
 def matches_keyword(keyword: str, text: str) -> bool:
     """Match keyword supporting both ASCII word boundaries and Unicode Indic scripts."""
     kw = keyword.lower().strip()
     if any(ord(c) > 127 for c in kw):
-        return kw in text
+        return normalize_indic(kw) in normalize_indic(text)
     return bool(re.search(rf"\b{re.escape(kw)}\b", text))
 
 

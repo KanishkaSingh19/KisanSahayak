@@ -73,7 +73,7 @@ class KisanPipeline:
     ) -> GroundedAnswer:
         """Process spoken farmer query via Groq Whisper STT with graceful fallback."""
         start_time = time.time()
-        success, transcript = self.stt_adapter.transcribe_audio_bytes(audio_bytes, filename=filename)
+        success, transcript = self.stt_adapter.transcribe_audio_bytes(audio_bytes, filename=filename, language=language)
 
         if not success:
             return GroundedAnswer(

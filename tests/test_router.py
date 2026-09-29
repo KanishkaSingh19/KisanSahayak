@@ -1,6 +1,14 @@
 import pytest
 
 
+def test_punjabi_bindi_and_tippi_spellings_match():
+    from app.agent.router import IntentRouter
+
+    # Whisper wrote ਕੁਂਗੀ (bindi) for ਕੁੰਗੀ (tippi); both must mean yellow rust
+    res = IntentRouter().classify("ਕਣਕ ਵੀਚ ਪੀਲੀ ਕੁਂਗੀ ਦ ਇਲਾਚ ਦ ਸੋ")
+    assert res.detected_crop == "Wheat" and res.detected_topic == "Yellow Rust"
+
+
 @pytest.mark.parametrize(
     "query,intent",
     [

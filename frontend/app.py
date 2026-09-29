@@ -217,7 +217,7 @@ def render_hero(lang: str) -> None:
     )
 
 
-def render_answer(result, pipeline, lang: str, msg_id: int) -> None:
+def render_answer(result, pipeline, lang: str, msg_id: int, speak_now: bool = False) -> None:
     meta = result.processing_metadata
 
     # Farmer-facing summary chips: what the answer is about and whether it's verified
@@ -256,18 +256,19 @@ def render_answer(result, pipeline, lang: str, msg_id: int) -> None:
         st.info(t("note_template_offline", lang))
     st.markdown(result.answer)
 
-    # Spoken answer, generated on demand so the text appears without waiting for audio
+    # Spoken answer: made on demand (Listen) so the text appears without waiting for audio.
+    # Answers to spoken questions are read aloud automatically, once, like a phone conversation.
     answer_lang = result.detected_language
     if pipeline.tts_adapter.supports(answer_lang):
         audio_path = st.session_state["audio"].get(msg_id)
         if audio_path and os.path.exists(audio_path):
-            st.audio(audio_path, format="audio/mp3")
-        elif st.button(t("listen_header", lang), key=f"listen_{msg_id}"):
-            with st.spinner("..."):
+            st.audio(audio_path, format="audio/mp3", autoplay=speak_now)
+        elif speak_now or st.button(t("listen_header", lang), key=f"listen_{msg_id}"):
+            with st.spinner(t("speaking", lang)):
                 audio_path = pipeline.tts_adapter.synthesize_speech(result.answer, language=answer_lang)
             if audio_path:
                 st.session_state["audio"][msg_id] = str(audio_path)
-                st.audio(str(audio_path), format="audio/mp3")
+                st.audio(str(audio_path), format="audio/mp3", autoplay=True)
     else:
         st.caption(t("voice_unavailable", lang))
 
@@ -389,17 +390,28 @@ def main():
                         st.markdown(msg["text"])
                 else:
                     with st.chat_message("assistant", avatar="🌾"):
-                        render_answer(msg["result"], pipeline, lang, msg["id"])
+                        render_answer(msg["result"], pipeline, lang, msg["id"], speak_now=msg.get("speak", False))
+                    msg["speak"] = False  # read aloud only the first time it is shown
 
         prompt = st.chat_input(t("input_placeholder", lang), key="chat_box")
-        with st.expander(t("tab_voice", lang)):
-            st.caption(t("voice_info", lang))
+
+        # Speak in real time: record in the browser, and the question is sent as soon as recording stops.
+        # A new key after each question resets the recorder for the next one.
+        st.session_state.setdefault("mic_round", 0)
+        recording = st.audio_input(t("record_label", lang), key=f"mic_{st.session_state['mic_round']}")
+        with st.expander(t("upload_instead", lang)):
             audio_file = st.file_uploader(t("upload_label", lang), type=["wav", "mp3", "m4a", "ogg"], key="voice_file")
             send_voice = st.button(t("submit", lang), key="send_voice", disabled=audio_file is None)
 
-        # New message: typed, tapped sample question, or voice note. Audio replies are made on demand.
+        voice = None  # (audio bytes, filename) of a spoken question
+        if recording is not None:
+            voice = (recording.getvalue(), "recording.wav")
+        elif send_voice and audio_file is not None:
+            voice = (audio_file.read(), audio_file.name)
+
+        # New message: typed, tapped sample question, recorded or uploaded voice
         prompt = prompt or st.session_state.pop("pending_query", None)
-        if prompt or (send_voice and audio_file is not None):
+        if prompt or voice:
             history = conversation_history()
             with chat:
                 if prompt:
@@ -412,12 +424,19 @@ def main():
                     else:
                         with st.spinner(t("spinner_audio", lang)):
                             result = pipeline.process_audio_query(
-                                audio_file.read(), filename=audio_file.name, language=lang,
-                                generate_audio=False, history=history,
+                                voice[0], filename=voice[1], language=lang, generate_audio=False, history=history,
                             )
-            user_text = prompt or result.processing_metadata.get("stt_transcript", audio_file.name)
+            user_text = prompt or result.processing_metadata.get("stt_transcript") or t("voice_not_understood", lang)
             st.session_state["messages"].append({"role": "user", "text": user_text})
-            st.session_state["messages"].append({"role": "assistant", "result": result, "id": len(st.session_state["messages"])})
+            st.session_state["messages"].append({
+                "role": "assistant",
+                "result": result,
+                "id": len(st.session_state["messages"]),
+                # Spoken questions get a spoken answer (unless speech-to-text failed)
+                "speak": voice is not None and result.intent != "voice_stt_unavailable",
+            })
+            if recording is not None:
+                st.session_state["mic_round"] += 1
             st.rerun()
 
     st.markdown(f'<div class="ks-footer">{t("sidebar_caption", lang)}</div>', unsafe_allow_html=True)

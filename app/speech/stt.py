@@ -6,6 +6,15 @@ import requests
 
 from app.config import settings
 
+# App language -> Whisper language code (Hinglish is spoken Hindi)
+WHISPER_LANGUAGES = {"en": "en", "pa": "pa", "hi": "hi", "hinglish": "hi"}
+# A few farming words in the expected script help Whisper spell crop and pest names correctly
+FARMING_PROMPTS = {
+    "hi": "कृषि प्रश्न, गेहूं, सरसों, धान, कपास, कीटनाशक, Punjab, Haryana, UP",
+    "pa": "ਖੇਤੀ ਸਵਾਲ, ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨਾ, ਨਰਮਾ, ਕੀਟਨਾਸ਼ਕ, ਪੰਜਾਬ",
+    "en": "Farming question: wheat, mustard, paddy, cotton, aphids, pesticide, Punjab",
+}
+
 
 class WhisperSTTAdapter:
     """Robust Speech-to-Text adapter utilizing Groq-hosted Whisper Large v3.
@@ -40,9 +49,17 @@ class WhisperSTTAdapter:
         self,
         audio_bytes: bytes,
         filename: str = "farmer_audio.wav",
-        prompt: Optional[str] = "कृषि प्रश्न, गेहूं, सरसों, धान, कीटनाशक, Punjab, Haryana, UP",
+        prompt: Optional[str] = None,
+        language: Optional[str] = None,
     ) -> Tuple[bool, str]:
-        """Transcribe audio bytes using Groq Whisper with graceful fallback."""
+        """Transcribe audio bytes using Groq Whisper with graceful fallback.
+
+        `language` is the farmer's chosen language (en, pa, hinglish, hi). Telling Whisper what to
+        expect, plus a few farming words in that script, improves recognition (especially Punjabi).
+        """
+        whisper_lang = WHISPER_LANGUAGES.get((language or "").lower())
+        if prompt is None:
+            prompt = FARMING_PROMPTS.get(whisper_lang, FARMING_PROMPTS["hi"])
         if not audio_bytes:
             return False, "Empty audio buffer received."
 
@@ -64,6 +81,8 @@ class WhisperSTTAdapter:
             }
             if prompt:
                 data["prompt"] = prompt
+            if whisper_lang:
+                data["language"] = whisper_lang
 
             response = requests.post(
                 self.endpoint,

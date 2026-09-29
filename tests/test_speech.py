@@ -86,3 +86,35 @@ def test_tts_adapter_graceful_handling():
     # Should not raise exception even with empty or arbitrary strings
     res = adapter.synthesize_speech("")
     assert res is None
+
+
+@pytest.mark.parametrize("app_lang,whisper_lang", [("pa", "pa"), ("hi", "hi"), ("hinglish", "hi"), ("en", "en")])
+def test_stt_tells_whisper_the_language(monkeypatch, app_lang, whisper_lang):
+    from app.speech import stt
+
+    sent = {}
+
+    class Resp:
+        status_code = 200
+
+        def json(self):
+            return {"text": "sarson mein chepa"}
+
+    def fake_post(url, headers, files, data, timeout):
+        sent.update(data)
+        return Resp()
+
+    monkeypatch.setattr(stt.requests, "post", fake_post)
+    ok, text = WhisperSTTAdapter(api_key="test-key").transcribe_audio_bytes(b"RIFF....", language=app_lang)
+    assert ok and text == "sarson mein chepa"
+    assert sent["language"] == whisper_lang
+    assert sent["prompt"] == stt.FARMING_PROMPTS[whisper_lang]
+
+
+def test_stt_without_language_lets_whisper_detect(monkeypatch):
+    from app.speech import stt
+
+    sent = {}
+    monkeypatch.setattr(stt.requests, "post", lambda url, headers, files, data, timeout: sent.update(data) or type("R", (), {"status_code": 200, "json": lambda self: {"text": "x"}})())
+    WhisperSTTAdapter(api_key="test-key").transcribe_audio_bytes(b"RIFF....")
+    assert "language" not in sent

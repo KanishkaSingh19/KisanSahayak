@@ -402,6 +402,25 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hinglish": "Pramanit salah ke liye upar apna sawal poochein, ya koi udaharan sawal dabayein.",
         "hi": "प्रमाणित सलाह के लिए ऊपर अपना प्रश्न पूछें, या कोई उदाहरण प्रश्न दबाएँ।",
     },
+    "record_label": {
+        "en": "Or ask by voice: tap the microphone, speak, then tap stop",
+        "pa": "ਜਾਂ ਬੋਲ ਕੇ ਪੁੱਛੋ: ਮਾਈਕ ਦਬਾਓ, ਬੋਲੋ, ਫਿਰ ਰੋਕੋ ਦਬਾਓ",
+        "hinglish": "Ya bol kar poochein: mic dabayein, boliye, phir stop dabayein",
+        "hi": "या बोलकर पूछें: माइक दबाएँ, बोलें, फिर रोकें दबाएँ",
+    },
+    "upload_instead": {
+        "en": "Upload a recorded voice note instead",
+        "pa": "ਜਾਂ ਰਿਕਾਰਡ ਕੀਤਾ ਆਵਾਜ਼ ਸੁਨੇਹਾ ਅੱਪਲੋਡ ਕਰੋ",
+        "hinglish": "Ya record kiya hua voice note upload karein",
+        "hi": "या रिकॉर्ड किया हुआ वॉइस नोट अपलोड करें",
+    },
+    "speaking": {"en": "Preparing the spoken answer...", "pa": "ਆਵਾਜ਼ ਵਿੱਚ ਜਵਾਬ ਤਿਆਰ ਹੋ ਰਿਹਾ ਹੈ...", "hinglish": "Awaaz mein jawab taiyaar ho raha hai...", "hi": "आवाज़ में उत्तर तैयार हो रहा है..."},
+    "voice_not_understood": {
+        "en": "(voice message)",
+        "pa": "(ਆਵਾਜ਼ ਸੁਨੇਹਾ)",
+        "hinglish": "(voice message)",
+        "hi": "(आवाज़ संदेश)",
+    },
     "chat_header": {
         "en": "💬 Ask KisanSahayak",
         "pa": "💬 ਕਿਸਾਨ ਸਹਾਇਕ ਨੂੰ ਪੁੱਛੋ",
