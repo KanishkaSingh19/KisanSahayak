@@ -36,52 +36,52 @@ STRINGS: Dict[str, Dict[str, str]] = {
     },
     "greeting": {
         "en": (
-            "🙏 Namaste! I am KisanSahayak, your farming assistant.\n\n"
+            "Namaste! I am KisanSahayak, your farming assistant.\n\n"
             "I can help with pests, diseases, fertilizer, seeds, weather and pesticide safety for wheat, "
             "mustard, paddy, cotton and other crops. You can type your question or ask by voice."
         ),
         "pa": (
-            "🙏 ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਕਿਸਾਨ ਵੀਰੋ! ਮੈਂ ਕਿਸਾਨ ਸਹਾਇਕ (KisanSahayak) ਹਾਂ।\n\n"
+            "ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਕਿਸਾਨ ਵੀਰੋ! ਮੈਂ ਕਿਸਾਨ ਸਹਾਇਕ (KisanSahayak) ਹਾਂ।\n\n"
             "ਮੈਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨਾ, ਨਰਮਾ ਅਤੇ ਹੋਰ ਫ਼ਸਲਾਂ ਵਿੱਚ ਕੀੜੇ, ਬਿਮਾਰੀਆਂ, ਖਾਦ, ਬੀਜ, ਮੌਸਮ ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ "
             "ਬਾਰੇ ਤੁਹਾਡੀ ਮਦਦ ਲਈ ਤਿਆਰ ਹਾਂ। ਤੁਸੀਂ ਆਪਣਾ ਸਵਾਲ ਲਿਖ ਕੇ ਜਾਂ ਬੋਲ ਕੇ ਪੁੱਛ ਸਕਦੇ ਹੋ।"
         ),
         "hinglish": (
-            "🙏 Namaste kisan bhai! Main KisanSahayak hoon.\n\n"
+            "Namaste kisan bhai! Main KisanSahayak hoon.\n\n"
             "Main gehun, sarson, dhan, kapas aur doosri faslon mein keet, rog, khad, beej, mausam aur "
             "keetnashak suraksha se jude sawalon mein aapki madad ke liye taiyaar hoon. "
             "Aap apna sawal likh kar ya bol kar pooch sakte hain."
         ),
         "hi": (
-            "🙏 नमस्ते किसान भाई! मैं किसान सहायक (KisanSahayak) हूँ।\n\n"
+            "नमस्ते किसान भाई! मैं किसान सहायक (KisanSahayak) हूँ।\n\n"
             "मैं गेहूं, सरसों, धान, कपास और अन्य फसलों में कीट, रोग, खाद, बीज, मौसम एवं कृषि सुरक्षा "
             "से संबंधित आपकी सहायता के लिए तैयार हूँ। आप अपनी समस्या लिखकर या बोलकर पूछ सकते हैं।"
         ),
     },
     "out_of_scope": {
         "en": (
-            "⚠️ This question does not seem to be about farming. KisanSahayak only answers questions about "
+            "This question does not seem to be about farming. KisanSahayak only answers questions about "
             "crop care, pest and disease control, fertilizer, weather and pesticide safety. Please ask a farming question."
         ),
         "pa": (
-            "⚠️ ਇਹ ਸਵਾਲ ਖੇਤੀਬਾੜੀ ਨਾਲ ਸਬੰਧਤ ਨਹੀਂ ਜਾਪਦਾ। ਕਿਸਾਨ ਸਹਾਇਕ ਸਿਰਫ਼ ਫ਼ਸਲਾਂ ਦੀ ਦੇਖਭਾਲ, ਕੀੜੇ ਅਤੇ ਬਿਮਾਰੀਆਂ ਦੀ ਰੋਕਥਾਮ, "
+            "ਇਹ ਸਵਾਲ ਖੇਤੀਬਾੜੀ ਨਾਲ ਸਬੰਧਤ ਨਹੀਂ ਜਾਪਦਾ। ਕਿਸਾਨ ਸਹਾਇਕ ਸਿਰਫ਼ ਫ਼ਸਲਾਂ ਦੀ ਦੇਖਭਾਲ, ਕੀੜੇ ਅਤੇ ਬਿਮਾਰੀਆਂ ਦੀ ਰੋਕਥਾਮ, "
             "ਖਾਦ, ਮੌਸਮ ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਸਵਾਲਾਂ ਦੇ ਜਵਾਬ ਦਿੰਦਾ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਖੇਤੀ ਨਾਲ ਸਬੰਧਤ ਸਵਾਲ ਪੁੱਛੋ।"
         ),
         "hinglish": (
-            "⚠️ Yeh sawal kheti se juda nahi lagta. KisanSahayak sirf fasal ki dekhbhal, keet aur rog niyantran, "
+            "Yeh sawal kheti se juda nahi lagta. KisanSahayak sirf fasal ki dekhbhal, keet aur rog niyantran, "
             "khad, mausam aur keetnashak suraksha ke sawalon ke liye hai. Kripya kheti se juda sawal poochein."
         ),
         "hi": (
-            "⚠️ यह प्रश्न कृषि क्षेत्र से संबंधित नहीं प्रतीत होता है। "
+            "यह प्रश्न कृषि क्षेत्र से संबंधित नहीं प्रतीत होता है। "
             "किसान सहायक केवल फसलों की देखभाल, रोग नियंत्रण, उर्वरक, मौसम और कृषि सुरक्षा संबंधी "
             "प्रश्नों के लिए समर्पित है। कृपया कृषि से संबंधित प्रश्न पूछें।"
         ),
     },
     "stt_failed": {
-        "en": "🎙️ Voice note received, but speech-to-text could not run: {error}\n\nPlease type your question in the text box instead.",
-        "pa": "🎙️ ਆਵਾਜ਼ ਸੁਨੇਹਾ ਮਿਲ ਗਿਆ, ਪਰ ਬੋਲੀ ਤੋਂ ਲਿਖਤ (STT) ਸੇਵਾ ਚੱਲ ਨਹੀਂ ਸਕੀ: {error}\n\nਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਸਵਾਲ ਟੈਕਸਟ ਬਾਕਸ ਵਿੱਚ ਲਿਖ ਕੇ ਪੁੱਛੋ।",
-        "hinglish": "🎙️ Voice message mil gaya, lekin speech-to-text (STT) service chal nahi payi: {error}\n\nKripya apna sawal text box mein likh kar poochein.",
+        "en": "Voice note received, but speech-to-text could not run: {error}\n\nPlease type your question in the text box instead.",
+        "pa": "ਆਵਾਜ਼ ਸੁਨੇਹਾ ਮਿਲ ਗਿਆ, ਪਰ ਬੋਲੀ ਤੋਂ ਲਿਖਤ (STT) ਸੇਵਾ ਚੱਲ ਨਹੀਂ ਸਕੀ: {error}\n\nਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਸਵਾਲ ਟੈਕਸਟ ਬਾਕਸ ਵਿੱਚ ਲਿਖ ਕੇ ਪੁੱਛੋ।",
+        "hinglish": "Voice message mil gaya, lekin speech-to-text (STT) service chal nahi payi: {error}\n\nKripya apna sawal text box mein likh kar poochein.",
         "hi": (
-            "🎙️ ध्वनि संदेश प्राप्त हुआ, परंतु वाक्-से-पाठ (STT) सेवा सक्रिय नहीं हो सकी: {error}\n\n"
+            "ध्वनि संदेश प्राप्त हुआ, परंतु वाक्-से-पाठ (STT) सेवा सक्रिय नहीं हो सकी: {error}\n\n"
             "कृषि सलाह प्राप्त करने के लिए कृपया अपना प्रश्न नीचे दिए गए टेक्स्ट बॉक्स में लिखकर पूछें।"
         ),
     },
@@ -161,125 +161,125 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hi": "{place}: तापमान {temp}°C, नमी {humidity}%, हवा {wind} km/h, और अगले 12 घंटों में बारिश की संभावना {rain}% है।",
     },
     "location_default": {
-        "en": "📍 No place was recognised in your question, so this shows **{default}**. Mention your district, e.g. \"weather in Sangrur\".",
-        "pa": "📍 ਤੁਹਾਡੇ ਸਵਾਲ ਵਿੱਚ ਕੋਈ ਥਾਂ ਨਹੀਂ ਪਛਾਣੀ ਗਈ, ਇਸ ਲਈ ਇਹ **{default}** ਦਾ ਮੌਸਮ ਹੈ। ਆਪਣਾ ਜ਼ਿਲ੍ਹਾ ਦੱਸੋ, ਜਿਵੇਂ \"ਸੰਗਰੂਰ ਵਿੱਚ ਮੌਸਮ\"।",
-        "hinglish": "📍 Aapke sawal mein koi jagah pehchani nahi gayi, isliye yeh **{default}** ka mausam hai. Apna zila batayein, jaise \"Sangrur mein mausam\".",
-        "hi": "📍 आपके प्रश्न में कोई स्थान नहीं पहचाना गया, इसलिए यह **{default}** का मौसम है। अपना ज़िला बताएँ, जैसे \"संगरूर में मौसम\"।",
+        "en": "No place was recognised in your question, so this shows **{default}**. Mention your district, e.g. \"weather in Sangrur\".",
+        "pa": "ਤੁਹਾਡੇ ਸਵਾਲ ਵਿੱਚ ਕੋਈ ਥਾਂ ਨਹੀਂ ਪਛਾਣੀ ਗਈ, ਇਸ ਲਈ ਇਹ **{default}** ਦਾ ਮੌਸਮ ਹੈ। ਆਪਣਾ ਜ਼ਿਲ੍ਹਾ ਦੱਸੋ, ਜਿਵੇਂ \"ਸੰਗਰੂਰ ਵਿੱਚ ਮੌਸਮ\"।",
+        "hinglish": "Aapke sawal mein koi jagah pehchani nahi gayi, isliye yeh **{default}** ka mausam hai. Apna zila batayein, jaise \"Sangrur mein mausam\".",
+        "hi": "आपके प्रश्न में कोई स्थान नहीं पहचाना गया, इसलिए यह **{default}** का मौसम है। अपना ज़िला बताएँ, जैसे \"संगरूर में मौसम\"।",
     },
     "location_not_found": {
-        "en": "📍 Couldn't find \"{place}\", so this shows **{default}** instead. Try your district name, e.g. \"weather in Sangrur\".",
-        "pa": "📍 \"{place}\" ਨਹੀਂ ਲੱਭਿਆ, ਇਸ ਲਈ ਇਹ **{default}** ਦਾ ਮੌਸਮ ਹੈ। ਆਪਣੇ ਜ਼ਿਲ੍ਹੇ ਦਾ ਨਾਮ ਲਿਖੋ, ਜਿਵੇਂ \"ਸੰਗਰੂਰ ਵਿੱਚ ਮੌਸਮ\"।",
-        "hinglish": "📍 \"{place}\" nahi mila, isliye yeh **{default}** ka mausam hai. Apne zile ka naam likhein, jaise \"Sangrur mein mausam\".",
-        "hi": "📍 \"{place}\" नहीं मिला, इसलिए यह **{default}** का मौसम है। अपने ज़िले का नाम लिखें, जैसे \"संगरूर में मौसम\"।",
+        "en": "Couldn't find \"{place}\", so this shows **{default}** instead. Try your district name, e.g. \"weather in Sangrur\".",
+        "pa": "\"{place}\" ਨਹੀਂ ਲੱਭਿਆ, ਇਸ ਲਈ ਇਹ **{default}** ਦਾ ਮੌਸਮ ਹੈ। ਆਪਣੇ ਜ਼ਿਲ੍ਹੇ ਦਾ ਨਾਮ ਲਿਖੋ, ਜਿਵੇਂ \"ਸੰਗਰੂਰ ਵਿੱਚ ਮੌਸਮ\"।",
+        "hinglish": "\"{place}\" nahi mila, isliye yeh **{default}** ka mausam hai. Apne zile ka naam likhein, jaise \"Sangrur mein mausam\".",
+        "hi": "\"{place}\" नहीं मिला, इसलिए यह **{default}** का मौसम है। अपने ज़िले का नाम लिखें, जैसे \"संगरूर में मौसम\"।",
     },
     "spray_rain": {
-        "en": "🌧️ Postpone spraying: rain is likely in the next 12-24 hours and could wash the chemical off.",
-        "pa": "🌧️ ਛਿੜਕਾਅ ਅੱਗੇ ਪਾਓ: ਅਗਲੇ 12-24 ਘੰਟਿਆਂ ਵਿੱਚ ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ ਹੈ। ਦਵਾਈ ਧੋਤੀ ਜਾਣ ਦਾ ਖ਼ਤਰਾ ਹੈ।",
-        "hinglish": "🌧️ Chhidkaav aage badhayein: agle 12-24 ghanton mein baarish ki sambhavna hai. Dawa dhul jaane ka khatra hai.",
-        "hi": "🌧️ छिड़काव स्थगित करें (Postpone Spray): अगले 12-24 घंटों में वर्षा की संभावना है। दवा धुलने का जोखिम है।",
+        "en": "Postpone spraying: rain is likely in the next 12-24 hours and could wash the chemical off.",
+        "pa": "ਛਿੜਕਾਅ ਅੱਗੇ ਪਾਓ: ਅਗਲੇ 12-24 ਘੰਟਿਆਂ ਵਿੱਚ ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ ਹੈ। ਦਵਾਈ ਧੋਤੀ ਜਾਣ ਦਾ ਖ਼ਤਰਾ ਹੈ।",
+        "hinglish": "Chhidkaav aage badhayein: agle 12-24 ghanton mein baarish ki sambhavna hai. Dawa dhul jaane ka khatra hai.",
+        "hi": "छिड़काव स्थगित करें (Postpone Spray): अगले 12-24 घंटों में वर्षा की संभावना है। दवा धुलने का जोखिम है।",
     },
     "spray_wind": {
-        "en": "⚠️ Strong wind ({wind} km/h): do not spray pesticides. Spray drift can carry the chemical away and cause damage.",
-        "pa": "⚠️ ਤੇਜ਼ ਹਵਾ ({wind} km/h): ਕੀਟਨਾਸ਼ਕ ਦਾ ਛਿੜਕਾਅ ਨਾ ਕਰੋ। ਹਵਾ ਨਾਲ ਦਵਾਈ ਉੱਡਣ (spray drift) ਅਤੇ ਨੁਕਸਾਨ ਦਾ ਖ਼ਤਰਾ ਹੈ।",
-        "hinglish": "⚠️ Tez hawa ({wind} km/h): keetnashak ka chhidkaav na karein. Hawa se dawa udne (spray drift) aur nuksaan ka khatra hai.",
-        "hi": "⚠️ तेज हवा ({wind} km/h): कीटनाशक छिड़काव न करें। हवा के बहाव (spray drift) से दवा उड़ने और नुकसान का खतरा है।",
+        "en": "Strong wind ({wind} km/h): do not spray pesticides. Spray drift can carry the chemical away and cause damage.",
+        "pa": "ਤੇਜ਼ ਹਵਾ ({wind} km/h): ਕੀਟਨਾਸ਼ਕ ਦਾ ਛਿੜਕਾਅ ਨਾ ਕਰੋ। ਹਵਾ ਨਾਲ ਦਵਾਈ ਉੱਡਣ (spray drift) ਅਤੇ ਨੁਕਸਾਨ ਦਾ ਖ਼ਤਰਾ ਹੈ।",
+        "hinglish": "Tez hawa ({wind} km/h): keetnashak ka chhidkaav na karein. Hawa se dawa udne (spray drift) aur nuksaan ka khatra hai.",
+        "hi": "तेज हवा ({wind} km/h): कीटनाशक छिड़काव न करें। हवा के बहाव (spray drift) से दवा उड़ने और नुकसान का खतरा है।",
     },
     "spray_ok": {
-        "en": "✅ Good time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM.",
-        "pa": "✅ ਛਿੜਕਾਅ ਲਈ ਢੁਕਵਾਂ ਸਮਾਂ: ਹਵਾ ਦੀ ਰਫ਼ਤਾਰ ਆਮ ਹੈ। ਸਵੇਰੇ 8-11 ਵਜੇ ਜਾਂ ਸ਼ਾਮ 3:30 ਵਜੇ ਤੋਂ ਬਾਅਦ ਛਿੜਕਾਅ ਕਰੋ।",
-        "hinglish": "✅ Chhidkaav ke liye sahi samay: hawa ki raftaar normal hai. Subah 8-11 baje ya shaam 3:30 baje ke baad chhidkaav karein.",
-        "hi": "✅ छिड़काव हेतु अनुकूल समय: हवा की गति सामान्य है। सुबह 8-11 बजे या शाम 3:30 बजे के बाद छिड़काव करें।",
+        "en": "Good time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM.",
+        "pa": "ਛਿੜਕਾਅ ਲਈ ਢੁਕਵਾਂ ਸਮਾਂ: ਹਵਾ ਦੀ ਰਫ਼ਤਾਰ ਆਮ ਹੈ। ਸਵੇਰੇ 8-11 ਵਜੇ ਜਾਂ ਸ਼ਾਮ 3:30 ਵਜੇ ਤੋਂ ਬਾਅਦ ਛਿੜਕਾਅ ਕਰੋ।",
+        "hinglish": "Chhidkaav ke liye sahi samay: hawa ki raftaar normal hai. Subah 8-11 baje ya shaam 3:30 baje ke baad chhidkaav karein.",
+        "hi": "छिड़काव हेतु अनुकूल समय: हवा की गति सामान्य है। सुबह 8-11 बजे या शाम 3:30 बजे के बाद छिड़काव करें।",
     },
     "irrigation_stop": {
-        "en": "🛑 Hold irrigation: enough rain is likely soon, which could cause waterlogging.",
-        "pa": "🛑 ਸਿੰਚਾਈ ਰੋਕੋ: ਜਲਦੀ ਚੰਗੇ ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ ਹੈ, ਜਿਸ ਨਾਲ ਖੇਤ ਵਿੱਚ ਪਾਣੀ ਖੜ੍ਹ ਸਕਦਾ ਹੈ।",
-        "hinglish": "🛑 Sinchai rokein: jaldi achhi baarish ki sambhavna hai, jisse khet mein paani bhar sakta hai.",
-        "hi": "🛑 सिंचाई रोकें: निकट समय में पर्याप्त वर्षा की संभावना है, जिससे जलभराव हो सकता है।",
+        "en": "Hold irrigation: enough rain is likely soon, which could cause waterlogging.",
+        "pa": "ਸਿੰਚਾਈ ਰੋਕੋ: ਜਲਦੀ ਚੰਗੇ ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ ਹੈ, ਜਿਸ ਨਾਲ ਖੇਤ ਵਿੱਚ ਪਾਣੀ ਖੜ੍ਹ ਸਕਦਾ ਹੈ।",
+        "hinglish": "Sinchai rokein: jaldi achhi baarish ki sambhavna hai, jisse khet mein paani bhar sakta hai.",
+        "hi": "सिंचाई रोकें: निकट समय में पर्याप्त वर्षा की संभावना है, जिससे जलभराव हो सकता है।",
     },
     "irrigation_light": {
-        "en": "💧 Light irrigation needed: high temperature is drying the soil quickly. Irrigate lightly in the evening.",
-        "pa": "💧 ਹਲਕੀ ਸਿੰਚਾਈ ਜ਼ਰੂਰੀ: ਵੱਧ ਤਾਪਮਾਨ ਕਾਰਨ ਨਮੀ ਤੇਜ਼ੀ ਨਾਲ ਘਟ ਰਹੀ ਹੈ। ਸ਼ਾਮ ਵੇਲੇ ਹਲਕੀ ਸਿੰਚਾਈ ਕਰੋ।",
-        "hinglish": "💧 Halki sinchai zaroori: zyada taapmaan ki wajah se nami tezi se ghat rahi hai. Shaam ke samay halki sinchai karein.",
-        "hi": "💧 हल्की सिंचाई आवश्यक: उच्च तापमान के कारण नमी तेजी से घट रही है। शाम के समय हल्की सिंचाई करें।",
+        "en": "Light irrigation needed: high temperature is drying the soil quickly. Irrigate lightly in the evening.",
+        "pa": "ਹਲਕੀ ਸਿੰਚਾਈ ਜ਼ਰੂਰੀ: ਵੱਧ ਤਾਪਮਾਨ ਕਾਰਨ ਨਮੀ ਤੇਜ਼ੀ ਨਾਲ ਘਟ ਰਹੀ ਹੈ। ਸ਼ਾਮ ਵੇਲੇ ਹਲਕੀ ਸਿੰਚਾਈ ਕਰੋ।",
+        "hinglish": "Halki sinchai zaroori: zyada taapmaan ki wajah se nami tezi se ghat rahi hai. Shaam ke samay halki sinchai karein.",
+        "hi": "हल्की सिंचाई आवश्यक: उच्च तापमान के कारण नमी तेजी से घट रही है। शाम के समय हल्की सिंचाई करें।",
     },
     "irrigation_normal": {
-        "en": "🌾 Normal irrigation: check soil moisture in the field and irrigate as needed.",
-        "pa": "🌾 ਆਮ ਸਿੰਚਾਈ: ਖੇਤ ਦੀ ਮਿੱਟੀ ਵਿੱਚ ਨਮੀ ਦੇਖ ਕੇ ਲੋੜ ਅਨੁਸਾਰ ਸਿੰਚਾਈ ਕਰੋ।",
-        "hinglish": "🌾 Normal sinchai: khet ki mitti mein nami dekh kar zaroorat ke hisaab se sinchai karein.",
-        "hi": "🌾 सामान्य सिंचाई: खेत की मिट्टी में नमी की स्थिति देखकर आवश्यकतानुसार सिंचाई करें।",
+        "en": "Normal irrigation: check soil moisture in the field and irrigate as needed.",
+        "pa": "ਆਮ ਸਿੰਚਾਈ: ਖੇਤ ਦੀ ਮਿੱਟੀ ਵਿੱਚ ਨਮੀ ਦੇਖ ਕੇ ਲੋੜ ਅਨੁਸਾਰ ਸਿੰਚਾਈ ਕਰੋ।",
+        "hinglish": "Normal sinchai: khet ki mitti mein nami dekh kar zaroorat ke hisaab se sinchai karein.",
+        "hi": "सामान्य सिंचाई: खेत की मिट्टी में नमी की स्थिति देखकर आवश्यकतानुसार सिंचाई करें।",
     },
     "fallback_spray": {
-        "en": "✅ Favourable weather (safe estimate): pesticide or fertilizer can be sprayed when the wind is calm.",
-        "pa": "✅ ਢੁਕਵਾਂ ਮੌਸਮ (ਸੁਰੱਖਿਅਤ ਅੰਦਾਜ਼ਾ): ਸ਼ਾਂਤ ਹਵਾ ਵੇਲੇ ਕੀਟਨਾਸ਼ਕ ਜਾਂ ਖਾਦ ਦਾ ਛਿੜਕਾਅ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ।",
-        "hinglish": "✅ Anukool mausam (surakshit andaaza): shaant hawa ke samay keetnashak ya khad ka chhidkaav kiya ja sakta hai.",
-        "hi": "✅ अनुकूल मौसम (सुरक्षित अनुमानित): शांत हवा के समय कीटनाशक या खाद का छिड़काव किया जा सकता है।",
+        "en": "Favourable weather (safe estimate): pesticide or fertilizer can be sprayed when the wind is calm.",
+        "pa": "ਢੁਕਵਾਂ ਮੌਸਮ (ਸੁਰੱਖਿਅਤ ਅੰਦਾਜ਼ਾ): ਸ਼ਾਂਤ ਹਵਾ ਵੇਲੇ ਕੀਟਨਾਸ਼ਕ ਜਾਂ ਖਾਦ ਦਾ ਛਿੜਕਾਅ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ।",
+        "hinglish": "Anukool mausam (surakshit andaaza): shaant hawa ke samay keetnashak ya khad ka chhidkaav kiya ja sakta hai.",
+        "hi": "अनुकूल मौसम (सुरक्षित अनुमानित): शांत हवा के समय कीटनाशक या खाद का छिड़काव किया जा सकता है।",
     },
     "fallback_irrigation": {
-        "en": "🌾 Normal irrigation: plan irrigation around the crop's critical growth stages.",
-        "pa": "🌾 ਆਮ ਸਿੰਚਾਈ: ਫ਼ਸਲ ਦੀਆਂ ਨਾਜ਼ੁਕ ਅਵਸਥਾਵਾਂ ਅਨੁਸਾਰ ਸਿੰਚਾਈ ਦੀ ਯੋਜਨਾ ਬਣਾਓ।",
-        "hinglish": "🌾 Normal sinchai: fasal ki zaroori avasthaon ke hisaab se sinchai ki yojana banayein.",
-        "hi": "🌾 सामान्य सिंचाई: फसल की क्रांतिक अवस्था के अनुसार सिंचाई की योजना बनाएं।",
+        "en": "Normal irrigation: plan irrigation around the crop's critical growth stages.",
+        "pa": "ਆਮ ਸਿੰਚਾਈ: ਫ਼ਸਲ ਦੀਆਂ ਨਾਜ਼ੁਕ ਅਵਸਥਾਵਾਂ ਅਨੁਸਾਰ ਸਿੰਚਾਈ ਦੀ ਯੋਜਨਾ ਬਣਾਓ।",
+        "hinglish": "Normal sinchai: fasal ki zaroori avasthaon ke hisaab se sinchai ki yojana banayein.",
+        "hi": "सामान्य सिंचाई: फसल की क्रांतिक अवस्था के अनुसार सिंचाई की योजना बनाएं।",
     },
     # ------------------------------------------------------------------ safety guardrails
     "statutory_disclaimer": {
         "en": (
-            "⚠️ Statutory Disclaimer: Always check the label and dose on the bottle before spraying any pesticide "
+            "Statutory Disclaimer: Always check the label and dose on the bottle before spraying any pesticide "
             "or chemical. Always wear safety gear (mask and gloves). For detailed advice, contact your local "
             "Krishi Vigyan Kendra (KVK)."
         ),
         "pa": (
-            "⚠️ ਕਾਨੂੰਨੀ ਸੂਚਨਾ / Statutory Disclaimer: ਕਿਸੇ ਵੀ ਕੀਟਨਾਸ਼ਕ ਜਾਂ ਰਸਾਇਣ ਦਾ ਛਿੜਕਾਅ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਬੋਤਲ ਉੱਤੇ ਦਿੱਤਾ "
+            "ਕਾਨੂੰਨੀ ਸੂਚਨਾ / Statutory Disclaimer: ਕਿਸੇ ਵੀ ਕੀਟਨਾਸ਼ਕ ਜਾਂ ਰਸਾਇਣ ਦਾ ਛਿੜਕਾਅ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਬੋਤਲ ਉੱਤੇ ਦਿੱਤਾ "
             "ਲੇਬਲ ਅਤੇ ਖੁਰਾਕ ਜ਼ਰੂਰ ਪੜ੍ਹੋ। ਹਮੇਸ਼ਾ ਸੁਰੱਖਿਆ ਕਿੱਟ (ਮਾਸਕ ਅਤੇ ਦਸਤਾਨੇ) ਪਾਓ। ਵਧੇਰੇ ਸਲਾਹ ਲਈ ਆਪਣੇ ਨੇੜਲੇ "
             "ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।"
         ),
         "hinglish": (
-            "⚠️ Statutory Disclaimer: Kisi bhi keetnashak ya chemical ka chhidkaav karne se pehle bottle par diya "
+            "Statutory Disclaimer: Kisi bhi keetnashak ya chemical ka chhidkaav karne se pehle bottle par diya "
             "label aur dose zaroor check karein. Hamesha suraksha kit (mask aur dastane) pehnein. Vistaar se salah "
             "ke liye apne local Krishi Vigyan Kendra (KVK) se sampark karein."
         ),
         "hi": (
-            "⚠️ वैधानिक सूचना / Statutory Disclaimer: कीटनाशक या रासायनिक छिड़काव से पहले बोतल पर दिए गए लेबल और "
+            "वैधानिक सूचना / Statutory Disclaimer: कीटनाशक या रासायनिक छिड़काव से पहले बोतल पर दिए गए लेबल और "
             "खुराक की जांच अवश्य करें। हमेशा सुरक्षा किट (मास्क एवं दस्ताने) पहनें। "
             "विस्तृत परामर्श हेतु अपने स्थानीय कृषि विज्ञान केंद्र (KVK) से संपर्क करें।"
         ),
     },
     "monocrotophos_warning": {
         "en": (
-            "🚨 Important Safety Warning (CIBRC): Monocrotophos is completely banned in India on vegetables and "
+            "Important Safety Warning (CIBRC): Monocrotophos is completely banned in India on vegetables and "
             "fruits. It is highly toxic. Use only safer alternatives recommended by ICAR/PAU (such as Thiamethoxam "
             "or neem extract)."
         ),
         "pa": (
-            "🚨 ਜ਼ਰੂਰੀ ਸੁਰੱਖਿਆ ਚੇਤਾਵਨੀ (CIBRC): ਮੋਨੋਕ੍ਰੋਟੋਫ਼ਾਸ (Monocrotophos) ਭਾਰਤ ਵਿੱਚ ਸਬਜ਼ੀਆਂ ਅਤੇ ਫਲਾਂ ਉੱਤੇ ਪੂਰੀ "
+            "ਜ਼ਰੂਰੀ ਸੁਰੱਖਿਆ ਚੇਤਾਵਨੀ (CIBRC): ਮੋਨੋਕ੍ਰੋਟੋਫ਼ਾਸ (Monocrotophos) ਭਾਰਤ ਵਿੱਚ ਸਬਜ਼ੀਆਂ ਅਤੇ ਫਲਾਂ ਉੱਤੇ ਪੂਰੀ "
             "ਤਰ੍ਹਾਂ ਪਾਬੰਦੀਸ਼ੁਦਾ ਹੈ। ਇਹ ਬਹੁਤ ਜ਼ਹਿਰੀਲਾ ਹੈ। ਇਸ ਦੀ ਥਾਂ ICAR/PAU ਵੱਲੋਂ ਸਿਫ਼ਾਰਸ਼ ਕੀਤੇ ਸੁਰੱਖਿਅਤ ਬਦਲ "
             "(ਜਿਵੇਂ Thiamethoxam ਜਾਂ ਨਿੰਮ ਦਾ ਅਰਕ) ਹੀ ਵਰਤੋ।"
         ),
         "hinglish": (
-            "🚨 Zaroori Suraksha Chetavani (CIBRC): Monocrotophos Bharat mein sabziyon aur phalon par poori tarah "
+            "Zaroori Suraksha Chetavani (CIBRC): Monocrotophos Bharat mein sabziyon aur phalon par poori tarah "
             "pratibandhit (banned) hai. Yeh bahut zehreela hai. Iski jagah ICAR/PAU dwara sujhaye surakshit vikalp "
             "(jaise Thiamethoxam ya neem ka ark) hi istemaal karein."
         ),
         "hi": (
-            "🚨 महत्वपूर्ण सुरक्षा चेतावनी (CIBRC): मोनोक्रोटोफॉस (Monocrotophos) भारत में सब्जियों और फलों पर "
+            "महत्वपूर्ण सुरक्षा चेतावनी (CIBRC): मोनोक्रोटोफॉस (Monocrotophos) भारत में सब्जियों और फलों पर "
             "पूर्णतः प्रतिबंधित है। इसका अत्यधिक जहरीला प्रभाव होता है। इसके स्थान पर ICAR/PAU द्वारा अनुशंसित "
             "सुरक्षित विकल्प (जैसे थायमेथॉक्सम या नीम अर्क) का ही उपयोग करें।"
         ),
     },
     "endosulfan_warning": {
         "en": (
-            "🚨 Statutory Warning (CIBRC): Endosulfan is completely banned in India by the Supreme Court and the "
+            "Statutory Warning (CIBRC): Endosulfan is completely banned in India by the Supreme Court and the "
             "Central Insecticides Board. Buying, selling or using it is a punishable offence."
         ),
         "pa": (
-            "🚨 ਕਾਨੂੰਨੀ ਚੇਤਾਵਨੀ (CIBRC): ਐਂਡੋਸਲਫ਼ਾਨ (Endosulfan) ਉੱਤੇ ਭਾਰਤ ਵਿੱਚ ਸੁਪਰੀਮ ਕੋਰਟ ਅਤੇ ਕੇਂਦਰੀ ਕੀਟਨਾਸ਼ਕ ਬੋਰਡ "
+            "ਕਾਨੂੰਨੀ ਚੇਤਾਵਨੀ (CIBRC): ਐਂਡੋਸਲਫ਼ਾਨ (Endosulfan) ਉੱਤੇ ਭਾਰਤ ਵਿੱਚ ਸੁਪਰੀਮ ਕੋਰਟ ਅਤੇ ਕੇਂਦਰੀ ਕੀਟਨਾਸ਼ਕ ਬੋਰਡ "
             "ਵੱਲੋਂ ਪੂਰੀ ਪਾਬੰਦੀ ਹੈ। ਇਸ ਨੂੰ ਖ਼ਰੀਦਣਾ, ਵੇਚਣਾ ਜਾਂ ਵਰਤਣਾ ਸਜ਼ਾਯੋਗ ਅਪਰਾਧ ਹੈ।"
         ),
         "hinglish": (
-            "🚨 Kanooni Chetavani (CIBRC): Endosulfan par Bharat mein Supreme Court aur Central Insecticides Board "
+            "Kanooni Chetavani (CIBRC): Endosulfan par Bharat mein Supreme Court aur Central Insecticides Board "
             "ne poori tarah pratibandh (ban) lagaya hai. Iski khareed, bikri ya istemaal dandniya apradh hai."
         ),
         "hi": (
-            "🚨 वैधानिक चेतावनी (CIBRC): एंडोसल्फान (Endosulfan) भारत में सर्वोच्च न्यायालय और केंद्रीय कीटनाशक बोर्ड "
+            "वैधानिक चेतावनी (CIBRC): एंडोसल्फान (Endosulfan) भारत में सर्वोच्च न्यायालय और केंद्रीय कीटनाशक बोर्ड "
             "द्वारा पूर्ण रूप से प्रतिबंधित (Banned) है। इसका क्रय, विक्रय एवं उपयोग दंडनीय अपराध है।"
         ),
     },
@@ -344,47 +344,47 @@ STRINGS: Dict[str, Dict[str, str]] = {
     "metric_crop": {"en": "Crop / Region", "pa": "ਫ਼ਸਲ / ਖੇਤਰ", "hinglish": "Fasal / Kshetra", "hi": "फसल / क्षेत्र"},
     "general": {"en": "General", "pa": "ਆਮ", "hinglish": "Samanya", "hi": "सामान्य"},
     "metric_grounding": {"en": "Grounding", "pa": "ਪ੍ਰਮਾਣਿਕਤਾ", "hinglish": "Pramanikta", "hi": "प्रमाणीकरण"},
-    "grounded_yes": {"en": "✅ Fully verified", "pa": "✅ ਪੂਰੀ ਤਰ੍ਹਾਂ ਪ੍ਰਮਾਣਿਤ", "hinglish": "✅ Poori tarah pramanit", "hi": "✅ पूर्णतः प्रमाणित"},
-    "grounded_partial": {"en": "⚠️ Partially sourced", "pa": "⚠️ ਅੰਸ਼ਕ ਹਵਾਲਾ", "hinglish": "⚠️ Aanshik sandarbh", "hi": "⚠️ आंशिक संदर्भ"},
+    "grounded_yes": {"en": "Fully verified", "pa": "ਪੂਰੀ ਤਰ੍ਹਾਂ ਪ੍ਰਮਾਣਿਤ", "hinglish": "Poori tarah pramanit", "hi": "पूर्णतः प्रमाणित"},
+    "grounded_partial": {"en": "Partially sourced", "pa": "ਅੰਸ਼ਕ ਹਵਾਲਾ", "hinglish": "Aanshik sandarbh", "hi": "आंशिक संदर्भ"},
     "weather_metrics_header": {
-        "en": "🌦️ Weather & Spray Conditions",
-        "pa": "🌦️ ਮੌਸਮ ਅਤੇ ਛਿੜਕਾਅ ਹਾਲਾਤ",
-        "hinglish": "🌦️ Mausam aur Chhidkaav Halaat",
-        "hi": "🌦️ मौसम एवं छिड़काव विश्लेषण",
+        "en": "Weather & Spray Conditions",
+        "pa": "ਮੌਸਮ ਅਤੇ ਛਿੜਕਾਅ ਹਾਲਾਤ",
+        "hinglish": "Mausam aur Chhidkaav Halaat",
+        "hi": "मौसम एवं छिड़काव विश्लेषण",
     },
     "note_template_llm_failed": {
         "en": (
-            "ℹ️ The AI service is busy right now, so this answer was taken directly from the advisory text "
+            "The AI service is busy right now, so this answer was taken directly from the advisory text "
             "without AI. It may not match your question as closely. Please try again in a minute."
         ),
         "pa": (
-            "ℹ️ AI ਸੇਵਾ ਇਸ ਵੇਲੇ ਰੁੱਝੀ ਹੋਈ ਹੈ, ਇਸ ਲਈ ਇਹ ਜਵਾਬ AI ਤੋਂ ਬਿਨਾਂ ਸਿੱਧਾ ਸਲਾਹ-ਪੱਤਰ ਵਿੱਚੋਂ ਲਿਆ ਗਿਆ ਹੈ। "
+            "AI ਸੇਵਾ ਇਸ ਵੇਲੇ ਰੁੱਝੀ ਹੋਈ ਹੈ, ਇਸ ਲਈ ਇਹ ਜਵਾਬ AI ਤੋਂ ਬਿਨਾਂ ਸਿੱਧਾ ਸਲਾਹ-ਪੱਤਰ ਵਿੱਚੋਂ ਲਿਆ ਗਿਆ ਹੈ। "
             "ਹੋ ਸਕਦਾ ਹੈ ਇਹ ਤੁਹਾਡੇ ਸਵਾਲ ਨਾਲ ਪੂਰਾ ਮੇਲ ਨਾ ਖਾਵੇ। ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਮਿੰਟ ਬਾਅਦ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
         ),
         "hinglish": (
-            "ℹ️ AI service abhi vyast hai, isliye yeh jawab bina AI ke seedha salah-patra se liya gaya hai. "
+            "AI service abhi vyast hai, isliye yeh jawab bina AI ke seedha salah-patra se liya gaya hai. "
             "Ho sakta hai yeh aapke sawal se poori tarah mel na khaye. Kripya ek minute baad dobara koshish karein."
         ),
         "hi": (
-            "ℹ️ AI सेवा अभी व्यस्त है, इसलिए यह उत्तर बिना AI के सीधे परामर्श-पत्र से लिया गया है। "
+            "AI सेवा अभी व्यस्त है, इसलिए यह उत्तर बिना AI के सीधे परामर्श-पत्र से लिया गया है। "
             "हो सकता है यह आपके प्रश्न से पूरी तरह मेल न खाए। कृपया एक मिनट बाद फिर से प्रयास करें।"
         ),
     },
     "note_template_offline": {
         "en": (
-            "ℹ️ AI answers are turned off, so this answer was taken directly from the advisory text. "
+            "AI answers are turned off, so this answer was taken directly from the advisory text. "
             "It may not match your question as closely."
         ),
         "pa": (
-            "ℹ️ AI ਜਵਾਬ ਬੰਦ ਹਨ, ਇਸ ਲਈ ਇਹ ਜਵਾਬ ਸਿੱਧਾ ਸਲਾਹ-ਪੱਤਰ ਵਿੱਚੋਂ ਲਿਆ ਗਿਆ ਹੈ। "
+            "AI ਜਵਾਬ ਬੰਦ ਹਨ, ਇਸ ਲਈ ਇਹ ਜਵਾਬ ਸਿੱਧਾ ਸਲਾਹ-ਪੱਤਰ ਵਿੱਚੋਂ ਲਿਆ ਗਿਆ ਹੈ। "
             "ਹੋ ਸਕਦਾ ਹੈ ਇਹ ਤੁਹਾਡੇ ਸਵਾਲ ਨਾਲ ਪੂਰਾ ਮੇਲ ਨਾ ਖਾਵੇ।"
         ),
         "hinglish": (
-            "ℹ️ AI jawab band hain, isliye yeh jawab seedha salah-patra se liya gaya hai. "
+            "AI jawab band hain, isliye yeh jawab seedha salah-patra se liya gaya hai. "
             "Ho sakta hai yeh aapke sawal se poori tarah mel na khaye."
         ),
         "hi": (
-            "ℹ️ AI उत्तर बंद हैं, इसलिए यह उत्तर सीधे परामर्श-पत्र से लिया गया है। "
+            "AI उत्तर बंद हैं, इसलिए यह उत्तर सीधे परामर्श-पत्र से लिया गया है। "
             "हो सकता है यह आपके प्रश्न से पूरी तरह मेल न खाए।"
         ),
     },
@@ -411,43 +411,43 @@ STRINGS: Dict[str, Dict[str, str]] = {
     "new_chat": {"en": "🔄 New conversation", "pa": "🔄 ਨਵੀਂ ਗੱਲਬਾਤ", "hinglish": "🔄 Nayi baatcheet", "hi": "🔄 नई बातचीत"},
     "chat_welcome": {
         "en": (
-            "🙏 Namaste! Ask me about your crops, pests, pesticides or the weather. "
+            "Namaste! Ask me about your crops, pests, pesticides or the weather. "
             "You can ask follow-up questions too, like *\"What is the dose?\"* or *\"And in Sangrur?\"*"
         ),
         "pa": (
-            "🙏 ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਆਪਣੀ ਫ਼ਸਲ, ਕੀੜਿਆਂ, ਦਵਾਈਆਂ ਜਾਂ ਮੌਸਮ ਬਾਰੇ ਪੁੱਛੋ। "
+            "ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਆਪਣੀ ਫ਼ਸਲ, ਕੀੜਿਆਂ, ਦਵਾਈਆਂ ਜਾਂ ਮੌਸਮ ਬਾਰੇ ਪੁੱਛੋ। "
             "ਤੁਸੀਂ ਅਗਲਾ ਸਵਾਲ ਵੀ ਪੁੱਛ ਸਕਦੇ ਹੋ, ਜਿਵੇਂ *\"ਖੁਰਾਕ ਕਿੰਨੀ ਹੈ?\"* ਜਾਂ *\"ਅਤੇ ਸੰਗਰੂਰ ਵਿੱਚ?\"*"
         ),
         "hinglish": (
-            "🙏 Namaste! Apni fasal, keedon, dawaiyon ya mausam ke baare mein poochein. "
+            "Namaste! Apni fasal, keedon, dawaiyon ya mausam ke baare mein poochein. "
             "Aap aage ka sawal bhi pooch sakte hain, jaise *\"Dose kitni hai?\"* ya *\"Aur Sangrur mein?\"*"
         ),
         "hi": (
-            "🙏 नमस्ते! अपनी फसल, कीटों, दवाइयों या मौसम के बारे में पूछें। "
+            "नमस्ते! अपनी फसल, कीटों, दवाइयों या मौसम के बारे में पूछें। "
             "आप आगे का सवाल भी पूछ सकते हैं, जैसे *\"खुराक कितनी है?\"* या *\"और संगरूर में?\"*"
         ),
     },
-    "details_header": {"en": "⚙️ Details", "pa": "⚙️ ਵੇਰਵੇ", "hinglish": "⚙️ Vivaran", "hi": "⚙️ विवरण"},
+    "details_header": {"en": "Details", "pa": "ਵੇਰਵੇ", "hinglish": "Vivaran", "hi": "विवरण"},
     "voice_unavailable": {
-        "en": "🔇 Spoken answers are not available in this language yet.",
-        "pa": "🔇 ਇਸ ਭਾਸ਼ਾ ਵਿੱਚ ਆਵਾਜ਼ ਵਾਲੇ ਜਵਾਬ ਅਜੇ ਉਪਲਬਧ ਨਹੀਂ ਹਨ।",
-        "hinglish": "🔇 Is bhasha mein awaaz wale jawab abhi uplabdh nahi hain.",
-        "hi": "🔇 इस भाषा में आवाज़ वाले उत्तर अभी उपलब्ध नहीं हैं।",
+        "en": "Spoken answers are not available in this language yet.",
+        "pa": "ਇਸ ਭਾਸ਼ਾ ਵਿੱਚ ਆਵਾਜ਼ ਵਾਲੇ ਜਵਾਬ ਅਜੇ ਉਪਲਬਧ ਨਹੀਂ ਹਨ।",
+        "hinglish": "Is bhasha mein awaaz wale jawab abhi uplabdh nahi hain.",
+        "hi": "इस भाषा में आवाज़ वाले उत्तर अभी उपलब्ध नहीं हैं।",
     },
-    "response_header": {"en": "📋 Verified Advice", "pa": "📋 ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ", "hinglish": "📋 Pramanit Salah", "hi": "📋 सत्यापित परामर्श"},
-    "listen_header": {"en": "🔊 Listen to the advice", "pa": "🔊 ਆਵਾਜ਼ ਵਿੱਚ ਸੁਣੋ", "hinglish": "🔊 Awaaz mein sunein", "hi": "🔊 आवाज़ में सुनें"},
+    "response_header": {"en": "Verified Advice", "pa": "ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ", "hinglish": "Pramanit Salah", "hi": "सत्यापित परामर्श"},
+    "listen_header": {"en": "Listen to the advice", "pa": "ਆਵਾਜ਼ ਵਿੱਚ ਸੁਣੋ", "hinglish": "Awaaz mein sunein", "hi": "आवाज़ में सुनें"},
     "safety_header": {
-        "en": "⚠️ Safety Warnings",
-        "pa": "⚠️ ਸੁਰੱਖਿਆ ਹਦਾਇਤਾਂ ਅਤੇ ਚੇਤਾਵਨੀਆਂ",
-        "hinglish": "⚠️ Suraksha Nirdesh aur Chetavaniyan",
-        "hi": "⚠️ सुरक्षा निर्देश एवं चेतावनियां",
+        "en": "Safety Warnings",
+        "pa": "ਸੁਰੱਖਿਆ ਹਦਾਇਤਾਂ ਅਤੇ ਚੇਤਾਵਨੀਆਂ",
+        "hinglish": "Suraksha Nirdesh aur Chetavaniyan",
+        "hi": "सुरक्षा निर्देश एवं चेतावनियां",
     },
-    "sources_header": {"en": "📚 Official Sources", "pa": "📚 ਅਧਿਕਾਰਤ ਸਰੋਤ", "hinglish": "📚 Aadhikarik Sandarbh", "hi": "📚 आधिकारिक संदर्भ"},
+    "sources_header": {"en": "Official Sources", "pa": "ਅਧਿਕਾਰਤ ਸਰੋਤ", "hinglish": "Aadhikarik Sandarbh", "hi": "आधिकारिक संदर्भ"},
     "evidence_header": {
-        "en": "🔍 Source text used (evidence)",
-        "pa": "🔍 ਗਿਆਨ-ਕੋਸ਼ ਵਿੱਚੋਂ ਲਿਆ ਮੂਲ ਹਵਾਲਾ",
-        "hinglish": "🔍 Gyaankosh se liya gaya mool sandarbh",
-        "hi": "🔍 ज्ञानकोश से पुनर्प्राप्त मूल संदर्भ",
+        "en": "Source text used (evidence)",
+        "pa": "ਗਿਆਨ-ਕੋਸ਼ ਵਿੱਚੋਂ ਲਿਆ ਮੂਲ ਹਵਾਲਾ",
+        "hinglish": "Gyaankosh se liya gaya mool sandarbh",
+        "hi": "ज्ञानकोश से पुनर्प्राप्त मूल संदर्भ",
     },
     "sidebar_weather_header": {
         "en": "🌦️ Quick Farm Weather",

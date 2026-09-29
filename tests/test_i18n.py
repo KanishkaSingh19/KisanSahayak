@@ -1,3 +1,5 @@
+import re
+
 import pytest
 from app.agent.guardrails import AgriculturalGuardrails
 from app.agent.synthesizer import build_system_prompt
@@ -39,7 +41,8 @@ def test_normalize_language():
 def test_prompt_language_rule():
     assert "Gurmukhi" in build_system_prompt("ctx", "pa")
     assert "Roman" in build_system_prompt("ctx", "hinglish")
-    assert "6." not in build_system_prompt("ctx", None)
+    assert "7." not in build_system_prompt("ctx", None)
+    assert "Do not use emojis" in build_system_prompt("ctx", None)
 
 
 def test_guardrails_warnings_follow_language():
@@ -54,7 +57,7 @@ def test_weather_advice_follows_language():
     tool = AgWeatherTool()
     spray, irr = tool._evaluate_agronomic_advisory(wind_speed=22.0, rain_prob=10.0, temp=25.0, language="en")
     assert "Strong wind" in spray
-    assert tool._get_fallback_advisory("Karnal", language="hinglish").spray_recommendation.startswith("✅ Anukool")
+    assert tool._get_fallback_advisory("Karnal", language="hinglish").spray_recommendation.startswith("Anukool")
 
 
 @pytest.fixture(scope="module")
@@ -75,3 +78,32 @@ def test_pipeline_weather_in_english(pipeline):
     res = pipeline.process_query("What is the weather in Ludhiana today?", language="en", generate_audio=False)
     assert res.intent == "weather"
     assert "Farm Weather Advisory" in res.answer
+
+
+EMOJI = re.compile("[\U0001F300-\U0001FAFF☀-➿ℹ⬀-⯿]")
+# Text that appears inside answers (page chrome like tabs and the banner may keep icons)
+ANSWER_KEYS = [
+    "greeting", "out_of_scope", "stt_failed", "spray_rain", "spray_wind", "spray_ok", "irrigation_stop",
+    "irrigation_light", "irrigation_normal", "fallback_spray", "fallback_irrigation", "statutory_disclaimer",
+    "monocrotophos_warning", "endosulfan_warning", "location_default", "location_not_found",
+    "note_template_llm_failed", "note_template_offline", "voice_unavailable", "grounded_yes", "grounded_partial",
+    "listen_header", "safety_header", "sources_header", "evidence_header", "details_header", "chat_welcome",
+]
+
+
+@pytest.mark.parametrize("key", ANSWER_KEYS)
+def test_answer_text_has_no_emojis(key):
+    for lang in LANGUAGES:
+        assert not EMOJI.search(STRINGS[key][lang]), f"emoji in {key}/{lang}"
+
+
+def test_template_and_weather_answers_have_no_emojis(pipeline, monkeypatch):
+    from app.agent.synthesizer import DeterministicGroundedSynthesizer
+
+    monkeypatch.setattr(pipeline, "synthesizer", DeterministicGroundedSynthesizer())
+    for lang in LANGUAGES:
+        answer = pipeline.process_query("How to control aphids in mustard?", language=lang, generate_audio=False)
+        assert not EMOJI.search(answer.answer), lang
+        assert not any(EMOJI.search(d) for d in answer.safety_disclaimers), lang
+    weather = pipeline.process_query("Can I spray in Ludhiana today?", language="en", generate_audio=False)
+    assert not EMOJI.search(weather.answer)

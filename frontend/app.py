@@ -229,9 +229,8 @@ def render_answer(result, pipeline, lang: str, msg_id: int) -> None:
         grounded_chip = f'<span class="ks-chip ks-chip-ok">{t("grounded_yes", lang)}</span>'
     else:
         grounded_chip = f'<span class="ks-chip ks-chip-warn">{t("grounded_partial", lang)}</span>'
-    chip_icon = "📍" if result.weather_report else "🌾"
     st.markdown(
-        f'<span class="ks-chip ks-chip-crop">{chip_icon} {html.escape(crop_label)}</span>{grounded_chip}',
+        f'<span class="ks-chip ks-chip-crop">{html.escape(crop_label)}</span>{grounded_chip}',
         unsafe_allow_html=True,
     )
 
@@ -264,7 +263,7 @@ def render_answer(result, pipeline, lang: str, msg_id: int) -> None:
         if audio_path and os.path.exists(audio_path):
             st.audio(audio_path, format="audio/mp3")
         elif st.button(t("listen_header", lang), key=f"listen_{msg_id}"):
-            with st.spinner("🔊 ..."):
+            with st.spinner("..."):
                 audio_path = pipeline.tts_adapter.synthesize_speech(result.answer, language=answer_lang)
             if audio_path:
                 st.session_state["audio"][msg_id] = str(audio_path)
@@ -280,7 +279,7 @@ def render_answer(result, pipeline, lang: str, msg_id: int) -> None:
     if result.citations:
         st.markdown(f'<div class="ks-section-title" style="margin-top:1rem">{t("sources_header", lang)}</div>', unsafe_allow_html=True)
         for cit in result.citations:
-            st.markdown(f'<div class="citation-box">📌 {html.escape(cit)}</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="citation-box">{html.escape(cit)}</div>', unsafe_allow_html=True)
 
     if result.retrieved_chunks:
         with st.expander(t("evidence_header", lang), expanded=False):
@@ -416,7 +415,7 @@ def main():
                                 audio_file.read(), filename=audio_file.name, language=lang,
                                 generate_audio=False, history=history,
                             )
-            user_text = prompt or f"🎙️ {result.processing_metadata.get('stt_transcript', audio_file.name)}"
+            user_text = prompt or result.processing_metadata.get("stt_transcript", audio_file.name)
             st.session_state["messages"].append({"role": "user", "text": user_text})
             st.session_state["messages"].append({"role": "assistant", "result": result, "id": len(st.session_state["messages"])})
             st.rerun()

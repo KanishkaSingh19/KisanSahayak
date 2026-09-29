@@ -183,11 +183,11 @@ class KisanPipeline:
                     "weather_summary", lang, place=report.district, temp=report.temperature_c,
                     humidity=report.relative_humidity, wind=report.wind_speed_kmh, rain=report.rain_probability_pct,
                 )
-                parts = [f"{location_note}### 🌦️ {t('weather_advisory_title', lang)}: {report.district}\n\n{summary}"]
+                parts = [f"{location_note}### {t('weather_advisory_title', lang)}: {report.district}\n\n{summary}"]
                 if "spray" in topics:
-                    parts.append(f"**🚜 {t('spray_advisory', lang)}:**\n{report.spray_recommendation}")
+                    parts.append(f"**{t('spray_advisory', lang)}:**\n{report.spray_recommendation}")
                 if "irrigation" in topics:
-                    parts.append(f"**💧 {t('irrigation_advice', lang)}:**\n{report.irrigation_advisory}")
+                    parts.append(f"**{t('irrigation_advice', lang)}:**\n{report.irrigation_advisory}")
                 weather_ans = "\n\n".join(parts)
                 citations = [report.source_notice]
                 if topics:

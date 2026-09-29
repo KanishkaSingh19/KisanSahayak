@@ -15,6 +15,7 @@ STRICT GROUNDING RULES:
 3. Do not invent any pesticide dosage, chemical name, or agricultural advice.
 4. Clearly state chemical dosages and precautions if mentioned in the context.
 5. End your response by listing the official sources used.
+6. Write plain, clear text for farmers. Do not use emojis.
 {language_rule}
 CONTEXT:
 ----------------
@@ -28,7 +29,7 @@ def build_system_prompt(context: str, language: Optional[str] = None) -> str:
     language_rule = ""
     if language:
         instruction = LLM_LANGUAGE_INSTRUCTIONS[normalize_language(language)]
-        language_rule = f"6. {instruction} Keep pesticide/chemical names and dosages exactly as written in the context.\n"
+        language_rule = f"7. {instruction} Keep pesticide/chemical names and dosages exactly as written in the context.\n"
     return SYSTEM_PROMPT.format(context=context, language_rule=language_rule)
 
 
@@ -126,20 +127,20 @@ class DeterministicGroundedSynthesizer:
             warning = translated.get("critical_safety_warning", warning)
 
         response_parts = [
-            f"### 🌾 {t('crop_advisory', lang)}: {crop} ({title})\n",
+            f"### {t('crop_advisory', lang)}: {crop} ({title})\n",
         ]
 
         if symptoms:
-            response_parts.append(f"**🔍 {t('identification', lang)}:**\n{symptoms}\n")
+            response_parts.append(f"**{t('identification', lang)}:**\n{symptoms}\n")
 
         if action:
-            response_parts.append(f"**💊 {t('recommended_control', lang)}:**\n{action}\n")
+            response_parts.append(f"**{t('recommended_control', lang)}:**\n{action}\n")
 
         if preventive:
-            response_parts.append(f"**🛡️ {t('preventive_measures', lang)}:**\n{preventive}\n")
+            response_parts.append(f"**{t('preventive_measures', lang)}:**\n{preventive}\n")
 
         if warning:
-            response_parts.append(f"**⚠️ {t('special_warning', lang)}:**\n{warning}\n")
+            response_parts.append(f"**{t('special_warning', lang)}:**\n{warning}\n")
 
         # Fallback if specific tags are not present
         if not (symptoms or action or preventive or warning):

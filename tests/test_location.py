@@ -73,7 +73,7 @@ def test_pipeline_weather_uses_the_asked_place(pipeline, monkeypatch):
     assert res.intent == "weather"
     assert res.processing_metadata["district"] == "Delhi"
     assert res.processing_metadata["location_found"] is True
-    assert "📍" not in res.answer
+    assert "No place was recognised" not in res.answer and "Couldn't find" not in res.answer
 
 
 @pytest.mark.parametrize(
