@@ -9,6 +9,15 @@ if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
 import streamlit as st
+
+# On Streamlit Community Cloud, keys and settings come from the app's Secrets. Load them first:
+# root-level secrets become environment variables, which app.config reads at import time.
+# Locally there is no secrets file and settings come from .env instead.
+try:
+    st.secrets.load_if_toml_exists()
+except Exception:
+    pass
+
 from app.agent.pipeline import KisanPipeline
 from app.agent.state import ConversationTurn
 from app.config import settings

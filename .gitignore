@@ -1,7 +1,8 @@
-# Secrets: API keys live only in .env (copy .env.example to .env)
+# Secrets: API keys live only in .env (copy .env.example to .env) or Streamlit secrets
 .env
 .env.*
 !.env.example
+.streamlit/secrets.toml
 
 # Generated at runtime / build time (rebuild with: python -m app.rag.ingest)
 data/audio/

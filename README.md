@@ -201,3 +201,22 @@ docker build -t kisansahayak .
 docker run -p 8501:8501 -e GEMINI_API_KEY=your_key -e GROQ_API_KEY=your_key kisansahayak
 ```
 Then open http://localhost:8501. The first visit after start-up loads the models (about a minute).
+
+---
+
+## ☁️ Deploying on Streamlit Community Cloud (free)
+
+The cloud version uses `frontend/requirements.txt` (no PyTorch, so it fits the memory limit) and **Gemini embeddings** for search instead of the local MiniLM model. In our 8-question check, Gemini embeddings put the right crop first for 8/8 questions (MiniLM: 6/8).
+
+1. Sign in at https://share.streamlit.io with GitHub and click **Create app → Deploy a public app from GitHub**.
+2. Repository `KanishkaSingh19/KisanSahayak`, branch `main`, main file path **`frontend/app.py`**.
+3. Open **Advanced settings**, choose Python **3.12**, and paste into **Secrets**:
+   ```toml
+   GEMINI_API_KEY = "your_gemini_key"
+   GROQ_API_KEY = "your_groq_key"
+   LLM_PROVIDER = "gemini"
+   EMBEDDING_PROVIDER = "gemini"
+   ```
+4. Click **Deploy**. The first start installs packages and builds the search index (a few minutes).
+
+Every push to `main` redeploys automatically. Apps sleep after a period without visitors; open the link before a demo so it's awake.

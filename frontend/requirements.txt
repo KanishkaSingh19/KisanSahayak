@@ -1,0 +1,15 @@
+# Streamlit Community Cloud dependencies (lightweight: no PyTorch / MiniLM).
+# Community Cloud uses this file because it sits next to the entrypoint (frontend/app.py);
+# the full local setup is the root requirements.txt.
+# Search uses Gemini embeddings on the cloud: set EMBEDDING_PROVIDER = "gemini" in the app's Secrets.
+streamlit>=1.40.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+python-dotenv>=1.0.0
+numpy>=1.24.0
+rank-bm25>=0.2.2
+faiss-cpu>=1.7.4
+requests>=2.31.0
+google-genai>=1.0.0
+edge-tts>=6.1.0
+gTTS>=2.5.0

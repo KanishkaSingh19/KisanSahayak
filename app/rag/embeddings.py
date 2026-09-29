@@ -81,35 +81,58 @@ class LocalDenseEmbedder(BaseEmbeddings):
 
 
 class GeminiEmbedder(BaseEmbeddings):
-    """Embeddings via Google Gen AI SDK (gemini-embedding-001, 768-dim)."""
+    """Embeddings via the Gemini API (gemini-embedding-001, 768-dim).
 
-    def __init__(self, api_key: str):
+    Used where local models don't fit (e.g. Streamlit Community Cloud). If an API call fails,
+    the local embedder is used at the same 768 dimensions, so vectors never have mixed sizes.
+    """
+
+    DIMENSION = 768
+    BATCH_SIZE = 50
+
+    def __init__(self, api_key: str, model: str = "gemini-embedding-001"):
         from google import genai
-
-        self.client = genai.Client(api_key=api_key)
-        self.model = "gemini-embedding-001"
-        self._fallback = LocalDenseEmbedder()
-
-    def embed_text(self, text: str) -> np.ndarray:
         from google.genai import types
 
+        retry = types.HttpRetryOptions(attempts=2, initial_delay=0.5, max_delay=1.0, http_status_codes=[500, 503])
+        self.client = genai.Client(api_key=api_key, http_options=types.HttpOptions(retry_options=retry, timeout=10_000))
+        self.model = model
+        self._fallback = LocalDenseEmbedder(self.DIMENSION)
+
+    def _embed(self, texts: List[str], task_type: str) -> np.ndarray:
+        from google.genai import types
+
+        res = self.client.models.embed_content(
+            model=self.model,
+            contents=texts,
+            config=types.EmbedContentConfig(task_type=task_type, output_dimensionality=self.DIMENSION),
+        )
+        vectors = np.array([e.values for e in res.embeddings], dtype=np.float32)
+        norms = np.linalg.norm(vectors, axis=1, keepdims=True)
+        return vectors / np.where(norms > 0, norms, 1.0)
+
+    def embed_text(self, text: str) -> np.ndarray:
         try:
-            res = self.client.models.embed_content(
-                model=self.model,
-                contents=text,
-                config=types.EmbedContentConfig(output_dimensionality=self.get_dimension()),
-            )
-            vec = np.array(res.embeddings[0].values, dtype=np.float32)
-            norm = np.linalg.norm(vec)
-            return vec / norm if norm > 0 else vec
-        except Exception:
+            return self._embed([text], "RETRIEVAL_QUERY")[0]
+        except Exception as e:
+            print(f"[Warning] Gemini embedding failed: {str(e)[:120]}. Using local embedder for this query.")
             return self._fallback.embed_text(text)
 
     def embed_documents(self, texts: List[str]) -> np.ndarray:
-        return np.array([self.embed_text(t) for t in texts], dtype=np.float32)
+        batches = []
+        for start in range(0, len(texts), self.BATCH_SIZE):
+            batch = texts[start : start + self.BATCH_SIZE]
+            try:
+                batches.append(self._embed(batch, "RETRIEVAL_DOCUMENT"))
+            except Exception as e:
+                print(f"[Warning] Gemini embedding failed: {str(e)[:120]}. Using local embedder for this batch.")
+                batches.append(self._fallback.embed_documents(batch))
+        if not batches:
+            return np.zeros((0, self.DIMENSION), dtype=np.float32)
+        return np.vstack(batches).astype(np.float32)
 
     def get_dimension(self) -> int:
-        return 768
+        return self.DIMENSION
 
 
 class MiniLMEmbedder(BaseEmbeddings):
@@ -146,6 +169,7 @@ def get_embeddings_manager() -> BaseEmbeddings:
     if provider == "gemini" and settings.GEMINI_API_KEY:
         try:
             return GeminiEmbedder(settings.GEMINI_API_KEY)
-        except Exception:
+        except Exception as e:
+            print(f"[Warning] Gemini embeddings unavailable: {e}. Falling back to local embedder.")
             return LocalDenseEmbedder(settings.EMBEDDING_DIM)
     return LocalDenseEmbedder(settings.EMBEDDING_DIM)
