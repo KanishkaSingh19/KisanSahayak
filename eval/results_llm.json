@@ -1,0 +1,66 @@
+{
+  "questions": 8,
+  "from_llm": 8,
+  "right_script": 8,
+  "numbers_grounded": 8,
+  "latency_ms": [
+    8920.534599979874,
+    22564.535800018348,
+    14666.641799965873,
+    3236.7129999911413,
+    2200.1100999768823,
+    1852.5239000446163,
+    3348.1631000177003,
+    2850.6964000407606
+  ],
+  "answers": [
+    {
+      "query": "How do I control pink bollworm in my cotton field?",
+      "language": "en",
+      "answer": "Namaste! Here is the guidance from verified agricultural research to help you manage the pink bollworm (Gulabi Sundhi) in your cotton field:\n\n**Monitoring and Action Thresholds:**\n* Install pheromone traps at the rate of 5 traps per acre for monitoring at 45 days after sowing.\n* When the trap catch exceeds the Economic Threshold Level (ETL) of 8 moths per trap per night for 3 consecutive days, or when you notice 10% damaged green bolls, you should take action.\n\n**Recommended Actions & Chemical Dosages:**\n* Spray **Profenofos 50% EC @ 500 ml** OR **Emamectin Benzoate 5% SG @ 100 g** mixed in 150-200 liters of water per acre.\n* Alternatively, you can release **Trichogramma egg parasitoids @ 60,000 per acre** on a weekly basis.\n\n**Preventive Measures:**\n* Strictly follow the termination of the crop by the end of January to break the pest cycle.\n* Avoid stacking cotton stalks in the fields.\n* Do not allow ratoon cotton to grow.\n\n**Official Sources Used:**\n* ICAR-Central Institute for Cotton Research (CICR) Nagpur - Cotton (Narma/Kapas) Pest and Disease Integrated Management [Pink Bollworm (Gulabi Sundhi) Integrated Management] (2024).",
+      "invented_numbers": []
+    },
+    {
+      "query": "narma mein safed makhi aur patte mud rahe hain",
+      "language": "hinglish",
+      "answer": "Namaste kisan bhai! Narma (cotton) mein safed makhi (Whitefly) aur patte mudne (Leaf Curl Virus) ki samasya ke liye ICAR-Central Institute for Cotton Research (CICR) Nagpur ke anusaar yeh jaankari aur upay hain:\n\n**Lakshan aur Pehchan:**\nAdults aur nymphs patton ke niche se ras chuste hain, jisse patte peele padte hain aur niche ki taraf mudne lagte hain. Yeh Cotton Leaf Curl Virus ko bhi failate hain, jisse veins moti ho jati hain aur patton ke niche ki taraf leaf-like outgrowths (enation) ban jate hain.\n\n**Recommended Action & Chemical Dosage:**\nSpray tabhi karein jab ETL (Economic Threshold Level) pahunch jaye (top, middle aur bottom ke patton par milakar 6-8 whitefly adults prati patta hone par). \n\nInmein se kisi ek ki spray karein:\n- Diafenthiuron 50% WP @ 250 g\n- Pyriproxyfen 10% EC @ 500 ml\n- Afidopyropen 50 g/l DC @ 400 ml\n(In sabhi ko 150 liters of water per acre mein mila kar spray karein.)\n\n**Preventive Measures (Bachaav ke tarike):**\n- Recommended CLCuD-tolerant hybrids ki buvai karein.\n- Khet ki medon par maujud alternative weed hosts jaise Kanghi buti (Abutilon indicum) aur Peeli buti ko ukhad kar saaf karein.\n\n**Official Sources:**\n1. ICAR-Central Institute for Cotton Research (CICR) Nagpur - Cotton (Narma/Kapas) Pest and Disease Integrated Management [Cotton Whitefly and Leaf Curl Virus (CLCuD) Control] (2024).",
+      "invented_numbers": []
+    },
+    {
+      "query": "sarson mein chepa ka ilaj kya hai",
+      "language": "hinglish",
+      "answer": "Namaste Kisan bhai! Sarson mein chepa (Mustard Aphid/Mahu) ke ilaj aur prabandhan ke liye ICAR-Directorate of Rapeseed-Mustard Research (DRMR) Bharatpur ke anusar yeh jankari di gayi hai:\n\n**Lakshan aur Pehchan:**\nNymphs aur adults tender twigs, inflorescence, leaves, aur siliquae (pods) se cell sap suck karte hain. Infested plants mein leaves ki curling, stunted growth, aur pod failure ho jata hai. Yeh honeydew secrete karte hain jisse sooty mold develop ho jata hai.\n\n**Recommended Action aur Chemical Dosage:**\nSpray tabhi karein jab ETL (Economic Threshold Level) pahunch jaye (central shoot par 1.5–2.0 cm aphid colony ho ya 20-25% plants infested hon). \n- **Dimethoate 30% EC** @ 250-300 ml ya **Thiamethoxam 25% WG** @ 50-80 g ko 150-200 liters paani mein mila kar per acre spray karein.\n- Honeybees aur pollinators ko bachane ke liye, spray strictly late afternoon mein hi karein (after 3:30 PM).\n\n**Preventive Measures (Roktham ke Upay):**\n- October 10 aur October 25 ke beech early sowing karne se aphid ka attack kam hota hai.\n- Early monitoring aur trapping ke liye Yellow sticky traps @ 10-15 traps per acre lagayein.\n\n**Official Sources:**\n1. ICAR-Directorate of Rapeseed-Mustard Research (DRMR) Bharatpur - Mustard (Sarson/Raya) Package of Practices & Pest Management (2024).",
+      "invented_numbers": []
+    },
+    {
+      "query": "sarson mein kitni khad aur paani dena chahiye",
+      "language": "hinglish",
+      "answer": "Namaskar! KisanSahayak ki taraf se sarson ki fasal mein khad aur paani (fertilizer aur irrigation) management ki jaankari niche di gayi hai:\n\n**Khad (Fertilizer Management):**\n* Per hectare 80 kg Nitrogen (N), 40 kg P2O5, aur 40 kg K2O dena chahiye.\n* Iske alawa, Sulphur @ 20-25 kg/ha elemental sulphur ya Gypsum (200 kg/ha) ke roop mein dene se tel (oil) ki matra 2-3% tak badh jaati hai.\n\n**Paani (Irrigation Management):**\n* Pehla paani (irrigation) buwai ke 30-35 din baad rosette stage par dena chahiye.\n* Dusra paani siliquae formation stage par buwai ke 60-65 din baad dena chahiye.\n\n**Official Sources:**\n- ICAR-Directorate of Rapeseed-Mustard Research (DRMR) Bharatpur - Mustard (Sarson/Raya) Package of Practices & Pest Management [Mustard Fertilizer and Irrigation Management] (2024).",
+      "invented_numbers": []
+    },
+    {
+      "query": "Brown planthopper attack in rice, what should I spray?",
+      "language": "en",
+      "answer": "Namaste, I am KisanSahayak. Here is the verified advice for managing Brown Planthopper (BPH / Bhoora Tilla) in your paddy crop:\n\n**Symptoms & Identification:**\nBPH nymphs and adults gather at the base of rice tillers just above the water level. If the attack is severe, it causes circular drying patches in the fields known as 'hopper burn'.\n\n**Recommended Action & Chemical Dosage:**\nMonitor the base of the tillers every week. When you see an economic threshold level (ETL) of 5 to 10 hoppers per hill, spray one of the following chemicals:\n* **Pymetrozine 50% WDG** @ 120 g per acre\n* **Triflumezopyrim 10% SC** @ 94 ml per acre\n\n**Precautions:**\n* Direct your spray strictly towards the base of the plants using a hollow cone nozzle.\n* Drain water from the field for 2-3 days when the pest activity is at its peak.\n* Strictly avoid using synthetic pyrethroids (such as Cypermethrin or Deltamethrin). They kill natural spiders and will trigger a severe return (resurgence) of BPH.\n\n**Official Sources:**\n* ICAR-National Rice Research Institute (NRRI) & PAU (2024) - Paddy / Rice (Jhona/Dhan) Disease and Insect Pest Advisory [Brown Planthopper (BPH / Bhoora Tilla) Management]",
+      "invented_numbers": []
+    },
+    {
+      "query": "Is monocrotophos banned in India?",
+      "language": "en",
+      "answer": "Yes, Monocrotophos is strictly prohibited for use on all vegetables and fruit crops due to high mammalian toxicity and systemic residues. Violation of this rule attracts penalties under the Insecticides Act. Additionally, it is listed among the completely banned chemicals under the Insecticides Act 1968.\n\n**Official Sources Used:**\n- Central Insecticides Board & Registration Committee (CIBRC), Ministry of Agriculture & Farmers Welfare - Statutory Pesticide Safety Guidelines & List of Banned Pesticides in India",
+      "invented_numbers": []
+    },
+    {
+      "query": "ਸਪਰੇਅ ਕਰਦੇ ਸਮੇਂ ਕਿਹੜੇ ਸੁਰੱਖਿਆ ਕੱਪੜੇ ਪਾਈਏ?",
+      "language": "pa",
+      "answer": "ਸਪਰੇਅ ਕਰਦੇ ਸਮੇਂ ਹਮੇਸ਼ਾ ਰਬੜ ਦੇ ਦਸਤਾਨੇ (rubber gloves), ਚਿਹਰੇ ਦਾ ਮਾਸਕ (face mask), ਅੱਖਾਂ ਦੀ ਐਨਕ (eye goggles) ਅਤੇ ਪੂਰੀ ਬਾਾਂਹਾਂ ਵਾਲੇ ਸਤੀ ਕੱਪੜੇ (full-sleeve cotton clothing) ਪਹਿਨਣੇ ਚਾਹੀਦੇ ਹਨ। ਹਵਾ ਦੀ ਦਿਸ਼ਾ ਦੇ ਵਿਰੁੱਧ ਕਦੇ ਵੀ ਸਪਰੇਅ ਨਹੀਂ ਕਰਨੀ ਚਾਹੀਦੀ। ਰਸਾਇਣਕ ਨੂੰ ਸੰਭਾਲਣ ਦੌਰਾਨ ਕਦੇ ਵੀ ਕੁਝ ਖਾਣਾ, ਸਿਗਰਟ ਪੀਣੀ ਜਾਂ ਤੰਬਾਕੂ ਨਹੀਂ ਚਬਾਉਣਾ ਚਾਹੀਦਾ।\n\nਅਧਿਕਾਰਤ ਸਰੋਤ:\n- Central Insecticides Board & Registration Committee (CIBRC), Ministry of Agriculture & Farmers Welfare",
+      "invented_numbers": []
+    },
+    {
+      "query": "How to prevent Karnal bunt in wheat?",
+      "language": "en",
+      "answer": "Namaste! As KisanSahayak, here is the verified agricultural guidance for preventing Karnal Bunt in wheat based on Punjab Agricultural University (PAU) and ICAR recommendations:\n\n**Preventive Measures for Karnal Bunt:**\n* Use disease-free certified seeds.\n* Avoid excessive nitrogenous fertilizers.\n* Avoid continuous wheat cropping in heavily infested fields.\n\n**Official Sources Used:**\n* Punjab Agricultural University (PAU) & ICAR - Wheat (Kanak/Gehun) Package of Practices & Disease Management (Karnal Bunt Management in Wheat)",
+      "invented_numbers": []
+    }
+  ]
+}

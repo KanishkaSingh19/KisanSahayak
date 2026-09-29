@@ -246,6 +246,27 @@ def main() -> int:
     EVAL_DIR.mkdir(exist_ok=True)
     (EVAL_DIR / f"results_{args.embeddings}.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     (EVAL_DIR / f"results_{args.embeddings}.json").write_text(json.dumps(results, ensure_ascii=False, indent=2, default=float), encoding="utf-8")
+    if llm:
+        # Kept in its own files so later offline runs never overwrite the (quota-using) Gemini check
+        k = llm["questions"]
+        llm_lines = [
+            "# KisanSahayak: real Gemini answer check",
+            "",
+            f"*{results['date']} · {k} questions from `eval/test_set.json` · search embeddings: {args.embeddings}*",
+            "",
+            "| Metric | Result |",
+            "|---|---|",
+            f"| Gemini answers generated (not fallback) | {pct(llm['from_llm'], k)} |",
+            f"| Gemini answers in the requested script | {pct(llm['right_script'], k)} |",
+            f"| Gemini answers with no invented numbers | {pct(llm['numbers_grounded'], k)} |",
+            f"| Gemini response time (median) | {statistics.median(llm['latency_ms']) / 1000:.1f} s |",
+            "",
+            "\"No invented numbers\": every number in the answer (doses, percentages, dates) appears in the "
+            "retrieved advisory text or the question; list numbering (\"1.\") is ignored. Full answers are in "
+            "`eval/results_llm.json`.",
+        ]
+        (EVAL_DIR / "results_llm.md").write_text("\n".join(llm_lines) + "\n", encoding="utf-8")
+        (EVAL_DIR / "results_llm.json").write_text(json.dumps(llm, ensure_ascii=False, indent=2, default=float), encoding="utf-8")
     print("\n".join(lines))
     return 0
 

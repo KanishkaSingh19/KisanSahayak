@@ -219,7 +219,7 @@ python scripts/evaluate.py                      # offline, uses EMBEDDING_PROVID
 python scripts/evaluate.py --embeddings gemini  # the live app's search
 python scripts/evaluate.py --llm 8              # also check 8 real Gemini answers (uses quota)
 ```
-Full reports, including every failure: `eval/results_minilm.md`, `eval/results_gemini.md`. The test questions were written by the team, not collected from farmers; a field test set is future work.
+Full reports, including every failure: `eval/results_minilm.md`, `eval/results_gemini.md`; the real Gemini answer check (with the full answers) is in `eval/results_llm.md` and `eval/results_llm.json`. The test questions were written by the team, not collected from farmers; a field test set is future work.
 
 ---
 
