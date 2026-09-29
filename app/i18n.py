@@ -411,6 +411,13 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hinglish": "Prabhavit patton, tane ya daanon ki saaf, paas se photo lein ya chunein",
         "hi": "प्रभावित पत्तियों, तने या दानों की साफ़, पास से फोटो लें या चुनें",
     },
+    "photo_camera_toggle": {"en": "Use camera", "pa": "ਕੈਮਰਾ ਵਰਤੋ", "hinglish": "Camera use karein", "hi": "कैमरा इस्तेमाल करें"},
+    "photo_camera": {
+        "en": "Point the camera at the affected leaf and take a photo. It is sent automatically.",
+        "pa": "ਕੈਮਰਾ ਪ੍ਰਭਾਵਿਤ ਪੱਤੇ ਵੱਲ ਕਰੋ ਅਤੇ ਫ਼ੋਟੋ ਲਓ। ਇਹ ਆਪਣੇ ਆਪ ਭੇਜੀ ਜਾਵੇਗੀ।",
+        "hinglish": "Camera ko prabhavit patte ki taraf karein aur photo lein. Yeh apne aap bhej di jayegi.",
+        "hi": "कैमरा प्रभावित पत्ती की ओर करें और फोटो लें। यह अपने आप भेज दी जाएगी।",
+    },
     "photo_question": {
         "en": "Optional: describe the problem",
         "pa": "ਵਿਕਲਪਿਕ: ਸਮੱਸਿਆ ਬਾਰੇ ਦੱਸੋ",

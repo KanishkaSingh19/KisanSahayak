@@ -419,11 +419,20 @@ def main():
         st.session_state.setdefault("photo_round", 0)
         photo_round = st.session_state["photo_round"]
         with st.expander(t("photo_header", lang)):
-            photo = st.file_uploader(t("photo_upload", lang), type=["jpg", "jpeg", "png", "webp"], key=f"photo_{photo_round}")
             photo_question = st.text_input(t("photo_question", lang), key=f"photo_q_{photo_round}")
+            # The camera only starts when switched on, so visitors aren't asked for camera access on every page load.
+            # A photo taken with it is sent immediately, like the voice recorder.
+            camera = None
+            if st.toggle(t("photo_camera_toggle", lang), key="use_camera"):
+                camera = st.camera_input(t("photo_camera", lang), key=f"camera_{photo_round}")
+            photo = st.file_uploader(t("photo_upload", lang), type=["jpg", "jpeg", "png", "webp"], key=f"photo_{photo_round}")
             send_photo = st.button(t("photo_submit", lang), key=f"send_photo_{photo_round}", disabled=photo is None)
-        if send_photo and photo is not None:
+        image_bytes = None
+        if camera is not None:
+            image_bytes = camera.getvalue()
+        elif send_photo and photo is not None:
             image_bytes = photo.getvalue()
+        if image_bytes:
             history = conversation_history()
             with chat:
                 with st.chat_message("user", avatar="🧑‍🌾"):
