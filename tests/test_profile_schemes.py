@@ -106,3 +106,23 @@ def test_profile_crop_used_when_none_named(pipeline):
 def test_profile_summary_has_no_personal_identifiers():
     summary = FarmerProfile(district="Sangrur", crops=["wheat"], land_acres=5, income_tax_payer=True).summary()
     assert summary == "Farmer profile: district Sangrur; grows wheat; 5 acres."
+
+
+def test_changed_profile_district_wins_over_earlier_profile_place(pipeline, monkeypatch):
+    monkeypatch.setattr(pipeline.weather_tool, "resolve_place", lambda name: Place(name=name, latitude=30.0, longitude=76.0))
+    first = pipeline.process_query("What's the weather today?", language="en", generate_audio=False,
+                                   profile=FarmerProfile(district="Patiala"))
+    history = [ConversationTurn.from_answer(first)]
+    second = pipeline.process_query("What's the weather today?", language="en", generate_audio=False,
+                                    history=history, profile=FarmerProfile(district="Noida"))
+    assert second.processing_metadata["district"] == "Noida"
+
+
+def test_place_named_in_question_is_still_carried_over(pipeline, monkeypatch):
+    monkeypatch.setattr(pipeline.weather_tool, "resolve_place", lambda name: Place(name=name, latitude=28.6, longitude=77.2))
+    first = pipeline.process_query("Weather in Delhi today?", language="en", generate_audio=False,
+                                   profile=FarmerProfile(district="Noida"))
+    history = [ConversationTurn.from_answer(first)]
+    second = pipeline.process_query("Will it rain tomorrow?", language="en", generate_audio=False,
+                                    history=history, profile=FarmerProfile(district="Noida"))
+    assert second.processing_metadata["district"] == "Delhi"

@@ -311,8 +311,10 @@ class KisanPipeline:
             if intent_res.intent == "weather":
                 lang = detected_lang
                 requested = intent_res.detected_district
+                from_profile = False
                 if not requested and profile and profile.district:
                     requested = profile.district  # "Will it rain today?" -> the farmer's own district
+                    from_profile = True
                 place = self.weather_tool.resolve_place(requested) if requested else None
                 location_note = ""
                 if place is None:
@@ -353,6 +355,7 @@ class KisanPipeline:
                     processing_metadata={
                         "latency_ms": int((time.time() - start_time) * 1000),
                         "district": district,
+                        "district_from_profile": from_profile,
                         "location_found": place is not None,
                         "is_live_weather": report.is_live,
                     },

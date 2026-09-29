@@ -242,7 +242,7 @@ class IntentRouter:
 
         # Weather follow-ups
         if result.intent == "weather":
-            if not result.detected_district and last_weather and last_weather.district:
+            if not result.detected_district and last_weather and last_weather.district and not last_weather.district_from_profile:
                 result.detected_district = last_weather.district
                 result.reasoning += " Place carried over from an earlier weather question."
             return result
@@ -251,7 +251,7 @@ class IntentRouter:
                 intent="weather",
                 confidence=0.85,
                 detected_topic="Ag-Weather & Spray Window Advisory",
-                detected_district=result.detected_district or previous.district,
+                detected_district=result.detected_district or (None if previous.district_from_profile else previous.district),
                 reasoning="Follow-up to the previous weather question.",
             )
 
