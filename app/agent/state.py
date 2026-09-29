@@ -16,6 +16,7 @@ class IntentResult(BaseModel):
     detected_crop: Optional[str] = None
     detected_topic: Optional[str] = None
     detected_district: Optional[str] = None
+    follow_up_of: Optional[str] = None  # earlier question this one follows up on (added to the search)
     reasoning: str = ""
 
 
@@ -46,11 +47,16 @@ class ConversationTurn(BaseModel):
     @classmethod
     def from_answer(cls, answer: "GroundedAnswer") -> "ConversationTurn":
         meta = answer.processing_metadata
+        topic = meta.get("detected_topic")
+        if topic in (None, "Agronomy/General"):
+            # The farmer described symptoms without naming the pest: remember the advisory
+            # the answer actually used (e.g. "Yellow Rust ..."), so "Is it dangerous?" stays on it
+            topic = meta.get("top_section") or topic
         return cls(
             query=answer.query,
             answer=answer.answer,
             intent=answer.intent,
             crop=meta.get("detected_crop"),
-            topic=meta.get("detected_topic"),
+            topic=topic,
             district=meta.get("district"),
         )

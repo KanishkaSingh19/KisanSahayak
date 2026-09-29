@@ -179,49 +179,58 @@ class IntentRouter:
             reasoning="Defaulted to general agriculture for knowledge retrieval.",
         )
 
-    def classify_with_context(self, query: str, previous: Optional[ConversationTurn] = None) -> IntentResult:
-        """Classify a message, filling in crop, pest or place from the previous turn for follow-ups.
+    def classify_with_context(self, query: str, history=None) -> IntentResult:
+        """Classify a message, filling in crop, pest or place from earlier turns for follow-ups.
 
-        "What is the dose?" after an aphid question stays on mustard aphids; "aur Sangrur mein?"
-        after a weather question asks for Sangrur's weather.
+        `history` is the conversation so far (a list of ConversationTurn, oldest first) or a
+        single previous turn. The whole conversation is searched, not just the last turn:
+        "What was the dose again?" still means mustard aphids after a weather question in between,
+        and "aur Sangrur mein?" after a weather question asks for Sangrur's weather.
         """
+        if isinstance(history, ConversationTurn):
+            history = [history]
+        history = list(history or [])
         result = self.classify(query)
-        if previous is None or result.intent in ("greeting", "out_of_scope"):
+        if not history or result.intent in ("greeting", "out_of_scope"):
             return result
+
+        crop_intents = ("crop_question", "general_agriculture", "safety_query")
+        previous = history[-1]
+        last_weather = next((turn for turn in reversed(history) if turn.intent == "weather"), None)
+        last_crop = next((turn for turn in reversed(history) if turn.intent in crop_intents and turn.crop), None)
 
         topic = result.detected_topic if result.detected_topic not in (None, "Agronomy/General") else None
         names_no_subject = not result.detected_crop and not topic
 
-        # Follow-ups to a weather answer
-        if previous.intent == "weather":
-            if result.intent == "weather":
-                if not result.detected_district and previous.district:
-                    result.detected_district = previous.district
-                    result.reasoning += " Place carried over from the previous question."
-                return result
-            if names_no_subject and (result.detected_district or weather_topics(query)):
-                return IntentResult(
-                    intent="weather",
-                    confidence=0.85,
-                    detected_topic="Ag-Weather & Spray Window Advisory",
-                    detected_district=result.detected_district or previous.district,
-                    reasoning="Follow-up to the previous weather question.",
-                )
+        # Weather follow-ups
+        if result.intent == "weather":
+            if not result.detected_district and last_weather and last_weather.district:
+                result.detected_district = last_weather.district
+                result.reasoning += " Place carried over from an earlier weather question."
             return result
+        if previous.intent == "weather" and names_no_subject and (result.detected_district or weather_topics(query)):
+            return IntentResult(
+                intent="weather",
+                confidence=0.85,
+                detected_topic="Ag-Weather & Spray Window Advisory",
+                detected_district=result.detected_district or previous.district,
+                reasoning="Follow-up to the previous weather question.",
+            )
 
-        # Follow-ups to a crop / pest / safety answer
-        crop_intents = ("crop_question", "general_agriculture", "safety_query")
-        if previous.intent in crop_intents and result.intent in crop_intents:
-            previous_topic = previous.topic if previous.topic not in (None, "Agronomy/General") else None
-            if names_no_subject and previous.crop:
-                # "What is the dose?" -> same crop and pest as before
+        # Crop / pest / safety follow-ups: use the most recent crop question, even if other
+        # questions (e.g. weather) came in between
+        if last_crop and result.intent in crop_intents:
+            previous_topic = last_crop.topic if last_crop.topic not in (None, "Agronomy/General") else None
+            if names_no_subject:
+                # "What is the dose?" / "Is it dangerous?" -> same crop and pest as before
                 return IntentResult(
-                    intent=result.intent if result.confidence > 0.70 else previous.intent,
+                    intent=result.intent if result.confidence > 0.70 else last_crop.intent,
                     confidence=0.85,
-                    detected_crop=previous.crop,
+                    detected_crop=last_crop.crop,
                     detected_topic=previous_topic,
                     detected_district=result.detected_district,
-                    reasoning="Follow-up: crop and pest carried over from the previous question.",
+                    follow_up_of=last_crop.query,
+                    reasoning="Follow-up: crop and pest carried over from an earlier question.",
                 )
             if result.detected_crop and not topic and previous_topic and len(query.split()) <= 5:
                 # "What about wheat?" -> same pest, new crop

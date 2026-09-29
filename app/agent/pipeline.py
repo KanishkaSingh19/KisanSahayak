@@ -129,8 +129,7 @@ class KisanPipeline:
 
         try:
             # 2. Intent Detection & Canonical Entity Extraction
-            previous = history[-1] if history else None
-            intent_res: IntentResult = self.router.classify_with_context(clean_query, previous)
+            intent_res: IntentResult = self.router.classify_with_context(clean_query, history)
 
             # 3. Handle Greetings
             if intent_res.intent == "greeting":
@@ -220,6 +219,9 @@ class KisanPipeline:
                 term for term in (intent_res.detected_crop, intent_res.detected_topic)
                 if term and term != "Agronomy/General" and term.lower() not in clean_query.lower()
             ]
+            if intent_res.follow_up_of:
+                # "Is it dangerous?" alone matches nothing; with the earlier question it finds the right advisory
+                context_terms.append(intent_res.follow_up_of)
             search_query = " ".join(context_terms + [clean_query])
 
             retrieved = self.retriever.retrieve(search_query)
@@ -267,6 +269,7 @@ class KisanPipeline:
                     "detected_topic": intent_res.detected_topic,
                     "router_confidence": intent_res.confidence,
                     "router_reasoning": intent_res.reasoning,
+                    "top_section": retrieved[0].section if retrieved else None,
                     "answer_source": answer_source,
                 },
             )

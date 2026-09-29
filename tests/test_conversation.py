@@ -81,3 +81,44 @@ def test_pipeline_weather_follow_up(pipeline, monkeypatch):
         "aur Sangrur mein?", language="en", generate_audio=False, history=[ConversationTurn.from_answer(first)]
     )
     assert second.intent == "weather" and second.processing_metadata["district"] == "Sangrur"
+
+
+def test_follow_up_skips_back_over_a_weather_question(router):
+    history = [APHID_TURN, WEATHER_TURN]
+    res = router.classify_with_context("What was the dose again?", history)
+    assert res.detected_crop == "Mustard" and res.detected_topic == "Aphid"
+    assert res.follow_up_of == APHID_TURN.query
+
+
+def test_weather_question_reuses_earlier_place_after_crop_question(router):
+    res = router.classify_with_context("Will it rain today?", [WEATHER_TURN, APHID_TURN])
+    assert res.intent == "weather" and res.detected_district == "Delhi"
+
+
+def test_turn_remembers_the_advisory_used_when_pest_was_not_named():
+    from app.agent.state import GroundedAnswer
+
+    answer = GroundedAnswer(
+        query="My wheat leaves have yellow powdery stripes", intent="general_agriculture", answer="Yellow Rust...",
+        citations=[], retrieved_chunks=[], is_grounded=True,
+        processing_metadata={"detected_crop": "Wheat", "detected_topic": "Agronomy/General",
+                             "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management"},
+    )
+    assert ConversationTurn.from_answer(answer).topic.startswith("Yellow Rust")
+
+
+def test_pipeline_three_turn_conversation_keeps_context(pipeline, monkeypatch):
+    monkeypatch.setattr(pipeline.weather_tool, "resolve_place", lambda name: Place(name=name, latitude=30.9, longitude=75.85))
+    history = []
+    for question in ["How to control aphids in mustard?", "aaj Ludhiana mein mausam kaisa hai?", "What was the dose again?"]:
+        res = pipeline.process_query(question, language="en", generate_audio=False, history=history)
+        history.append(ConversationTurn.from_answer(res))
+    assert res.retrieved_chunks[0].crop == "Mustard" and "Aphid" in res.retrieved_chunks[0].section
+
+
+def test_pipeline_symptom_then_pronoun_follow_up(pipeline):
+    first = pipeline.process_query("My wheat leaves have yellow powdery stripes", language="en", generate_audio=False)
+    second = pipeline.process_query(
+        "Is it dangerous?", language="en", generate_audio=False, history=[ConversationTurn.from_answer(first)]
+    )
+    assert "Yellow Rust" in second.retrieved_chunks[0].section
