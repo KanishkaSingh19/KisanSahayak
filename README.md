@@ -249,4 +249,4 @@ The cloud version uses `frontend/requirements.txt` (no PyTorch, so it fits the m
    ```
 4. Click **Deploy**. The first start installs packages and builds the search index (a few minutes).
 
-Every push to `main` redeploys automatically. Apps sleep after a period without visitors; open the link before a demo so it's awake.
+**After each push to `main`, reboot the app** (share.streamlit.io → ⋮ next to the app → **Reboot app**). The app turns Streamlit's file watcher off (`.streamlit/config.toml`, which keeps local runs with MiniLM fast), so a running app keeps its old code until it restarts. Apps sleep after a period without visitors; open the link before a demo so it's awake.
