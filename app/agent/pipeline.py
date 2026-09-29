@@ -79,12 +79,18 @@ class KisanPipeline:
             return GroundedAnswer(
                 query="[Voice Input]",
                 intent="voice_stt_unavailable",
-                answer=t("stt_failed", language or "hi", error=transcript),
+                answer=t("stt_failed", language or "hi"),
                 citations=[],
                 retrieved_chunks=[],
                 is_grounded=True,
                 safety_disclaimers=[],
-                processing_metadata={"stt_status": "failed", "latency_ms": int((time.time() - start_time) * 1000)},
+                detected_language=normalize_language(language) if language else "hi",
+                # Technical reason for developers (shown under Details), not in the farmer's message
+                processing_metadata={
+                    "stt_status": "failed",
+                    "stt_error": transcript,
+                    "latency_ms": int((time.time() - start_time) * 1000),
+                },
             )
 
         # Transcribed successfully: route into regular grounded processing pipeline

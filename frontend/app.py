@@ -186,10 +186,10 @@ def render_sidebar(pipeline, lang: str) -> None:
         else:
             llm_text = "⚪ None (offline template)"
         st.write(f"**Primary LLM:** {llm_text}")
-        if pipeline.stt_adapter.is_available():
-            st.write(f"**STT Adapter:** `{settings.GROQ_WHISPER_MODEL}` (Groq)")
-        else:
-            st.write("**STT Adapter:** ⚪ Off (no GROQ_API_KEY)")
+        stt = pipeline.stt_adapter
+        engines = [f"`{settings.GROQ_WHISPER_MODEL}` (Groq)"] if stt._groq_available() else []
+        engines += ["Gemini"] if stt._gemini_available() else []
+        st.write(f"**STT Adapter:** {' + '.join(engines) if engines else '⚪ Off (no GROQ_API_KEY / GEMINI_API_KEY)'}")
         tts = pipeline.tts_adapter
         if tts.is_available():
             punjabi = "gTTS" if tts.engine_for("pa") == "gtts" else "text only"
@@ -219,6 +219,16 @@ def render_hero(lang: str) -> None:
 
 def render_answer(result, pipeline, lang: str, msg_id: int, speak_now: bool = False) -> None:
     meta = result.processing_metadata
+
+    # Problems (voice not understood, empty question, internal error) are plain messages:
+    # no crop/verified chips, no Listen button; the technical reason is under Details
+    if result.intent in ("voice_stt_unavailable", "empty", "error"):
+        st.warning(result.answer)
+        reason = meta.get("stt_error") or meta.get("error")
+        if reason:
+            with st.expander(t("details_header", lang), expanded=False):
+                st.code(reason, language=None)
+        return
 
     # Farmer-facing summary chips: what the answer is about and whether it's verified
     crop_label = meta.get("detected_crop") or meta.get("district") or t("general", lang)

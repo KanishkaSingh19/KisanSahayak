@@ -77,13 +77,10 @@ STRINGS: Dict[str, Dict[str, str]] = {
         ),
     },
     "stt_failed": {
-        "en": "Voice note received, but speech-to-text could not run: {error}\n\nPlease type your question in the text box instead.",
-        "pa": "ਆਵਾਜ਼ ਸੁਨੇਹਾ ਮਿਲ ਗਿਆ, ਪਰ ਬੋਲੀ ਤੋਂ ਲਿਖਤ (STT) ਸੇਵਾ ਚੱਲ ਨਹੀਂ ਸਕੀ: {error}\n\nਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਸਵਾਲ ਟੈਕਸਟ ਬਾਕਸ ਵਿੱਚ ਲਿਖ ਕੇ ਪੁੱਛੋ।",
-        "hinglish": "Voice message mil gaya, lekin speech-to-text (STT) service chal nahi payi: {error}\n\nKripya apna sawal text box mein likh kar poochein.",
-        "hi": (
-            "ध्वनि संदेश प्राप्त हुआ, परंतु वाक्-से-पाठ (STT) सेवा सक्रिय नहीं हो सकी: {error}\n\n"
-            "कृषि सलाह प्राप्त करने के लिए कृपया अपना प्रश्न नीचे दिए गए टेक्स्ट बॉक्स में लिखकर पूछें।"
-        ),
+        "en": "Sorry, I couldn't understand the voice message right now. Please try again, or type your question in the box.",
+        "pa": "ਮਾਫ਼ ਕਰਨਾ, ਮੈਂ ਇਸ ਵੇਲੇ ਆਵਾਜ਼ ਸੁਨੇਹਾ ਸਮਝ ਨਹੀਂ ਸਕਿਆ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ, ਜਾਂ ਆਪਣਾ ਸਵਾਲ ਬਾਕਸ ਵਿੱਚ ਲਿਖੋ।",
+        "hinglish": "Maaf kijiye, abhi voice message samajh nahi paya. Kripya dobara koshish karein, ya apna sawal box mein likhein.",
+        "hi": "क्षमा करें, अभी आवाज़ संदेश समझ नहीं पाया। कृपया फिर से कोशिश करें, या अपना प्रश्न बॉक्स में लिखें।",
     },
     "processing_error": {
         "en": "Your question could not be processed due to a technical error: {error}. Please try again or contact your local agriculture expert.",

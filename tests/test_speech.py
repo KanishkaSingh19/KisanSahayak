@@ -26,10 +26,61 @@ def test_stt_adapter_empty_audio():
 
 
 def test_stt_adapter_missing_key():
-    adapter = WhisperSTTAdapter(api_key="")
+    adapter = WhisperSTTAdapter(api_key="", gemini_api_key="")
+    assert adapter.is_available() is False
     success, msg = adapter.transcribe_audio_bytes(b"dummy_wav_bytes")
     assert success is False
     assert "GROQ_API_KEY" in msg
+
+
+class _GroqResp:
+    def __init__(self, status, body):
+        self.status_code, self._body = status, body
+        self.text = str(body)
+
+    def json(self):
+        return self._body
+
+
+def test_groq_refusal_falls_back_to_gemini(monkeypatch):
+    from app.speech import stt
+
+    headers_seen = {}
+
+    def groq_403(url, headers, files, data, timeout):
+        headers_seen.update(headers)
+        return _GroqResp(403, {"error": {"message": "Access denied. Please check your network settings."}})
+
+    monkeypatch.setattr(stt.requests, "post", groq_403)
+    adapter = WhisperSTTAdapter(api_key="groq-key", gemini_api_key="gemini-key")
+    monkeypatch.setattr(adapter, "_transcribe_gemini", lambda audio, filename, language: (True, "सरसों में माहू"))
+    ok, text = adapter.transcribe_audio_bytes(b"RIFF....", language="hi")
+    assert ok and text == "सरसों में माहू"
+    assert headers_seen["User-Agent"].startswith("KisanSahayak")  # not python-requests' default
+
+
+def test_both_speech_services_failing_reports_both(monkeypatch):
+    from app.speech import stt
+
+    monkeypatch.setattr(stt.requests, "post", lambda *a, **k: _GroqResp(403, {"error": "denied"}))
+    adapter = WhisperSTTAdapter(api_key="groq-key", gemini_api_key="gemini-key")
+    monkeypatch.setattr(adapter, "_transcribe_gemini", lambda *a: (False, "Gemini transcription failed: quota"))
+    ok, msg = adapter.transcribe_audio_bytes(b"RIFF....")
+    assert not ok and "403" in msg and "Gemini transcription failed" in msg
+
+
+@pytest.mark.parametrize("lang,first", [("pa", "gemini"), ("hi", "groq"), ("en", "groq"), ("hinglish", "groq")])
+def test_speech_service_order_by_language(monkeypatch, lang, first):
+    calls = []
+    adapter = WhisperSTTAdapter(api_key="groq-key", gemini_api_key="gemini-key")
+    monkeypatch.setattr(adapter, "_transcribe_groq", lambda *a: calls.append("groq") or (True, "ok"))
+    monkeypatch.setattr(adapter, "_transcribe_gemini", lambda *a: calls.append("gemini") or (True, "ok"))
+    adapter.transcribe_audio_bytes(b"RIFF....", language=lang)
+    assert calls == [first]
+
+
+def test_gemini_only_is_enough_for_voice():
+    assert WhisperSTTAdapter(api_key="", gemini_api_key="gemini-key").is_available() is True
 
 
 def test_tts_adapter_voice_selection():
