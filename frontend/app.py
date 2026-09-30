@@ -458,21 +458,20 @@ def main():
                         render_answer(msg["result"], pipeline, lang, msg["id"], speak_now=msg.get("speak", False))
                     msg["speak"] = False  # read aloud only the first time it is shown
 
-        # The camera button inside the chat box attaches a crop photo (on phones it offers the camera
-        # or the gallery); text typed with it becomes the question about the photo
+        # One chat box for everything: type, tap the mic to speak (16 kHz WAV, what speech-to-text
+        # works best with) or tap the camera to attach a crop photo (on phones: camera or gallery).
+        # Text typed or spoken with a photo becomes the question about the photo.
         submission = st.chat_input(
-            t("input_placeholder", lang), key="chat_box", accept_file=True, file_type=PHOTO_TYPES, max_upload_size=10,
+            t("input_placeholder", lang), key="chat_box",
+            accept_file=True, file_type=PHOTO_TYPES, max_upload_size=10, accept_audio=True,
         )
-        prompt, chat_photo = None, None
+        prompt, chat_photo, recording = None, None, None
         if submission:
             prompt = (submission.text or "").strip() or None
             if submission.files:
                 chat_photo = submission.files[0].getvalue()
+            recording = submission.get("audio")
 
-        # Speak in real time: record in the browser, and the question is sent as soon as recording stops.
-        # A new key after each question resets the recorder for the next one.
-        st.session_state.setdefault("mic_round", 0)
-        recording = st.audio_input(t("record_label", lang), key=f"mic_{st.session_state['mic_round']}")
         with st.expander(t("upload_instead", lang)):
             audio_file = st.file_uploader(t("upload_label", lang), type=["wav", "mp3", "m4a", "ogg"], key="voice_file")
             send_voice = st.button(t("submit", lang), key="send_voice", disabled=audio_file is None)
@@ -491,7 +490,11 @@ def main():
             send_photo = st.button(t("photo_submit", lang), key=f"send_photo_{photo_round}", disabled=photo is None)
         image_bytes = None
         if chat_photo:
-            image_bytes, photo_question, prompt = chat_photo, prompt or "", None
+            if recording is not None and not prompt:
+                # Spoken question with the photo
+                ok, spoken = pipeline.stt_adapter.transcribe_audio_bytes(recording.getvalue(), "recording.wav", language=lang)
+                prompt = spoken if ok else None
+            image_bytes, photo_question, prompt, recording = chat_photo, prompt or "", None, None
         elif camera is not None:
             image_bytes = camera.getvalue()
         elif send_photo and photo is not None:
@@ -548,8 +551,6 @@ def main():
                 # Spoken questions get a spoken answer (unless speech-to-text failed)
                 "speak": voice is not None and result.intent != "voice_stt_unavailable",
             })
-            if recording is not None:
-                st.session_state["mic_round"] += 1
             st.rerun()
 
     st.markdown(f'<div class="ks-footer">{t("sidebar_caption", lang)}</div>', unsafe_allow_html=True)

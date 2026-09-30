@@ -304,10 +304,10 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hi": "अपनी फसल, रोग या मौसम के बारे में पूछें:",
     },
     "input_placeholder": {
-        "en": "Ask about crops, pests or weather, or tap the camera to send a crop photo",
-        "pa": "ਫ਼ਸਲ, ਕੀੜਿਆਂ ਜਾਂ ਮੌਸਮ ਬਾਰੇ ਪੁੱਛੋ, ਜਾਂ ਫ਼ਸਲ ਦੀ ਫ਼ੋਟੋ ਭੇਜਣ ਲਈ ਕੈਮਰਾ ਦਬਾਓ",
-        "hinglish": "Fasal, keede ya mausam ke baare mein poochhein, ya fasal ki photo bhejne ke liye camera dabayein",
-        "hi": "फ़सल, कीट या मौसम के बारे में पूछें, या फ़सल की फ़ोटो भेजने के लिए कैमरा दबाएँ",
+        "en": "Ask about crops, pests or weather. Tap the mic to speak, or the camera to send a crop photo",
+        "pa": "ਫ਼ਸਲ, ਕੀੜਿਆਂ ਜਾਂ ਮੌਸਮ ਬਾਰੇ ਪੁੱਛੋ। ਬੋਲਣ ਲਈ ਮਾਈਕ, ਜਾਂ ਫ਼ਸਲ ਦੀ ਫ਼ੋਟੋ ਲਈ ਕੈਮਰਾ ਦਬਾਓ",
+        "hinglish": "Fasal, keede ya mausam ke baare mein poochhein. Bolne ke liye mic, ya fasal ki photo ke liye camera dabayein",
+        "hi": "फ़सल, कीट या मौसम के बारे में पूछें। बोलने के लिए माइक, या फ़सल की फ़ोटो के लिए कैमरा दबाएँ",
     },
     "voice_info": {
         "en": "🎙️ Upload a recorded voice note (.wav / .mp3):",
@@ -542,12 +542,6 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "pa": "ਮਾਫ਼ ਕਰਨਾ, ਮੈਂ ਇਸ ਵੇਲੇ ਫ਼ੋਟੋ ਦੀ ਜਾਂਚ ਨਹੀਂ ਕਰ ਸਕਿਆ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ, ਜਾਂ ਸਮੱਸਿਆ ਸ਼ਬਦਾਂ ਵਿੱਚ ਦੱਸੋ।",
         "hinglish": "Maaf kijiye, abhi photo ki jaanch nahi ho payi. Kripya dobara koshish karein, ya samasya shabdon mein batayein.",
         "hi": "क्षमा करें, अभी फोटो की जाँच नहीं हो पाई। कृपया फिर से कोशिश करें, या समस्या शब्दों में बताएँ।",
-    },
-    "record_label": {
-        "en": "Or ask by voice: tap the microphone, speak, then tap stop",
-        "pa": "ਜਾਂ ਬੋਲ ਕੇ ਪੁੱਛੋ: ਮਾਈਕ ਦਬਾਓ, ਬੋਲੋ, ਫਿਰ ਰੋਕੋ ਦਬਾਓ",
-        "hinglish": "Ya bol kar poochein: mic dabayein, boliye, phir stop dabayein",
-        "hi": "या बोलकर पूछें: माइक दबाएँ, बोलें, फिर रोकें दबाएँ",
     },
     "upload_instead": {
         "en": "Upload a recorded voice note instead",
