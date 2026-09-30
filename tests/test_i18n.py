@@ -107,3 +107,15 @@ def test_template_and_weather_answers_have_no_emojis(pipeline, monkeypatch):
         assert not any(EMOJI.search(d) for d in answer.safety_disclaimers), lang
     weather = pipeline.process_query("Can I spray in Ludhiana today?", language="en", generate_audio=False)
     assert not EMOJI.search(weather.answer)
+
+
+def test_every_key_used_in_code_exists():
+    """A t("key") call whose key was removed or misspelt would crash the app at run time."""
+    import re
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parent.parent
+    used = set()
+    for path in [*root.joinpath("frontend").glob("*.py"), *root.joinpath("app").rglob("*.py")]:
+        used |= set(re.findall(r'\bt\(\s*"([a-z_]+)"', path.read_text(encoding="utf-8")))
+    assert used and not sorted(k for k in used if k not in STRINGS)

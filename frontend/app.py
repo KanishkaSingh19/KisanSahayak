@@ -73,13 +73,11 @@ st.markdown(
         color: #FFFFFF; padding: 5px 13px; border-radius: 999px; font-size: 0.85rem;
     }
 
-    /* Photo button inside the chat box: a camera icon instead of Streamlit's "+" */
-    [data-testid="stChatInput"] button[aria-label="Upload a file"] svg { display: none; }
-    [data-testid="stChatInput"] button[aria-label="Upload a file"]::before {
-        content: ""; width: 22px; height: 22px; background-color: currentColor;
-        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 2 7.17 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3.17L15 2H9zm3 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'/%3E%3C/svg%3E") center / contain no-repeat;
-                mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 2 7.17 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3.17L15 2H9zm3 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'/%3E%3C/svg%3E") center / contain no-repeat;
-    }
+    /* Camera menu button drawn inside the chat box's bottom-left corner. Its container has no
+       height and cancels the gap above it, so the layout below does not move. */
+    .st-key-photo_menu { height: 0; margin-top: -1rem; margin-bottom: -1.75rem; position: relative; z-index: 5; overflow: visible; }
+    .st-key-photo_menu [data-testid="stPopover"] { position: absolute; left: 0.6rem; bottom: 1.5rem; width: auto; }
+    .st-key-photo_menu [data-testid="stPopoverButton"] { min-height: 2.4rem; padding: 0 0.6rem; }
 
     /* Cards: bordered containers are keyed "card_*" (Streamlit adds a st-key-<key> class) */
     [class*="st-key-card_"] {
@@ -458,47 +456,49 @@ def main():
                         render_answer(msg["result"], pipeline, lang, msg["id"], speak_now=msg.get("speak", False))
                     msg["speak"] = False  # read aloud only the first time it is shown
 
-        # One chat box for everything: type, tap the mic to speak (16 kHz WAV, what speech-to-text
-        # works best with) or tap the camera to attach a crop photo (on phones: camera or gallery).
-        # Text typed or spoken with a photo becomes the question about the photo.
-        submission = st.chat_input(
-            t("input_placeholder", lang), key="chat_box",
-            accept_file=True, file_type=PHOTO_TYPES, max_upload_size=10, accept_audio=True,
-        )
-        prompt, chat_photo, recording = None, None, None
+        # One chat box for everything: type, or tap the mic to speak (16 kHz WAV, what speech-to-text
+        # works best with). The camera button drawn in its corner (below) sends crop photos.
+        submission = st.chat_input(t("input_placeholder", lang), key="chat_box", accept_audio=True)
+        prompt, recording = None, None
         if submission:
             prompt = (submission.text or "").strip() or None
-            if submission.files:
-                chat_photo = submission.files[0].getvalue()
             recording = submission.get("audio")
+
+        # Camera button inside the chat box: a menu with "Upload a photo" and "Take a photo".
+        # Tab contents only load when opened, so the camera (and its permission prompt) only
+        # starts after "Take a photo" is chosen. A new key after each photo resets and closes it.
+        st.session_state.setdefault("photo_round", 0)
+        photo_round = st.session_state["photo_round"]
+        photo_question, image_bytes = "", None
+        with st.container(key="photo_menu"):
+            menu = st.popover(
+                t("photo_menu", lang), icon=":material/photo_camera:", type="tertiary",
+                key=f"photo_popover_{photo_round}", on_change="rerun",
+            )
+        with menu:
+            if menu.open:
+                photo_question = st.text_input(t("photo_question", lang), key=f"photo_q_{photo_round}")
+                upload_tab, camera_tab = st.tabs(
+                    [t("photo_upload_tab", lang), t("photo_take_tab", lang)],
+                    key=f"photo_tabs_{photo_round}", on_change="rerun",
+                )
+                with upload_tab:
+                    if upload_tab.open:
+                        photo = st.file_uploader(
+                            t("photo_upload", lang), type=PHOTO_TYPES, max_upload_size=10, key=f"photo_{photo_round}",
+                        )
+                        if photo is not None:
+                            image_bytes = photo.getvalue()  # sent as soon as it is chosen
+                with camera_tab:
+                    if camera_tab.open:
+                        camera = st.camera_input(t("photo_camera", lang), key=f"camera_{photo_round}")
+                        if camera is not None:
+                            image_bytes = camera.getvalue()
 
         with st.expander(t("upload_instead", lang)):
             audio_file = st.file_uploader(t("upload_label", lang), type=["wav", "mp3", "m4a", "ogg"], key="voice_file")
             send_voice = st.button(t("submit", lang), key="send_voice", disabled=audio_file is None)
 
-        # Photo diagnosis (Gemini Vision); a new key after each photo resets the form
-        st.session_state.setdefault("photo_round", 0)
-        photo_round = st.session_state["photo_round"]
-        with st.expander(t("photo_header", lang)):
-            photo_question = st.text_input(t("photo_question", lang), key=f"photo_q_{photo_round}")
-            # The camera only starts when switched on, so visitors aren't asked for camera access on every page load.
-            # A photo taken with it is sent immediately, like the voice recorder.
-            camera = None
-            if st.toggle(t("photo_camera_toggle", lang), key="use_camera"):
-                camera = st.camera_input(t("photo_camera", lang), key=f"camera_{photo_round}")
-            photo = st.file_uploader(t("photo_upload", lang), type=PHOTO_TYPES, key=f"photo_{photo_round}")
-            send_photo = st.button(t("photo_submit", lang), key=f"send_photo_{photo_round}", disabled=photo is None)
-        image_bytes = None
-        if chat_photo:
-            if recording is not None and not prompt:
-                # Spoken question with the photo
-                ok, spoken = pipeline.stt_adapter.transcribe_audio_bytes(recording.getvalue(), "recording.wav", language=lang)
-                prompt = spoken if ok else None
-            image_bytes, photo_question, prompt, recording = chat_photo, prompt or "", None, None
-        elif camera is not None:
-            image_bytes = camera.getvalue()
-        elif send_photo and photo is not None:
-            image_bytes = photo.getvalue()
         if image_bytes:
             history = conversation_history()
             with chat:

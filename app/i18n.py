@@ -465,19 +465,15 @@ STRINGS: Dict[str, Dict[str, str]] = {
     "crop_mustard": {"en": "Mustard", "pa": "ਸਰ੍ਹੋਂ", "hinglish": "Sarson", "hi": "सरसों"},
     "crop_paddy": {"en": "Paddy", "pa": "ਝੋਨਾ", "hinglish": "Dhan", "hi": "धान"},
     "crop_cotton": {"en": "Cotton", "pa": "ਨਰਮਾ", "hinglish": "Kapas", "hi": "कपास"},
-    "photo_header": {
-        "en": "Diagnose a crop problem from a photo",
-        "pa": "ਫ਼ੋਟੋ ਤੋਂ ਫ਼ਸਲ ਦੀ ਬਿਮਾਰੀ ਪਛਾਣੋ",
-        "hinglish": "Photo se fasal ki bimari pehchanein",
-        "hi": "फोटो से फसल की बीमारी पहचानें",
-    },
+    "photo_menu": {"en": "Photo", "pa": "ਫ਼ੋਟੋ", "hinglish": "Photo", "hi": "फ़ोटो"},
+    "photo_upload_tab": {"en": "Upload a photo", "pa": "ਫ਼ੋਟੋ ਅੱਪਲੋਡ ਕਰੋ", "hinglish": "Photo upload karein", "hi": "फ़ोटो अपलोड करें"},
+    "photo_take_tab": {"en": "Take a photo", "pa": "ਫ਼ੋਟੋ ਖਿੱਚੋ", "hinglish": "Photo khinchein", "hi": "फ़ोटो खींचें"},
     "photo_upload": {
         "en": "Take or choose a clear, close photo of the affected leaves, stem or grain",
         "pa": "ਪ੍ਰਭਾਵਿਤ ਪੱਤਿਆਂ, ਤਣੇ ਜਾਂ ਦਾਣਿਆਂ ਦੀ ਸਾਫ਼, ਨੇੜੇ ਤੋਂ ਫ਼ੋਟੋ ਲਓ ਜਾਂ ਚੁਣੋ",
         "hinglish": "Prabhavit patton, tane ya daanon ki saaf, paas se photo lein ya chunein",
         "hi": "प्रभावित पत्तियों, तने या दानों की साफ़, पास से फोटो लें या चुनें",
     },
-    "photo_camera_toggle": {"en": "Use camera", "pa": "ਕੈਮਰਾ ਵਰਤੋ", "hinglish": "Camera use karein", "hi": "कैमरा इस्तेमाल करें"},
     "photo_camera": {
         "en": "Point the camera at the affected leaf and take a photo. It is sent automatically.",
         "pa": "ਕੈਮਰਾ ਪ੍ਰਭਾਵਿਤ ਪੱਤੇ ਵੱਲ ਕਰੋ ਅਤੇ ਫ਼ੋਟੋ ਲਓ। ਇਹ ਆਪਣੇ ਆਪ ਭੇਜੀ ਜਾਵੇਗੀ।",
@@ -490,7 +486,6 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hinglish": "Vaikalpik: samasya ke baare mein batayein",
         "hi": "वैकल्पिक: समस्या के बारे में बताएँ",
     },
-    "photo_submit": {"en": "Diagnose photo", "pa": "ਫ਼ੋਟੋ ਦੀ ਜਾਂਚ ਕਰੋ", "hinglish": "Photo jaanchein", "hi": "फोटो जाँचें"},
     "spinner_photo": {
         "en": "Looking at the photo and checking verified advisories...",
         "pa": "ਫ਼ੋਟੋ ਦੇਖ ਕੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹਾਂ ਜਾਂਚੀਆਂ ਜਾ ਰਹੀਆਂ ਹਨ...",
