@@ -309,11 +309,12 @@ class KisanPipeline:
                 )
 
             # 4b. A crop the verified advisories don't cover: no treatment from another crop's advisory
-            if intent_res.intent == "crop_not_covered":
+            # (or a topic they don't cover: weeds, deficiencies, varieties, prices...)
+            if intent_res.intent in ("crop_not_covered", "topic_not_covered"):
                 return GroundedAnswer(
                     query=clean_query,
                     intent=intent_res.intent,
-                    answer=t("crop_not_covered", detected_lang),
+                    answer=t(intent_res.intent, detected_lang),
                     citations=[],
                     retrieved_chunks=[],
                     is_grounded=True,

@@ -119,3 +119,14 @@ def test_every_key_used_in_code_exists():
     for path in [*root.joinpath("frontend").glob("*.py"), *root.joinpath("app").rglob("*.py")]:
         used |= set(re.findall(r'\bt\(\s*"([a-z_]+)"', path.read_text(encoding="utf-8")))
     assert used and not sorted(k for k in used if k not in STRINGS)
+
+
+def test_hinglish_advisories_are_in_latin_script():
+    """Hinglish is written in Latin letters; a stray Hindi word (e.g. "आंशिक") breaks the answer language."""
+    import json
+    from pathlib import Path
+
+    data = json.loads((Path(__file__).resolve().parent.parent / "data" / "translations.json").read_text(encoding="utf-8"))
+    for section, fields in data["hinglish"].items():
+        for field, text in fields.items():
+            assert not re.search(r"[ऀ-ॿ਀-੿]", text), (section, field)

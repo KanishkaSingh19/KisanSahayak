@@ -8,8 +8,9 @@ from app.tools.location import detect_place
 # Lexicons for multilingual agricultural intent detection
 CROPS_DICT = {
     "wheat": ["wheat", "gehun", "gehu", "kanak", "गेहूं", "ਕਣਕ"],
-    "mustard": ["mustard", "sarson", "sarsonn", "raya", "सरसों", "ਸਰ੍ਹੋਂ", "ਸਰੋਂ"],
-    "paddy": ["paddy", "rice", "dhan", "dhaan", "jhona", "धान", "ਝੋਨਾ", "ਝੋਨੇ"],
+    "mustard": ["mustard", "sarson", "sarsonn", "raya", "toria", "gobhi sarson", "rapeseed", "सरसों", "तोरिया", "ਸਰ੍ਹੋਂ",
+                "ਸਰੋਂ", "ਤੋਰੀਆ", "ਤੋਰੀਏ", "ਰਾਇਆ"],
+    "paddy": ["paddy", "rice", "dhan", "dhaan", "jhona", "basmati", "धान", "बासमती", "ਝੋਨਾ", "ਝੋਨੇ", "ਬਾਸਮਤੀ"],
     "cotton": ["cotton", "kapas", "narma", "कपास", "ਨਰਮਾ", "ਨਰਮੇ"],
 }
 
@@ -21,7 +22,7 @@ PESTS_AND_DISEASES = {
     # Before "blb": "tana jhulsa" (stem blight) also contains "jhulsa"
     "sheath_blight": ["sheath blight", "tana jhulsa", "saanp ki khaal", "snake skin", "शीथ ब्लाइट", "तना झुलसा", "ਸ਼ੀਥ ਬਲਾਈਟ"],
     "blb": ["bacterial leaf blight", "blb", "peela jhulsa", "jhulsa", "झुलसा"],
-    "bph": ["brown planthopper", "bph", "bhoora tilla", "hopper burn"],
+    "bph": ["brown planthopper", "bph", "bhoora tilla", "bhoora tela", "plant hopper", "planthopper", "hopper burn"],
     "pink_bollworm": ["pink bollworm", "gulabi sundhi", "sundhi", "bollworm", "गुलाबी सुंडी", "ਗੁਲਾਬੀ ਸੁੰਡੀ"],
     "whitefly": ["whitefly", "safed makhi", "chitta machhar", "safed machhar", "leaf curl", "सफेद मक्खी"],
 }
@@ -90,6 +91,72 @@ UNCOVERED_CROPS = {
 
 
 BANNED_CHECK = AgriculturalGuardrails()
+
+
+# Farming topics our verified advisories do NOT cover. Real Kisan Call Centre questions are mostly
+# about these (weeds, nutrient deficiencies, varieties, prices...): answering them with the nearest
+# advisory would give advice for a different problem, so they get a "not covered" reply instead.
+UNCOVERED_TOPICS = {
+    "weeds": ["weed", "weeds", "weedicide", "herbicide", "kharpatwar", "nadeen", "motha", "swank", "dila",
+              "wild oats", "jangli jai", "खरपतवार", "नदीन", "मोथा", "ਨਦੀਨ", "ਨਦੀਨਾਂ", "ਮੋਥਾ", "ਨਦੀਨਨਾਸ਼ਕ"],
+    "nutrient deficiency": ["deficiency", "zinc", "iron", "manganese", "boron", "calcium", "magnesium", "yellowing",
+                            "kami", "कमी", "पीलापन", "पीला पड़", "ਘਾਟ", "ਪੀਲਾਪਣ", "ਪੀਲੀ ਪੈ", "जिंक", "ਜ਼ਿੰਕ"],
+    "varieties": ["variety", "varieties", "kism", "kisme", "kismon", "kismein", "किस्म", "किस्में", "ਕਿਸਮ", "ਕਿਸਮਾਂ"],
+    "prices": ["msp", "price", "support price", "samarthan mulya", "समर्थन मूल्य", "ਸਮਰਥਨ ਮੁੱਲ"],
+    "yield and growth": ["yield", "growth", "quality", "paidawar", "badhwar", "jhaad", "पैदावार", "बढ़वार", "गुणवत्ता",
+                         "ਝਾੜ", "ਵਾਧਾ", "ਗੁਣਵੱਤਾ", "growth regulator", "foliar spray"],
+    "nano fertilizers": ["nano urea", "nano dap", "नैनो", "ਨੈਨੋ"],
+    "nursery and transplanting": ["nursery", "transplant", "transplanting", "seed treatment", "seedling", "नर्सरी",
+                                  "रोपाई", "बीज उपचार", "ਪਨੀਰੀ", "ਲੁਆਈ", "ਬੀਜ ਨੂੰ ਸੋਧ", "ਬੀਜ ਸੋਧ"],
+    "other pests and diseases": ["stem borer", "leaf folder", "root rot", "foot rot", "smut", "powdery mildew",
+                                 "army worm", "armyworm", "thrips", "jassid", "jassids", "virus", "nematode",
+                                 "nematodes", "wilt", "parawilt", "para wilt", "leaf spot", "root weevil", "fruit fly",
+                                 "fruit flies", "termite", "termites", "rat", "rats", "rodent", "rodents",
+                                 "downy mildew", "sucking pest", "sucking pests", "रस चूसने", "पाउडरी मिल्ड्यू", "चूर्णिल", "tana chhedak", "patta lapet", "jad galan", "deemak", "chuhe",
+                                 "तना छेदक", "पत्ता लपेट", "जड़ गलन", "दीमक", "चूहे", "थ्रिप्स", "धब्बा",
+                                 "ਗੜੂੰਆਂ", "ਪੱਤਾ ਲਪੇਟ", "ਜੜ੍ਹ", "ਸਿਉਂਕ", "ਚੂਹਿਆਂ", "ਕਾਂਗਿਆਰੀ", "ਸੋਕਾ ਰੋਗ"],
+    # Caterpillars ("sundi") are covered for cotton only: see CROP_COVERED_TOPICS
+    "pesticide mixing": ["tank mix", "tank mixing", "jar test", "mixing", "milakar", "मिलाकर", "ਮਿਕਸਿੰਗ",
+                         "emamectin", "chlorpyriphos", "chloropyriphos", "cypermethrin", "इमामेक्टिन", "ਇਮਾਮੈਕਟਿਨ"],
+    "irrigation timing": ["last irrigation", "aakhri paani", "आखिरी सिंचाई", "ਆਖ਼ਰੀ ਪਾਣੀ"],
+    "harvest and storage": ["harvest", "harvesting", "storage", "maturity", "pakne", "पकने", "ਪੱਕਣ", "khali", "खली"],
+}
+# Words that point back to an earlier question ("this disease", "iska ilaj")
+REFERS_BACK = ["this", "it", "that", "these", "iska", "iski", "iske", "uska", "uski", "iss",
+               "इस", "इसका", "इसकी", "इसके", "उस", "ਇਸ", "ਇਹ", "ਇਸਦੇ", "ਇਸ ਦੀ", "ਉਸ"]
+
+# Topics covered for some crops only: (topic, words, crops whose advisories answer them)
+CROP_COVERED_TOPICS = [
+    ("fertilizer", ["fertilizer", "fertiliser", "khaad", "khad", "urea", "npk", "खाद", "ਖਾਦ"], {"Wheat", "Mustard"}),
+    ("sulphur", ["sulphur", "sulfur", "gandhak", "गंधक", "ਗੰਧਕ", "ਸਲਫ਼ਰ"], {"Mustard"}),
+    ("irrigation", ["irrigation", "irrigate", "paani", "pani", "water", "sinchai", "सिंचाई", "पानी", "ਪਾਣੀ", "ਸਿੰਚਾਈ"],
+     {"Wheat", "Mustard"}),
+    ("sowing", ["sowing", "sow", "seed rate", "bijai", "buwai", "बुवाई", "बिजाई", "ਬਿਜਾਈ"], {"Wheat"}),
+    # "sundi" (caterpillar) in cotton is the bollworm our cotton advisory covers
+    ("caterpillars", ["caterpillar", "catterpiller", "caterpiller", "sundi", "सुंडी", "ਸੁੰਡੀ", "illi", "illiyon", "bollworm"], {"Cotton"}),
+]
+
+
+# Crops each pest or disease is covered for ("aphid in cotton" is not covered: only wheat and mustard aphids are)
+TOPIC_CROPS = {
+    "Yellow Rust": {"Wheat"}, "Karnal Bunt": {"Wheat"}, "Aphid": {"Wheat", "Mustard"}, "White Rust": {"Mustard"},
+    "Sheath Blight": {"Paddy"}, "Blb": {"Paddy"}, "Bph": {"Paddy"}, "Pink Bollworm": {"Cotton"}, "Whitefly": {"Cotton"},
+}
+
+
+def uncovered_topic(clean: str, crop: Optional[str]) -> Optional[str]:
+    """The uncovered topic a question asks about, or None if our advisories may answer it."""
+    # Topics we never cover win: "weeds in wheat after irrigation" is a weeds question
+    for topic, words in UNCOVERED_TOPICS.items():
+        if any(matches_keyword(w, clean) for w in words):
+            return topic
+    for topic, words, crops in CROP_COVERED_TOPICS:
+        if any(matches_keyword(w, clean) for w in words):
+            if crop in crops:
+                return None  # e.g. fertilizer for wheat: covered
+            if crop:
+                return f"{topic} for {crop.lower()}"
+    return None
 
 
 def normalize_indic(text: str) -> str:
@@ -164,11 +231,15 @@ class IntentRouter:
                 break
 
         # 5. Detect Pest/Disease Topic
+        # The most specific (longest) matching name wins: "safed kungi" is white rust, not "kungi" (yellow rust),
+        # and "bhoora tilla" is brown planthopper, not "tilla" (aphid)
         detected_topic: Optional[str] = None
-        for topic_name, aliases in PESTS_AND_DISEASES.items():
-            if any(matches_keyword(alias, clean) for alias in aliases):
-                detected_topic = topic_name.replace("_", " ").title()
-                break
+        matches = [
+            (len(alias), topic_name) for topic_name, aliases in PESTS_AND_DISEASES.items()
+            for alias in aliases if matches_keyword(alias, clean)
+        ]
+        if matches:
+            detected_topic = max(matches)[1].replace("_", " ").title()
 
         # 6. Check for Weather & Spray Window Query
         # "Can I spray today?" is a spray-timing (weather) question unless a pest is named
@@ -213,6 +284,22 @@ class IntentRouter:
                     detected_topic=uncovered,
                     reasoning=f"Question about {uncovered}, which the verified advisories do not cover.",
                 )
+
+        # 7c. A farming topic our advisories don't cover (weeds, deficiencies, varieties, prices...) when no
+        # pest or disease we cover is named, or a covered pest asked about another crop ("aphid in cotton")
+        topic_gap = None
+        if not detected_topic:
+            topic_gap = uncovered_topic(clean, detected_crop)
+        elif detected_crop and detected_crop not in TOPIC_CROPS.get(detected_topic, {detected_crop}):
+            topic_gap = f"{detected_topic.lower()} in {detected_crop.lower()}"
+        if topic_gap:
+            return IntentResult(
+                intent="topic_not_covered",
+                confidence=0.85,
+                detected_crop=detected_crop,
+                detected_topic=topic_gap,
+                reasoning=f"Question about {topic_gap}, which the verified advisories do not cover.",
+            )
 
         # 8. Check for Crop-specific health/disease query
         if detected_topic or (detected_crop and any(w in clean for w in ["spray", "disease", "pest", "control", "ilaj", "roktham", "dawa", "dawai", "keeda", "keet"])):
@@ -259,7 +346,15 @@ class IntentRouter:
             history = [history]
         history = list(history or [])
         result = self.classify(query)
-        if not history or result.intent in ("greeting", "out_of_scope", "crop_not_covered"):
+        if history and result.intent == "topic_not_covered" and any(matches_keyword(w, query.lower()) for w in REFERS_BACK):
+            # "Which varieties resist this disease?" asks about the earlier topic, not about varieties in general
+            result = IntentResult(
+                intent="general_agriculture",
+                confidence=0.7,
+                detected_crop=result.detected_crop,
+                reasoning="Refers back to an earlier question.",
+            )
+        if not history or result.intent in ("greeting", "out_of_scope", "crop_not_covered", "topic_not_covered"):
             return result
 
         # A photo diagnosis counts as a crop question, so "What is the dose?" after a photo stays on it

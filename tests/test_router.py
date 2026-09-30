@@ -103,3 +103,50 @@ def test_sheath_blight_names(query):
 
 def test_leaf_blight_is_still_blb():
     assert IntentRouter().classify("dhan mein peela jhulsa rog ka ilaj").detected_topic == "Blb"
+
+
+@pytest.mark.parametrize(
+    "query",
+    [
+        "Information regarding deficiency OF Zinc in Paddy?",
+        "gehun mein kharpatwar kaise khatam karein",
+        "Information regarding fertilizer dose in rice?",
+        "INFORMATION REGARDING SOWING TIME OF COTTON?",
+        "MSP OF WHEAT?",
+        "Information regarding the varieties of Paddy with their yield?",
+        "ਕਣਕ ਵਿੱਚ ਸੁੰਡੀ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ?",
+    ],
+)
+def test_uncovered_topics_are_referred_not_answered_with_another_advisory(query):
+    assert IntentRouter().classify(query).intent == "topic_not_covered"
+
+
+@pytest.mark.parametrize(
+    "query",
+    [
+        "Information regarding total fertilizer application in Wheat crop?",
+        "Information regarding irrigation in wheat?",
+        "When should I sow wheat and how much seed per acre?",
+        "How much fertilizer does mustard need?",
+        "How to control aphids in mustard?",
+        "Kapas mein gulabi sundhi ki roktham kaise karein?",
+        "Paddy leaves are turning yellow and drying from the tips",
+    ],
+)
+def test_covered_questions_are_still_answered(query):
+    assert IntentRouter().classify(query).intent in ("crop_question", "general_agriculture")
+
+
+def test_follow_up_about_this_disease_keeps_the_topic():
+    from app.agent.state import ConversationTurn
+
+    earlier = ConversationTurn(query="Yellow powder stripes on wheat leaves", answer="...", intent="crop_question",
+                               crop="Wheat", topic="Yellow Rust")
+    res = IntentRouter().classify_with_context("Which varieties resist this disease?", [earlier])
+    assert res.intent != "topic_not_covered" and res.detected_topic == "Yellow Rust"
+
+
+@pytest.mark.parametrize("query", ["Kapas mein tela (aphid) ki roktham kaise karein?", "information regarding control of parawilt in cotton?",
+                                   "Information regarding sowing time of toria?", "बासमती में खाद की सिफारिश की गई मात्रा कितनी है?"])
+def test_more_uncovered_topics(query):
+    assert IntentRouter().classify(query).intent == "topic_not_covered"

@@ -57,24 +57,48 @@ STRINGS: Dict[str, Dict[str, str]] = {
             "से संबंधित आपकी सहायता के लिए तैयार हूँ। आप अपनी समस्या लिखकर या बोलकर पूछ सकते हैं।"
         ),
     },
+    "topic_not_covered": {
+        "en": (
+            "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of "
+            "wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. "
+            "For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest "
+            "Krishi Vigyan Kendra (KVK)."
+        ),
+        "pa": (
+            "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ "
+            "ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ "
+            "ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।"
+        ),
+        "hinglish": (
+            "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch "
+            "keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand "
+            "salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi "
+            "Vigyan Kendra (KVK) se sampark karein."
+        ),
+        "hi": (
+            "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, "
+            "गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को "
+            "मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।"
+        ),
+    },
     "crop_not_covered": {
         "en": (
             "My verified advisories only cover wheat, mustard, paddy (rice) and cotton, so I can't recommend "
             "a treatment or dose for this crop. Please contact your nearest Krishi Vigyan Kendra (KVK) or "
-            "agriculture officer, or call the Kisan Call Centre."
+            "agriculture officer, or call the Kisan Call Centre free on 1800-180-1551."
         ),
         "pa": (
             "ਮੇਰੀਆਂ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹਾਂ ਸਿਰਫ਼ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਬਾਰੇ ਹਨ, ਇਸ ਲਈ ਮੈਂ ਇਸ ਫ਼ਸਲ ਲਈ ਕੋਈ ਇਲਾਜ ਜਾਂ ਮਾਤਰਾ "
-            "ਨਹੀਂ ਦੱਸ ਸਕਦਾ। ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK), ਖੇਤੀਬਾੜੀ ਅਫ਼ਸਰ ਜਾਂ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨਾਲ ਸੰਪਰਕ ਕਰੋ।"
+            "ਨਹੀਂ ਦੱਸ ਸਕਦਾ। ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK), ਖੇਤੀਬਾੜੀ ਅਫ਼ਸਰ ਜਾਂ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ (1800-180-1551) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।"
         ),
         "hinglish": (
             "Meri pramanit salah sirf gehun, sarson, dhaan aur kapas ke liye hai, isliye main is fasal ke liye "
             "koi ilaj ya dawa ki matra nahi bata sakta. Kripya apne nazdeeki Krishi Vigyan Kendra (KVK), "
-            "krishi adhikari ya Kisan Call Centre se sampark karein."
+            "krishi adhikari ya Kisan Call Centre (1800-180-1551) se sampark karein."
         ),
         "hi": (
             "मेरी प्रमाणित सलाह केवल गेहूं, सरसों, धान और कपास के लिए है, इसलिए मैं इस फ़सल के लिए कोई इलाज या "
-            "दवा की मात्रा नहीं बता सकता। कृपया अपने नज़दीकी कृषि विज्ञान केंद्र (KVK), कृषि अधिकारी या किसान कॉल सेंटर से संपर्क करें।"
+            "दवा की मात्रा नहीं बता सकता। कृपया अपने नज़दीकी कृषि विज्ञान केंद्र (KVK), कृषि अधिकारी या किसान कॉल सेंटर (1800-180-1551) से संपर्क करें।"
         ),
     },
     "out_of_scope": {

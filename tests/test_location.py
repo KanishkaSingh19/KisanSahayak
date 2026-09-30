@@ -32,10 +32,10 @@ def test_resolve_place_uses_builtin_coordinates_without_network(monkeypatch):
 
 
 def test_resolve_place_geocodes_other_places(monkeypatch):
-    delhi = Place(name="Delhi", latitude=28.65, longitude=77.23, state="Delhi")
-    monkeypatch.setattr(weather_tool, "geocode", lambda name, timeout: delhi if name == "Delhi" else None)
+    nashik = Place(name="Nashik", latitude=20.0, longitude=73.79, state="Maharashtra")
+    monkeypatch.setattr(weather_tool, "geocode", lambda name, timeout: nashik if name == "Nashik" else None)
     tool = AgWeatherTool()
-    assert tool.resolve_place("Delhi") == delhi
+    assert tool.resolve_place("Nashik") == nashik
     assert tool.resolve_place("Atlantis") is None
 
 
@@ -109,3 +109,28 @@ def test_pipeline_weather_says_when_place_not_found(pipeline, monkeypatch):
     res = pipeline.process_query("weather in atlantis today", language="en", generate_audio=False)
     assert res.processing_metadata["location_found"] is False
     assert "Couldn't find" in res.answer and "Ludhiana" in res.answer
+
+
+@pytest.mark.parametrize(
+    "text,place",
+    [
+        ("मानसा में आज मौसम कैसा रहेगा?", "Mansa"),
+        ("ਗੁਰਦਾਸਪੁਰ ਵਿੱਚ ਅੱਜ ਮੌਸਮ", "Gurdaspur"),
+        ("ਤਰਨ ਤਾਰਨ ਵਿੱਚ ਮੌਸਮ", "Tarn Taran"),
+        ("फतेहगढ़ साहिब में मौसम", "Fatehgarh Sahib"),
+        ("weather forecast for Hoshiarpur today", "Hoshiarpur"),
+        ("weather in Bhatinda", "Bathinda"),
+    ],
+)
+def test_punjab_districts_in_any_script(text, place):
+    assert detect_place(text) == place
+
+
+def test_all_punjab_districts_have_built_in_coordinates():
+    """The geocoding service misses several Punjab districts and puts Mansa in Uttar Pradesh."""
+    from app.tools.weather_tool import AgWeatherTool
+
+    mansa = AgWeatherTool().resolve_place("Mansa")
+    assert 29.5 < mansa.latitude < 30.5 and 75 < mansa.longitude < 76  # Mansa, Punjab
+    for name in ["Barnala", "Faridkot", "Fatehgarh Sahib", "Hoshiarpur", "Muktsar", "Tarn Taran", "Nawanshahr"]:
+        assert AgWeatherTool().resolve_place(name) is not None, name

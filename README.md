@@ -27,6 +27,7 @@ Farmers ask about crops, pests, pesticides or weather in Hindi, Punjabi, Hinglis
 - **My farm profile (optional)** — district, crops, land and a few yes/no PM-KISAN questions. Used for the local weather when no place is named, for the crop when a question names none (if only one covered crop is listed), and for eligibility. Nothing is stored: it lasts only for the browser session and asks for no name, phone or Aadhaar.
 - **Language switch** — English (default), Punjabi, Hinglish or Hindi for the UI, the answer, warnings and voice.
 - **Gemini fallback chain** — a busy main model hands over to a backup model, then to the offline template with a visible note.
+- **Topics not covered** — questions about weeds, nutrient deficiencies, varieties, prices and other pests are referred to the Kisan Call Centre (1800-180-1551) and the KVK instead of being answered with an unrelated advisory.
 - **Crops not covered** — a question about a crop the advisories don't cover (sugarcane, potato, tomato, …) gets a "not covered, contact your KVK" reply instead of advice borrowed from another crop.
 - **Scope handling** — greetings and off-topic queries (cricket, movies, politics, …) get a polite redirect.
 
@@ -244,6 +245,20 @@ python scripts/evaluate.py --llm 8              # also check 8 real Gemini answe
 Full reports, including every failure: `eval/results_minilm.md`, `eval/results_gemini.md`; the real Gemini answer check (with the full answers) is in `eval/results_llm.md` and `eval/results_llm.json`. The test questions were written by the team, not collected from farmers; a field test set is future work.
 
 ---
+
+### Real farmer questions: Kisan Call Centre (200 questions)
+
+[`evalset/kcc/`](evalset/kcc/) tests the assistant on **200 real farmer queries from Punjab Kisan Call Centre logs** (Jan–Jul 2025), 50 each in English, Hindi, Punjabi and Hinglish, chosen by how often farmers asked them.
+
+| Metric | Result |
+|---|---|
+| Right advisory in top 3 (questions our advisories cover) | 25/25 (100%) |
+| Banned-pesticide question warned | 1/1 |
+| Weather for the right district / PM-KISAN recognised | 15/15 / 15/15 |
+| Answer in the requested language | 200/200 (100%) |
+| Questions outside our advisories referred to the Kisan Call Centre / KVK | 138/144 (96%); **82% on held-out queries** not used for tuning |
+
+Only 26 of the 200 real questions fall within our 4-crop advisories: most calls are about weeds, nutrient deficiencies, varieties and prices. Those now get a referral to the Kisan Call Centre (1800-180-1551) instead of an unrelated advisory. Answer and dose accuracy still need an agronomist: `evalset/kcc/review_sheet.csv` puts each answer next to the KCC advisor's answer for review.
 
 ### Feature test set (25 questions)
 

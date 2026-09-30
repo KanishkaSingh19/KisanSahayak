@@ -6,6 +6,7 @@
 """
 
 import re
+import unicodedata
 from functools import lru_cache
 from typing import List, Optional
 
@@ -32,7 +33,21 @@ PLACE_ALIASES = {
     "Sangrur": ["sangrur", "संगरूर", "ਸੰਗਰੂਰ"],
     "Moga": ["moga", "मोगा", "ਮੋਗਾ"],
     "Firozpur": ["firozpur", "ferozepur", "फिरोजपुर", "ਫਿਰੋਜ਼ਪੁਰ"],
-    "Mohali": ["mohali", "मोहाली", "ਮੋਹਾਲੀ"],
+    "Mohali": ["mohali", "sas nagar", "मोहाली", "ਮੋਹਾਲੀ"],
+    "Barnala": ["barnala", "बरनाला", "ਬਰਨਾਲਾ"],
+    "Faridkot": ["faridkot", "फरीदकोट", "ਫ਼ਰੀਦਕੋਟ", "ਫਰੀਦਕੋਟ"],
+    "Fatehgarh Sahib": ["fatehgarh sahib", "fatehgarh", "फतेहगढ़ साहिब", "ਫ਼ਤਿਹਗੜ੍ਹ ਸਾਹਿਬ", "ਫਤਿਹਗੜ੍ਹ ਸਾਹਿਬ"],
+    "Fazilka": ["fazilka", "फाजिल्का", "फ़ाज़िल्का", "ਫ਼ਾਜ਼ਿਲਕਾ", "ਫਾਜ਼ਿਲਕਾ"],
+    "Gurdaspur": ["gurdaspur", "गुरदासपुर", "ਗੁਰਦਾਸਪੁਰ"],
+    "Hoshiarpur": ["hoshiarpur", "होशियारपुर", "ਹੁਸ਼ਿਆਰਪੁਰ"],
+    "Kapurthala": ["kapurthala", "कपूरथला", "ਕਪੂਰਥਲਾ"],
+    "Malerkotla": ["malerkotla", "मलेरकोटला", "ਮਾਲੇਰਕੋਟਲਾ"],
+    "Mansa": ["mansa", "मानसा", "ਮਾਨਸਾ"],
+    "Muktsar": ["muktsar", "sri muktsar sahib", "मुक्तसर", "ਮੁਕਤਸਰ"],
+    "Nawanshahr": ["nawanshahr", "shaheed bhagat singh nagar", "sbs nagar", "नवांशहर", "ਨਵਾਂਸ਼ਹਿਰ"],
+    "Pathankot": ["pathankot", "पठानकोट", "ਪਠਾਨਕੋਟ"],
+    "Rupnagar": ["rupnagar", "ropar", "रूपनगर", "रोपड़", "ਰੂਪਨਗਰ", "ਰੋਪੜ"],
+    "Tarn Taran": ["tarn taran", "tarntaran", "तरनतारन", "तरन तारन", "ਤਰਨ ਤਾਰਨ"],
     "Chandigarh": ["chandigarh", "चंडीगढ़", "ਚੰਡੀਗੜ੍ਹ"],
     "Delhi": ["delhi", "new delhi", "dilli", "दिल्ली", "ਦਿੱਲੀ"],
     "Karnal": ["karnal", "करनाल", "ਕਰਨਾਲ"],
@@ -62,7 +77,8 @@ _AFTER = re.compile(r"\b([a-z][a-z]{2,})\s+(?:mein|me|main|vich|ch|da|ka|ki|ke)\
 
 def _contains(alias: str, text: str) -> bool:
     if any(ord(c) > 127 for c in alias):
-        return alias in text
+        # NFC: letters like ਫ਼ / फ़ can be typed as one character or two
+        return unicodedata.normalize("NFC", alias) in unicodedata.normalize("NFC", text)
     return bool(re.search(rf"\b{re.escape(alias)}\b", text))
 
 

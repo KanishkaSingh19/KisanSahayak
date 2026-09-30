@@ -1,0 +1,1020 @@
+[
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding how to control narrow leaf weeds in the wheat crop?",
+  "times_asked": 10,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding the control of grassy leaf weeds in wheat before after irrigation?",
+  "times_asked": 10,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "INFORMATION REGARDING FERTILIZER APPLICATION IN WHEAT?",
+  "times_asked": 9,
+  "expected": {
+   "kind": "advisory",
+   "section": "Wheat Sowing"
+  },
+  "intent": "general_agriculture",
+  "top_sections": [
+   "Mustard Fertilizer and Irrigation Management",
+   "Personal Protective Equipment (PPE) and Spraying Precautions",
+   "Personal Protective Equipment (PPE) and Spraying Precautions"
+  ],
+  "top3": false
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding control of zinc and nitrogen deficiency in wheat?",
+  "times_asked": 9,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding the control of Potash deficiency in Wheat?",
+  "times_asked": 9,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding for combine control of caterpillar and aphid in wheat?",
+  "times_asked": 8,
+  "expected": {
+   "kind": "advisory",
+   "section": "Wheat Aphid"
+  },
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat Aphid (Mahu) Control",
+   "Mustard Aphid (Chetpa/Mahu) Management",
+   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control"
+  ],
+  "top3": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding how to control broadleaf weeds in the wheat crop?",
+  "times_asked": 8,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding the correct time for last irrigation in wheat crop?",
+  "times_asked": 8,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding the sufficient gap between herbicide application and urea?",
+  "times_asked": 8,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "INFORMATION REGARDING NEW TOP VARIETIES OF WHEAT?",
+  "times_asked": 7,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding how to control mixed weeds in the wheat crop?",
+  "times_asked": 7,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding the application of Zinc in Wheat crop?",
+  "times_asked": 7,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding the spray of any fungicide at the Boot stage or Ear heading stage of crop?",
+  "times_asked": 7,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "general_agriculture",
+  "top_sections": [
+   "Karnal Bunt (Tilletia indica) Management in Wheat",
+   "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
+   "Personal Protective Equipment (PPE) and Spraying Precautions"
+  ],
+  "referred": false
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "For control of yellowing of wheat after herbicide application spray 1 kg N:P:K 19:19:19 in 100 liters of water per acre.",
+  "times_asked": 6,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Inforamtion regarding the control of Phosphorous deficiency in Wheat?",
+  "times_asked": 6,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information about when to irrigate wheat crop?",
+  "times_asked": 6,
+  "expected": {
+   "kind": "advisory",
+   "section": "Wheat Sowing"
+  },
+  "intent": "general_agriculture",
+  "top_sections": [
+   "Wheat Aphid (Mahu) Control",
+   "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages",
+   "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management"
+  ],
+  "top3": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding correct timing of urea application before or after the irrigation?",
+  "times_asked": 6,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "general_agriculture",
+  "top_sections": [
+   "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages",
+   "Mustard Fertilizer and Irrigation Management",
+   "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management"
+  ],
+  "referred": false
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding storage of wheat?",
+  "times_asked": 6,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding the control of Head blight or Scab in wheat crop?",
+  "times_asked": 6,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat Aphid (Mahu) Control",
+   "Karnal Bunt (Tilletia indica) Management in Wheat",
+   "White Rust (Safed Kungi) and Blight Management in Mustard"
+  ],
+  "referred": false
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding the control of grassy leaf weeds in wheat before first irrigation?",
+  "times_asked": 6,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Inforamtion regarding the control of Nitrogen deficiency in Wheat?",
+  "times_asked": 5,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding control of broad leaf weeds in wheat crops? (35-45 DAS)",
+  "times_asked": 5,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding field management after heavy rain",
+  "times_asked": 5,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "weather",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding the control of leaf blight, glume blight and black tip of grains disease in wheat?",
+  "times_asked": 5,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "crop_question",
+  "top_sections": [
+   "Karnal Bunt (Tilletia indica) Management in Wheat",
+   "White Rust (Safed Kungi) and Blight Management in Mustard",
+   "Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy"
+  ],
+  "referred": false
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding the growth of wheat crop in organic farming?",
+  "times_asked": 5,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding to MSP rate of wheat?",
+  "times_asked": 5,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "How to control fungal disease in wheat crop?",
+  "times_asked": 4,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat Aphid (Mahu) Control",
+   "Karnal Bunt (Tilletia indica) Management in Wheat",
+   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control"
+  ],
+  "referred": false
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding control of wild oats / Jangli Jivi in wheat crop?",
+  "times_asked": 4,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding expenses paid by farmer in mandi during Wheat marketing?",
+  "times_asked": 4,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "general_agriculture",
+  "top_sections": [
+   "Wheat Aphid (Mahu) Control",
+   "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages",
+   "Personal Protective Equipment (PPE) and Spraying Precautions"
+  ],
+  "referred": false
+ },
+ {
+  "topic": "wheat",
+  "kcc_query": "Information regarding the herbicides used in the wheat?",
+  "times_asked": 4,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "general_agriculture",
+  "top_sections": [
+   "Karnal Bunt (Tilletia indica) Management in Wheat",
+   "Wheat Aphid (Mahu) Control",
+   "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management"
+  ],
+  "referred": false
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding the Swank and Paddy motha in direct sown paddy/ Basmati?",
+  "times_asked": 40,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding the control of all type of weeds in Paddy/ basmati after 20-25 days of transplanting?",
+  "times_asked": 40,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information rgarding basmati varieties?",
+  "times_asked": 38,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding yield of varieties of PR-paddy?",
+  "times_asked": 37,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding sowing time of paddy?",
+  "times_asked": 35,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding the irrigation schedule in Paddy/basmati nursery?",
+  "times_asked": 35,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding the deficiency of Liquid Zinc (39.5%) in Paddy?",
+  "times_asked": 34,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Infomation regarding new variety of paddy?",
+  "times_asked": 33,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "INFORMATION REGARDING CONTROL OF RODENTS?",
+  "times_asked": 31,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding the irrigation schedule in direct seeded paddy/Basmati sown after pre-sowing irrigation?",
+  "times_asked": 31,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information about Parmal Paddy varieties?",
+  "times_asked": 30,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding the control of Swank, Madhana, Makkda, Chini gha, Gandhi wala motha, Paddy motha and other broad leaf weeds in Paddy?",
+  "times_asked": 29,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding the magnese deficiency in Paddy?",
+  "times_asked": 29,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding Southern Rice Black Streaked Dwarf Virus?",
+  "times_asked": 28,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "information regarding control of chelated zinc deficiency in paddy?",
+  "times_asked": 28,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding to improved growth in paddy?",
+  "times_asked": 27,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information about control of Southern rice black-streaked dwarf virus (SRBSDV) in paddy?",
+  "times_asked": 26,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding the control of Potash deficiency in Paddy?",
+  "times_asked": 26,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding time of sowing of paddy varieties?",
+  "times_asked": 24,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information about how to apply urea in transplanted paddy field?",
+  "times_asked": 23,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding that in how many days the recommended dose of urea should be necessary to complete in Paddy crop?",
+  "times_asked": 23,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding bakanae/foot rot/fusarium blight disease in paddy?",
+  "times_asked": 21,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding control stem borer in paddy?",
+  "times_asked": 21,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding the control of Chini gha, swank, Paddy motha and other broad leaf weeds in direct sowing of Paddy?",
+  "times_asked": 21,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Advisory regarding black streaked dwarf virus?",
+  "times_asked": 20,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding the seed rate of paddy for direct sowing?",
+  "times_asked": 20,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "How to prevent ground worms in the field?",
+  "times_asked": 19,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "general_agriculture",
+  "top_sections": [
+   "Pink Bollworm (Gulabi Sundhi) Integrated Management",
+   "Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy",
+   "Pink Bollworm (Gulabi Sundhi) Integrated Management"
+  ],
+  "referred": false
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding the Zinc application in direct seeding Paddy?",
+  "times_asked": 19,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding the control of Zinc and iron deficiency in Paddy/basmati Nursery?",
+  "times_asked": 19,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "paddy",
+  "kcc_query": "Information regarding the seed and fertilizers requirement for Paddy/ basmati nursery if the nursery is sown in 6.5 marlas (Sufficient for 1 acre)?",
+  "times_asked": 19,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "cotton",
+  "kcc_query": "ASKED ABOUT SURVEY FOR COTTON",
+  "times_asked": 2,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "general_agriculture",
+  "top_sections": [
+   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
+   "Personal Protective Equipment (PPE) and Spraying Precautions",
+   "Personal Protective Equipment (PPE) and Spraying Precautions"
+  ],
+  "referred": false
+ },
+ {
+  "topic": "cotton",
+  "kcc_query": "How to prevent spotted or pink bollworm or hairy bollworm in cotton?",
+  "times_asked": 2,
+  "expected": {
+   "kind": "advisory",
+   "section": "Pink Bollworm"
+  },
+  "intent": "crop_question",
+  "top_sections": [
+   "Pink Bollworm (Gulabi Sundhi) Integrated Management",
+   "Pink Bollworm (Gulabi Sundhi) Integrated Management",
+   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control"
+  ],
+  "top3": true
+ },
+ {
+  "topic": "cotton",
+  "kcc_query": "INFORMATION REGARDING CONTROL OF BACTERIAL BLIGHT IN COTTON?",
+  "times_asked": 2,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "crop_question",
+  "top_sections": [
+   "Pink Bollworm (Gulabi Sundhi) Integrated Management",
+   "White Rust (Safed Kungi) and Blight Management in Mustard",
+   "Personal Protective Equipment (PPE) and Spraying Precautions"
+  ],
+  "referred": false
+ },
+ {
+  "topic": "cotton",
+  "kcc_query": "INFORMATION REGARDING CONTROL OF INSECT IN COTTON?",
+  "times_asked": 2,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "crop_question",
+  "top_sections": [
+   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
+   "Personal Protective Equipment (PPE) and Spraying Precautions",
+   "Personal Protective Equipment (PPE) and Spraying Precautions"
+  ],
+  "referred": false
+ },
+ {
+  "topic": "cotton",
+  "kcc_query": "INFORMATION REGARDING IRRIGATION SCHEDULE IN COTTON?",
+  "times_asked": 2,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "cotton",
+  "kcc_query": "INFORMATION REGARDING VARIETIES OF DESI COTTON?",
+  "times_asked": 2,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "cotton",
+  "kcc_query": "INFORMATION REGARDING VARIETIES OF NON BT COTTON?",
+  "times_asked": 2,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "cotton",
+  "kcc_query": "INFORMATIONH REGARDING VARIETY OF BT COTTON?",
+  "times_asked": 2,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "cotton",
+  "kcc_query": "Information regarding control of parawilt disease in cotton crop?",
+  "times_asked": 2,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "cotton",
+  "kcc_query": "Information regarding control of termite in cotton?",
+  "times_asked": 2,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "cotton",
+  "kcc_query": "Information regarding how to control bacterial leaf blight disease in cotton crop?",
+  "times_asked": 2,
+  "expected": {
+   "kind": "advisory",
+   "section": "Bacterial Leaf Blight"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "top3": false
+ },
+ {
+  "topic": "cotton",
+  "kcc_query": "Information regarding sowing method and spacing for cotton crop?",
+  "times_asked": 2,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "cotton",
+  "kcc_query": "To control white fly in cotton in early stages spray 1 liter nimbecidine per acre in 100 liters of water",
+  "times_asked": 2,
+  "expected": {
+   "kind": "advisory",
+   "section": "Cotton Whitefly"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "top3": false
+ },
+ {
+  "topic": "cotton",
+  "kcc_query": "information regarding damage of cotton crop due to bad effect of 2,4 D?",
+  "times_asked": 2,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "general_agriculture",
+  "top_sections": [
+   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
+   "Pink Bollworm (Gulabi Sundhi) Integrated Management",
+   "Pink Bollworm (Gulabi Sundhi) Integrated Management"
+  ],
+  "referred": false
+ },
+ {
+  "topic": "cotton",
+  "kcc_query": "information regarding subsidy on cotton seed?",
+  "times_asked": 2,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "general_agriculture",
+  "top_sections": [
+   "Pink Bollworm (Gulabi Sundhi) Integrated Management",
+   "Pink Bollworm (Gulabi Sundhi) Integrated Management",
+   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control"
+  ],
+  "referred": false
+ },
+ {
+  "topic": "mustard",
+  "kcc_query": "Information regarding growth regulator used to improving pod filling in gram and seed quality in mustard?",
+  "times_asked": 1,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "mustard",
+  "kcc_query": "Information regarding harvesting in oilseed crops.",
+  "times_asked": 1,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "mustard",
+  "kcc_query": "Information regarding improved varieties of Raya?",
+  "times_asked": 1,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "mustard",
+  "kcc_query": "Information regarding mustard cake use in horticulture crops?",
+  "times_asked": 1,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "general_agriculture",
+  "top_sections": [
+   "White Rust (Safed Kungi) and Blight Management in Mustard",
+   "Mustard Fertilizer and Irrigation Management",
+   "Mustard Aphid (Chetpa/Mahu) Management"
+  ],
+  "referred": false
+ },
+ {
+  "topic": "mustard",
+  "kcc_query": "Information regarding plant nutrient management in mustard?",
+  "times_asked": 1,
+  "expected": {
+   "kind": "advisory",
+   "section": "Mustard Fertilizer"
+  },
+  "intent": "general_agriculture",
+  "top_sections": [
+   "Mustard Fertilizer and Irrigation Management",
+   "Mustard Aphid (Chetpa/Mahu) Management",
+   "White Rust (Safed Kungi) and Blight Management in Mustard"
+  ],
+  "top3": true
+ },
+ {
+  "topic": "mustard",
+  "kcc_query": "Information regarding sowing time of Raya and African sarson?",
+  "times_asked": 1,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "mustard",
+  "kcc_query": "Information regarding the MSP of Rapeseed and mustard 2024-25?",
+  "times_asked": 1,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "mustard",
+  "kcc_query": "Information regarding the MSP of Rapeseed and mustard 2025-2026?",
+  "times_asked": 1,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "mustard",
+  "kcc_query": "Information regarding the control of phosphorous deficiency in mustard?",
+  "times_asked": 1,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ },
+ {
+  "topic": "mustard",
+  "kcc_query": "Information regarding the control of sulphur deficiency in mustard?",
+  "times_asked": 1,
+  "expected": {
+   "kind": "not_in_kb"
+  },
+  "intent": "topic_not_covered",
+  "top_sections": [],
+  "referred": true
+ }
+]

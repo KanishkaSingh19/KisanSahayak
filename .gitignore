@@ -31,3 +31,6 @@ htmlcov/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Raw Kisan Call Centre download (61 MB); the selected questions live in evalset/kcc/
+data/kcc/

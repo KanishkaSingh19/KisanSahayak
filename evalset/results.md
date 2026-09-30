@@ -1,12 +1,13 @@
 # KisanSahayak feature test results
 
-*2026-09-30 · 25 test cases (`evalset/questions.json`) · answers: offline template (no API quota) · search embeddings: minilm · weather: live Open-Meteo*
+*2026-10-01 · 25 test cases (`evalset/questions.json`) · answers: offline template (no API quota) · search embeddings: minilm · weather: live Open-Meteo*
 
 | Result | Value |
 |---|---|
 | Automated cases passed | **22/22** |
 | Conversation turns passed | 34/34 |
 | Manual cases (photo, voice) | 3, see `evalset/questions.md` |
+| Answers by source | template_offline: 25 |
 
 | # | Feature | Result |
 |---|---|---|

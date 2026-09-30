@@ -7,10 +7,33 @@ from app.tools.location import Place, geocode
 
 # Geographic coordinates for key farming districts (Punjab, Haryana, UP, MP, Rajasthan)
 DISTRICT_COORDINATES: Dict[str, Tuple[float, float]] = {
+    # All 23 Punjab districts (headquarters towns): the geocoding service misses some of them
+    # (Hoshiarpur, Faridkot, Barnala, Fatehgarh Sahib) and puts Mansa in Uttar Pradesh
     "ludhiana": (30.9010, 75.8573),
     "amritsar": (31.6340, 74.8723),
     "bathinda": (30.2110, 74.9455),
     "patiala": (30.3398, 76.3869),
+    "barnala": (30.3819, 75.5468),
+    "faridkot": (30.6769, 74.7583),
+    "fatehgarh sahib": (30.6435, 76.3970),
+    "fazilka": (30.4036, 74.0280),
+    "firozpur": (30.9331, 74.6225),
+    "gurdaspur": (32.0414, 75.4031),
+    "hoshiarpur": (31.5143, 75.9115),
+    "jalandhar": (31.3260, 75.5762),
+    "kapurthala": (31.3800, 75.3800),
+    "malerkotla": (30.5310, 75.8790),
+    "mansa": (29.9988, 75.3933),
+    "moga": (30.8165, 75.1717),
+    "mohali": (30.7046, 76.7179),
+    "muktsar": (30.4762, 74.5122),
+    "nawanshahr": (31.1245, 76.1161),
+    "pathankot": (32.2643, 75.6421),
+    "rupnagar": (30.9664, 76.5331),
+    "sangrur": (30.2458, 75.8421),
+    "tarn taran": (31.4518, 74.9278),
+    "chandigarh": (30.7333, 76.7794),
+    "delhi": (28.6139, 77.2090),
     "karnal": (29.6857, 76.9905),
     "hisar": (29.1492, 75.7217),
     "sirsa": (29.5349, 75.0298),
