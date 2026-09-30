@@ -1,6 +1,6 @@
 # KisanSahayak evaluation results
 
-*2026-09-29 · 67 hand-written test questions in English, Punjabi, Hinglish and Hindi (`eval/test_set.json`) · search embeddings: **minilm** · answers: offline template (deterministic, no API quota)*
+*2026-09-30 · 67 hand-written test questions in English, Punjabi, Hinglish and Hindi (`eval/test_set.json`) · search embeddings: **minilm** · answers: offline template (deterministic, no API quota)*
 
 | Metric | Result |
 |---|---|
@@ -12,22 +12,22 @@
 | Banned-pesticide questions warned | **5/5 (100%)** |
 | False banned-pesticide warnings | 0 of 39 questions not about banned pesticides |
 | Follow-up questions kept context | 6/6 (100%) |
-| Response time without LLM (median / p95) | 73 ms / 182 ms |
+| Response time without LLM (median / p95) | 52 ms / 57 ms |
 
 ## Retrieval by language
 
 | Language | Right advisory 1st | In top 3 |
 |---|---|---|
-| en | 13/14 (93%) | 14/14 (100%) |
+| en | 14/14 (100%) | 14/14 (100%) |
 | pa | 5/5 (100%) | 5/5 (100%) |
-| hinglish | 12/13 (92%) | 12/13 (92%) |
+| hinglish | 11/13 (85%) | 12/13 (92%) |
 | hi | 9/10 (90%) | 10/10 (100%) |
 
 ## Failures
 
 - Intent: "White flies under cotton leaves and the leaves are curling, what should I do?" → general_agriculture, expected crop_question
-- Retrieval: "Aphids on my mustard crop, how to control them?" → got *Wheat Aphid (Mahu) Control*, expected *Mustard Aphid*
 - Retrieval: "धान में भूरा तेला का क्या इलाज है?" → got *Paddy Sheath Blight Management*, expected *Brown Planthopper*
+- Retrieval: "kya endosulfan use kar sakte hain" → got *Karnal Bunt (Tilletia indica) Management in Wheat*, expected *Banned and Strictly*
 - Retrieval: "gehun ki bijai kab karein aur beej kitna lage" → got *Karnal Bunt (Tilletia indica) Management in Wheat*, expected *Wheat Sowing*
 
 ## Notes

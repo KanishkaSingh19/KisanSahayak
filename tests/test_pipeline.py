@@ -64,3 +64,20 @@ def test_pipeline_audio_input_fallback(pipeline):
     res = pipeline.process_audio_query(b"RIFFdummydataWAVEfmt")
     assert res.intent in ["voice_stt_unavailable", "empty"]
     assert "STT" in res.answer or "टेक्स्ट" in res.answer or "प्रश्न" in res.answer
+
+
+def test_stale_saved_index_is_rebuilt(tmp_path, monkeypatch):
+    """An index saved with different chunks (old advisories or chunk settings) is not reused."""
+    from app.agent.pipeline import KisanPipeline
+    from app.config import settings
+    from app.rag.chunker import DocumentChunk
+    from app.rag.hybrid_retriever import HybridRetriever
+
+    monkeypatch.setattr(settings, "INDEX_DIR", tmp_path)
+    old = HybridRetriever()
+    old.build_indices([DocumentChunk(chunk_id="old_s0_c0", text="Outdated advice", metadata={"crop": "Wheat"})])
+    old.save_indices(tmp_path)
+
+    pipeline = KisanPipeline(retriever=HybridRetriever())
+    ids = {c.chunk_id for c in pipeline.retriever.dense_retriever.chunks}
+    assert "old_s0_c0" not in ids and len(ids) > 1

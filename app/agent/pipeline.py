@@ -59,12 +59,13 @@ class KisanPipeline:
             self._ensure_retriever_initialized()
 
     def _ensure_retriever_initialized(self) -> None:
-        """Attempt to load saved indices; if not found, automatically ingest raw documents."""
+        """Load saved indices; rebuild them from the raw documents if they are missing or stale."""
+        chunker = AgriculturalChunker(chunk_size=settings.CHUNK_SIZE, chunk_overlap=settings.CHUNK_OVERLAP)
+        chunks = chunker.load_and_chunk_directory(settings.RAW_DATA_DIR)  # fast: no embeddings
         loaded = self.retriever.load_indices(settings.INDEX_DIR)
-        if not loaded:
-            # Ingest from raw data directory
-            chunker = AgriculturalChunker(chunk_size=settings.CHUNK_SIZE, chunk_overlap=settings.CHUNK_OVERLAP)
-            chunks = chunker.load_and_chunk_directory(settings.RAW_DATA_DIR)
+        # An index saved before the advisories or the chunk settings changed must not be reused
+        saved = [(c.chunk_id, c.text) for c in self.retriever.dense_retriever.chunks] if loaded else []
+        if not loaded or sorted(saved) != sorted((c.chunk_id, c.text) for c in chunks):
             self.retriever.build_indices(chunks)
             self.retriever.save_indices(settings.INDEX_DIR)
 

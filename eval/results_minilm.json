@@ -6,7 +6,7 @@
     "by_language": {
       "en": {
         "total": 14,
-        "top1": 13,
+        "top1": 14,
         "top3": 14
       },
       "hi": {
@@ -21,13 +21,13 @@
       },
       "hinglish": {
         "total": 13,
-        "top1": 12,
+        "top1": 11,
         "top3": 12
       }
     }
   },
   "embedding_fallbacks": 0,
-  "date": "2026-09-29",
+  "date": "2026-09-30",
   "embeddings": "minilm",
   "intent": {
     "correct": 41,
@@ -52,14 +52,14 @@
     "total": 6
   },
   "latency_ms": {
-    "median": 73.44044998171739,
-    "p95": 181.5231999498792
+    "median": 51.92950000002838,
+    "p95": 57.26719999984198
   },
   "llm": null,
   "failures": [
     "Intent: \"White flies under cotton leaves and the leaves are curling, what should I do?\" → general_agriculture, expected crop_question",
-    "Retrieval: \"Aphids on my mustard crop, how to control them?\" → got *Wheat Aphid (Mahu) Control*, expected *Mustard Aphid*",
     "Retrieval: \"धान में भूरा तेला का क्या इलाज है?\" → got *Paddy Sheath Blight Management*, expected *Brown Planthopper*",
+    "Retrieval: \"kya endosulfan use kar sakte hain\" → got *Karnal Bunt (Tilletia indica) Management in Wheat*, expected *Banned and Strictly*",
     "Retrieval: \"gehun ki bijai kab karein aur beej kitna lage\" → got *Karnal Bunt (Tilletia indica) Management in Wheat*, expected *Wheat Sowing*"
   ]
 }

@@ -83,6 +83,8 @@ Farmer Query (Text or Voice Note)
 
 Orchestrated end-to-end by `app/agent/pipeline.py` (`KisanPipeline`).
 
+**Chunking** (`app/rag/chunker.py`): each advisory section (one crop, one disease or pest) becomes one chunk, so topics are never mixed. Sections longer than `CHUNK_SIZE` (1000 characters) are split at sentence boundaries. Each piece repeats the crop, topic and source in a header and starts with up to `CHUNK_OVERLAP` (150) characters from the end of the previous piece: whole sentences when they fit, otherwise the last words. 14 sections give 18 chunks. A saved index is rebuilt automatically when the advisories or chunk settings change.
+
 ---
 
 ## 📂 Repository Structure

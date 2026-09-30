@@ -14,6 +14,8 @@ class AgriculturalChunker:
     """Chunks structured agricultural documents with metadata preservation."""
 
     def __init__(self, chunk_size: int = 500, chunk_overlap: int = 100):
+        if not 0 <= chunk_overlap < chunk_size:
+            raise ValueError("chunk_overlap must be at least 0 and smaller than chunk_size")
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
 
@@ -95,34 +97,51 @@ class AgriculturalChunker:
         return chunks
 
     def _sliding_window_split(self, text: str, header: str) -> List[str]:
-        """Split text using sliding character window with sentence boundaries."""
+        """Split text into windows of whole sentences; each window after the first starts with
+        up to `chunk_overlap` characters carried over from the end of the previous one."""
         effective_chunk_size = self.chunk_size - len(header)
         if effective_chunk_size < 100:
             effective_chunk_size = self.chunk_size
 
-        sentences = text.split(". ")
+        sentences = []
+        for sentence in text.split(". "):
+            sentence_clean = sentence.strip()
+            if sentence_clean:
+                sentences.append(sentence_clean if sentence_clean.endswith(".") else sentence_clean + ".")
+
         chunks = []
-        current_chunk = []
-        current_len = 0
+        current_chunk: List[str] = []  # sentences (or an overlap tail) of the window being filled
+        new_in_window = False  # the window holds more than just the overlap carried over
 
         for sentence in sentences:
-            sentence_clean = sentence.strip()
-            if not sentence_clean:
-                continue
-            sentence_with_dot = sentence_clean if sentence_clean.endswith(".") else sentence_clean + "."
-            if current_len + len(sentence_with_dot) > effective_chunk_size and current_chunk:
+            if new_in_window and len(" ".join(current_chunk + [sentence])) > effective_chunk_size:
                 chunks.append(header + " ".join(current_chunk))
-                # Overlap: keep last sentence
-                current_chunk = [current_chunk[-1], sentence_with_dot]
-                current_len = len(current_chunk[0]) + len(sentence_with_dot) + 1
-            else:
-                current_chunk.append(sentence_with_dot)
-                current_len += len(sentence_with_dot) + 1
+                current_chunk = self._overlap_tail(current_chunk)
+                new_in_window = False
+            current_chunk.append(sentence)
+            new_in_window = True
 
-        if current_chunk:
+        if new_in_window:
             chunks.append(header + " ".join(current_chunk))
 
         return chunks
+
+    def _overlap_tail(self, window: List[str]) -> List[str]:
+        """The end of a window to repeat at the start of the next one, at most `chunk_overlap`
+        characters: whole trailing sentences when they fit, otherwise the last words of the last one."""
+        if self.chunk_overlap == 0:
+            return []
+        tail: List[str] = []
+        for sentence in reversed(window):
+            if len(" ".join([sentence] + tail)) > self.chunk_overlap:
+                break
+            tail.insert(0, sentence)
+        if tail:
+            return tail
+        words = window[-1].split()
+        while words and len(" ".join(words)) > self.chunk_overlap:
+            words.pop(0)
+        return [" ".join(words)] if words else []
 
     def load_and_chunk_directory(self, raw_dir: Path) -> List[DocumentChunk]:
         """Load all json files from the raw directory and chunk them."""
