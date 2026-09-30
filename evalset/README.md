@@ -22,6 +22,8 @@ This uses offline template answers, so it is repeatable and uses no Gemini quota
 python evalset/run_evalset.py --llm
 ```
 
+With `--llm`, results go to `results_llm.md` / `results_llm.json`, and the report lists which Gemini model wrote each answer. If every model runs out of quota, the run stops without writing results, so offline answers are never counted as LLM ones. Change the key and run again. On the free tier, add `--pause 5` to stay under the per-minute request limit.
+
 Cases 23–25 (photo upload, taking a photo, and voice) need a real camera or microphone. Check them by hand as described in `questions.md`.
 
 ## How it differs from `eval/`

@@ -243,7 +243,7 @@ Full reports, including every failure: `eval/results_minilm.md`, `eval/results_g
 
 ### Feature test set (25 questions)
 
-[`evalset/`](evalset/) checks every feature end to end: whole conversations with follow-ups, all four languages, the farm profile, PM-KISAN eligibility, weather, safety guardrails, the "crop not covered" guard, photo and voice. Cases 1–22 run automatically (**22/22 pass**, 34/34 conversation turns); photo and voice (23–25) are checked by hand.
+[`evalset/`](evalset/) checks every feature end to end: whole conversations with follow-ups, all four languages, the farm profile, PM-KISAN eligibility, weather, safety guardrails, the "crop not covered" guard, photo and voice. Cases 1–22 run automatically (**22/22 pass**, 34/34 conversation turns, with offline answers and with real Gemini answers: all 25 written by Gemini Flash-Lite, see [`evalset/results_llm.md`](evalset/results_llm.md)); photo and voice (23–25) are checked by hand.
 
 ```bash
 python evalset/run_evalset.py

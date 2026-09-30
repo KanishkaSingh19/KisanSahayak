@@ -2,10 +2,11 @@
 
     python evalset/run_evalset.py          # offline answers: repeatable, no Gemini quota
     python evalset/run_evalset.py --llm    # real Gemini answers (uses API quota)
+    python evalset/run_evalset.py --llm --pause 5   # stay under the free tier's per-minute limit
 
 Typed cases (including multi-turn conversations and farm profiles) are checked automatically;
 photo and voice cases are listed as manual checks. Weather uses live Open-Meteo data.
-Writes evalset/results.md and evalset/results.json.
+Writes evalset/results.md and results.json (results_llm.* with --llm).
 """
 
 import argparse
@@ -67,13 +68,18 @@ def check_turn(res, expect: dict) -> list:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--llm", action="store_true", help="Use the configured LLM (Gemini) instead of offline answers")
+    parser.add_argument("--pause", type=float, default=0, help="Seconds to wait between questions (free-tier rate limits)")
     args = parser.parse_args()
 
     data = json.loads((EVALSET_DIR / "questions.json").read_text(encoding="utf-8"))
     pipeline = KisanPipeline() if args.llm else KisanPipeline(synthesizer=DeterministicGroundedSynthesizer())
-    answers = f"LLM ({settings.GEMINI_MODEL})" if args.llm else "offline template (no API quota)"
+    answers = (
+        f"LLM ({settings.GEMINI_MODEL}, backup {settings.GEMINI_FALLBACK_MODEL}; see 'Answers by source')"
+        if args.llm else "offline template (no API quota)"
+    )
 
     rows, report, turns_total, turns_passed = [], [], 0, 0
+    sources = {}  # answer_source -> count, to show which answers really came from the LLM
     for case in data["cases"]:
         if case["mode"] != "text":
             rows.append((case, "manual", []))
@@ -81,12 +87,24 @@ def main() -> int:
         history, case_problems, case_log = [], [], []
         for n, turn in enumerate(case["turns"], 1):
             profile = FarmerProfile(**turn["profile"]) if "profile" in turn else None
+            if args.pause and turns_total:
+                time.sleep(args.pause)
             start = time.perf_counter()
             res = pipeline.process_query(
                 turn["query"], language=turn.get("language", case["language"]), generate_audio=False,
                 history=history, profile=profile,
             )
             ms = int((time.perf_counter() - start) * 1000)
+            source = res.processing_metadata.get("answer_source")
+            if source == "llm" and getattr(pipeline.synthesizer, "last_model", None):
+                source = f"llm:{pipeline.synthesizer.last_model}"  # which model actually answered
+            if args.llm and source == "template_llm_failed":
+                # Out of quota (or the models are down): stop rather than score template answers as LLM ones
+                print(f"\nStopped at case {case['id']}, turn {n}: every Gemini model failed (usually the API quota).")
+                print("No results were written. Change GEMINI_API_KEY in .env and run again.")
+                return 2
+            if source:
+                sources[source] = sources.get(source, 0) + 1
             history.append(ConversationTurn.from_answer(res))
             problems = check_turn(res, turn["expect"])
             turns_total += 1
@@ -95,7 +113,7 @@ def main() -> int:
             case_log.append({
                 "query": turn["query"], "intent": res.intent, "ms": ms, "passed": not problems, "problems": problems,
                 "top_section": res.retrieved_chunks[0].section if res.retrieved_chunks else None,
-                "district": res.processing_metadata.get("district"), "answer": res.answer,
+                "district": res.processing_metadata.get("district"), "answer_source": source, "answer": res.answer,
             })
         rows.append((case, "pass" if not case_problems else "FAIL", case_problems))
         report.append({"id": case["id"], "feature": case["feature"], "passed": not case_problems, "turns": case_log})
@@ -116,6 +134,7 @@ def main() -> int:
         f"| Automated cases passed | **{passed}/{len(auto)}** |",
         f"| Conversation turns passed | {turns_passed}/{turns_total} |",
         f"| Manual cases (photo, voice) | {len(rows) - len(auto)}, see `evalset/questions.md` |",
+        f"| Answers by source | {', '.join(f'{k}: {v}' for k, v in sorted(sources.items())) or 'n/a'} |",
         "",
         "| # | Feature | Result |",
         "|---|---|---|",
@@ -126,10 +145,16 @@ def main() -> int:
         lines += ["", "## Failures", ""]
         for c, problems in failed:
             lines += [f"- **{c['id']}. {c['feature']}**"] + [f"  - {p}" for p in problems]
-    (EVALSET_DIR / "results.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    (EVALSET_DIR / "results.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    llm_answers = sum(v for k, v in sources.items() if k.startswith("llm"))
+    if args.llm and llm_answers < sum(sources.values()):
+        lines += ["", f"Note: {llm_answers} of {sum(sources.values())} generated answers came from the LLM; the rest "
+                  "fell back to the offline template (usually API quota or a busy model)."]
+    name = "results_llm" if args.llm else "results"
+    (EVALSET_DIR / f"{name}.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (EVALSET_DIR / f"{name}.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"\nAutomated cases passed: {passed}/{len(auto)} · turns passed: {turns_passed}/{turns_total}")
-    print("Wrote evalset/results.md and evalset/results.json")
+    print(f"Answers by source: {sources}")
+    print(f"Wrote evalset/{name}.md and evalset/{name}.json")
     return 0 if passed == len(auto) else 1
 
 

@@ -208,12 +208,14 @@ class GeminiSynthesizer:
         self.models = [m for m in (model_name, fallback_model) if m]
         self.fallback = DeterministicGroundedSynthesizer()
         self._skip_until: Dict[str, float] = {}  # model -> time until which its quota is exhausted
+        self.last_model: Optional[str] = None  # model that wrote the last answer (None: offline template)
 
     def generate(
         self, query: str, chunks: List[RetrievalResult], language: Optional[str] = None, history=None,
         context_note: str = "",
     ) -> Tuple[str, str]:
         """Return (answer, source); tries each Gemini model in turn, then the offline template."""
+        self.last_model = None
         if not chunks:
             return self.fallback.generate(query, chunks, language)
 
@@ -229,6 +231,7 @@ class GeminiSynthesizer:
                 continue  # quota used up recently: don't make the farmer wait for another refusal
             try:
                 response = self.client.models.generate_content(model=model, contents=prompt)
+                self.last_model = model
                 return response.text.strip(), SOURCE_LLM
             except Exception as e:
                 message = str(e)

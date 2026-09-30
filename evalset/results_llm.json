@@ -1,0 +1,530 @@
+[
+  {
+    "id": 1,
+    "feature": "Multi-turn memory: symptoms, follow-ups, topic switches, banned pesticide, language switch",
+    "passed": true,
+    "turns": [
+      {
+        "query": "My wheat leaves have yellow powdery stripes, and the powder sticks to my hands. What is it?",
+        "intent": "general_agriculture",
+        "ms": 15553,
+        "passed": true,
+        "problems": [],
+        "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "Based on the verified agricultural research, here is the information for your wheat crop:\n\nIdentification and Disease:\nYour wheat crop is affected by Yellow Rust (Pila Rataua / Peeli Kungi), caused by Puccinia striiformis. \n\nSymptoms:\nYellow powdery pustules are arranged in linear rows or stripes along the leaf veins. When you shake the affected leaves, yellow powder sticks to your clothes and hands. This disease typically appears in cool, moist, and cloudy weather (10-20°C).\n\nRecommended Action and Chemical Dosage:\nInspect your fields regularly from mid-December to February, especially if you are in sub-mountainous tracts. If you spot initial disease foci, immediately spray either Propiconazole 25% EC (Tilt/Bumper) @ 200 ml or Tebuconazole 25.9% EC (Folicur) @ 200 ml in 200 liters of water per acre.\n\nPrecautions:\nCarefully follow the recommended dosage and mix the chemical in 200 liters of water per acre as specified. \n\nOfficial Sources Used:\n- Punjab Agricultural University (PAU) & ICAR (2024) - Wheat (Kanak/Gehun) Package of Practices & Disease Management (Yellow Rust Identification and Management)"
+      },
+      {
+        "query": "What should I spray?",
+        "intent": "general_agriculture",
+        "ms": 17733,
+        "passed": true,
+        "problems": [],
+        "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "Based on the verified agricultural research, here is the recommended action and chemical dosage for your wheat crop:\n\nRecommended Action & Chemical Dosage:\nInspect fields regularly from mid-December to February, especially in sub-mountainous tracts. If initial disease foci are spotted, immediately spray Propiconazole 25% EC (Tilt/Bumper) @ 200 ml or Tebuconazole 25.9% EC (Folicur) @ 200 ml in 200 liters of water per acre. Repeat the spray after 15 days if cloudy weather persists.\n\nSafety Warning:\nDo not spray fungicide during high wind velocity to avoid chemical drift. Always wear protective masks.\n\nOfficial Sources:\n- Punjab Agricultural University (PAU) & ICAR (2024) - Wheat Package of Practices & Disease Management [Yellow Rust Identification and Management]"
+      },
+      {
+        "query": "How many times?",
+        "intent": "general_agriculture",
+        "ms": 12908,
+        "passed": true,
+        "problems": [],
+        "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "Based on the verified agricultural research, here is the information for repeating the spray on your wheat crop:\n\nYou should repeat the spray after 15 days if cloudy weather persists.\n\nOfficial Sources Used:\n- Punjab Agricultural University (PAU) & ICAR - Wheat (Kanak/Gehun) Package of Practices & Disease Management [Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management]"
+      },
+      {
+        "query": "Can I spray today in Ludhiana?",
+        "intent": "weather",
+        "ms": 862,
+        "passed": true,
+        "problems": [],
+        "top_section": null,
+        "district": "Ludhiana",
+        "answer_source": null,
+        "answer": "### Farm Weather Advisory: Ludhiana\n\nLudhiana: 25.1°C, humidity 73.0%, wind 7.4 km/h, and a 0.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
+      },
+      {
+        "query": "And in Sangrur?",
+        "intent": "weather",
+        "ms": 1572,
+        "passed": true,
+        "problems": [],
+        "top_section": null,
+        "district": "Sangrur",
+        "answer_source": null,
+        "answer": "### Farm Weather Advisory: Sangrur\n\nSangrur: 23.8°C, humidity 83.0%, wind 6.1 km/h, and a 0.0% chance of rain in the next 12 hours."
+      },
+      {
+        "query": "Which varieties resist this disease?",
+        "intent": "general_agriculture",
+        "ms": 4013,
+        "passed": true,
+        "problems": [],
+        "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "Based on the verified agricultural research from Punjab Agricultural University (PAU) and ICAR, you can cultivate resistant varieties like PBW 725, HD 3086, DBW 187 (Karan Vandana), and DBW 222 to prevent Yellow Rust. Also, avoid monoculture of susceptible older varieties like PBW 343 or HD 2967 in rust-prone areas.\n\nOfficial Sources Used:\n- Punjab Agricultural University (PAU) & ICAR - Wheat (Kanak/Gehun) Package of Practices & Disease Management [Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management]"
+      },
+      {
+        "query": "Can I use Monocrotophos instead?",
+        "intent": "safety_query",
+        "ms": 4157,
+        "passed": true,
+        "problems": [],
+        "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "Based on the verified agricultural research from Punjab Agricultural University (PAU), ICAR, and the Ministry of Agriculture, verified information on using Monocrotophos for this crop and pest was not found in the context. \n\nPlease contact your nearest Krishi Vigyan Kendra (KVK) for specific advice on using Monocrotophos.\n\nOfficial Sources Used:\n- Punjab Agricultural University (PAU) & ICAR"
+      },
+      {
+        "query": "छिड़काव करते समय क्या सावधानी रखें?",
+        "intent": "general_agriculture",
+        "ms": 4481,
+        "passed": true,
+        "problems": [],
+        "top_section": "Paddy Sheath Blight Management",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "धान (चावल) की फसल में कीट और रोग प्रबंधन के लिए छिड़काव करते समय निम्नलिखित सावधानियां रखनी चाहिए:\n\n1. भूरा टिल्ला (Brown Planthopper) के नियंत्रण के समय कीटनाशक का छिड़काव सीधे पौधों के आधार (base) की तरफ करें और इसके लिए खोखले शंकु नोजल (hollow cone nozzle) का उपयोग करें।\n2. भूरा टिल्ला की चरम गतिविधि के दौरान खेत से 2 से 3 दिनों के लिए पानी निकाल दें।\n3. सिंथेटिक पाइरेथroids (जैसे कि साइपरमेथ्रिन या डेल्टामेथ्रिन) का उपयोग करने से सख्ती से बचें, क्योंकि वे प्राकृतिक मकड़ियों को समाप्त करके अत्यधिक भूरा टिल्ला पुनरुत्थान (resurgence) को बढ़ावा देते हैं।\n4. धान की मचान (sheath blight) के शुरुआती लक्षण दिखने पर अनुशंसित फफूंदनाशक का छिड़काव 200 लीटर पानी में प्रति एकड़ के हिसाब से करें।\n5. जीवाणु पत्ती झुलसा (Bacterial Leaf Blight) के मामले में ध्यान रखें कि एंटीबायोटिक स्प्रे में केवल निवारक प्रभाव (preventive efficacy only) होता है।\n\nआधिकारिक स्रोत:\n- ICAR-National Rice Research Institute (NRRI) & PAU (2024) - Paddy / Rice (Jhona/Dhan) Disease and Insect Pest Advisory"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "feature": "Punjabi answer: mustard aphid",
+    "passed": true,
+    "turns": [
+      {
+        "query": "ਸਰ੍ਹੋਂ ਵਿੱਚ ਚੇਪੇ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ?",
+        "intent": "crop_question",
+        "ms": 3683,
+        "passed": true,
+        "problems": [],
+        "top_section": "Mustard Aphid (Chetpa/Mahu) Management",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "ਸਰ੍ਹੋਂ ਵਿੱਚ ਚੇਪੇ (ਮਹੁ) ਦੀ ਰੋਕਥਾਮ ਲਈ ਹੇਠ ਲਿਖੇ ਉਪਰਾਲੇ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ:\n\nਲੱਛਣ ਅਤੇ ਪਛਾਣ:\nਨਿੰਫ਼ ਅਤੇ ਬਾਲਗ ਕੀੜੇ ਨਰਮ ਟਾਹਣੀਆਂ, ਫੁੱਲਾਂ, ਪੱਤਿਆਂ ਅਤੇ ਫਲੀਆਂ (ਸਿਲਿਕੁਆ) ਵਿੱਚੋਂ ਰਸ ਚੂਸਦੇ ਹਨ। ਹਮਲੇ ਵਾਲੇ ਪੌਦਿਆਂ ਦੇ ਪੱਤੇ ਮੁੜ ਜਾਂਦੇ ਹਨ, ਵਾਧਾ ਰੁਕ ਜਾਂਦਾ ਹੈ ਅਤੇ ਫਲੀਆਂ ਨਹੀਂ ਬਣਦੀਆਂ। ਇਹ ਮਿੱਠਾ ਰਸ ਛੱਡਦੇ ਹਨ ਜਿਸ ਨਾਲ ਕਾਲੀ ਉੱਲੀ (ਸੂਟੀ ਮੋਲਡ) ਪੈਦਾ ਹੋ ਜਾਂਦੀ ਹੈ।\n\nਸਿਫਾਰਸ਼ੀ ਕਾਰਵਾਈ ਅਤੇ ਰਸਾਇਣਕ ਖੁਰਾਕ:\nਛਿੜਕਾਅ ਸਿਰਫ਼ ਉਦੋਂ ਕਰੋ ਜਦੋਂ ਆਰਥਿਕ ਨੁਕਸਾਨ ਦੀ ਹੱਦ (ETL) ਪਹੁੰਚ ਜਾਵੇ (ਕੇਂਦਰੀ ਤਣੇ ਉੱਤੇ 1.5–2.0 ਸੈਂਟੀਮੀਟਰ ਚੇਪੇ ਦੀ ਕਾਲੋਨੀ ਜਾਂ 20-25% ਪੌਦੇ ਪ੍ਰਭਾਵਿਤ ਹੋਣ)। \n- Dimethoate 30% EC @ 250-300 ਮਿ.ਲੀ. ਜਾਂ Thiamethoxam 25% WG @ 50-80 ਗ੍ਰਾਮ ਨੂੰ 150-200 ਲੀਟਰ ਪਾਣੀ ਵਿੱਚ ਪ੍ਰਤੀ ਏਕੜ ਘੋਲ ਕੇ ਛਿੜਕਾਅ ਕਰੋ।\n- ਮਧੂ-ਮੱਖੀਆਂ ਅਤੇ ਪਰਾਗਣ ਕਰਨ ਵਾਲੇ ਕੀੜਿਆਂ ਦੀ ਰੱਖਿਆ ਲਈ, ਛਿੜਕਾਅ ਸਖ਼ਤੀ ਨਾਲ ਦੁਪਹਿਰ ਤੋਂ ਬਾਅਦ (ਸ਼ਾਮ 3:30 ਵਜੇ ਤੋਂ ਬਾਅਦ) ਕਰੋ।\n\nਰੋਕਥਾਮ ਦੇ ਉਪਾਅ:\n- 10 ਅਕਤੂਬਰ ਤੋਂ 25 ਅਕਤੂਬਰ ਦੇ ਵਿਚਕਾਰ ਛੇਤੀ ਬਿਜਾਈ ਕਰਨ ਨਾਲ ਚੇਪੇ ਦਾ ਹਮਲਾ ਘੱਟ ਹੁੰਦਾ ਹੈ।\n- ਸ਼ੁਰੂ ਵਿੱਚ ਦੇਖਭਾਲ ਅਤੇ ਰੋਕਥਾਮ ਲਈ ਪੀਲੇ ਚਿਪਚਿਪੇ ਟ੍ਰੈਪ (Yellow sticky traps) @ 10-15 ਟ੍ਰੈਪ ਪ੍ਰਤੀ ਏਕੜ ਵਰਤੋਂ।\n\nਵਰਤੇ ਗਏ ਅਧਿਕਾਰਤ ਸਰੋਤ:\n1. ICAR-Directorate of Rapeseed-Mustard Research (DRMR) Bharatpur (2024)"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "feature": "Hinglish answer: brown planthopper",
+    "passed": true,
+    "turns": [
+      {
+        "query": "Dhaan mein bhoora tela lag gaya hai, kya karein?",
+        "intent": "general_agriculture",
+        "ms": 2664,
+        "passed": true,
+        "problems": [],
+        "top_section": "Brown Planthopper (BPH / Bhoora Tilla) Management",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "Dhaan mein bhoora tilla (Brown Planthopper) ke prabandhan ke liye yeh kram apnaayein:\n\nLakshan: \nBPH nymphs aur adults paani ke level ke theek upar rice tillers ke base par ikatthe hote hain. Gambhir sankraman hone par khet mein gol sookhe hue hisse ban jaate hain jise 'hopper burn' kehte hain.\n\nRecommended Action aur Chemical Dosage:\nHar hafte tiller ke base ki jaanch karein. Jab ETL (Economic Threshold Level) 5 se 10 hopper prati hill dikhai dein, tab inmein se kisi ek dawa ka spray karein:\n- Pymetrozine 50% WDG @ 120 gram prati acre\n- Triflumezopyrim 10% SC @ 94 ml prati acre\n\nSpray karte samay dhyan rakhein ki spray seedhe paudho ke base (आधार) par hi ho aur hollow cone nozzle ka hi istemal karein.\n\nPreventive Measures:\n- Pest ki peak activity ke dauran khet se 2 se 3 dino ke liye paani nikal dein.\n- Synthetic pyrethroids (jaise Cypermethrin ya Deltamethrin) ka prayog bilkul na karein kyunki isse natural spiders khatam ho jaate hain aur BPH aur zyada badh jata hai.\n\nOfficial Sources:\n- ICAR-National Rice Research Institute (NRRI) & PAU (2024) - Paddy / Rice Disease and Insect Pest Advisory [Brown Planthopper (BPH / Bhoora Tilla) Management]"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "feature": "Hindi, symptoms only: bacterial leaf blight",
+    "passed": true,
+    "turns": [
+      {
+        "query": "धान की पत्तियाँ किनारों से पीली होकर सूख रही हैं, क्या करूँ?",
+        "intent": "general_agriculture",
+        "ms": 2337,
+        "passed": true,
+        "problems": [],
+        "top_section": "Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "धान की पत्तियों का किनारों से पीला होकर सूखना और आगे बढ़ना 'बैक्टीरियल लीफ ब्लाइट' (BLB / पीला झुलसा) रोग का लक्षण हो सकता है। इसके लिए निम्नलिखित उपाय करें:\n\n**लक्षण:**\nपत्तियों के सिरों और किनारों से पानी से भीगे हुए पारभासी धब्बे शुरू होते हैं जो नीचे की तरफ बढ़ते हैं और उनके किनारे लहरदार होते हैं। ये धब्बे पीले से भूसे के रंग के हो जाते हैं। गंभीर मामलों में 'क्रेसेक' अवस्था में पौधे सूख जाते हैं।\n\n**अनुशंसित उपाय और रासायनिक खुराक:**\n1. प्रभावित खेत से 3-4 दिन के लिए अतिरिक्त पानी निकाल दें।\n2. अत्यधिक नाइट्रोजन या यूरिया के प्रयोग से बचें क्योंकि इससे यह रोग बढ़ता है।\n3. 200 लीटर पानी में Streptocycline @ 15 ग्राम और Copper Oxychloride 50% WP @ 500 ग्राम मिलाकर प्रति एकड़ छिड़काव करें। ध्यान दें कि एंटीबायोटिक स्प्रे का प्रभाव केवल रोकथाम के लिए होता है।\n\n**सावधानियां:**\nरोग प्रतिरोधी या सहनशील किस्में जैसे PR 126, PR 121, या Pusa Basmati 1847 उगाएं। अनुशंसित पोटाश के साथ संतुलित NPK का अभ्यास करें।\n\n**आधिकारिक स्रोत:**\nICAR-National Rice Research Institute (NRRI) & PAU (2024)"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "feature": "Cotton pink bollworm: traps, threshold and dose",
+    "passed": true,
+    "turns": [
+      {
+        "query": "How do I control pink bollworm in cotton?",
+        "intent": "crop_question",
+        "ms": 1883,
+        "passed": true,
+        "problems": [],
+        "top_section": "Pink Bollworm (Gulabi Sundhi) Integrated Management",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "To control pink bollworm in cotton, you can follow these recommended actions and chemical dosages based on ICAR guidelines:\n\n1. Install pheromone traps at the rate of 5 traps per acre for monitoring at 45 days after sowing. \n2. When the trap catch exceeds the Economic Threshold Level (ETL) of 8 moths per trap per night for 3 consecutive days, or if you see 10% damaged green bolls, spray one of the following chemical options in 150-200 liters of water per acre:\n- Profenofos 50% EC at 500 ml per acre\n- Emamectin Benzoate 5% SG at 100 g per acre\n3. Alternatively, you can release Trichogramma egg parasitoids at the rate of 60,000 per acre weekly.\n\nPreventive Measures:\n- Strictly follow the termination of the crop by the end of January to break the pest cycle.\n- Avoid stacking cotton stalks in fields.\n- Do not allow ratoon cotton.\n\nOfficial Sources:\n- ICAR-Central Institute for Cotton Research (CICR) Nagpur"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "feature": "Hindi, symptoms: cotton whitefly and leaf curl",
+    "passed": true,
+    "turns": [
+      {
+        "query": "कपास के पत्ते नीचे की ओर मुड़ रहे हैं और सफेद मक्खी दिख रही है, क्या करें?",
+        "intent": "crop_question",
+        "ms": 1952,
+        "passed": true,
+        "problems": [],
+        "top_section": "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "कपास के पत्ते नीचे की ओर मुड़ना और सफेद मक्खी दिखना सफेद मक्खी (Bemisia tabaci) और कपास पत्ता मरोड़ वायरस (Cotton Leaf Curl Virus) के लक्षण हैं। इसके वयस्क और निम्फ पत्तियों के निचले हिस्से से रस चूसते हैं, जिससे पत्तियां पीली पड़ जाती हैं और नीचे की ओर मुड़ जाती हैं। इसके नियंत्रण के लिए निम्नलिखित कदम उठाएं:\n\nअनुशंसित कार्रवाई और रासायनिक खुराक:\nजब आर्थिक देहली स्तर (ETL) यानी शीर्ष, मध्य और निचली पत्तियों पर प्रति पत्ती 6 से 8 सफेद मक्खी के वयस्क दिखाई दें, तब छिड़काव करें। \n150 लीटर पानी प्रति एकड़ में निम्नलिखित में से किसी एक रसायन का छिड़काव करें:\n- Diafenthiuron 50% WP @ 250 g\n- या Pyriproxyfen 10% EC @ 500 ml\n- या Afidopyropen 50 g/l DC @ 400 ml\n\nरोकथाम के उपाय:\n- अनुशंसित CLCuD-सहिष्णु संकर (हाइब्रिड) की बुवाई करें।\n- खेतों की सीमाओं के आसपास पाए जाने वाले वैकल्पिक खरपतवार मेजबानों जैसे कंघी बूटी (Abutilon indicum) और पीली बूटी को नष्ट कर दें।\n\nआधिकारिक स्रोत:\n- ICAR-Central Institute for Cotton Research (CICR) Nagpur (2024) - Cotton Whitefly and Leaf Curl Virus (CLCuD) Control"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "feature": "Crop planning: wheat sowing time and seed rate",
+    "passed": true,
+    "turns": [
+      {
+        "query": "When should I sow wheat and how much seed per acre?",
+        "intent": "general_agriculture",
+        "ms": 1250,
+        "passed": true,
+        "problems": [],
+        "top_section": "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "Based on verified Punjab Agricultural University (PAU) and ICAR guidelines, the optimum sowing time for timely sown wheat is October 25 to November 15. The recommended seed rate is 40-45 kg per acre.\n\nSources Used:\n- Punjab Agricultural University (PAU) & ICAR - Wheat (Kanak/Gehun) Package of Practices & Disease Management [Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages]"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "feature": "Fertilizer: mustard NPK and sulphur",
+    "passed": true,
+    "turns": [
+      {
+        "query": "How much fertilizer does mustard need?",
+        "intent": "general_agriculture",
+        "ms": 1255,
+        "passed": true,
+        "problems": [],
+        "top_section": "Mustard Fertilizer and Irrigation Management",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "For mustard, apply 80 kg Nitrogen (N), 40 kg Phosphorus (P2O5), and 40 kg Potassium (K2O) per hectare. Additionally, apply Sulphur at 20 to 25 kg per hectare through elemental sulphur, or use Gypsum at 200 kg per hectare, which helps increase the oil content by 2 to 3 percent.\n\nOfficial Sources:\n1. ICAR-Directorate of Rapeseed-Mustard Research (DRMR) Bharatpur - Mustard (Sarson/Raya) Package of Practices & Pest Management (2024)."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "feature": "Punjabi, symptoms: mustard white rust",
+    "passed": true,
+    "turns": [
+      {
+        "query": "ਸਰ੍ਹੋਂ ਦੇ ਪੱਤਿਆਂ ਦੇ ਹੇਠਾਂ ਚਿੱਟੇ ਛਾਲੇ ਪੈ ਗਏ ਹਨ, ਕੀ ਕਰੀਏ?",
+        "intent": "general_agriculture",
+        "ms": 2474,
+        "passed": true,
+        "problems": [],
+        "top_section": "White Rust (Safed Kungi) and Blight Management in Mustard",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "ਸਰ੍ਹੋਂ ਦੇ ਪੱਤਿਆਂ ਦੇ ਹੇਠਾਂ ਚਿੱਟੇ ਛਾਲੇ ਪੈ ਜਾਣਾ ਸਫ਼ੈਦ ਕੁੰਗੀ (White Rust) ਬਿਮਾਰੀ ਦੇ ਲੱਛਣ ਹਨ। ਇਸਦੀ ਰੋਕਥਾਮ ਲਈ ਹੇਠ ਲਿਖੇ ਉਪਾਅ ਕਰੋ:\n\nਸਫ਼ੈਦ ਕੁੰਗੀ (White Rust) ਅਤੇ ਝੁਲਸ ਰੋਗ ਦੀ ਰੋਕਥਾਮ:\n- ਬਿਜਾਈ ਤੋਂ ਪਹਿਲਾਂ ਬੀਜਾਂ ਨੂੰ Metalaxyl 35% WS (Apron) @ 6 ਗ੍ਰਾਮ ਪ੍ਰਤੀ ਕਿਲੋ ਬੀਜ ਦੇ ਹਿਸਾਬ ਨਾਲ ਸੋਧੋ।\n- ਪੱਤਿਆਂ ਉੱਤੇ ਬਿਮਾਰੀ ਦੇ ਲੱਛਣ ਦਿਖਾਈ ਦੇਣ 'ਤੇ, Metalaxyl 8% + Mancozeb 64% WP (Ridomil MZ) @ 2 ਗ੍ਰਾਮ ਪ੍ਰਤੀ ਲੀਟਰ ਪਾਣੀ (ਲਗਭਗ 400 ਗ੍ਰਾਮ 200 ਲੀਟਰ ਪਾਣੀ ਵਿੱਚ ਪ੍ਰਤੀ ਏਕੜ) ਦੇ ਹਿਸਾਬ ਨਾਲ ਸਪਰੇਅ ਕਰੋ।\n\nਰੋਕਥਾਮ ਦੇ ਉਪਾਅ:\n- ਰੋਧਕ ਜਾਂ ਸਹਿਣਸ਼ੀਲ ਕਿਸਮਾਂ ਜਿਵੇਂ ਕਿ RH-749, NRCHB 101, ਅਤੇ DRMRIJ 31 (Giriraj) ਦੀ ਵਰਤੋਂ ਕਰੋ।\n- ਫ਼ਸਲ ਨੂੰ ਸੰਤੁਲਿਤ ਖ਼ੁਰਾਕ ਦਿਓ ਅਤੇ ਖੇਤ ਵਿੱਚ ਪਾਣੀ ਦੇ ਨਿਕਾਸ ਨੂੰ ਸਹੀ ਰੱਖੋ।\n\nਅਧਿਕਾਰਤ ਸਰੋਤ:\n- ICAR-Directorate of Rapeseed-Mustard Research (DRMR) Bharatpur - Mustard (Sarson/Raya) Package of Practices & Pest Management (2024)"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "feature": "Symptoms only: Karnal bunt",
+    "passed": true,
+    "turns": [
+      {
+        "query": "Some of my wheat grains have turned into black powder and smell like rotten fish. What is this?",
+        "intent": "general_agriculture",
+        "ms": 1503,
+        "passed": true,
+        "problems": [],
+        "top_section": "Karnal Bunt (Tilletia indica) Management in Wheat",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "Based on the symptoms you described, your wheat crop is affected by a disease called Karnal Bunt. \n\n**Symptoms and Identification:**\nOnly a few grains in a spike are partially transformed into a black powdery mass of spores. When you crush these affected grains, they give an unpleasant rotten-fish odor due to a chemical called trimethylamine.\n\n**Recommended Action and Chemical Dosage:**\nSpray Propiconazole 25% EC at the rate of 200 ml in 200 liters of water per acre. This should be done at the ear-emergence (boot leaf) stage if the weather is cloudy or if light rainfall occurs during flowering.\n\n**Preventive Measures:**\n- Use disease-free certified seeds.\n- Avoid using excessive nitrogenous fertilizers.\n- Avoid continuous wheat cropping in heavily infested fields.\n\n**Official Sources Used:**\n- Punjab Agricultural University (PAU) & ICAR - Wheat Package of Practices & Disease Management [Karnal Bunt (Tilletia indica) Management in Wheat]."
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "feature": "Hinglish, symptoms: paddy sheath blight",
+    "passed": true,
+    "turns": [
+      {
+        "query": "Dhaan ke tane par paani ke paas saanp ki khaal jaise dhabbe hain",
+        "intent": "crop_question",
+        "ms": 2458,
+        "passed": true,
+        "problems": [],
+        "top_section": "Paddy Sheath Blight Management",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "Namaste! KisanSahayak. Dhaan mein yeh lakshan Sheath Blight (Rhizoctonia solani) bimari ke hain. Iske lakshan yeh hain ki paani ke star ke paas patton ke sheath par gol ya elliptical greenish-grey spots (dhabbe) hote hain, jo baad mein badh kar irregular dark brown margins ke sath saanp ki khaal jaise pattern mein dikhte hain.\n\nIske roktham ke liye aapko yeh recommended action aur chemical dosage use karni chahiye:\nBimari shuru hote hi, Trifloxystrobin 25% + Tebuconazole 50% WG (Nativo) @ 80-100 gram ya Hexaconazole 5% SC @ 400 ml ko 200 liter paani mein milakar prati acre spray karein.\n\nPrecautions aur preventive measures:\n1. Kheton ke bunds (med) ko ghaas-fhoos aur weed se saaf rakhein.\n2. Bahut ghaney paudhe (dense planting) lagane se bachein.\n3. Excessive nitrogen (yuria) ka prayog na karein.\n\nOfficial Sources:\n- ICAR-National Rice Research Institute (NRRI) & PAU (2024) - Paddy Sheath Blight Management Advisory"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "feature": "Scope: greeting, then an off-topic question",
+    "passed": true,
+    "turns": [
+      {
+        "query": "Namaste",
+        "intent": "greeting",
+        "ms": 0,
+        "passed": true,
+        "problems": [],
+        "top_section": null,
+        "district": null,
+        "answer_source": null,
+        "answer": "Namaste! I am KisanSahayak, your farming assistant.\n\nI can help with pests, diseases, fertilizer, seeds, weather and pesticide safety for wheat, mustard, paddy, cotton and other crops. You can type your question or ask by voice."
+      },
+      {
+        "query": "Who won the IPL this year?",
+        "intent": "out_of_scope",
+        "ms": 0,
+        "passed": true,
+        "problems": [],
+        "top_section": null,
+        "district": null,
+        "answer_source": null,
+        "answer": "This question does not seem to be about farming. KisanSahayak only answers questions about crop care, pest and disease control, fertilizer, weather and pesticide safety. Please ask a farming question."
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "feature": "Guardrail: banned pesticide named in Hindi script",
+    "passed": true,
+    "turns": [
+      {
+        "query": "क्या मैं बैंगन पर मोनोक्रोटोफॉस छिड़क सकता हूँ?",
+        "intent": "safety_query",
+        "ms": 1559,
+        "passed": true,
+        "problems": [],
+        "top_section": "Pink Bollworm (Gulabi Sundhi) Integrated Management",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "इस विषय पर सत्यापित आईसीएआर (ICAR) या पीएयू (PAU) की जानकारी नहीं मिली है। कृपया सलाह के लिए अपने सबसे نزدیک कृषि विज्ञान केंद्र (केवीके) से संपर्क करें।\n\nआधिकारिक स्रोत:\n- ICAR-Central Institute for Cotton Research (CICR) Nagpur\n- Central Insecticides Board & Registration Committee (CIBRC), Ministry of Agriculture & Farmers Welfare\n- Punjab Agricultural University (PAU) & ICAR"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "feature": "Safety: pesticide on the skin (first aid)",
+    "passed": true,
+    "turns": [
+      {
+        "query": "Pesticide fell on my skin while spraying. What should I do?",
+        "intent": "general_agriculture",
+        "ms": 1486,
+        "passed": true,
+        "problems": [],
+        "top_section": "Personal Protective Equipment (PPE) and Spraying Precautions",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "In case of accidental exposure or pesticide falling on your skin, immediately wash skin with plenty of cold water and soap. Induce vomiting only if specified on the label. Rush patient to nearest Community Health Centre (CHC) along with the chemical container or label for targeted antidote administration. \n\nOfficial Sources Used:\n- Central Insecticides Board & Registration Committee (CIBRC), Ministry of Agriculture & Farmers Welfare (2024) - Statutory Pesticide Safety Guidelines & List of Banned Pesticides in India (Personal Protective Equipment and Spraying Precautions)"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "feature": "Hallucination check: a crop the advisories do not cover",
+    "passed": true,
+    "turns": [
+      {
+        "query": "How do I control red rot in sugarcane?",
+        "intent": "crop_not_covered",
+        "ms": 1,
+        "passed": true,
+        "problems": [],
+        "top_section": null,
+        "district": null,
+        "answer_source": null,
+        "answer": "My verified advisories only cover wheat, mustard, paddy (rice) and cotton, so I can't recommend a treatment or dose for this crop. Please contact your nearest Krishi Vigyan Kendra (KVK) or agriculture officer, or call the Kisan Call Centre."
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "feature": "Weather: named place, spray advice only when asked",
+    "passed": true,
+    "turns": [
+      {
+        "query": "Will it rain in Patiala today? Can I spray pesticide?",
+        "intent": "weather",
+        "ms": 678,
+        "passed": true,
+        "problems": [],
+        "top_section": null,
+        "district": "Patiala",
+        "answer_source": null,
+        "answer": "### Farm Weather Advisory: Patiala\n\nPatiala: 24.2°C, humidity 77.0%, wind 9.5 km/h, and a 0.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "feature": "Weather: unknown place is reported, not silently replaced",
+    "passed": true,
+    "turns": [
+      {
+        "query": "What's the weather in Atlantis?",
+        "intent": "weather",
+        "ms": 1608,
+        "passed": true,
+        "problems": [],
+        "top_section": null,
+        "district": "Ludhiana",
+        "answer_source": null,
+        "answer": "Couldn't find \"Atlantis\", so this shows **Ludhiana** instead. Try your district name, e.g. \"weather in Sangrur\".\n\n### Farm Weather Advisory: Ludhiana\n\nLudhiana: 25.1°C, humidity 73.0%, wind 7.4 km/h, and a 0.0% chance of rain in the next 12 hours."
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "feature": "Farm profile: district used for weather, and a changed district wins",
+    "passed": true,
+    "turns": [
+      {
+        "query": "Will it rain today?",
+        "intent": "weather",
+        "ms": 813,
+        "passed": true,
+        "problems": [],
+        "top_section": null,
+        "district": "Sangrur",
+        "answer_source": null,
+        "answer": "### Farm Weather Advisory: Sangrur\n\nSangrur: 23.8°C, humidity 83.0%, wind 6.1 km/h, and a 0.0% chance of rain in the next 12 hours."
+      },
+      {
+        "query": "Will it rain today?",
+        "intent": "weather",
+        "ms": 1643,
+        "passed": true,
+        "problems": [],
+        "top_section": null,
+        "district": "Noida",
+        "answer_source": null,
+        "answer": "### Farm Weather Advisory: Noida\n\nNoida: 25.1°C, humidity 78.0%, wind 5.3 km/h, and a 2.0% chance of rain in the next 12 hours."
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "feature": "Farm profile: the farmer's crop is used when none is named",
+    "passed": true,
+    "turns": [
+      {
+        "query": "How do I control aphids?",
+        "intent": "crop_question",
+        "ms": 2593,
+        "passed": true,
+        "problems": [],
+        "top_section": "Mustard Aphid (Chetpa/Mahu) Management",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "To control mustard aphids (Chetpa/Mahu), follow these management practices:\n\nSymptoms and Identification:\nNymphs and adults suck cell sap from tender twigs, inflorescence, leaves, and siliquae (pods). Infested plants show curling of leaves, stunted growth, and pod failure. They also secrete honeydew, which leads to sooty mold development.\n\nRecommended Action and Chemical Dosage:\nSpray only when the Economic Threshold Level (ETL) is reached (1.5 to 2.0 cm aphid colony on the central shoot or 20 to 25% infested plants). \n\nApply one of the following chemical dosages in 150 to 200 liters of water per acre:\n- Dimethoate 30% EC at 250 to 300 ml per acre\n- Thiamethoxam 25% WG at 50 to 80 g per acre\n\nPrecautions:\nTo protect honeybees and pollinators, spray strictly in the late afternoon (after 3:30 PM).\n\nPreventive Measures:\n- Early sowing between October 10 and October 25 minimizes aphid attack.\n- Install yellow sticky traps at 10 to 15 traps per acre to help in early monitoring and trapping.\n\nOfficial Sources:\n- ICAR-Directorate of Rapeseed-Mustard Research (DRMR) Bharatpur (2024)"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "feature": "PM-KISAN: benefit amount",
+    "passed": true,
+    "turns": [
+      {
+        "query": "PM Kisan mein kitna paisa milta hai?",
+        "intent": "scheme_query",
+        "ms": 1432,
+        "passed": true,
+        "problems": [],
+        "top_section": "What PM-KISAN gives",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "PM-KISAN scheme ke antargat eligible land-holding farmer families ko saal mein 6,000 rupaye ki income support milti hai. Yeh paisa teen equal instalments mein 2,000 rupaye karke seedhe bank accounts mein bheja jata hai. Is scheme mein family ka matlab pati, patni aur nabalig bachhe (minor children) hote hain.\n\nOfficial Sources:\n- PM-KISAN official website, Department of Agriculture and Farmers Welfare (https://pmkisan.gov.in)"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "feature": "PM-KISAN: rule-based eligibility from the profile, and a follow-up",
+    "passed": true,
+    "turns": [
+      {
+        "query": "Am I eligible for PM-KISAN?",
+        "intent": "scheme_query",
+        "ms": 1026,
+        "passed": true,
+        "problems": [],
+        "top_section": "Who is eligible",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "**PM-KISAN check (from your profile):** you are likely NOT eligible because someone in the family paid income tax in the last assessment year.\n\nBased on your profile, you are not eligible for PM-KISAN, as previously shown to you. \n\nAccording to the official guidelines, all land-holding farmer families are eligible for PM-KISAN unless the family falls in one of the exclusion categories, and the State or UT government identifies eligible families as per the scheme guidelines.\n\nIf you have further questions or need more details, please contact your nearest Krishi Vigyan Kendra (KVK).\n\nOfficial Sources:\n- PM-KISAN official website, Department of Agriculture and Farmers Welfare (https://pmkisan.gov.in)"
+      },
+      {
+        "query": "How do I apply?",
+        "intent": "scheme_query",
+        "ms": 1259,
+        "passed": true,
+        "problems": [],
+        "top_section": "Who is eligible",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "**PM-KISAN check (from your profile):** you are likely NOT eligible because someone in the family paid income tax in the last assessment year.\n\nTo apply for PM-KISAN, you can register through the 'New Farmer Registration' option on the official website pmkisan.gov.in, use the PM-KISAN mobile app, visit a Common Service Centre (CSC), or contact your state's PM-KISAN nodal officer. \n\nPlease keep your Aadhaar, land record details, and bank account details ready when applying.\n\nOfficial Sources Used:\n- PM-KISAN official website, Department of Agriculture and Farmers Welfare (https://pmkisan.gov.in)"
+      },
+      {
+        "query": "Am I eligible for PM-KISAN?",
+        "intent": "scheme_query",
+        "ms": 986,
+        "passed": true,
+        "problems": [],
+        "top_section": "Who is eligible",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "**PM-KISAN check (from your profile):** you are likely eligible, as a land-holding farmer family not in any exclusion category. Final approval is done by your state government.\n\n**PM-KISAN check (from your profile):** You are likely eligible.\n\nAll land-holding farmer families are eligible for PM-KISAN, unless the family falls in one of the exclusion categories. The State or UT government identifies eligible families as per the scheme guidelines.\n\nOfficial Sources Used:\n- PM-KISAN official website, Department of Agriculture and Farmers Welfare (https://pmkisan.gov.in)"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "feature": "PM-KISAN: why an instalment is held, and eKYC",
+    "passed": true,
+    "turns": [
+      {
+        "query": "My PM-KISAN instalment has stopped coming. Why?",
+        "intent": "scheme_query",
+        "ms": 1154,
+        "passed": true,
+        "problems": [],
+        "top_section": "What PM-KISAN gives",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "Your PM-KISAN payment may be temporarily on hold until physical verification is completed. This can happen in suspected exclusion cases, such as:\n1. Land ownership acquired after 1 February 2019.\n2. More than one member of the same family receiving benefits, for example, both husband and wife.\n\nYou can check the \"Know Your Status\" option on the PM-KISAN official website to find the specific reason for your case.\n\nOfficial Sources:\n- PM-KISAN official website, Department of Agriculture and Farmers Welfare (https://pmkisan.gov.in)"
+      },
+      {
+        "query": "Is eKYC compulsory for PM-KISAN?",
+        "intent": "scheme_query",
+        "ms": 1157,
+        "passed": true,
+        "problems": [],
+        "top_section": "eKYC",
+        "district": null,
+        "answer_source": "llm:gemini-flash-lite-latest",
+        "answer": "Yes, eKYC is mandatory for all registered PM-KISAN farmers. Biometric eKYC is available through CSC centres, the PM-KISAN mobile app, and state-authorised officials.\n\nOfficial Sources:\n- PM-KISAN official website, Department of Agriculture and Farmers Welfare (https://pmkisan.gov.in)"
+      }
+    ]
+  }
+]
