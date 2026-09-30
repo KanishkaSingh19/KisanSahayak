@@ -73,6 +73,14 @@ st.markdown(
         color: #FFFFFF; padding: 5px 13px; border-radius: 999px; font-size: 0.85rem;
     }
 
+    /* Photo button inside the chat box: a camera icon instead of Streamlit's "+" */
+    [data-testid="stChatInput"] button[aria-label="Upload a file"] svg { display: none; }
+    [data-testid="stChatInput"] button[aria-label="Upload a file"]::before {
+        content: ""; width: 22px; height: 22px; background-color: currentColor;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 2 7.17 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3.17L15 2H9zm3 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'/%3E%3C/svg%3E") center / contain no-repeat;
+                mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 2 7.17 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3.17L15 2H9zm3 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+
     /* Cards: bordered containers are keyed "card_*" (Streamlit adds a st-key-<key> class) */
     [class*="st-key-card_"] {
         background: #FFFFFF; border-radius: 18px !important; border: 1px solid var(--ks-line) !important;
@@ -137,6 +145,9 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
+
+PHOTO_TYPES = ["jpg", "jpeg", "png", "webp"]
 
 
 @st.cache_resource
@@ -447,7 +458,16 @@ def main():
                         render_answer(msg["result"], pipeline, lang, msg["id"], speak_now=msg.get("speak", False))
                     msg["speak"] = False  # read aloud only the first time it is shown
 
-        prompt = st.chat_input(t("input_placeholder", lang), key="chat_box")
+        # The camera button inside the chat box attaches a crop photo (on phones it offers the camera
+        # or the gallery); text typed with it becomes the question about the photo
+        submission = st.chat_input(
+            t("input_placeholder", lang), key="chat_box", accept_file=True, file_type=PHOTO_TYPES, max_upload_size=10,
+        )
+        prompt, chat_photo = None, None
+        if submission:
+            prompt = (submission.text or "").strip() or None
+            if submission.files:
+                chat_photo = submission.files[0].getvalue()
 
         # Speak in real time: record in the browser, and the question is sent as soon as recording stops.
         # A new key after each question resets the recorder for the next one.
@@ -467,10 +487,12 @@ def main():
             camera = None
             if st.toggle(t("photo_camera_toggle", lang), key="use_camera"):
                 camera = st.camera_input(t("photo_camera", lang), key=f"camera_{photo_round}")
-            photo = st.file_uploader(t("photo_upload", lang), type=["jpg", "jpeg", "png", "webp"], key=f"photo_{photo_round}")
+            photo = st.file_uploader(t("photo_upload", lang), type=PHOTO_TYPES, key=f"photo_{photo_round}")
             send_photo = st.button(t("photo_submit", lang), key=f"send_photo_{photo_round}", disabled=photo is None)
         image_bytes = None
-        if camera is not None:
+        if chat_photo:
+            image_bytes, photo_question, prompt = chat_photo, prompt or "", None
+        elif camera is not None:
             image_bytes = camera.getvalue()
         elif send_photo and photo is not None:
             image_bytes = photo.getvalue()

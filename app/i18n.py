@@ -304,10 +304,10 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hi": "अपनी फसल, रोग या मौसम के बारे में पूछें:",
     },
     "input_placeholder": {
-        "en": "e.g. How do I control aphids in mustard? or What's the weather in Ludhiana today?",
-        "pa": "ਜਿਵੇਂ: ਲੁਧਿਆਣਾ ਵਿੱਚ ਅੱਜ ਮੌਸਮ ਕਿਹੋ ਜਿਹਾ ਹੈ? ਜਾਂ ਸਰ੍ਹੋਂ ਵਿੱਚ ਚੇਪੇ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ?",
-        "hinglish": "Jaise: Ludhiana mein aaj mausam kaisa hai? ya sarson mein chepa ka ilaj kya hai?",
-        "hi": "उदा: लुधियाना में आज मौसम कैसा है? या सरसों में माहू की रोकथाम कैसे करें?",
+        "en": "Ask about crops, pests or weather, or tap the camera to send a crop photo",
+        "pa": "ਫ਼ਸਲ, ਕੀੜਿਆਂ ਜਾਂ ਮੌਸਮ ਬਾਰੇ ਪੁੱਛੋ, ਜਾਂ ਫ਼ਸਲ ਦੀ ਫ਼ੋਟੋ ਭੇਜਣ ਲਈ ਕੈਮਰਾ ਦਬਾਓ",
+        "hinglish": "Fasal, keede ya mausam ke baare mein poochhein, ya fasal ki photo bhejne ke liye camera dabayein",
+        "hi": "फ़सल, कीट या मौसम के बारे में पूछें, या फ़सल की फ़ोटो भेजने के लिए कैमरा दबाएँ",
     },
     "voice_info": {
         "en": "🎙️ Upload a recorded voice note (.wav / .mp3):",

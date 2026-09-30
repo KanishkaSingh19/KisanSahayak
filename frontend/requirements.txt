@@ -2,7 +2,7 @@
 # Community Cloud uses this file because it sits next to the entrypoint (frontend/app.py);
 # the full local setup is the root requirements.txt.
 # Search uses Gemini embeddings on the cloud: set EMBEDDING_PROVIDER = "gemini" in the app's Secrets.
-streamlit>=1.40.0
+streamlit>=1.63.0   # chat box with a photo button (accept_file, max_upload_size)
 pydantic>=2.5.0
 pydantic-settings>=2.1.0
 python-dotenv>=1.0.0
