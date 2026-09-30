@@ -3,6 +3,8 @@
 > **Voice-first Multilingual AI Farming Assistant for Indian Farmers**  
 > *Grounded agricultural RAG (FAISS + BM25 + Reciprocal Rank Fusion) with voice input/output and live ag-weather spray advisories*
 
+[![tests](https://github.com/KanishkaSingh19/KisanSahayak/actions/workflows/tests.yml/badge.svg)](https://github.com/KanishkaSingh19/KisanSahayak/actions/workflows/tests.yml)
+
 ### 🚀 Live app: **https://kisansahayak1.streamlit.app/**
 *(Free hosting sleeps when idle: if you see a "wake up" screen, click it and allow about a minute to start.)*
 
@@ -172,6 +174,8 @@ python -m app.rag.ingest
 ```bash
 pytest -v
 ```
+
+All tests also run automatically on GitHub on every push and pull request (`.github/workflows/tests.yml`), with no API keys needed.
 
 ### 5. Run Benchmark Queries
 ```bash
