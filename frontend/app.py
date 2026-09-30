@@ -73,10 +73,10 @@ st.markdown(
         color: #FFFFFF; padding: 5px 13px; border-radius: 999px; font-size: 0.85rem;
     }
 
-    /* Camera menu button drawn inside the chat box's bottom-left corner. Its container has no
-       height and cancels the gap above it, so the layout below does not move. */
-    .st-key-photo_menu { height: 0; margin-top: -1rem; margin-bottom: -1.75rem; position: relative; z-index: 5; overflow: visible; }
-    .st-key-photo_menu [data-testid="stPopover"] { position: absolute; left: 0.6rem; bottom: 1.5rem; width: auto; }
+    /* Camera menu button pinned to the chat box's bottom-left corner. It is taken out of the
+       layout, so the chat area ends exactly at the chat box and the offsets hold at any width. */
+    .st-key-chat_area { position: relative; }
+    .st-key-chat_area .st-key-photo_menu { position: absolute; left: 0.6rem; bottom: 1.6rem; z-index: 5; width: auto; }
     .st-key-photo_menu [data-testid="stPopoverButton"] { min-height: 2.4rem; padding: 0 0.6rem; }
 
     /* Cards: bordered containers are keyed "card_*" (Streamlit adds a st-key-<key> class) */
@@ -457,8 +457,10 @@ def main():
                     msg["speak"] = False  # read aloud only the first time it is shown
 
         # One chat box for everything: type, or tap the mic to speak (16 kHz WAV, what speech-to-text
-        # works best with). The camera button drawn in its corner (below) sends crop photos.
-        submission = st.chat_input(t("input_placeholder", lang), key="chat_box", accept_audio=True)
+        # works best with). The camera button in its corner (below) sends crop photos; both share one
+        # container so the button can be pinned to the box's own corner at any screen width.
+        chat_area = st.container(key="chat_area")
+        submission = chat_area.chat_input(t("input_placeholder", lang), key="chat_box", accept_audio=True)
         prompt, recording = None, None
         if submission:
             prompt = (submission.text or "").strip() or None
@@ -470,7 +472,7 @@ def main():
         st.session_state.setdefault("photo_round", 0)
         photo_round = st.session_state["photo_round"]
         photo_question, image_bytes = "", None
-        with st.container(key="photo_menu"):
+        with chat_area.container(key="photo_menu"):
             menu = st.popover(
                 t("photo_menu", lang), icon=":material/photo_camera:", type="tertiary",
                 key=f"photo_popover_{photo_round}", on_change="rerun",
