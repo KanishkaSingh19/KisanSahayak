@@ -29,7 +29,7 @@ python evalset/kcc/heldout.py                  # held-out check (see below)
 ## Results
 See [`results.md`](results.md).
 
-**Coverage is the main finding.** Only **26 of 200** real questions are about topics our advisories cover. Most farmer calls are about weeds and herbicides, nutrient deficiencies (zinc, iron, manganese), varieties, fertilizer for paddy and cotton, MSP prices and other pests.
+**Coverage is the main finding.** Only **26 of 200** real questions are about topics our advisories cover. Most farmer calls are about weeds and herbicides, nutrient deficiencies (zinc, iron, manganese), varieties, fertilizer for paddy and cotton, and other pests. (MSP price questions are now answered by the market-price feature.)
 
 For those questions the correct behaviour is to say so and refer the farmer to the **Kisan Call Centre (1800-180-1551)** or the local **KVK**, not to show the nearest advisory for a different problem. Before this test set, the app referred **1%** of them; it now refers **96%**.
 
