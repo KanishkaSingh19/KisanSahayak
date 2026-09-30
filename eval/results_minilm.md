@@ -1,6 +1,6 @@
 # KisanSahayak evaluation results
 
-*2026-09-30 · 67 hand-written test questions in English, Punjabi, Hinglish and Hindi (`eval/test_set.json`) · search embeddings: **minilm** · answers: offline template (deterministic, no API quota)*
+*2026-10-01 · 67 hand-written test questions in English, Punjabi, Hinglish and Hindi (`eval/test_set.json`) · search embeddings: **minilm** · answers: offline template (deterministic, no API quota)*
 
 | Metric | Result |
 |---|---|
@@ -12,7 +12,7 @@
 | Banned-pesticide questions warned | **5/5 (100%)** |
 | False banned-pesticide warnings | 0 of 39 questions not about banned pesticides |
 | Follow-up questions kept context | 6/6 (100%) |
-| Response time without LLM (median / p95) | 52 ms / 57 ms |
+| Response time without LLM (median / p95) | 30 ms / 35 ms |
 
 ## Retrieval by language
 

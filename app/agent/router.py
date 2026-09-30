@@ -1,6 +1,7 @@
 import re
 import unicodedata
 from typing import Optional
+from app.agent.guardrails import AgriculturalGuardrails
 from app.agent.state import ConversationTurn, IntentResult
 from app.tools.location import detect_place
 
@@ -8,7 +9,7 @@ from app.tools.location import detect_place
 CROPS_DICT = {
     "wheat": ["wheat", "gehun", "gehu", "kanak", "गेहूं", "ਕਣਕ"],
     "mustard": ["mustard", "sarson", "sarsonn", "raya", "सरसों", "ਸਰ੍ਹੋਂ", "ਸਰੋਂ"],
-    "paddy": ["paddy", "rice", "dhan", "jhona", "धान", "ਝੋਨਾ", "ਝੋਨੇ"],
+    "paddy": ["paddy", "rice", "dhan", "dhaan", "jhona", "धान", "ਝੋਨਾ", "ਝੋਨੇ"],
     "cotton": ["cotton", "kapas", "narma", "कपास", "ਨਰਮਾ", "ਨਰਮੇ"],
 }
 
@@ -17,6 +18,8 @@ PESTS_AND_DISEASES = {
     "karnal_bunt": ["karnal bunt", "tilletia", "bunt", "करनाल बंट"],
     "aphid": ["aphid", "aphids", "mahu", "mahun", "chetpa", "chepa", "tilla", "माहू", "ਚੇਪਾ", "ਚੇਪੇ"],
     "white_rust": ["white rust", "safed kungi", "blister", "सफेद कुंगी"],
+    # Before "blb": "tana jhulsa" (stem blight) also contains "jhulsa"
+    "sheath_blight": ["sheath blight", "tana jhulsa", "saanp ki khaal", "snake skin", "शीथ ब्लाइट", "तना झुलसा", "ਸ਼ੀਥ ਬਲਾਈਟ"],
     "blb": ["bacterial leaf blight", "blb", "peela jhulsa", "jhulsa", "झुलसा"],
     "bph": ["brown planthopper", "bph", "bhoora tilla", "hopper burn"],
     "pink_bollworm": ["pink bollworm", "gulabi sundhi", "sundhi", "bollworm", "गुलाबी सुंडी", "ਗੁਲਾਬੀ ਸੁੰਡੀ"],
@@ -62,9 +65,31 @@ GREETING_KEYWORDS = [
 ]
 
 OUT_OF_SCOPE_KEYWORDS = [
-    "cricket", "movie", "song", "politics", "president", "minister",
-    "football", "bollywood", "code", "python", "java", "stock market",
+    "cricket", "ipl", "movie", "film", "song", "politics", "election", "president", "minister",
+    "football", "bollywood", "actor", "actress", "code", "python", "java", "stock market",
 ]
+
+# Crops our verified advisories do NOT cover: answering these from another crop's advisory
+# would give a wrong dose, so they get a "not covered, ask your KVK" reply instead
+UNCOVERED_CROPS = {
+    "sugarcane": ["sugarcane", "ganna", "ganne", "गन्ना", "गन्ने", "ਗੰਨਾ", "ਗੰਨੇ"],
+    "maize": ["maize", "corn", "makka", "makki", "मक्का", "ਮੱਕੀ"],
+    "potato": ["potato", "aloo", "आलू", "ਆਲੂ"],
+    "tomato": ["tomato", "tamatar", "टमाटर", "ਟਮਾਟਰ"],
+    "onion": ["onion", "pyaz", "pyaaz", "प्याज", "ਪਿਆਜ਼"],
+    "chilli": ["chilli", "chili", "mirch", "मिर्च", "ਮਿਰਚ"],
+    "brinjal": ["brinjal", "eggplant", "baingan", "बैंगन", "ਬੈਂਗਣ"],
+    "soybean": ["soybean", "soyabean", "सोयाबीन"],
+    "chickpea": ["chickpea", "chana", "चना", "ਛੋਲੇ"],
+    "groundnut": ["groundnut", "peanut", "moongphali", "मूंगफली", "ਮੂੰਗਫਲੀ"],
+    "millet": ["bajra", "millet", "jowar", "बाजरा", "ज्वार", "ਬਾਜਰਾ"],
+    "barley": ["barley", "jau", "जौ", "ਜੌਂ"],
+    "vegetables": ["cauliflower", "cabbage", "gobhi", "okra", "bhindi", "गोभी", "भिंडी", "ਗੋਭੀ", "ਭਿੰਡੀ"],
+    "fruits": ["mango", "banana", "apple", "grapes", "citrus", "kinnow", "आम", "केला", "ਕਿੰਨੂ", "ਅੰਬ"],
+}
+
+
+BANNED_CHECK = AgriculturalGuardrails()
 
 
 def normalize_indic(text: str) -> str:
@@ -162,8 +187,9 @@ class IntentRouter:
                 reasoning="Agricultural weather, rainfall probability, or spraying condition query.",
             )
 
-        # 7. Check for Safety Query
-        if any(matches_keyword(s, clean) for s in SAFETY_KEYWORDS):
+        # 7. Check for Safety Query (a banned pesticide named in any script counts, so the warning
+        # always wins, e.g. over "crop not covered" for "मोनोक्रोटोफॉस on brinjal")
+        if any(matches_keyword(s, clean) for s in SAFETY_KEYWORDS) or BANNED_CHECK.check_banned_chemicals(query)[0]:
             return IntentResult(
                 intent="safety_query",
                 confidence=0.95,
@@ -172,6 +198,21 @@ class IntentRouter:
                 detected_district=detected_district,
                 reasoning="Query specifically pertains to pesticide bans, toxicity, or safety protocols.",
             )
+
+        # 7b. A crop our advisories don't cover (and none they do): say so instead of answering
+        # from another crop's advisory. Banned-pesticide questions were handled above.
+        if not detected_crop:
+            uncovered = next(
+                (name for name, aliases in UNCOVERED_CROPS.items() if any(matches_keyword(a, clean) for a in aliases)),
+                None,
+            )
+            if uncovered:
+                return IntentResult(
+                    intent="crop_not_covered",
+                    confidence=0.9,
+                    detected_topic=uncovered,
+                    reasoning=f"Question about {uncovered}, which the verified advisories do not cover.",
+                )
 
         # 8. Check for Crop-specific health/disease query
         if detected_topic or (detected_crop and any(w in clean for w in ["spray", "disease", "pest", "control", "ilaj", "roktham", "dawa", "dawai", "keeda", "keet"])):
@@ -218,7 +259,7 @@ class IntentRouter:
             history = [history]
         history = list(history or [])
         result = self.classify(query)
-        if not history or result.intent in ("greeting", "out_of_scope"):
+        if not history or result.intent in ("greeting", "out_of_scope", "crop_not_covered"):
             return result
 
         # A photo diagnosis counts as a crop question, so "What is the dose?" after a photo stays on it

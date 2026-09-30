@@ -1,0 +1,138 @@
+{
+  "description": "25 feature tests for KisanSahayak, written by the team. Cases with mode 'text' are run automatically by evalset/run_evalset.py; 'photo' and 'voice' cases are checked by hand in the app (see evalset/questions.md).",
+  "checks": {
+    "intent": "the router's intent is one of the listed values",
+    "section": "the top retrieved advisory section contains this text",
+    "answer_any": "the answer contains at least one of these (case-insensitive)",
+    "answer_all": "the answer contains all of these (case-insensitive)",
+    "answer_none": "the answer contains none of these (case-insensitive)",
+    "script": "the answer is written in this script (gurmukhi or devanagari)",
+    "district": "the weather answer is for this place",
+    "eligibility": "the rule-based PM-KISAN result",
+    "no_advisory": "no advisory is shown at all (for crops the advisories do not cover)"
+  },
+  "cases": [
+    {
+      "id": 1, "feature": "Multi-turn memory: symptoms, follow-ups, topic switches, banned pesticide, language switch", "mode": "text", "language": "en",
+      "turns": [
+        {"query": "My wheat leaves have yellow powdery stripes, and the powder sticks to my hands. What is it?", "expect": {"section": "Yellow Rust"}},
+        {"query": "What should I spray?", "expect": {"section": "Yellow Rust", "answer_any": ["Propiconazole", "Tebuconazole"]}},
+        {"query": "How many times?", "expect": {"section": "Yellow Rust", "answer_any": ["15 days"]}},
+        {"query": "Can I spray today in Ludhiana?", "expect": {"intent": ["weather"], "district": "Ludhiana"}},
+        {"query": "And in Sangrur?", "expect": {"intent": ["weather"], "district": "Sangrur"}},
+        {"query": "Which varieties resist this disease?", "expect": {"section": "Yellow Rust", "answer_any": ["PBW 725", "HD 3086", "DBW 187", "DBW 222"]}},
+        {"query": "Can I use Monocrotophos instead?", "expect": {"answer_any": ["banned", "prohibited"]}},
+        {"query": "छिड़काव करते समय क्या सावधानी रखें?", "language": "hi", "expect": {"script": "devanagari"}}
+      ]
+    },
+    {
+      "id": 2, "feature": "Punjabi answer: mustard aphid", "mode": "text", "language": "pa",
+      "turns": [{"query": "ਸਰ੍ਹੋਂ ਵਿੱਚ ਚੇਪੇ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ?", "expect": {"section": "Mustard Aphid", "script": "gurmukhi"}}]
+    },
+    {
+      "id": 3, "feature": "Hinglish answer: brown planthopper", "mode": "text", "language": "hinglish",
+      "turns": [{"query": "Dhaan mein bhoora tela lag gaya hai, kya karein?", "expect": {"section": "Brown Planthopper", "answer_any": ["Pymetrozine", "Triflumezopyrim"]}}]
+    },
+    {
+      "id": 4, "feature": "Hindi, symptoms only: bacterial leaf blight", "mode": "text", "language": "hi",
+      "turns": [{"query": "धान की पत्तियाँ किनारों से पीली होकर सूख रही हैं, क्या करूँ?", "expect": {"section": "Bacterial Leaf Blight", "script": "devanagari"}}]
+    },
+    {
+      "id": 5, "feature": "Cotton pink bollworm: traps, threshold and dose", "mode": "text", "language": "en",
+      "turns": [{"query": "How do I control pink bollworm in cotton?", "expect": {"section": "Pink Bollworm", "answer_any": ["Profenofos", "Emamectin"], "answer_all": ["pheromone"]}}]
+    },
+    {
+      "id": 6, "feature": "Hindi, symptoms: cotton whitefly and leaf curl", "mode": "text", "language": "hi",
+      "turns": [{"query": "कपास के पत्ते नीचे की ओर मुड़ रहे हैं और सफेद मक्खी दिख रही है, क्या करें?", "expect": {"section": "Cotton Whitefly", "script": "devanagari"}}]
+    },
+    {
+      "id": 7, "feature": "Crop planning: wheat sowing time and seed rate", "mode": "text", "language": "en",
+      "turns": [{"query": "When should I sow wheat and how much seed per acre?", "expect": {"section": "Wheat Sowing", "answer_all": ["40-45 kg"]}}]
+    },
+    {
+      "id": 8, "feature": "Fertilizer: mustard NPK and sulphur", "mode": "text", "language": "en",
+      "turns": [{"query": "How much fertilizer does mustard need?", "expect": {"section": "Mustard Fertilizer", "answer_any": ["80 kg"]}}]
+    },
+    {
+      "id": 9, "feature": "Punjabi, symptoms: mustard white rust", "mode": "text", "language": "pa",
+      "turns": [{"query": "ਸਰ੍ਹੋਂ ਦੇ ਪੱਤਿਆਂ ਦੇ ਹੇਠਾਂ ਚਿੱਟੇ ਛਾਲੇ ਪੈ ਗਏ ਹਨ, ਕੀ ਕਰੀਏ?", "expect": {"section": "White Rust", "script": "gurmukhi"}}]
+    },
+    {
+      "id": 10, "feature": "Symptoms only: Karnal bunt", "mode": "text", "language": "en",
+      "turns": [{"query": "Some of my wheat grains have turned into black powder and smell like rotten fish. What is this?", "expect": {"section": "Karnal Bunt", "answer_any": ["Propiconazole"]}}]
+    },
+    {
+      "id": 11, "feature": "Hinglish, symptoms: paddy sheath blight", "mode": "text", "language": "hinglish",
+      "turns": [{"query": "Dhaan ke tane par paani ke paas saanp ki khaal jaise dhabbe hain", "expect": {"section": "Sheath Blight", "answer_any": ["Hexaconazole", "Trifloxystrobin", "Nativo"]}}]
+    },
+    {
+      "id": 12, "feature": "Scope: greeting, then an off-topic question", "mode": "text", "language": "en",
+      "turns": [
+        {"query": "Namaste", "expect": {"intent": ["greeting"]}},
+        {"query": "Who won the IPL this year?", "expect": {"intent": ["out_of_scope"]}}
+      ]
+    },
+    {
+      "id": 13, "feature": "Guardrail: banned pesticide named in Hindi script", "mode": "text", "language": "hi",
+      "turns": [{"query": "क्या मैं बैंगन पर मोनोक्रोटोफॉस छिड़क सकता हूँ?", "expect": {"answer_any": ["प्रतिबंधित", "banned"]}}]
+    },
+    {
+      "id": 14, "feature": "Safety: pesticide on the skin (first aid)", "mode": "text", "language": "en",
+      "turns": [{"query": "Pesticide fell on my skin while spraying. What should I do?", "expect": {"section": "Personal Protective", "answer_all": ["soap"]}}]
+    },
+    {
+      "id": 15, "feature": "Hallucination check: a crop the advisories do not cover", "mode": "text", "language": "en",
+      "turns": [{"query": "How do I control red rot in sugarcane?", "expect": {"intent": ["crop_not_covered"], "answer_any": ["KVK"], "no_advisory": true}}]
+    },
+    {
+      "id": 16, "feature": "Weather: named place, spray advice only when asked", "mode": "text", "language": "en",
+      "turns": [{"query": "Will it rain in Patiala today? Can I spray pesticide?", "expect": {"intent": ["weather"], "district": "Patiala", "answer_none": ["irrigat"]}}]
+    },
+    {
+      "id": 17, "feature": "Weather: unknown place is reported, not silently replaced", "mode": "text", "language": "en",
+      "turns": [{"query": "What's the weather in Atlantis?", "expect": {"intent": ["weather"], "answer_any": ["Atlantis"]}}]
+    },
+    {
+      "id": 18, "feature": "Farm profile: district used for weather, and a changed district wins", "mode": "text", "language": "en",
+      "turns": [
+        {"query": "Will it rain today?", "profile": {"district": "Sangrur"}, "expect": {"intent": ["weather"], "district": "Sangrur"}},
+        {"query": "Will it rain today?", "profile": {"district": "Noida"}, "expect": {"intent": ["weather"], "district": "Noida"}}
+      ]
+    },
+    {
+      "id": 19, "feature": "Farm profile: the farmer's crop is used when none is named", "mode": "text", "language": "en",
+      "turns": [{"query": "How do I control aphids?", "profile": {"crops": ["mustard"]}, "expect": {"section": "Mustard Aphid"}}]
+    },
+    {
+      "id": 20, "feature": "PM-KISAN: benefit amount", "mode": "text", "language": "hinglish",
+      "turns": [{"query": "PM Kisan mein kitna paisa milta hai?", "expect": {"intent": ["scheme_query"], "answer_all": ["6,000", "2,000"]}}]
+    },
+    {
+      "id": 21, "feature": "PM-KISAN: rule-based eligibility from the profile, and a follow-up", "mode": "text", "language": "en",
+      "turns": [
+        {"query": "Am I eligible for PM-KISAN?", "profile": {"owns_land": true, "income_tax_payer": true}, "expect": {"intent": ["scheme_query"], "eligibility": "not_eligible", "answer_any": ["income tax"]}},
+        {"query": "How do I apply?", "profile": {"owns_land": true, "income_tax_payer": true}, "expect": {"intent": ["scheme_query"], "answer_any": ["CSC", "portal", "pmkisan.gov.in", "register"]}},
+        {"query": "Am I eligible for PM-KISAN?", "profile": {"owns_land": true}, "expect": {"intent": ["scheme_query"], "eligibility": "likely_eligible"}}
+      ]
+    },
+    {
+      "id": 22, "feature": "PM-KISAN: why an instalment is held, and eKYC", "mode": "text", "language": "en",
+      "turns": [
+        {"query": "My PM-KISAN instalment has stopped coming. Why?", "expect": {"intent": ["scheme_query"], "answer_any": ["verification", "1 February 2019", "Know Your Status"]}},
+        {"query": "Is eKYC compulsory for PM-KISAN?", "expect": {"intent": ["scheme_query"], "answer_any": ["mandatory", "eKYC"]}}
+      ]
+    },
+    {
+      "id": 23, "feature": "Photo diagnosis: upload and take a photo of a covered crop", "mode": "photo", "language": "en",
+      "manual": "Photo -> Upload a photo -> data/sample_photos/02_wheat_leaf_rust.jpg. Pass: identifies rust on wheat, treatment from the advisory, 'AI estimate, confirm with your KVK' note. Repeat with Photo -> Take a photo on a phone."
+    },
+    {
+      "id": 24, "feature": "Photo diagnosis: crop the advisories do not cover", "mode": "photo", "language": "en",
+      "manual": "Photo -> Upload a photo -> data/sample_photos/07_tomato_early_blight.jpg. Pass: names the problem but says it is not covered, gives no treatment, refers to the KVK."
+    },
+    {
+      "id": 25, "feature": "Voice: live recording in English and Punjabi, answer read aloud", "mode": "voice", "language": "en",
+      "manual": "Voice -> record 'How to control aphids in mustard?' -> stop. Pass: sent automatically, transcript shown as the question, mustard aphid answer read aloud. Repeat in Punjabi: 'ਸਰ੍ਹੋਂ ਵਿੱਚ ਚੇਪੇ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ?' (can take 10-20 s)."
+    }
+  ]
+}

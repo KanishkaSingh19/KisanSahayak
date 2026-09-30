@@ -1,5 +1,7 @@
 import pytest
 
+from app.agent.router import IntentRouter
+
 
 def test_punjabi_bindi_and_tippi_spellings_match():
     from app.agent.router import IntentRouter
@@ -67,3 +69,37 @@ def test_intent_router_general_agri():
     r = router.classify("wheat sowing time and first irrigation")
     assert r.intent == "general_agriculture"
     assert r.detected_crop == "Wheat"
+
+
+@pytest.mark.parametrize(
+    "query",
+    ["How do I control red rot in sugarcane?", "ganne mein keeda lag gaya", "आलू में झुलसा रोग का इलाज", "ਟਮਾਟਰ ਦੇ ਪੱਤੇ ਸੁੱਕ ਰਹੇ ਹਨ"],
+)
+def test_uncovered_crop_is_not_answered_from_another_advisory(query):
+    assert IntentRouter().classify(query).intent == "crop_not_covered"
+
+
+def test_banned_pesticide_on_uncovered_crop_still_warns():
+    assert IntentRouter().classify("Can I use Monocrotophos on brinjal?").intent == "safety_query"
+
+
+def test_dhaan_spelling_is_paddy():
+    assert IntentRouter().classify("Dhaan ke tane par dhabbe hain, kya karein?").detected_crop == "Paddy"
+
+
+def test_ipl_is_out_of_scope():
+    assert IntentRouter().classify("Who won the IPL this year?").intent == "out_of_scope"
+
+
+@pytest.mark.parametrize("query", ["क्या मैं बैंगन पर मोनोक्रोटोफॉस छिड़क सकता हूँ?", "ਕੀ ਮੈਂ ਟਮਾਟਰ ਤੇ ਐਂਡੋਸਲਫ਼ਾਨ ਛਿੜਕ ਸਕਦਾ ਹਾਂ?"])
+def test_banned_pesticide_in_indic_script_is_a_safety_question(query):
+    assert IntentRouter().classify(query).intent == "safety_query"
+
+
+@pytest.mark.parametrize("query", ["Dhaan ke tane par saanp ki khaal jaise dhabbe hain", "धान में तना झुलसा रोग", "How to manage sheath blight in paddy?"])
+def test_sheath_blight_names(query):
+    assert IntentRouter().classify(query).detected_topic == "Sheath Blight"
+
+
+def test_leaf_blight_is_still_blb():
+    assert IntentRouter().classify("dhan mein peela jhulsa rog ka ilaj").detected_topic == "Blb"

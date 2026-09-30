@@ -308,6 +308,23 @@ class KisanPipeline:
                     processing_metadata={"latency_ms": int((time.time() - start_time) * 1000)},
                 )
 
+            # 4b. A crop the verified advisories don't cover: no treatment from another crop's advisory
+            if intent_res.intent == "crop_not_covered":
+                return GroundedAnswer(
+                    query=clean_query,
+                    intent=intent_res.intent,
+                    answer=t("crop_not_covered", detected_lang),
+                    citations=[],
+                    retrieved_chunks=[],
+                    is_grounded=True,
+                    safety_disclaimers=[],
+                    detected_language=detected_lang,
+                    processing_metadata={
+                        "latency_ms": int((time.time() - start_time) * 1000),
+                        "detected_topic": intent_res.detected_topic,
+                    },
+                )
+
             # 5. Handle Agricultural Weather Tool Intent (Phase 2)
             if intent_res.intent == "weather":
                 lang = detected_lang

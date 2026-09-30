@@ -57,6 +57,26 @@ STRINGS: Dict[str, Dict[str, str]] = {
             "से संबंधित आपकी सहायता के लिए तैयार हूँ। आप अपनी समस्या लिखकर या बोलकर पूछ सकते हैं।"
         ),
     },
+    "crop_not_covered": {
+        "en": (
+            "My verified advisories only cover wheat, mustard, paddy (rice) and cotton, so I can't recommend "
+            "a treatment or dose for this crop. Please contact your nearest Krishi Vigyan Kendra (KVK) or "
+            "agriculture officer, or call the Kisan Call Centre."
+        ),
+        "pa": (
+            "ਮੇਰੀਆਂ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹਾਂ ਸਿਰਫ਼ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਬਾਰੇ ਹਨ, ਇਸ ਲਈ ਮੈਂ ਇਸ ਫ਼ਸਲ ਲਈ ਕੋਈ ਇਲਾਜ ਜਾਂ ਮਾਤਰਾ "
+            "ਨਹੀਂ ਦੱਸ ਸਕਦਾ। ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK), ਖੇਤੀਬਾੜੀ ਅਫ਼ਸਰ ਜਾਂ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨਾਲ ਸੰਪਰਕ ਕਰੋ।"
+        ),
+        "hinglish": (
+            "Meri pramanit salah sirf gehun, sarson, dhaan aur kapas ke liye hai, isliye main is fasal ke liye "
+            "koi ilaj ya dawa ki matra nahi bata sakta. Kripya apne nazdeeki Krishi Vigyan Kendra (KVK), "
+            "krishi adhikari ya Kisan Call Centre se sampark karein."
+        ),
+        "hi": (
+            "मेरी प्रमाणित सलाह केवल गेहूं, सरसों, धान और कपास के लिए है, इसलिए मैं इस फ़सल के लिए कोई इलाज या "
+            "दवा की मात्रा नहीं बता सकता। कृपया अपने नज़दीकी कृषि विज्ञान केंद्र (KVK), कृषि अधिकारी या किसान कॉल सेंटर से संपर्क करें।"
+        ),
+    },
     "out_of_scope": {
         "en": (
             "This question does not seem to be about farming. KisanSahayak only answers questions about "

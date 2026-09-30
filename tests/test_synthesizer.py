@@ -131,3 +131,16 @@ def test_saved_translations_keep_every_number():
 
 def test_synthesize_still_returns_text():
     assert _gemini(reply="ok").synthesize("aphid", [CHUNK]) == "ok"
+
+
+def test_offline_answer_has_the_whole_advisory_field():
+    """A long section is split into chunks; the offline answer must not lose the part in the second chunk."""
+    from app.rag.hybrid_retriever import RetrievalResult
+
+    chunk = RetrievalResult(
+        chunk_id="wheat_s0_c0", text="Recommended Action & Chemical Dosage: Spray Propiconazole 25% EC @ 200 ml.",
+        score=1.0, citation="PAU", source_agency="PAU", crop="Wheat",
+        section="Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
+    )
+    answer = DeterministicGroundedSynthesizer().synthesize("What should I spray?", [chunk], language="en")
+    assert "Repeat spray after 15 days" in answer

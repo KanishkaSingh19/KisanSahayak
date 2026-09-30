@@ -25,6 +25,7 @@ Farmers ask about crops, pests, pesticides or weather in Hindi, Punjabi, Hinglis
 - **My farm profile (optional)** — district, crops, land and a few yes/no PM-KISAN questions. Used for the local weather when no place is named, for the crop when a question names none (if only one covered crop is listed), and for eligibility. Nothing is stored: it lasts only for the browser session and asks for no name, phone or Aadhaar.
 - **Language switch** — English (default), Punjabi, Hinglish or Hindi for the UI, the answer, warnings and voice.
 - **Gemini fallback chain** — a busy main model hands over to a backup model, then to the offline template with a visible note.
+- **Crops not covered** — a question about a crop the advisories don't cover (sugarcane, potato, tomato, …) gets a "not covered, contact your KVK" reply instead of advice borrowed from another crop.
 - **Scope handling** — greetings and off-topic queries (cricket, movies, politics, …) get a polite redirect.
 
 ---
@@ -239,6 +240,14 @@ python scripts/evaluate.py --llm 8              # also check 8 real Gemini answe
 Full reports, including every failure: `eval/results_minilm.md`, `eval/results_gemini.md`; the real Gemini answer check (with the full answers) is in `eval/results_llm.md` and `eval/results_llm.json`. The test questions were written by the team, not collected from farmers; a field test set is future work.
 
 ---
+
+### Feature test set (25 questions)
+
+[`evalset/`](evalset/) checks every feature end to end: whole conversations with follow-ups, all four languages, the farm profile, PM-KISAN eligibility, weather, safety guardrails, the "crop not covered" guard, photo and voice. Cases 1–22 run automatically (**22/22 pass**, 34/34 conversation turns); photo and voice (23–25) are checked by hand.
+
+```bash
+python evalset/run_evalset.py
+```
 
 ## 🐳 Running with Docker
 

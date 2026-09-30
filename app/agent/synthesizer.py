@@ -69,6 +69,24 @@ def load_translations(path: Path = TRANSLATIONS_PATH) -> Dict[str, Dict[str, Dic
         return {}
 
 
+def load_advisory_sections(raw_dir: Path = settings.RAW_DATA_DIR) -> Dict[str, Dict[str, str]]:
+    """Original advisory sections, {section_title: {field: text}}.
+
+    Offline answers are built from these rather than from search chunks: a long section is split
+    into several chunks, and a field that runs across two chunks would otherwise be cut short.
+    """
+    sections: Dict[str, Dict[str, str]] = {}
+    for path in sorted(Path(raw_dir).glob("*.json")):
+        try:
+            doc = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        for sec in doc.get("sections", []):
+            if sec.get("section_title"):
+                sections[sec["section_title"]] = {k: v for k, v in sec.items() if isinstance(v, str)}
+    return sections
+
+
 class DeterministicGroundedSynthesizer:
     """Offline, deterministic grounded response generator.
 
@@ -77,8 +95,13 @@ class DeterministicGroundedSynthesizer:
     text for the farmer's language when available, otherwise the original English.
     """
 
-    def __init__(self, translations: Optional[Dict[str, Dict[str, Dict[str, str]]]] = None):
+    def __init__(
+        self,
+        translations: Optional[Dict[str, Dict[str, Dict[str, str]]]] = None,
+        advisories: Optional[Dict[str, Dict[str, str]]] = None,
+    ):
         self.translations = load_translations() if translations is None else translations
+        self.advisories = load_advisory_sections() if advisories is None else advisories
 
     def generate(
         self, query: str, chunks: List[RetrievalResult], language: Optional[str] = None, history=None,
@@ -116,6 +139,18 @@ class DeterministicGroundedSynthesizer:
                     preventive = line.replace("Preventive Measures:", "").strip()
                 elif line.startswith("Safety Warning:") and not warning:
                     warning = line.replace("Safety Warning:", "").strip()
+
+        # Complete field text from the original advisory (chunks may hold only part of a field)
+        original = self.advisories.get(topic, {})
+
+        def full(field: str, parsed: str) -> str:
+            value = original.get(field, "")
+            return value if value and value != "N/A" else parsed
+
+        symptoms = full("symptoms", symptoms)
+        action = full("recommended_action", action)
+        preventive = full("preventive_measures", preventive)
+        warning = full("critical_safety_warning", warning)
 
         # Swap in the pre-translated section for the farmer's language, if there is one
         title = topic

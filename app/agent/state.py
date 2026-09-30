@@ -43,7 +43,8 @@ class FarmerProfile(BaseModel):
 
 class IntentResult(BaseModel):
     intent: Literal[
-        "crop_question", "general_agriculture", "safety_query", "weather", "out_of_scope", "greeting", "scheme_query"
+        "crop_question", "general_agriculture", "safety_query", "weather", "out_of_scope", "greeting", "scheme_query",
+        "crop_not_covered",
     ]
     confidence: float
     detected_crop: Optional[str] = None
