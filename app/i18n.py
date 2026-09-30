@@ -304,19 +304,11 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hi": "अपनी फसल, रोग या मौसम के बारे में पूछें:",
     },
     "input_placeholder": {
-        "en": "Ask about crops, pests or weather. Tap the mic to speak, or the camera to send a crop photo",
-        "pa": "ਫ਼ਸਲ, ਕੀੜਿਆਂ ਜਾਂ ਮੌਸਮ ਬਾਰੇ ਪੁੱਛੋ। ਬੋਲਣ ਲਈ ਮਾਈਕ, ਜਾਂ ਫ਼ਸਲ ਦੀ ਫ਼ੋਟੋ ਲਈ ਕੈਮਰਾ ਦਬਾਓ",
-        "hinglish": "Fasal, keede ya mausam ke baare mein poochhein. Bolne ke liye mic, ya fasal ki photo ke liye camera dabayein",
-        "hi": "फ़सल, कीट या मौसम के बारे में पूछें। बोलने के लिए माइक, या फ़सल की फ़ोटो के लिए कैमरा दबाएँ",
+        "en": "Ask about crops, pests or weather",
+        "pa": "ਫ਼ਸਲ, ਕੀੜਿਆਂ ਜਾਂ ਮੌਸਮ ਬਾਰੇ ਪੁੱਛੋ",
+        "hinglish": "Fasal, keede ya mausam ke baare mein poochhein",
+        "hi": "फ़सल, कीट या मौसम के बारे में पूछें",
     },
-    "voice_info": {
-        "en": "🎙️ Upload a recorded voice note (.wav / .mp3):",
-        "pa": "🎙️ ਰਿਕਾਰਡ ਕੀਤਾ ਆਡੀਓ (.wav / .mp3) ਅੱਪਲੋਡ ਕਰੋ:",
-        "hinglish": "🎙️ Record kiya hua audio (.wav / .mp3) upload karein:",
-        "hi": "🎙️ रिकॉर्ड किया गया ऑडियो (.wav / .mp3) अपलोड करें:",
-    },
-    "upload_label": {"en": "Choose audio file:", "pa": "ਆਡੀਓ ਫ਼ਾਈਲ ਚੁਣੋ:", "hinglish": "Audio file chunein:", "hi": "ऑडियो फाइल चुनें:"},
-    "submit": {"en": "Get Advisory", "pa": "ਸਲਾਹ ਲਵੋ", "hinglish": "Salah lein", "hi": "परामर्श लें"},
     "clear": {"en": "Clear", "pa": "ਸਾਫ਼ ਕਰੋ", "hinglish": "Saaf karein", "hi": "साफ़ करें"},
     "spinner_audio": {
         "en": "Transcribing your voice note and searching the knowledge base...",
@@ -468,6 +460,13 @@ STRINGS: Dict[str, Dict[str, str]] = {
     "photo_menu": {"en": "Photo", "pa": "ਫ਼ੋਟੋ", "hinglish": "Photo", "hi": "फ़ोटो"},
     "photo_upload_tab": {"en": "Upload a photo", "pa": "ਫ਼ੋਟੋ ਅੱਪਲੋਡ ਕਰੋ", "hinglish": "Photo upload karein", "hi": "फ़ोटो अपलोड करें"},
     "photo_take_tab": {"en": "Take a photo", "pa": "ਫ਼ੋਟੋ ਖਿੱਚੋ", "hinglish": "Photo khinchein", "hi": "फ़ोटो खींचें"},
+    "voice_menu": {"en": "Voice", "pa": "ਆਵਾਜ਼", "hinglish": "Voice", "hi": "आवाज़"},
+    "record_label": {
+        "en": "Tap the microphone, speak your question, then tap stop. It is sent automatically.",
+        "pa": "ਮਾਈਕ ਦਬਾਓ, ਆਪਣਾ ਸਵਾਲ ਬੋਲੋ, ਫਿਰ ਰੋਕੋ ਦਬਾਓ। ਇਹ ਆਪਣੇ ਆਪ ਭੇਜਿਆ ਜਾਵੇਗਾ।",
+        "hinglish": "Mic dabayein, apna sawaal bolein, phir stop dabayein. Yeh apne aap bhej diya jayega.",
+        "hi": "माइक दबाएँ, अपना सवाल बोलें, फिर रोकें दबाएँ। यह अपने आप भेज दिया जाएगा।",
+    },
     "photo_upload": {
         "en": "Take or choose a clear, close photo of the affected leaves, stem or grain",
         "pa": "ਪ੍ਰਭਾਵਿਤ ਪੱਤਿਆਂ, ਤਣੇ ਜਾਂ ਦਾਣਿਆਂ ਦੀ ਸਾਫ਼, ਨੇੜੇ ਤੋਂ ਫ਼ੋਟੋ ਲਓ ਜਾਂ ਚੁਣੋ",
@@ -537,12 +536,6 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "pa": "ਮਾਫ਼ ਕਰਨਾ, ਮੈਂ ਇਸ ਵੇਲੇ ਫ਼ੋਟੋ ਦੀ ਜਾਂਚ ਨਹੀਂ ਕਰ ਸਕਿਆ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ, ਜਾਂ ਸਮੱਸਿਆ ਸ਼ਬਦਾਂ ਵਿੱਚ ਦੱਸੋ।",
         "hinglish": "Maaf kijiye, abhi photo ki jaanch nahi ho payi. Kripya dobara koshish karein, ya samasya shabdon mein batayein.",
         "hi": "क्षमा करें, अभी फोटो की जाँच नहीं हो पाई। कृपया फिर से कोशिश करें, या समस्या शब्दों में बताएँ।",
-    },
-    "upload_instead": {
-        "en": "Upload a recorded voice note instead",
-        "pa": "ਜਾਂ ਰਿਕਾਰਡ ਕੀਤਾ ਆਵਾਜ਼ ਸੁਨੇਹਾ ਅੱਪਲੋਡ ਕਰੋ",
-        "hinglish": "Ya record kiya hua voice note upload karein",
-        "hi": "या रिकॉर्ड किया हुआ वॉइस नोट अपलोड करें",
     },
     "speaking": {"en": "Preparing the spoken answer...", "pa": "ਆਵਾਜ਼ ਵਿੱਚ ਜਵਾਬ ਤਿਆਰ ਹੋ ਰਿਹਾ ਹੈ...", "hinglish": "Awaaz mein jawab taiyaar ho raha hai...", "hi": "आवाज़ में उत्तर तैयार हो रहा है..."},
     "voice_not_understood": {

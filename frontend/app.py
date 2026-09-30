@@ -73,11 +73,11 @@ st.markdown(
         color: #FFFFFF; padding: 5px 13px; border-radius: 999px; font-size: 0.85rem;
     }
 
-    /* Camera menu button pinned to the chat box's bottom-left corner. It is taken out of the
+    /* Photo and Voice menu buttons pinned to the chat box's bottom-left corner. Taken out of the
        layout, so the chat area ends exactly at the chat box and the offsets hold at any width. */
     .st-key-chat_area { position: relative; }
-    .st-key-chat_area .st-key-photo_menu { position: absolute; left: 0.6rem; bottom: 1.6rem; z-index: 5; width: auto; }
-    .st-key-photo_menu [data-testid="stPopoverButton"] { min-height: 2.4rem; padding: 0 0.6rem; }
+    .st-key-chat_area .st-key-input_tools { position: absolute; left: 0.6rem; bottom: 1.6rem; z-index: 5; width: auto; }
+    .st-key-input_tools [data-testid="stPopoverButton"] { min-height: 2.4rem; padding: 0 0.6rem; }
 
     /* Cards: bordered containers are keyed "card_*" (Streamlit adds a st-key-<key> class) */
     [class*="st-key-card_"] {
@@ -456,29 +456,32 @@ def main():
                         render_answer(msg["result"], pipeline, lang, msg["id"], speak_now=msg.get("speak", False))
                     msg["speak"] = False  # read aloud only the first time it is shown
 
-        # One chat box for everything: type, or tap the mic to speak (16 kHz WAV, what speech-to-text
-        # works best with). The camera button in its corner (below) sends crop photos; both share one
-        # container so the button can be pinned to the box's own corner at any screen width.
+        # One chat box for everything: type a question, or use the Photo and Voice buttons pinned to
+        # its bottom-left corner. They share one container with the box, so they stay in place at
+        # any screen width.
         chat_area = st.container(key="chat_area")
-        submission = chat_area.chat_input(t("input_placeholder", lang), key="chat_box", accept_audio=True)
-        prompt, recording = None, None
-        if submission:
-            prompt = (submission.text or "").strip() or None
-            recording = submission.get("audio")
+        prompt = chat_area.chat_input(t("input_placeholder", lang), key="chat_box")
+        tools = chat_area.container(key="input_tools", horizontal=True, gap="small")
 
-        # Camera button inside the chat box: a menu with "Upload a photo" and "Take a photo".
-        # Tab contents only load when opened, so the camera (and its permission prompt) only
-        # starts after "Take a photo" is chosen. A new key after each photo resets and closes it.
+        # Photo opens a menu (upload or take a photo); Voice opens the live recorder. Menu contents
+        # only load when opened, so the camera and microphone (and their permission prompts) only
+        # start then. What is picked, taken or recorded is sent straight away; a new key after each
+        # one resets and closes the menu.
         st.session_state.setdefault("photo_round", 0)
-        photo_round = st.session_state["photo_round"]
-        photo_question, image_bytes = "", None
-        with chat_area.container(key="photo_menu"):
-            menu = st.popover(
+        st.session_state.setdefault("voice_round", 0)
+        photo_round, voice_round = st.session_state["photo_round"], st.session_state["voice_round"]
+        photo_question, image_bytes, voice = "", None, None  # voice: (audio bytes, filename)
+        with tools:
+            photo_menu = st.popover(
                 t("photo_menu", lang), icon=":material/photo_camera:", type="tertiary",
                 key=f"photo_popover_{photo_round}", on_change="rerun",
             )
-        with menu:
-            if menu.open:
+            voice_menu = st.popover(
+                t("voice_menu", lang), icon=":material/mic:", type="tertiary",
+                key=f"voice_popover_{voice_round}", on_change="rerun",
+            )
+        with photo_menu:
+            if photo_menu.open:
                 photo_question = st.text_input(t("photo_question", lang), key=f"photo_q_{photo_round}")
                 upload_tab, camera_tab = st.tabs(
                     [t("photo_upload_tab", lang), t("photo_take_tab", lang)],
@@ -490,16 +493,18 @@ def main():
                             t("photo_upload", lang), type=PHOTO_TYPES, max_upload_size=10, key=f"photo_{photo_round}",
                         )
                         if photo is not None:
-                            image_bytes = photo.getvalue()  # sent as soon as it is chosen
+                            image_bytes = photo.getvalue()
                 with camera_tab:
                     if camera_tab.open:
                         camera = st.camera_input(t("photo_camera", lang), key=f"camera_{photo_round}")
                         if camera is not None:
                             image_bytes = camera.getvalue()
-
-        with st.expander(t("upload_instead", lang)):
-            audio_file = st.file_uploader(t("upload_label", lang), type=["wav", "mp3", "m4a", "ogg"], key="voice_file")
-            send_voice = st.button(t("submit", lang), key="send_voice", disabled=audio_file is None)
+        with voice_menu:
+            if voice_menu.open:
+                # Live recording only; 16 kHz WAV is what speech-to-text works best with
+                recording = st.audio_input(t("record_label", lang), key=f"mic_{voice_round}")
+                if recording is not None:
+                    voice = (recording.getvalue(), "recording.wav")
 
         if image_bytes:
             history = conversation_history()
@@ -518,12 +523,6 @@ def main():
             st.session_state["messages"].append({"role": "assistant", "result": result, "id": len(st.session_state["messages"])})
             st.session_state["photo_round"] += 1
             st.rerun()
-
-        voice = None  # (audio bytes, filename) of a spoken question
-        if recording is not None:
-            voice = (recording.getvalue(), "recording.wav")
-        elif send_voice and audio_file is not None:
-            voice = (audio_file.read(), audio_file.name)
 
         # New message: typed, tapped sample question, recorded or uploaded voice
         prompt = prompt or st.session_state.pop("pending_query", None)
@@ -553,6 +552,8 @@ def main():
                 # Spoken questions get a spoken answer (unless speech-to-text failed)
                 "speak": voice is not None and result.intent != "voice_stt_unavailable",
             })
+            if voice is not None:
+                st.session_state["voice_round"] += 1
             st.rerun()
 
     st.markdown(f'<div class="ks-footer">{t("sidebar_caption", lang)}</div>', unsafe_allow_html=True)
