@@ -481,7 +481,7 @@
    "translated": true,
    "rewritten": false,
    "expected": {
-    "kind": "not_in_kb"
+    "kind": "market"
    },
    "kcc_answer": "ਹਾੜੀ ਸੀਜਨ 2024-25 ਲਈ ਕਣਕ ਦੀ ਫਸਲ ਦਾ ਘੱਟੋ-ਘੱਟ ਸਮਰਥਨ ਮੁੱਲ 2425/- ਰੁਪਏ ਪ੍ਰਤੀ ਕੁਇੰਟਲ ਹੈ ਜਿਹੜਾ ਕਿ ਪਿਛਲੇ ਸਾਲ ਨਾਲੋਂ 200- ਰੁਪਏ ਪ੍ਰਤੀ ਕੁਇੰਟਲ ਵਧਾਇਆ ਗਿਆ ਹੈ"
   },
@@ -538,7 +538,7 @@
    "translated": true,
    "rewritten": false,
    "expected": {
-    "kind": "not_in_kb"
+    "kind": "market"
    },
    "kcc_answer": "MSP OF WHEAT IS 2425"
   },
@@ -580,7 +580,7 @@
    "translated": false,
    "rewritten": false,
    "expected": {
-    "kind": "not_in_kb"
+    "kind": "market"
    },
    "kcc_answer": "ਕਣਕ ਦਾ ਘਟੋ ਘਟ ਸਮਰਥਨ ਮੁੱਲ ਇਸ ਸਾਲ (2024-25) 2425 ਰੁਪਏ ਪ੍ਰਤੀ ਕੁਇੰਟਲ ਹੈ"
   },
@@ -2091,7 +2091,7 @@
    "translated": true,
    "rewritten": false,
    "expected": {
-    "kind": "not_in_kb"
+    "kind": "market"
    },
    "kcc_answer": "ਸਰੋਂ ਦਾ ਘਟੋ ਘਟ ਸਮਰਥਨ ਮੁੱਲ ਇਸ ਸਾਲ (2025-26) 5950 ਰੁਪਏ ਪ੍ਰਤੀ ਕੁਇੰਟਲ ਹੈ"
   },

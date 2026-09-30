@@ -6,8 +6,8 @@
 |---|---|
 | Covered by our advisories | 7 |
 | Right advisory in top 3 (covered) | 4/7 (57%) |
-| Outside our advisories | 78 |
-| Outside our advisories: referred to KVK / Kisan Call Centre | **64/78 (82%)** |
+| Outside our advisories | 74 |
+| Outside our advisories: referred to KVK / Kisan Call Centre | **61/74 (82%)** |
 
 ## Outside our advisories but still answered with an advisory
 
@@ -16,7 +16,6 @@
 - "Information regarding the control of Head blight or Scab in wheat crop?" → Wheat Aphid (Mahu) Control
 - "Information regarding the control of leaf blight, glume blight and black tip of grains disease in wheat?" → Karnal Bunt (Tilletia indica) Management in Wheat
 - "How to control fungal disease in wheat crop?" → Wheat Aphid (Mahu) Control
-- "Information regarding expenses paid by farmer in mandi during Wheat marketing?" → Wheat Aphid (Mahu) Control
 - "Information regarding the herbicides used in the wheat?" → Karnal Bunt (Tilletia indica) Management in Wheat
 - "How to prevent ground worms in the field?" → Pink Bollworm (Gulabi Sundhi) Integrated Management
 - "ASKED ABOUT SURVEY FOR COTTON" → Cotton Whitefly and Leaf Curl Virus (CLCuD) Control

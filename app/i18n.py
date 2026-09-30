@@ -57,6 +57,56 @@ STRINGS: Dict[str, Dict[str, str]] = {
             "से संबंधित आपकी सहायता के लिए तैयार हूँ। आप अपनी समस्या लिखकर या बोलकर पूछ सकते हैं।"
         ),
     },
+    "market_msp": {
+        "en": "**Minimum Support Price (MSP) for {crop}, {season}: Rs {price} per quintal.**",
+        "pa": "**{crop} ਦਾ ਘੱਟੋ-ਘੱਟ ਸਮਰਥਨ ਮੁੱਲ (MSP), {season}: Rs {price} ਪ੍ਰਤੀ ਕੁਇੰਟਲ।**",
+        "hinglish": "**{crop} ka nyuntam samarthan mulya (MSP), {season}: Rs {price} prati quintal.**",
+        "hi": "**{crop} का न्यूनतम समर्थन मूल्य (MSP), {season}: Rs {price} प्रति क्विंटल।**",
+    },
+    "market_msp_variants": {
+        "en": "By variety: {variants}.", "pa": "ਕਿਸਮ ਅਨੁਸਾਰ: {variants}।",
+        "hinglish": "Kism ke hisaab se: {variants}.", "hi": "किस्म के अनुसार: {variants}।",
+    },
+    "market_msp_previous": {
+        "en": "Previous season ({season}): Rs {price} per quintal.", "pa": "ਪਿਛਲਾ ਸੀਜ਼ਨ ({season}): Rs {price} ਪ੍ਰਤੀ ਕੁਇੰਟਲ।",
+        "hinglish": "Pichhla season ({season}): Rs {price} prati quintal.", "hi": "पिछला सीज़न ({season}): Rs {price} प्रति क्विंटल।",
+    },
+    "market_no_msp": {
+        "en": "The government does not fix a Minimum Support Price for {crop}.",
+        "pa": "ਸਰਕਾਰ {crop} ਲਈ ਘੱਟੋ-ਘੱਟ ਸਮਰਥਨ ਮੁੱਲ ਤੈਅ ਨਹੀਂ ਕਰਦੀ।",
+        "hinglish": "Sarkar {crop} ke liye nyuntam samarthan mulya tay nahi karti.",
+        "hi": "सरकार {crop} के लिए न्यूनतम समर्थन मूल्य तय नहीं करती।",
+    },
+    "market_mandi_header": {
+        "en": "**Latest mandi prices for {crop}** (reported {date}):",
+        "pa": "**{crop} ਦੇ ਤਾਜ਼ਾ ਮੰਡੀ ਭਾਅ** ({date}):",
+        "hinglish": "**{crop} ke taaza mandi bhav** ({date}):",
+        "hi": "**{crop} के ताज़ा मंडी भाव** ({date}):",
+    },
+    "market_mandi_row": {
+        "en": "- {market} ({district}): Rs {modal} per quintal (range Rs {low} to {high})",
+        "pa": "- {market} ({district}): Rs {modal} ਪ੍ਰਤੀ ਕੁਇੰਟਲ (Rs {low} ਤੋਂ {high})",
+        "hinglish": "- {market} ({district}): Rs {modal} prati quintal (Rs {low} se {high})",
+        "hi": "- {market} ({district}): Rs {modal} प्रति क्विंटल (Rs {low} से {high})",
+    },
+    "market_mandi_unavailable": {
+        "en": "Live mandi prices could not be fetched right now. For today's rates, check agmarknet.gov.in or the eNAM app, or call the Kisan Call Centre free on 1800-180-1551.",
+        "pa": "ਇਸ ਵੇਲੇ ਤਾਜ਼ਾ ਮੰਡੀ ਭਾਅ ਨਹੀਂ ਮਿਲ ਸਕੇ। ਅੱਜ ਦੇ ਭਾਅ ਲਈ agmarknet.gov.in ਜਾਂ eNAM ਐਪ ਵੇਖੋ, ਜਾਂ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ।",
+        "hinglish": "Abhi taaza mandi bhav nahi mil sake. Aaj ke bhav ke liye agmarknet.gov.in ya eNAM app dekhein, ya Kisan Call Centre ko muft number 1800-180-1551 par call karein.",
+        "hi": "अभी ताज़ा मंडी भाव नहीं मिल सके। आज के भाव के लिए agmarknet.gov.in या eNAM ऐप देखें, या किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें।",
+    },
+    "market_which_crop": {
+        "en": "Which crop do you want the price for? For example: \"MSP of wheat\" or \"mustard rate in Sangrur mandi\". I have the MSP for: {crops}.",
+        "pa": "ਤੁਸੀਂ ਕਿਹੜੀ ਫ਼ਸਲ ਦਾ ਭਾਅ ਜਾਣਨਾ ਚਾਹੁੰਦੇ ਹੋ? ਜਿਵੇਂ: \"ਕਣਕ ਦਾ MSP\" ਜਾਂ \"ਸੰਗਰੂਰ ਮੰਡੀ ਵਿੱਚ ਸਰ੍ਹੋਂ ਦਾ ਭਾਅ\"। ਮੇਰੇ ਕੋਲ ਇਹਨਾਂ ਦਾ MSP ਹੈ: {crops}।",
+        "hinglish": "Aap kis fasal ka bhav jaanna chahte hain? Jaise: \"gehun ka MSP\" ya \"Sangrur mandi mein sarson ka bhav\". Mere paas inka MSP hai: {crops}.",
+        "hi": "आप किस फ़सल का भाव जानना चाहते हैं? जैसे: \"गेहूं का MSP\" या \"संगरूर मंडी में सरसों का भाव\"। मेरे पास इनका MSP है: {crops}।",
+    },
+    "market_disclaimer": {
+        "en": "MSP: Government of India (CACP recommendation, Cabinet decision), checked {date}. Mandi prices change every day: confirm at the mandi before selling.",
+        "pa": "MSP: ਭਾਰਤ ਸਰਕਾਰ (CACP ਦੀ ਸਿਫ਼ਾਰਸ਼, ਕੈਬਨਿਟ ਦਾ ਫ਼ੈਸਲਾ), {date} ਨੂੰ ਜਾਂਚਿਆ। ਮੰਡੀ ਭਾਅ ਰੋਜ਼ ਬਦਲਦੇ ਹਨ: ਵੇਚਣ ਤੋਂ ਪਹਿਲਾਂ ਮੰਡੀ ਵਿੱਚ ਪੁਸ਼ਟੀ ਕਰੋ।",
+        "hinglish": "MSP: Bharat Sarkar (CACP ki sifarish, Cabinet ka faisla), {date} ko jaancha gaya. Mandi bhav roz badalte hain: bechne se pehle mandi mein pakka karein.",
+        "hi": "MSP: भारत सरकार (CACP की सिफ़ारिश, कैबिनेट का फ़ैसला), {date} को जाँचा गया। मंडी भाव रोज़ बदलते हैं: बेचने से पहले मंडी में पुष्टि करें।",
+    },
     "topic_not_covered": {
         "en": (
             "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of "
@@ -673,6 +723,7 @@ SAMPLE_QUESTIONS: Dict[str, List[str]] = {
         "What is the recommended time for wheat irrigation?",
         "How to control pink bollworm in cotton?",
         "Am I eligible for PM-KISAN and how much will I get?",
+        "What is the MSP of wheat and today's mandi price?",
     ],
     "pa": [
         "ਕਣਕ ਵਿੱਚ ਪੀਲੀ ਕੁੰਗੀ ਦੇ ਲੱਛਣ ਅਤੇ ਇਲਾਜ ਕੀ ਹਨ?",
@@ -683,6 +734,7 @@ SAMPLE_QUESTIONS: Dict[str, List[str]] = {
         "ਕਣਕ ਨੂੰ ਪਾਣੀ ਦੇਣ ਦਾ ਸਹੀ ਸਮਾਂ ਕੀ ਹੈ?",
         "ਨਰਮੇ ਵਿੱਚ ਗੁਲਾਬੀ ਸੁੰਡੀ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ?",
         "ਪੀਐਮ ਕਿਸਾਨ ਯੋਜਨਾ ਲਈ ਅਰਜ਼ੀ ਕਿਵੇਂ ਦੇਈਏ?",
+        "ਕਣਕ ਦਾ ਘੱਟੋ-ਘੱਟ ਸਮਰਥਨ ਮੁੱਲ ਅਤੇ ਮੰਡੀ ਭਾਅ ਕੀ ਹੈ?",
     ],
     "hinglish": [
         "Gehun mein peeli kungi ke lakshan aur ilaj kya hain?",
@@ -693,6 +745,7 @@ SAMPLE_QUESTIONS: Dict[str, List[str]] = {
         "Gehun mein sinchai ka sahi samay kya hai?",
         "Kapas mein gulabi sundhi ki roktham kaise karein?",
         "PM Kisan yojana mein kitna paisa milta hai?",
+        "Sarson ka MSP aur aaj ka mandi bhav kya hai?",
     ],
     "hi": [
         "गेहूं में पीली कुंगी (Yellow Rust) के लक्षण और उपचार क्या हैं?",
@@ -703,6 +756,7 @@ SAMPLE_QUESTIONS: Dict[str, List[str]] = {
         "गेहूं में सिंचाई का सही समय क्या है?",
         "कपास में गुलाबी सुंडी (Pink Bollworm) की रोकथाम कैसे करें?",
         "पीएम किसान योजना के लिए कौन पात्र है?",
+        "धान का न्यूनतम समर्थन मूल्य (MSP) कितना है?",
     ],
 }
 

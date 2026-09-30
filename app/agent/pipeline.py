@@ -11,6 +11,7 @@ from app.rag.hybrid_retriever import HybridRetriever
 from app.rag.chunker import AgriculturalChunker
 from app.speech.stt import WhisperSTTAdapter
 from app.speech.tts import EdgeTTSAdapter
+from app.tools.market import MandiPriceClient, detect_commodity, load_msp
 from app.tools.vision import CropVision
 from app.tools.weather_tool import AgWeatherTool
 
@@ -43,8 +44,10 @@ class KisanPipeline:
         tts_adapter: Optional[EdgeTTSAdapter] = None,
         vision: Optional[CropVision] = None,
         scheme_guide: Optional[SchemeGuide] = None,
+        mandi: Optional[MandiPriceClient] = None,
     ):
         self.vision = vision or CropVision()
+        self.mandi = mandi or MandiPriceClient()
         self.scheme_guide = scheme_guide or SchemeGuide()
         self.router = router or IntentRouter()
         self.guardrails = guardrails or AgriculturalGuardrails()
@@ -185,6 +188,67 @@ class KisanPipeline:
             retrieved_chunks=retrieved,
             is_grounded=is_grounded,
             safety_disclaimers=[t("photo_disclaimer", lang)] + disclaimers,
+        )
+
+    def _answer_market(self, query, intent_res, lang, profile, start_time) -> GroundedAnswer:
+        """MSP from the government table plus the latest mandi prices when Agmarknet can be reached."""
+        msp_data = load_msp()
+        commodity = detect_commodity(query) or (detect_commodity(intent_res.follow_up_of or "") if intent_res.follow_up_of else None)
+        if not commodity and profile and len(profile.crops) == 1:
+            commodity = detect_commodity(profile.crops[0])  # "What is today's rate?" -> the farmer's crop
+        district = intent_res.detected_district or (profile.district if profile and profile.district else None)
+        meta = {"answer_source": "market_tool", "detected_topic": "Market prices", "district": district}
+
+        def crop_name(key: str) -> str:
+            if key in ("wheat", "mustard", "paddy", "cotton"):
+                return t(f"crop_{key}", lang)
+            return msp_data["crops"].get(key, {}).get("name", key.title())
+
+        if not commodity:
+            crops = ", ".join(crop_name(k) for k in msp_data["crops"])
+            answer, citations = t("market_which_crop", lang, crops=crops), []
+        else:
+            meta["detected_crop"] = commodity.title()
+            parts, citations = [], []
+            msp = msp_data["crops"].get(commodity)
+            if msp:
+                parts.append(t("market_msp", lang, crop=crop_name(commodity), season=msp["season"], price=f"{msp['msp']:,}"))
+                if msp.get("variants"):
+                    variants = ", ".join(f"{name} Rs {price:,}" for name, price in msp["variants"].items())
+                    parts.append(t("market_msp_variants", lang, variants=variants))
+                if msp.get("previous"):
+                    parts.append(t("market_msp_previous", lang, season=msp["previous"]["season"],
+                                   price=f"{msp['previous']['msp']:,}"))
+                citations.append(msp_data["source"])
+            else:
+                parts.append(t("market_no_msp", lang, crop=crop_name(commodity)))
+
+            lookup = self.mandi.latest(commodity, district=district)
+            if lookup.prices:
+                parts.append("\n" + t("market_mandi_header", lang, crop=crop_name(commodity), date=lookup.prices[0].date))
+                parts += [
+                    t("market_mandi_row", lang, market=p.market, district=p.district, modal=f"{p.modal_price:,.0f}",
+                      low=f"{p.min_price:,.0f}", high=f"{p.max_price:,.0f}")
+                    for p in lookup.prices
+                ]
+                citations.append("Agmarknet daily mandi prices (data.gov.in)")
+                meta["mandi_local"] = lookup.local
+            else:
+                parts.append("\n" + t("market_mandi_unavailable", lang))
+                meta["mandi_error"] = lookup.error
+            answer = "\n".join(parts)
+
+        meta["latency_ms"] = int((time.time() - start_time) * 1000)
+        return GroundedAnswer(
+            query=query,
+            intent="market_price",
+            answer=answer,
+            citations=citations,
+            retrieved_chunks=[],
+            is_grounded=True,
+            safety_disclaimers=[t("market_disclaimer", lang, date=msp_data["last_verified"])] if commodity else [],
+            detected_language=lang,
+            processing_metadata=meta,
         )
 
     def _answer_scheme(self, query, intent_res, lang, language, history, profile, start_time) -> GroundedAnswer:
@@ -384,6 +448,10 @@ class KisanPipeline:
             # 5b. Government scheme guidance (PM-KISAN)
             if intent_res.intent == "scheme_query":
                 return self._answer_scheme(clean_query, intent_res, detected_lang, language, history, profile, start_time)
+
+            # 5c. Market prices: MSP and live mandi prices (numbers come only from the data, never the LLM)
+            if intent_res.intent == "market_price":
+                return self._answer_market(clean_query, intent_res, detected_lang, profile, start_time)
 
             # No crop named or carried over: use the farmer's crop if their profile lists exactly one we cover
             if not intent_res.detected_crop and profile:

@@ -27,6 +27,7 @@ Farmers ask about crops, pests, pesticides or weather in Hindi, Punjabi, Hinglis
 - **My farm profile (optional)** — district, crops, land and a few yes/no PM-KISAN questions. Used for the local weather when no place is named, for the crop when a question names none (if only one covered crop is listed), and for eligibility. Nothing is stored: it lasts only for the browser session and asks for no name, phone or Aadhaar.
 - **Language switch** — English (default), Punjabi, Hinglish or Hindi for the UI, the answer, warnings and voice.
 - **Gemini fallback chain** — a busy main model hands over to a backup model, then to the offline template with a visible note.
+- **Market prices** — asks like "MSP of wheat" or "sarson ka bhav Sangrur mandi" get the government Minimum Support Price (Kharif 2026-27 and Rabi 2026-27, with the previous season; `data/market/msp.json`, source and date shown) plus the latest mandi prices from Agmarknet (data.gov.in) when that service is reachable. If it isn't, the answer says so and points to agmarknet.gov.in, eNAM and the Kisan Call Centre; a price is never guessed. Uses the farmer's district and crop from the profile.
 - **KVK expert review** — answers with a pesticide spray or dose, banned-pesticide questions, weakly grounded AI answers, uncertain photo diagnoses and questions we can't answer are sent to a review queue (the farmer sees "Sent for KVK expert review"). KVK experts mark them correct, needs correction (with the right advice) or unsafe on the **KVK expert review** page, and can download the queue as CSV. Set `REVIEW_PASSCODE` to restrict the page. Only the question and answer are stored.
 - **Topics not covered** — questions about weeds, nutrient deficiencies, varieties, prices and other pests are referred to the Kisan Call Centre (1800-180-1551) and the KVK instead of being answered with an unrelated advisory.
 - **Crops not covered** — a question about a crop the advisories don't cover (sugarcane, potato, tomato, …) gets a "not covered, contact your KVK" reply instead of advice borrowed from another crop.
@@ -221,6 +222,14 @@ curl -X POST http://localhost:8000/ask -H "Content-Type: application/json" \
 
 ---
 
+## 💰 Cost per question
+
+Measured with real token counts (`python scripts/cost_estimate.py`, details in [`docs/cost_estimate.md`](docs/cost_estimate.md)): a typed question costs about **Rs 0.15** with Gemini 3.7 Flash, a voice question about Rs 0.18, and a photo diagnosis about Rs 0.34. Weather, market prices and referrals use no LLM. Every kind of question stays well under Rs 1.
+
+## 🤖 AI tools disclosure
+
+See [`AI_DISCLOSURE.md`](AI_DISCLOSURE.md): which AI tools helped build the project, which AI models run inside it, what is rule-based, and which data is AI-generated.
+
 ## 📊 Evaluation
 
 `scripts/evaluate.py` scores the assistant on **67 hand-written test questions** in English, Punjabi, Hinglish and Hindi (`eval/test_set.json`), covering all 14 advisory sections, weather, greetings/off-topic, banned pesticides and follow-up questions. The core checks don't call the LLM, so they are repeatable and use no API quota.
@@ -257,10 +266,11 @@ Full reports, including every failure: `eval/results_minilm.md`, `eval/results_g
 | Right advisory in top 3 (questions our advisories cover) | 25/25 (100%) |
 | Banned-pesticide question warned | 1/1 |
 | Weather for the right district / PM-KISAN recognised | 15/15 / 15/15 |
+| Price (MSP) questions answered with the price | 4/4 |
 | Answer in the requested language | 200/200 (100%) |
-| Questions outside our advisories referred to the Kisan Call Centre / KVK | 138/144 (96%); **82% on held-out queries** not used for tuning |
+| Questions outside our advisories referred to the Kisan Call Centre / KVK | 134/140 (96%); **82% on held-out queries** not used for tuning |
 
-Only 26 of the 200 real questions fall within our 4-crop advisories: most calls are about weeds, nutrient deficiencies, varieties and prices. Those now get a referral to the Kisan Call Centre (1800-180-1551) instead of an unrelated advisory. Answer and dose accuracy still need an agronomist: `evalset/kcc/review_sheet.csv` puts each answer next to the KCC advisor's answer for review.
+Only 26 of the 200 real questions fall within our 4-crop advisories: most calls are about weeds, nutrient deficiencies and varieties. Those now get a referral to the Kisan Call Centre (1800-180-1551) instead of an unrelated advisory. Answer and dose accuracy still need an agronomist: `evalset/kcc/review_sheet.csv` puts each answer next to the KCC advisor's answer for review.
 
 ### Feature test set (25 questions)
 

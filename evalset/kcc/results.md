@@ -9,7 +9,8 @@
 | Answered by our crop/safety advisories | 26 |
 | Weather | 15 |
 | PM-KISAN | 15 |
-| **Outside our advisories** (weeds, nutrient deficiencies, varieties, MSP, other pests…) | **144** |
+| Market prices (MSP / mandi) | 4 |
+| **Outside our advisories** (weeds, nutrient deficiencies, varieties, MSP, other pests…) | **140** |
 
 ## Metrics
 
@@ -21,9 +22,10 @@
 | Weather questions answered with weather | 15/15 (100%) |
 | Weather for the right district | 15/15 (100%) |
 | PM-KISAN questions recognised | 15/15 (100%) |
-| Outside our advisories: referred to KVK (not shown another topic's advice) | **138/144 (96%)** |
+| Price questions answered with the MSP / mandi price | 4/4 (100%) |
+| Outside our advisories: referred to KVK (not shown another topic's advice) | **134/140 (96%)** |
 | Answer in the requested language (script) | 200/200 (100%) |
-| Response time median / p95 | 2 ms / 664 ms |
+| Response time median / p95 | 2 ms / 647 ms |
 
 | Language | Answer in the right script |
 |---|---|

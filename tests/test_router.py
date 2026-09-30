@@ -112,7 +112,6 @@ def test_leaf_blight_is_still_blb():
         "gehun mein kharpatwar kaise khatam karein",
         "Information regarding fertilizer dose in rice?",
         "INFORMATION REGARDING SOWING TIME OF COTTON?",
-        "MSP OF WHEAT?",
         "Information regarding the varieties of Paddy with their yield?",
         "ਕਣਕ ਵਿੱਚ ਸੁੰਡੀ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ?",
     ],

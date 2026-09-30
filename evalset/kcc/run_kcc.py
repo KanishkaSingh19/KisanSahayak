@@ -68,6 +68,8 @@ def evaluate(q: dict, res) -> dict:
         r["district_ok"] = (res.processing_metadata.get("district") or "").lower() == wanted.lower()
     elif exp["kind"] == "scheme":
         r["scheme_ok"] = res.intent == "scheme_query"
+    elif exp["kind"] == "market":
+        r["market_ok"] = res.intent == "market_price" and "Rs " in res.answer
     else:  # not in our advisories
         r["referred"] = not res.retrieved_chunks or res.intent in ("crop_not_covered", "out_of_scope")
     return r
@@ -99,6 +101,7 @@ def main() -> int:
 
     by = lambda kind: [r for r in rows if r["expected"]["kind"] == kind]  # noqa: E731
     adv, banned, weather, scheme, outside = by("advisory"), by("banned"), by("weather"), by("scheme"), by("not_in_kb")
+    prices = by("market")
     lang_stats = defaultdict(lambda: [0, 0])
     for r in rows:
         lang_stats[r["language"]][0] += r["result"]["script_ok"]
@@ -120,6 +123,7 @@ def main() -> int:
         f"| Answered by our crop/safety advisories | {len(adv) + len(banned)} |",
         f"| Weather | {len(weather)} |",
         f"| PM-KISAN | {len(scheme)} |",
+        f"| Market prices (MSP / mandi) | {len(prices)} |",
         f"| **Outside our advisories** (weeds, nutrient deficiencies, varieties, MSP, other pests…) | **{len(outside)}** |",
         "",
         "## Metrics",
@@ -132,6 +136,7 @@ def main() -> int:
         f"| Weather questions answered with weather | {pct(sum(r['result']['weather_ok'] for r in weather), len(weather))} |",
         f"| Weather for the right district | {pct(sum(r['result']['district_ok'] for r in weather), len(weather))} |",
         f"| PM-KISAN questions recognised | {pct(sum(r['result']['scheme_ok'] for r in scheme), len(scheme))} |",
+        f"| Price questions answered with the MSP / mandi price | {pct(sum(r['result']['market_ok'] for r in prices), len(prices))} |",
         f"| Outside our advisories: referred to KVK (not shown another topic's advice) | **{pct(referred, len(outside))}** |",
         f"| Answer in the requested language (script) | {pct(sum(v[0] for v in lang_stats.values()), len(rows))} |",
         f"| Response time median / p95 | {statistics.median(latencies):.0f} ms / "

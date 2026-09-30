@@ -55,6 +55,15 @@ SCHEME_KEYWORDS = [
     "ਪੀਐਮ ਕਿਸਾਨ", "ਪੀਐਮ-ਕਿਸਾਨ", "ਕਿਸਾਨ ਸਨਮਾਨ", "ਸਨਮਾਨ ਨਿਧੀ", "ਯੋਜਨਾ",
 ]
 
+# Market prices: MSP and mandi rates
+MARKET_KEYWORDS = [
+    "msp", "minimum support price", "support price", "price", "prices", "rate", "rates", "bhav", "bhaav", "bhaw",
+    "mandi", "keemat", "kimat", "daam", "samarthan mulya",
+    "भाव", "मंडी", "कीमत", "दाम", "समर्थन मूल्य", "ਭਾਅ", "ਮੰਡੀ", "ਕੀਮਤ", "ਰੇਟ", "ਸਮਰਥਨ ਮੁੱਲ",
+]
+# "seed rate" is a sowing question and "stock market" is off-topic
+NOT_MARKET = re.compile(r"seed rate|stock|growth rate|rate of (spray|application)|spray rate|dose rate", re.I)
+
 TIME_KEYWORDS = [
     "today", "now", "tonight", "tomorrow", "aaj", "abhi", "kal",
     "आज", "अभी", "कल", "ਅੱਜ", "ਹੁਣ", "ਕੱਲ੍ਹ",
@@ -102,7 +111,6 @@ UNCOVERED_TOPICS = {
     "nutrient deficiency": ["deficiency", "zinc", "iron", "manganese", "boron", "calcium", "magnesium", "yellowing",
                             "kami", "कमी", "पीलापन", "पीला पड़", "ਘਾਟ", "ਪੀਲਾਪਣ", "ਪੀਲੀ ਪੈ", "जिंक", "ਜ਼ਿੰਕ"],
     "varieties": ["variety", "varieties", "kism", "kisme", "kismon", "kismein", "किस्म", "किस्में", "ਕਿਸਮ", "ਕਿਸਮਾਂ"],
-    "prices": ["msp", "price", "support price", "samarthan mulya", "समर्थन मूल्य", "ਸਮਰਥਨ ਮੁੱਲ"],
     "yield and growth": ["yield", "growth", "quality", "paidawar", "badhwar", "jhaad", "पैदावार", "बढ़वार", "गुणवत्ता",
                          "ਝਾੜ", "ਵਾਧਾ", "ਗੁਣਵੱਤਾ", "growth regulator", "foliar spray"],
     "nano fertilizers": ["nano urea", "nano dap", "नैनो", "ਨੈਨੋ"],
@@ -209,6 +217,16 @@ class IntentRouter:
                 confidence=0.93,
                 detected_topic="PM-KISAN",
                 reasoning="Question about the PM-KISAN government scheme.",
+            )
+
+        # 1c. Market prices (before the off-topic and crop checks: "MSP of maize" is a price question)
+        if not NOT_MARKET.search(clean) and any(matches_keyword(k, clean) for k in MARKET_KEYWORDS):
+            return IntentResult(
+                intent="market_price",
+                confidence=0.92,
+                detected_topic="Market prices",
+                detected_district=detect_place(query),
+                reasoning="Question about MSP or mandi prices.",
             )
 
         # 2. Check for explicit Out-of-Scope indicators
@@ -365,6 +383,19 @@ class IntentRouter:
 
         topic = result.detected_topic if result.detected_topic not in (None, "Agronomy/General") else None
         names_no_subject = not result.detected_crop and not topic
+
+        # Market follow-ups: "and mustard?" / "Sangrur mandi?" right after a price answer
+        if previous.intent == "market_price" and len(query.split()) <= 6 and result.intent != "market_price" and (
+            result.detected_crop or result.detected_district or result.intent in ("crop_not_covered",)
+        ):
+            return IntentResult(
+                intent="market_price",
+                confidence=0.85,
+                detected_topic="Market prices",
+                detected_district=result.detected_district,
+                follow_up_of=previous.query,
+                reasoning="Follow-up to the previous price question.",
+            )
 
         # Scheme follow-ups: "How do I apply?" / "What documents?" right after a PM-KISAN answer
         if previous.intent == "scheme_query" and names_no_subject and result.intent in crop_intents:

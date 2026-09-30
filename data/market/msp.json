@@ -1,0 +1,30 @@
+{
+  "description": "Minimum Support Prices (MSP) fixed by the Government of India on the recommendation of the Commission for Agricultural Costs and Prices (CACP). Rs per quintal.",
+  "source": "Cabinet Committee on Economic Affairs decisions: Kharif Marketing Season 2026-27 (13 May 2026) and Rabi Marketing Season 2026-27 (1 Oct 2025), as reported in PIB-based news coverage",
+  "source_url": "https://pib.gov.in",
+  "last_verified": "2026-10-01",
+  "note": "Rabi Marketing Season 2027-28 MSPs had not been announced on 2026-10-01. Previous-season values are the current MSP minus the announced increase.",
+  "unit": "Rs per quintal",
+  "crops": {
+    "wheat": {"season": "Rabi Marketing Season 2026-27", "msp": 2585, "previous": {"season": "2025-26", "msp": 2425}},
+    "mustard": {"name": "Rapeseed & mustard", "season": "Rabi Marketing Season 2026-27", "msp": 6200, "previous": {"season": "2025-26", "msp": 5950}},
+    "gram": {"season": "Rabi Marketing Season 2026-27", "msp": 5875, "previous": {"season": "2025-26", "msp": 5650}},
+    "barley": {"season": "Rabi Marketing Season 2026-27", "msp": 2150, "previous": {"season": "2025-26", "msp": 1980}},
+    "lentil": {"name": "Lentil (masur)", "season": "Rabi Marketing Season 2026-27", "msp": 7000, "previous": {"season": "2025-26", "msp": 6700}},
+    "safflower": {"season": "Rabi Marketing Season 2026-27", "msp": 6540, "previous": {"season": "2025-26", "msp": 5940}},
+    "paddy": {"season": "Kharif Marketing Season 2026-27", "msp": 2441, "variants": {"Common": 2441, "Grade A": 2461}, "previous": {"season": "2025-26", "msp": 2369}},
+    "cotton": {"season": "Kharif Marketing Season 2026-27", "msp": 8267, "variants": {"Medium staple": 8267, "Long staple": 8667}, "previous": {"season": "2025-26", "msp": 7710}},
+    "maize": {"season": "Kharif Marketing Season 2026-27", "msp": 2410, "previous": {"season": "2025-26", "msp": 2400}},
+    "moong": {"season": "Kharif Marketing Season 2026-27", "msp": 8780, "previous": {"season": "2025-26", "msp": 8768}},
+    "bajra": {"season": "Kharif Marketing Season 2026-27", "msp": 2900},
+    "jowar": {"name": "Jowar (hybrid)", "season": "Kharif Marketing Season 2026-27", "msp": 4023},
+    "ragi": {"season": "Kharif Marketing Season 2026-27", "msp": 5205},
+    "tur": {"name": "Tur (arhar)", "season": "Kharif Marketing Season 2026-27", "msp": 8450},
+    "urad": {"season": "Kharif Marketing Season 2026-27", "msp": 8200},
+    "groundnut": {"season": "Kharif Marketing Season 2026-27", "msp": 7517},
+    "sunflower": {"name": "Sunflower seed", "season": "Kharif Marketing Season 2026-27", "msp": 8343},
+    "soybean": {"name": "Soybean (yellow)", "season": "Kharif Marketing Season 2026-27", "msp": 5708},
+    "sesamum": {"name": "Sesamum (til)", "season": "Kharif Marketing Season 2026-27", "msp": 10346},
+    "nigerseed": {"season": "Kharif Marketing Season 2026-27", "msp": 10052}
+  }
+}

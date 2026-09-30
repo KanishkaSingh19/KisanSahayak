@@ -1,0 +1,40 @@
+# AI Tools Disclosure: KisanSahayak (Team Powerpuff Girls)
+
+## 1. AI tools used to build the project
+
+| Tool | What it was used for |
+|---|---|
+| **Claude Code (Anthropic, Claude Opus)** | Coding assistant for most of the implementation, under the team's direction and review. Work covered: the agent pipeline and router, hybrid RAG search, guardrails, Streamlit UI and FastAPI backend, voice and photo features, farm profile, PM-KISAN and market-price modules, the KVK review queue, the tests (290) and GitHub Actions, the evaluation scripts, the README and deployment setup. It also selected and labelled the 200 Kisan Call Centre questions using the rules in `evalset/kcc/`, translated 150 of them, and drafted slide text. |
+| **ChatGPT (OpenAI)** | Generating the architecture and technology-stack diagram images for the presentation, from our written descriptions. |
+| **Google Gemini** | One-time translation of the advisories into Punjabi, Hindi and Hinglish for offline answers (`scripts/translate_advisories.py`). A translation was rejected automatically if any number (dose, percentage, date) changed. |
+
+## 2. What the team did
+- Chose the problem, users, features and design, and directed every change. Reviewed and tested the app, and decided what to keep: for example, catching a wrong weather district, advice that wasn't asked for, lost conversation memory and misplaced UI buttons.
+- Chose the knowledge sources (ICAR, PAU and CIBRC advisories; pmkisan.gov.in; the Government of India MSP decisions; Kisan Call Centre logs) and remains responsible for their accuracy.
+- Tested the app by hand: voice, camera, the four languages, the live deployment.
+- Managed the API keys, the Streamlit Community Cloud deployment and the GitHub repository. Contributed sample crop photos for testing.
+
+## 3. AI inside the product
+
+| Purpose | Model / service |
+|---|---|
+| Writing answers | Google Gemini 3.7 Flash, with Gemini Flash-Lite as backup, then a deterministic offline template (no AI) |
+| Crop photo diagnosis | Gemini Vision. It names the likely problem only; the treatment always comes from the verified advisories. |
+| Search embeddings | `gemini-embedding-001` on the cloud; multilingual MiniLM-L12-v2 offline |
+| Speech-to-text | Whisper Large v3 via Groq; Gemini audio for Punjabi and as backup |
+| Text-to-speech | Microsoft Edge-TTS; Google gTTS for Punjabi |
+| **Not AI (rule-based)** | Question routing, banned-pesticide filter, grounding check, PM-KISAN eligibility, weather advice, MSP and mandi prices, the "not covered" referral to the Kisan Call Centre / KVK, and choosing answers for KVK expert review |
+
+## 4. Safeguards on AI output
+- Answers are grounded only in retrieved advisories. Every answer gets a grounding check, the CIBRC banned-pesticide filter and statutory spray disclaimers.
+- Prices, PM-KISAN eligibility and weather figures come from data and rules, never from the language model.
+- Questions outside the advisories are referred to the Kisan Call Centre (1800-180-1551) and the KVK instead of being answered with unrelated advice.
+- Pesticide, weakly grounded and uncertain photo answers are sent to a KVK expert review queue, and photo answers are labelled as an AI estimate.
+- Evaluations record which model wrote each answer, and never count offline answers as LLM answers.
+
+## 5. AI-generated data and limitations
+- **AI-generated text in the data:** the Punjabi, Hindi and Hinglish advisory translations (`data/translations.json`), the PM-KISAN guidance text (written from pmkisan.gov.in, `data/schemes/pm_kisan.json`), and the 150 non-English test questions (`evalset/kcc/translations.json`). None of this has yet been checked by native speakers or experts.
+- **Test questions:**
+  - The 200-question test set uses real Kisan Call Centre queries. Its English questions are the exact logged text; the others are AI translations of real queries.
+  - The earlier 67- and 25-question sets were written by the team.
+- **Expert review:** answer and dose accuracy have not yet been checked by an agronomist. `evalset/kcc/review_sheet.csv` is prepared for that review.

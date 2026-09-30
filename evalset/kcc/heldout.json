@@ -310,11 +310,10 @@
   "kcc_query": "Information regarding to MSP rate of wheat?",
   "times_asked": 5,
   "expected": {
-   "kind": "not_in_kb"
+   "kind": "market"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "market_price",
+  "top_sections": []
  },
  {
   "topic": "wheat",
@@ -349,13 +348,9 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "general_agriculture",
-  "top_sections": [
-   "Wheat Aphid (Mahu) Control",
-   "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages",
-   "Personal Protective Equipment (PPE) and Spraying Precautions"
-  ],
-  "referred": false
+  "intent": "market_price",
+  "top_sections": [],
+  "referred": true
  },
  {
   "topic": "wheat",
@@ -652,11 +647,10 @@
   "kcc_query": "Information regarding the seed rate of paddy for direct sowing?",
   "times_asked": 20,
   "expected": {
-   "kind": "not_in_kb"
+   "kind": "market"
   },
   "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "top_sections": []
  },
  {
   "topic": "paddy",
@@ -978,22 +972,20 @@
   "kcc_query": "Information regarding the MSP of Rapeseed and mustard 2024-25?",
   "times_asked": 1,
   "expected": {
-   "kind": "not_in_kb"
+   "kind": "market"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "market_price",
+  "top_sections": []
  },
  {
   "topic": "mustard",
   "kcc_query": "Information regarding the MSP of Rapeseed and mustard 2025-2026?",
   "times_asked": 1,
   "expected": {
-   "kind": "not_in_kb"
+   "kind": "market"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "market_price",
+  "top_sections": []
  },
  {
   "topic": "mustard",

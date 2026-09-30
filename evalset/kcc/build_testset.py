@@ -50,6 +50,8 @@ def expected(item: dict) -> dict:
     if item["topic"] == "pmkisan":
         return {"kind": "scheme"}
     q = item["kcc_query"].lower()
+    if re.search(r"\bmsp\b|support price|\brate of\b|\bprice", q):
+        return {"kind": "market"}
     for pattern, section in SECTION_RULES:
         if re.search(pattern, q):
             return {"kind": "banned" if section == "Banned" else "advisory", "section": section}
