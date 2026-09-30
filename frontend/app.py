@@ -23,6 +23,7 @@ from app.agent.state import ConversationTurn, FarmerProfile
 from app.config import settings
 from app.agent.synthesizer import GeminiSynthesizer, OpenAISynthesizer
 from app.i18n import DEFAULT_LANGUAGE, LANGUAGES, SAMPLE_QUESTIONS, t
+from app.review import ReviewQueue
 from app.tools.weather_tool import AgWeatherTool, DISTRICT_COORDINATES
 
 # Page Configuration
@@ -155,6 +156,19 @@ PHOTO_TYPES = ["jpg", "jpeg", "png", "webp"]
 
 
 @st.cache_resource
+def get_review_queue() -> ReviewQueue:
+    return ReviewQueue()
+
+
+def send_for_review(result) -> None:
+    """Pesticide, uncertain and unanswered answers go to the KVK expert review queue."""
+    try:
+        get_review_queue().submit(result)
+    except Exception as e:  # the review queue must never break the farmer's chat
+        print(f"[Warning] Could not add answer to the review queue: {e}")
+
+
+@st.cache_resource
 def get_pipeline():
     """Cache and initialize KisanPipeline."""
     return KisanPipeline()
@@ -211,6 +225,9 @@ def render_sidebar(pipeline, lang: str) -> None:
             st.write(f"**TTS Voice:** Edge-TTS (`en-IN`, `hi-IN`) · Punjabi: {punjabi}")
         else:
             st.write("**TTS Voice:** ⚪ Off (edge-tts / gTTS not installed)")
+        review = get_review_queue().stats()
+        st.write(f"**KVK review queue:** {review['pending']} waiting · {review['reviewed']} reviewed")
+        st.page_link("pages/1_KVK_expert_review.py", label="Open KVK expert review")
         st.markdown("---")
         st.caption(t("sidebar_caption", lang))
 
@@ -254,8 +271,11 @@ def render_answer(result, pipeline, lang: str, msg_id: int, speak_now: bool = Fa
         grounded_chip = f'<span class="ks-chip ks-chip-ok">{t("grounded_yes", lang)}</span>'
     else:
         grounded_chip = f'<span class="ks-chip ks-chip-warn">{t("grounded_partial", lang)}</span>'
+    review_chip = (
+        f'<span class="ks-chip ks-chip-warn">{t("kvk_review_chip", lang)}</span>' if meta.get("kvk_review") else ""
+    )
     st.markdown(
-        f'<span class="ks-chip ks-chip-crop">{html.escape(crop_label)}</span>{grounded_chip}',
+        f'<span class="ks-chip ks-chip-crop">{html.escape(crop_label)}</span>{grounded_chip}{review_chip}',
         unsafe_allow_html=True,
     )
 
@@ -525,6 +545,7 @@ def main():
                         result = pipeline.process_image_query(
                             image_bytes, question=photo_question, language=lang, history=history, profile=profile
                         )
+            send_for_review(result)
             st.session_state["messages"].append(
                 {"role": "user", "text": photo_question or t("photo_user_label", lang), "image": image_bytes}
             )
@@ -551,6 +572,7 @@ def main():
                             result = pipeline.process_audio_query(
                                 voice[0], filename=voice[1], language=lang, generate_audio=False, history=history, profile=profile,
                             )
+            send_for_review(result)
             user_text = prompt or result.processing_metadata.get("stt_transcript") or t("voice_not_understood", lang)
             st.session_state["messages"].append({"role": "user", "text": user_text})
             st.session_state["messages"].append({

@@ -6,7 +6,8 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app.agent.state import GroundedAnswer
-from app.api import app, get_pipeline
+from app.api import app, get_pipeline, get_review_queue
+from app.review import ReviewQueue
 from app.tools.location import Place
 from app.tools.weather_tool import AgWeatherReport
 
@@ -71,6 +72,9 @@ class FakeWeather:
 def fake(tmp_path):
     pipeline = FakePipeline(tmp_path)
     app.dependency_overrides[get_pipeline] = lambda: pipeline
+    queue = ReviewQueue(tmp_path / "review.jsonl")
+    app.dependency_overrides[get_review_queue] = lambda: queue
+    pipeline.review_queue = queue
     yield pipeline
     app.dependency_overrides.clear()
 
@@ -171,3 +175,20 @@ def test_ask_passes_profile(client, fake):
     assert fake.last_profile.district == "Sangrur" and fake.last_profile.owns_land is True
     bad = client.post("/ask/voice", files={"audio": ("n.wav", b"RIFF", "audio/wav")}, data={"profile": "not json"})
     assert bad.status_code == 422
+
+
+def test_pesticide_answer_is_sent_for_review(client, fake):
+    from app.i18n import t
+
+    def pesticide_answer(query, language=None, generate_audio=True, history=None, profile=None):
+        res = fake._answer(query, language, history)
+        res.safety_disclaimers = [t("statutory_disclaimer", "en")]
+        return res
+
+    fake.process_query = pesticide_answer
+    body = client.post("/ask", json={"query": "What should I spray for aphids?"}).json()
+    assert body["sent_for_review"]
+    assert fake.review_queue.stats()["pending"] == 1
+    # An answer without a pesticide dose is not sent
+    fake.process_query = lambda query, **kw: fake._answer(query, kw.get("language"), kw.get("history"))
+    assert client.post("/ask", json={"query": "hello"}).json()["sent_for_review"] is None

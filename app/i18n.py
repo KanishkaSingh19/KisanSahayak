@@ -378,6 +378,10 @@ STRINGS: Dict[str, Dict[str, str]] = {
     "general": {"en": "General", "pa": "ਆਮ", "hinglish": "Samanya", "hi": "सामान्य"},
     "metric_grounding": {"en": "Grounding", "pa": "ਪ੍ਰਮਾਣਿਕਤਾ", "hinglish": "Pramanikta", "hi": "प्रमाणीकरण"},
     "grounded_yes": {"en": "Fully verified", "pa": "ਪੂਰੀ ਤਰ੍ਹਾਂ ਪ੍ਰਮਾਣਿਤ", "hinglish": "Poori tarah pramanit", "hi": "पूर्णतः प्रमाणित"},
+    "kvk_review_chip": {
+        "en": "Sent for KVK expert review", "pa": "ਕੇਵੀਕੇ ਮਾਹਿਰ ਦੀ ਜਾਂਚ ਲਈ ਭੇਜਿਆ",
+        "hinglish": "KVK visheshagya ki jaanch ke liye bheja", "hi": "केवीके विशेषज्ञ जाँच के लिए भेजा गया",
+    },
     "grounded_partial": {"en": "Partially sourced", "pa": "ਅੰਸ਼ਕ ਹਵਾਲਾ", "hinglish": "Aanshik sandarbh", "hi": "आंशिक संदर्भ"},
     "weather_metrics_header": {
         "en": "Weather & Spray Conditions",

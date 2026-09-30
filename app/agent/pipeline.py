@@ -322,6 +322,7 @@ class KisanPipeline:
                     detected_language=detected_lang,
                     processing_metadata={
                         "latency_ms": int((time.time() - start_time) * 1000),
+                        "detected_crop": intent_res.detected_crop,
                         "detected_topic": intent_res.detected_topic,
                     },
                 )

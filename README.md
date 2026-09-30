@@ -27,6 +27,7 @@ Farmers ask about crops, pests, pesticides or weather in Hindi, Punjabi, Hinglis
 - **My farm profile (optional)** — district, crops, land and a few yes/no PM-KISAN questions. Used for the local weather when no place is named, for the crop when a question names none (if only one covered crop is listed), and for eligibility. Nothing is stored: it lasts only for the browser session and asks for no name, phone or Aadhaar.
 - **Language switch** — English (default), Punjabi, Hinglish or Hindi for the UI, the answer, warnings and voice.
 - **Gemini fallback chain** — a busy main model hands over to a backup model, then to the offline template with a visible note.
+- **KVK expert review** — answers with a pesticide spray or dose, banned-pesticide questions, weakly grounded AI answers, uncertain photo diagnoses and questions we can't answer are sent to a review queue (the farmer sees "Sent for KVK expert review"). KVK experts mark them correct, needs correction (with the right advice) or unsafe on the **KVK expert review** page, and can download the queue as CSV. Set `REVIEW_PASSCODE` to restrict the page. Only the question and answer are stored.
 - **Topics not covered** — questions about weeds, nutrient deficiencies, varieties, prices and other pests are referred to the Kisan Call Centre (1800-180-1551) and the KVK instead of being answered with an unrelated advisory.
 - **Crops not covered** — a question about a crop the advisories don't cover (sugarcane, potato, tomato, …) gets a "not covered, contact your KVK" reply instead of advice borrowed from another crop.
 - **Scope handling** — greetings and off-topic queries (cricket, movies, politics, …) get a polite redirect.
@@ -204,6 +205,7 @@ Interactive docs: http://localhost:8000/docs
 | `POST /ask/image` | Diagnose a crop photo (multipart: `image`, optional `question`, `language`, `history`, `profile`); `photo_diagnosis` shows what the vision model saw |
 | `GET /weather?place=Delhi&language=en` | Weather with spray and irrigation advice for any place in India |
 | `POST /speak` | Turn text into MP3 speech: `{"text": "...", "language": "pa"}` |
+| (all answer endpoints) | `sent_for_review` holds the review-queue id when the answer was sent for KVK expert review |
 | `GET /health` | Which services are active (index, LLM, speech-to-text, voices) |
 
 `profile` is optional; every field can be left out. Example for a PM-KISAN question:

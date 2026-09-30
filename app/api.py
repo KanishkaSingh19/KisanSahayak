@@ -21,6 +21,7 @@ from app.agent.pipeline import DEFAULT_WEATHER_DISTRICT, KisanPipeline
 from app.agent.state import ConversationTurn, FarmerProfile, GroundedAnswer
 from app.agent.synthesizer import GeminiSynthesizer, OpenAISynthesizer
 from app.config import settings
+from app.review import ReviewQueue
 
 Language = Literal["en", "pa", "hinglish", "hi"]
 MAX_HISTORY_TURNS = 20
@@ -31,6 +32,12 @@ MAX_AUDIO_BYTES = 10 * 1024 * 1024  # 10 MB voice note
 def get_pipeline() -> KisanPipeline:
     """One shared pipeline (loading MiniLM and the indices takes about a minute)."""
     return KisanPipeline()
+
+
+@lru_cache(maxsize=1)
+def get_review_queue() -> ReviewQueue:
+    """Pesticide, uncertain and unanswered answers wait here for a KVK expert (see app/review.py)."""
+    return ReviewQueue()
 
 
 @asynccontextmanager
@@ -89,6 +96,9 @@ class AskResponse(BaseModel):
     transcript: Optional[str] = Field(None, description="Voice requests only: what the farmer said")
     photo_diagnosis: Optional[Dict[str, Any]] = Field(None, description="Photo requests only: what the vision model saw")
     latency_ms: Optional[int] = None
+    sent_for_review: Optional[str] = Field(
+        None, description="Review-queue id when the answer was sent for KVK expert review (pesticide, uncertain, not covered)"
+    )
     turn: ConversationTurn = Field(..., description="Append this to `history` for the next question")
 
 
@@ -115,7 +125,12 @@ def parse_profile(raw: str) -> Optional[FarmerProfile]:
         raise HTTPException(status_code=422, detail="profile must be a JSON farm profile object")
 
 
-def to_response(result: GroundedAnswer) -> AskResponse:
+def to_response(result: GroundedAnswer, review_queue: Optional[ReviewQueue] = None) -> AskResponse:
+    if review_queue is not None:
+        try:
+            review_queue.submit(result)
+        except OSError as e:  # the review queue must never break an answer
+            print(f"[Warning] Could not add answer to the review queue: {e}")
     meta = result.processing_metadata
     return AskResponse(
         answer=result.answer,
@@ -133,6 +148,7 @@ def to_response(result: GroundedAnswer) -> AskResponse:
         transcript=meta.get("stt_transcript"),
         photo_diagnosis=meta.get("vision"),
         latency_ms=meta.get("latency_ms"),
+        sent_for_review=meta.get("kvk_review"),
         turn=ConversationTurn.from_answer(result),
     )
 
@@ -162,7 +178,11 @@ def health(pipeline: KisanPipeline = Depends(get_pipeline)):
 
 
 @app.post("/ask", response_model=AskResponse, tags=["advice"])
-def ask(request: AskRequest, pipeline: KisanPipeline = Depends(get_pipeline)):
+def ask(
+    request: AskRequest,
+    pipeline: KisanPipeline = Depends(get_pipeline),
+    review_queue: ReviewQueue = Depends(get_review_queue),
+):
     """Ask a crop, pest, pesticide-safety or weather question. Pass `history` for follow-up questions."""
     result = pipeline.process_query(
         request.query,
@@ -171,7 +191,7 @@ def ask(request: AskRequest, pipeline: KisanPipeline = Depends(get_pipeline)):
         history=request.history[-MAX_HISTORY_TURNS:],
         profile=request.profile,
     )
-    return to_response(result)
+    return to_response(result, review_queue)
 
 
 @app.post("/ask/image", response_model=AskResponse, tags=["advice"])
@@ -182,6 +202,7 @@ async def ask_image(
     history: str = Form("[]", description="JSON list of earlier `turn` objects"),
     profile: str = Form("", description="Optional JSON farm profile"),
     pipeline: KisanPipeline = Depends(get_pipeline),
+    review_queue: ReviewQueue = Depends(get_review_queue),
 ):
     """Diagnose a crop photo with Gemini Vision; treatment comes from the verified advisories.
     `photo_diagnosis` in the response holds what the vision model saw."""
@@ -197,7 +218,7 @@ async def ask_image(
     result = pipeline.process_image_query(
         data, question=question, language=language, history=turns[-MAX_HISTORY_TURNS:], profile=parse_profile(profile)
     )
-    return to_response(result)
+    return to_response(result, review_queue)
 
 
 @app.post("/ask/voice", response_model=AskResponse, tags=["advice"])
@@ -207,6 +228,7 @@ async def ask_voice(
     history: str = Form("[]", description="JSON list of earlier `turn` objects"),
     profile: str = Form("", description="Optional JSON farm profile"),
     pipeline: KisanPipeline = Depends(get_pipeline),
+    review_queue: ReviewQueue = Depends(get_review_queue),
 ):
     """Ask by voice note: transcribed with Whisper, then answered like /ask."""
     try:
@@ -226,7 +248,7 @@ async def ask_voice(
         history=turns[-MAX_HISTORY_TURNS:],
         profile=parse_profile(profile),
     )
-    return to_response(result)
+    return to_response(result, review_queue)
 
 
 @app.get("/weather", tags=["weather"])

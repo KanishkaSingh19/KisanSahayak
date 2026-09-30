@@ -6,6 +6,7 @@
 
 # Generated at runtime / build time (rebuild with: python -m app.rag.ingest)
 data/audio/
+data/review/
 data/indices/
 
 # Python
