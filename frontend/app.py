@@ -73,11 +73,17 @@ st.markdown(
         color: #FFFFFF; padding: 5px 13px; border-radius: 999px; font-size: 0.85rem;
     }
 
-    /* Photo and Voice menu buttons pinned to the chat box's bottom-left corner. Taken out of the
-       layout, so the chat area ends exactly at the chat box and the offsets hold at any width. */
-    .st-key-chat_area { position: relative; }
-    .st-key-chat_area .st-key-input_tools { position: absolute; left: 0.6rem; bottom: 1.6rem; z-index: 5; width: auto; }
-    .st-key-input_tools [data-testid="stPopoverButton"] { min-height: 2.4rem; padding: 0 0.6rem; }
+    /* Photo (bottom-left) and Voice (bottom-right) sit in a strip added to the bottom of the chat
+       box. They are taken out of the layout and the chat area has no inner gap, so the area ends
+       exactly at the chat box and the offsets hold at any width and as the box grows. */
+    .st-key-chat_area { position: relative; gap: 0; }
+    [data-testid="stChatInput"] > div { padding-bottom: 3.2rem; }
+    .st-key-chat_area .st-key-photo_tool,
+    .st-key-chat_area .st-key-voice_tool { position: absolute; bottom: 0.4rem; z-index: 5; width: auto; }
+    .st-key-chat_area .st-key-photo_tool { left: 0.6rem; }
+    .st-key-chat_area .st-key-voice_tool { right: 0.6rem; }
+    .st-key-photo_tool [data-testid="stPopoverButton"],
+    .st-key-voice_tool [data-testid="stPopoverButton"] { min-height: 2.4rem; padding: 0 0.6rem; }
 
     /* Cards: bordered containers are keyed "card_*" (Streamlit adds a st-key-<key> class) */
     [class*="st-key-card_"] {
@@ -461,7 +467,8 @@ def main():
         # any screen width.
         chat_area = st.container(key="chat_area")
         prompt = chat_area.chat_input(t("input_placeholder", lang), key="chat_box")
-        tools = chat_area.container(key="input_tools", horizontal=True, gap="small")
+        photo_slot = chat_area.container(key="photo_tool")  # bottom-left corner
+        voice_slot = chat_area.container(key="voice_tool")  # bottom-right corner
 
         # Photo opens a menu (upload or take a photo); Voice opens the live recorder. Menu contents
         # only load when opened, so the camera and microphone (and their permission prompts) only
@@ -471,11 +478,12 @@ def main():
         st.session_state.setdefault("voice_round", 0)
         photo_round, voice_round = st.session_state["photo_round"], st.session_state["voice_round"]
         photo_question, image_bytes, voice = "", None, None  # voice: (audio bytes, filename)
-        with tools:
+        with photo_slot:
             photo_menu = st.popover(
                 t("photo_menu", lang), icon=":material/photo_camera:", type="tertiary",
                 key=f"photo_popover_{photo_round}", on_change="rerun",
             )
+        with voice_slot:
             voice_menu = st.popover(
                 t("voice_menu", lang), icon=":material/mic:", type="tertiary",
                 key=f"voice_popover_{voice_round}", on_change="rerun",
