@@ -545,6 +545,24 @@ STRINGS: Dict[str, Dict[str, str]] = {
             "हो सकता है यह आपके प्रश्न से पूरी तरह मेल न खाए। कृपया एक मिनट बाद फिर से प्रयास करें।"
         ),
     },
+    "note_template_numbers_replaced": {
+        "en": (
+            "The AI's answer contained a number that is not in the verified advisory, so the advisory's own "
+            "text is shown instead. Every dose and amount here comes from the source."
+        ),
+        "pa": (
+            "AI ਦੇ ਜਵਾਬ ਵਿੱਚ ਇੱਕ ਅਜਿਹਾ ਅੰਕ ਸੀ ਜੋ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਵਿੱਚ ਨਹੀਂ ਹੈ, ਇਸ ਲਈ ਸਲਾਹ ਦਾ ਆਪਣਾ ਪਾਠ ਦਿਖਾਇਆ ਗਿਆ ਹੈ। "
+            "ਇੱਥੇ ਹਰ ਮਾਤਰਾ ਸਰੋਤ ਵਿੱਚੋਂ ਹੈ।"
+        ),
+        "hinglish": (
+            "AI ke jawab mein ek aisa ank tha jo pramanit salah mein nahi hai, isliye salah ka apna text dikhaya gaya hai. "
+            "Yahan har matra source se hai."
+        ),
+        "hi": (
+            "AI के उत्तर में एक ऐसी संख्या थी जो प्रमाणित सलाह में नहीं है, इसलिए सलाह का अपना पाठ दिखाया गया है। "
+            "यहाँ हर मात्रा स्रोत से है।"
+        ),
+    },
     "note_template_offline": {
         "en": (
             "AI answers are turned off, so this answer was taken directly from the advisory text. "

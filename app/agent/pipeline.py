@@ -7,8 +7,8 @@ from app.i18n import normalize_language, t
 from app.agent.state import ConversationTurn, FarmerProfile, GroundedAnswer, IntentResult
 from app.tools.schemes import OTHER_SCHEME_PREFIX, OTHER_SCHEMES, PM_KISAN, SchemeGuide, check_eligibility, load_schemes
 from app.agent.router import IntentRouter, asks_repeat_spray, topic_search_terms, weather_topics
-from app.agent.synthesizer import get_synthesizer
-from app.agent.guardrails import AgriculturalGuardrails
+from app.agent.synthesizer import SOURCE_NUMBERS_REPLACED, DeterministicGroundedSynthesizer, get_synthesizer
+from app.agent.guardrails import AgriculturalGuardrails, unbacked_numbers
 from app.rag.hybrid_retriever import HybridRetriever
 from app.rag.ingest import load_knowledge_chunks
 from app.speech.stt import WhisperSTTAdapter
@@ -239,10 +239,16 @@ class KisanPipeline:
             llm_query, retrieved, language=lang if language else None, history=history or [],
             context_note=profile.summary() if profile else "",
         )
+        # Every number must come from the advisories (or what the photo model and farmer said)
+        unbacked = self._unbacked(draft, source, [f"{c.text} {c.citation}" for c in retrieved] + [llm_query, summary],
+                                  history, profile)
+        if unbacked:
+            draft, source = self._offline().synthesize(farmer_question, retrieved, language=lang), SOURCE_NUMBERS_REPLACED
         answer, disclaimers = self.guardrails.enforce_safety(f"{summary}\n\n{draft}", question, language=lang)
         is_grounded, score = self.guardrails.validate_grounding(draft, [c.text for c in retrieved])
         meta.update({
             "answer_source": source,
+            "unbacked_numbers": unbacked,
             "grounding_score": score,
             "top_section": retrieved[0].section,
         })
@@ -493,8 +499,11 @@ class KisanPipeline:
         draft, source = self.synthesizer.generate(
             req.query, context, language=req.llm_language, history=req.history, context_note=" ".join(notes),
         )
-        if source != "llm":
+        unbacked = self._unbacked(draft, source, [f"{c.text} {c.citation}" for c in context] + notes + [req.query],
+                                  req.history, req.profile)
+        if source != "llm" or unbacked:
             draft = guide.offline_answer(sections, lang)  # stored official text in the farmer's language
+            source = SOURCE_NUMBERS_REPLACED if unbacked else source
 
         is_grounded, score = self.guardrails.validate_grounding(draft, [c.text for c in context])
         return self._reply(
@@ -503,7 +512,8 @@ class KisanPipeline:
             retrieved_chunks=context,
             is_grounded=is_grounded or source != "llm",
             safety_disclaimers=[t("scheme_disclaimer", lang, date=guide.data["last_verified"])],
-            meta={"answer_source": source, "detected_topic": PM_KISAN, "pmk_eligibility": status,
+            meta={"answer_source": source, "unbacked_numbers": unbacked, "detected_topic": PM_KISAN,
+                  "pmk_eligibility": status,
                   "grounding_score": score, "top_section": sections[0]["title"]},
         )
 
@@ -514,8 +524,11 @@ class KisanPipeline:
         draft, source = self.synthesizer.generate(
             req.query, context, language=req.llm_language, history=req.history, context_note=" ".join(notes),
         )
-        if source != "llm":
+        unbacked = self._unbacked(draft, source, [f"{c.text} {c.citation}" for c in context] + [req.query],
+                                  req.history, req.profile)
+        if source != "llm" or unbacked:
             draft = guide.offline_answer(sections, req.lang)  # stored official text in the farmer's language
+            source = SOURCE_NUMBERS_REPLACED if unbacked else source
         is_grounded, score = self.guardrails.validate_grounding(draft, [c.text for c in context])
         site = guide.data.get("official_site")
         disclaimer = (t("scheme_disclaimer_general", req.lang, site=site, date=guide.data["last_verified"]) if site
@@ -526,9 +539,26 @@ class KisanPipeline:
             retrieved_chunks=context,
             is_grounded=is_grounded or source != "llm",
             safety_disclaimers=[disclaimer],
-            meta={"answer_source": source, "detected_topic": guide.name, "grounding_score": score,
+            meta={"answer_source": source, "unbacked_numbers": unbacked, "detected_topic": guide.name,
+                  "grounding_score": score,
                   "top_section": sections[0]["title"]},
         )
+
+    @staticmethod
+    def _unbacked(draft: str, source: str, given: List[str], history=None, profile=None) -> List[str]:
+        """Numbers in an LLM answer that the text it was given does not state (empty when the answer is
+        not from the LLM). `given` is the retrieved or official text and the question; earlier turns and
+        the farm profile count too, since the LLM saw them."""
+        if source != "llm":
+            return []
+        seen = list(given) + [f"{turn.query} {turn.answer}" for turn in (history or [])[-3:]]
+        if profile and not profile.is_empty():
+            seen.append(profile.summary())
+        return unbacked_numbers(draft, seen)
+
+    def _offline(self):
+        """The template that writes answers from the checked text alone (no LLM)."""
+        return getattr(self.synthesizer, "fallback", None) or DeterministicGroundedSynthesizer()
 
     def _search(self, req: "Request", search: str, kind: Optional[str]) -> List:
         intent = req.intent
@@ -604,6 +634,11 @@ class KisanPipeline:
             )
         else:
             draft, source = self.synthesizer.synthesize(req.query, retrieved, language=req.llm_language), "unknown"
+        # Every number must come from the sources: an LLM answer with any other number is replaced
+        unbacked = self._unbacked(draft, source, [f"{c.text} {c.citation}" for c in retrieved]
+                                  + [req.query, req.intent.follow_up_of or ""], req.history, profile)
+        if unbacked:
+            draft, source = self._offline().synthesize(req.query, retrieved, language=req.llm_language), SOURCE_NUMBERS_REPLACED
 
         answer, disclaimers = self.guardrails.enforce_safety(draft, req.query, language=req.lang)
         is_grounded, grounding_score = self.guardrails.validate_grounding(answer, [c.text for c in retrieved])
@@ -626,6 +661,7 @@ class KisanPipeline:
                 "router_reasoning": intent.reasoning,
                 "top_section": retrieved[0].section if retrieved else None,
                 "answer_source": source,
+                "unbacked_numbers": unbacked,
                 "knowledge": retrieved[0].kind if retrieved else (kind or "advisory"),
                 "dose_totals_for_acres": acres if dose_totals else None,
                 "retrieval": retrieval,

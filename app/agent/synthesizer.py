@@ -56,6 +56,8 @@ SOURCE_LLM = "llm"                          # written by Gemini/OpenAI
 SOURCE_TEMPLATE_OFFLINE = "template_offline"  # no LLM configured
 SOURCE_TEMPLATE_LLM_FAILED = "template_llm_failed"  # LLM call failed (busy, network, quota)
 SOURCE_NO_RESULTS = "no_results"            # nothing relevant retrieved
+# The LLM answer stated a number the sources do not, so the checked text was shown instead
+SOURCE_NUMBERS_REPLACED = "template_numbers_replaced"
 
 
 TRANSLATIONS_PATH = settings.DATA_DIR / "translations.json"

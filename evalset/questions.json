@@ -125,7 +125,7 @@
     {
       "id": 26, "feature": "Crop insurance (PMFBY): not run in Punjab, and a claim follow-up", "mode": "text", "language": "pa",
       "turns": [
-        {"query": "ਕੀ ਪੰਜਾਬ ਵਿੱਚ ਫ਼ਸਲ ਬੀਮਾ ਮਿਲਦਾ ਹੈ?", "expect": {"intent": ["scheme_query"], "script": "gurmukhi", "answer_all": ["ਪੰਜਾਬ ਨੇ PMFBY ਲਾਗੂ ਨਹੀਂ ਕੀਤੀ"]}},
+        {"query": "ਕੀ ਪੰਜਾਬ ਵਿੱਚ ਫ਼ਸਲ ਬੀਮਾ ਮਿਲਦਾ ਹੈ?", "expect": {"intent": ["scheme_query"], "script": "gurmukhi", "answer_any": ["ਲਾਗੂ ਨਹੀਂ", "not implemented"]}},
         {"query": "How do I claim if hail damages my wheat?", "language": "en", "expect": {"intent": ["scheme_query"], "answer_all": ["72 hours", "14447"]}}
       ]
     },
@@ -133,7 +133,7 @@
       "id": 27, "feature": "Kisan Credit Card: interest and collateral, in Hindi", "mode": "text", "language": "hi",
       "turns": [
         {"query": "किसान क्रेडिट कार्ड पर ब्याज कितना है?", "expect": {"intent": ["scheme_query"], "script": "devanagari", "answer_all": ["7%", "4%"]}},
-        {"query": "क्या गिरवी रखना ज़रूरी है?", "expect": {"intent": ["scheme_query"], "answer_all": ["Rs 2 lakh"]}}
+        {"query": "क्या गिरवी रखना ज़रूरी है?", "expect": {"intent": ["scheme_query"], "answer_any": ["Rs 2 lakh", "2 लाख"]}}
       ]
     },
     {

@@ -12,7 +12,12 @@
 | Banned-pesticide questions warned | **5/5 (100%)** |
 | False banned-pesticide warnings | 0 of 39 questions not about banned pesticides |
 | Follow-up questions kept context | 6/6 (100%) |
-| Response time without LLM (median / p95) | 54 ms / 77 ms |
+| Response time without LLM (median / p95) | 57 ms / 68 ms |
+| Gemini answers generated (not fallback) | 24/24 (100%) |
+| Gemini answers in the right script | 24/24 (100%) |
+| Gemini answers replaced: a number not in the sources | 1/24 (4%) |
+| Answers shown with only source numbers | 24/24 (100%) |
+| Gemini response time (median) | 2.0 s |
 
 ## Retrieval by language
 
@@ -33,10 +38,11 @@
 - Retrieval: "dhan mein sheath blight ki dawai batao" → got *Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy*, expected *Paddy Sheath Blight*
 - Retrieval: "kya endosulfan use kar sakte hain" → got *Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy*, expected *Banned and Strictly*
 - Retrieval: "gehun ki bijai kab karein aur beej kitna lage" → got *Karnal Bunt (Tilletia indica) Management in Wheat*, expected *Wheat Sowing*
+- LLM: "sarson mein chepa ka ilaj kya hai": Gemini stated ['40 ml'], not in the sources (checked text shown)
 
 ## Notes
 
 - The test questions were written by the team, not collected from farmers; a field test set is future work.
 - Retrieval, intent, weather-place, safety and follow-up checks do not call the LLM, so they are repeatable.
 - A false banned-pesticide warning means a warning on a question that is not about banned pesticides.
-- "No invented numbers" means every number in a Gemini answer (doses, percentages, dates) appears in the retrieved advisory text or the question.
+- Every Gemini answer is checked in the app: an amount ("400 g") must appear in the sources with the same unit, and any other number must appear in them; otherwise the checked text is shown instead.

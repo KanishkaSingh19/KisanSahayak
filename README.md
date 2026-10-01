@@ -255,7 +255,7 @@ See [`AI_DISCLOSURE.md`](AI_DISCLOSURE.md): which AI tools helped build the proj
 | Follow-up questions kept context | 100% (6/6) | 100% (6/6) |
 | Search + safety time, without LLM (median) | ~43 ms | ~0.6 s |
 
-On 8 real Gemini answers: **8/8** written by Gemini, **8/8** in the requested script, **8/8** with no numbers (doses, dates) that aren't in the source advisories; median 3.3 s.
+**Every number comes from a source or from code.** Weather, PM-KISAN eligibility, banned pesticides, MSP, mandi prices and farm totals are decided by data and rules; the LLM only explains and converses. Every Gemini answer is checked before it is shown: each amount ("400 g") must appear in the retrieved text with the same unit, and any other number must appear in it (harmless rewording such as "second week" / "2nd week" is allowed). Otherwise the checked advisory text is shown instead, with a note. On 24 real Gemini answers: 24/24 in the requested script, 23 kept, **1 replaced** (Gemini wrote "40 ml" where PAU says "40 g Actara"), so 24/24 answers shown contained only source numbers; median 2.0 s. On the 29 Gemini answers of the feature test set, none was replaced.
 
 ```bash
 python scripts/evaluate.py                      # offline, uses EMBEDDING_PROVIDER from .env

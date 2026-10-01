@@ -21,6 +21,7 @@ project_root = Path(__file__).resolve().parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
+from app.agent.guardrails import unbacked_numbers
 from app.agent.pipeline import KisanPipeline
 from app.agent.router import IntentRouter
 from app.agent.state import ConversationTurn
@@ -162,19 +163,26 @@ def main() -> int:
         print(f"Generating {args.llm} Gemini answers (uses API quota)...")
         llm_pipeline = KisanPipeline(retriever=retriever, synthesizer=get_synthesizer())
         picks = data["retrieval"][:: max(1, len(data["retrieval"]) // args.llm)][: args.llm]
-        llm = {"questions": len(picks), "from_llm": 0, "right_script": 0, "numbers_grounded": 0, "latency_ms": [], "answers": []}
+        llm = {"questions": len(picks), "from_llm": 0, "right_script": 0, "numbers_grounded": 0, "replaced": 0,
+               "latency_ms": [], "answers": []}
         for item in picks:
             start = time.perf_counter()
             res = llm_pipeline.process_query(item["query"], language=item["language"], generate_audio=False)
             llm["latency_ms"].append((time.perf_counter() - start) * 1000)
-            llm["from_llm"] += res.processing_metadata.get("answer_source") == "llm"
+            source = res.processing_metadata.get("answer_source")
+            unbacked = res.processing_metadata.get("unbacked_numbers") or []
+            # Written by Gemini: kept as is ("llm"), or replaced by the checked text because it stated a
+            # number the sources do not (the farmer then sees only source numbers)
+            llm["from_llm"] += source in ("llm", "template_numbers_replaced")
+            llm["replaced"] += source == "template_numbers_replaced"
             llm["right_script"] += script_ok(res.answer, item["language"])
-            source_numbers = numbers_in(" ".join(c.text for c in res.retrieved_chunks) + " " + item["query"])
-            invented = numbers_in(res.answer) - source_numbers
-            llm["numbers_grounded"] += not invented
-            llm["answers"].append({"query": item["query"], "language": item["language"], "answer": res.answer, "invented_numbers": sorted(invented)})
-            if invented:
-                failures.append(f"LLM: \"{item['query']}\" has numbers not in the sources: {sorted(invented)}")
+            shown = unbacked_numbers(res.answer, [c.text + " " + c.citation for c in res.retrieved_chunks] + [item["query"]])
+            llm["numbers_grounded"] += not shown
+            llm["answers"].append({"query": item["query"], "language": item["language"], "answer": res.answer,
+                                   "answer_source": source, "gemini_unbacked_numbers": unbacked,
+                                   "shown_unbacked_numbers": shown})
+            if unbacked:
+                failures.append(f"LLM: \"{item['query']}\": Gemini stated {unbacked}, not in the sources (checked text shown)")
 
     fallbacks = getattr(embeddings, "fallback_count", 0)
     results.update({
@@ -225,7 +233,8 @@ def main() -> int:
         lines += [
             f"| Gemini answers generated (not fallback) | {pct(llm['from_llm'], k)} |",
             f"| Gemini answers in the right script | {pct(llm['right_script'], k)} |",
-            f"| Gemini answers with no invented numbers | {pct(llm['numbers_grounded'], k)} |",
+            f"| Gemini answers replaced: a number not in the sources | {pct(llm['replaced'], k)} |",
+            f"| Answers shown with only source numbers | {pct(llm['numbers_grounded'], k)} |",
             f"| Gemini response time (median) | {statistics.median(llm['latency_ms']) / 1000:.1f} s |",
         ]
     lines += ["", "## Retrieval by language", "", "| Language | Right advisory 1st | In top 3 |", "|---|---|---|"]
@@ -241,7 +250,8 @@ def main() -> int:
         "- The test questions were written by the team, not collected from farmers; a field test set is future work.",
         "- Retrieval, intent, weather-place, safety and follow-up checks do not call the LLM, so they are repeatable.",
         "- A false banned-pesticide warning means a warning on a question that is not about banned pesticides.",
-        "- \"No invented numbers\" means every number in a Gemini answer (doses, percentages, dates) appears in the retrieved advisory text or the question.",
+        "- Every Gemini answer is checked in the app: an amount (\"400 g\") must appear in the sources with the same unit, "
+        "and any other number must appear in them; otherwise the checked text is shown instead.",
     ]
     EVAL_DIR.mkdir(exist_ok=True)
     (EVAL_DIR / f"results_{args.embeddings}.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -258,12 +268,13 @@ def main() -> int:
             "|---|---|",
             f"| Gemini answers generated (not fallback) | {pct(llm['from_llm'], k)} |",
             f"| Gemini answers in the requested script | {pct(llm['right_script'], k)} |",
-            f"| Gemini answers with no invented numbers | {pct(llm['numbers_grounded'], k)} |",
+            f"| Gemini answers replaced: a number not in the sources | {pct(llm['replaced'], k)} |",
+            f"| Answers shown with only source numbers | {pct(llm['numbers_grounded'], k)} |",
             f"| Gemini response time (median) | {statistics.median(llm['latency_ms']) / 1000:.1f} s |",
             "",
-            "\"No invented numbers\": every number in the answer (doses, percentages, dates) appears in the "
-            "retrieved advisory text or the question; list numbering (\"1.\") is ignored. Full answers are in "
-            "`eval/results_llm.json`.",
+            "Every Gemini answer is checked in the app: an amount (\"400 g\") must appear in the retrieved text "
+            "with the same unit, and any other number must appear in it (list numbering \"1.\" is ignored). "
+            "If not, the checked advisory text is shown instead. Full answers are in `eval/results_llm.json`.",
         ]
         (EVAL_DIR / "results_llm.md").write_text("\n".join(llm_lines) + "\n", encoding="utf-8")
         (EVAL_DIR / "results_llm.json").write_text(json.dumps(llm, ensure_ascii=False, indent=2, default=float), encoding="utf-8")

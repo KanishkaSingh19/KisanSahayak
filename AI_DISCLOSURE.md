@@ -29,6 +29,7 @@
 
 ## 4. Safeguards on AI output
 - Answers are grounded only in retrieved advisories. Every answer gets a grounding check, the CIBRC banned-pesticide filter and statutory spray disclaimers.
+- The LLM never decides a number: every amount in a Gemini answer must appear in the retrieved text with the same unit (and every other number in it); otherwise the checked text is shown instead and the answer is logged for KVK review. Totals for the farmer's acres are calculated in code.
 - Prices, PM-KISAN eligibility and weather figures come from data and rules, never from the language model.
 - Questions outside the advisories are referred to the Kisan Call Centre (1800-180-1551) and the KVK instead of being answered with unrelated advice.
 - Pesticide, weakly grounded and uncertain photo answers are sent to a KVK expert review queue, and photo answers are labelled as an AI estimate.

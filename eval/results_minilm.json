@@ -52,10 +52,238 @@
     "total": 6
   },
   "latency_ms": {
-    "median": 53.796100000909064,
-    "p95": 77.40410001133569
+    "median": 57.07714999880409,
+    "p95": 67.87149999581743
   },
-  "llm": null,
+  "llm": {
+    "questions": 24,
+    "from_llm": 24,
+    "right_script": 24,
+    "numbers_grounded": 24,
+    "replaced": 1,
+    "latency_ms": [
+      2841.8822000094224,
+      2467.5564000062877,
+      4077.9330000077607,
+      2123.2882000040263,
+      1792.0047000079649,
+      2449.143699996057,
+      2437.2861000010744,
+      1540.1966999925207,
+      1973.075299989432,
+      2674.5806999970227,
+      2191.7181000026176,
+      1210.971900000004,
+      1320.2036999864504,
+      1148.6816999968141,
+      1301.3135999935912,
+      1653.9331000094535,
+      1790.3659000003245,
+      1367.2324999934062,
+      2035.841300006723,
+      2533.8186000008136,
+      1347.9744000069331,
+      2020.2997000014875,
+      2167.8227000084007,
+      1273.7504999968223
+    ],
+    "answers": [
+      {
+        "query": "How do I control pink bollworm in my cotton field?",
+        "language": "en",
+        "answer": "To control pink bollworm in your cotton field, you can follow these recommended actions and chemical dosages:\n\n1. Monitoring and Mating Disruption:\nMonitor with pheromone (gossyplure) traps from flowering, recording moth catch every alternate day. For mating disruption, apply 125 g per acre of gossyplure 4% paste (CREMIT-PBW/Natamate-PBW) as peanut-size dollops at 400 spots per acre from square formation (45-55 days after sowing), followed by two more applications at 30-day intervals.\n\n2. Chemical Spray:\nSpray when 5 percent of flowers and green bolls are damaged. Use any one of the following per acre:\n- 170 ml Delegate 11.7 SC (spinetoram)\n- 100 g Proclaim 5 SG (emamectin benzoate)\n- 500 ml Curacron 50 EC (profenophos)\n\n3. Preventive Measures:\n- Sun-dry seed cotton in a thin layer for 3-4 days in April because it can hold larvae.\n- Give the last irrigation by the end of September.\n- Do not move cotton sticks from infested areas.\n- Shred infested fields after the final picking.\n\n4. Safety Warning:\n- Do not use synthetic pyrethroids before 15 September as they cause whitefly resurgence.\n- Do not tank-mix insecticides or use ready-made mixtures.\n\nOfficial Sources Used:\n- PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 45 and 51-58 (Pink Bollworm Integrated Management), Punjab Agricultural University (PAU), Ludhiana.",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "कपास में गुलाबी सुंडी से कैसे बचाव करें?",
+        "language": "hi",
+        "answer": "कपास में गुलाबी सुंडी (Pink Bollworm) के प्रबंधन और बचाव के लिए निम्नलिखित उपाय और रासायनिक खुराक अपनाई जा सकती हैं:\n\nलक्षण और पहचान:\nलारवा वर्गाकार कलियों (squares), फूलों और विकसित होने वाले डो्डों में छेद करते हैं। संक्रमित फूल ठीक से नहीं खुलते हैं और 'गुलाब के फूल' (rosette flower) जैसा रूप दिखाते हैं। परिपक्व हरे डो्डों पर विष्ठा के साथ निकास छिद्र दिखाई देते हैं; लिंट पर दाग और बीज नष्ट हो जाते हैं।\n\nअनुशंसित कार्रवाई और रासायनिक खुराक:\n1. फूल आने के समय से फेरोमोन (गॉसीप्लूर) ट्रैप से निगरानी करें और हर दूसरे दिन कीट पकड़ की संख्या दर्ज करें।\n2. मेटिंग डिसरप्शन: चौकोर गठन (बुवाई के 45-55 दिन बाद) से 125 ग्राम प्रति एकड़ की दर से गॉसीप्लूर 4% पेस्ट (CREMIT-PBW/Natamate-PBW) को प्रति एकड़ 400 स्थानों पर मूंगफली के आकार की बूंदों (dollops) के रूप में लगाएं, इसके बाद 30 दिनों के अंतराल पर दो और आवेदन करें।\n3. जब 5 प्रतिशत फूल और हरे डो्डे क्षतिग्रस्त हों, तब स्प्रे करें:\n- 170 मिलीलीटर Delegate 11.7 SC (spinetoram) प्रति एकड़, या\n- 100 ग्राम Proclaim 5 SG (emamectin benzoate) प्रति एकड़, या\n- 500 मिलीलीटर Curacron 50 EC (profenophos) प्रति एकड़।\n\nनिवारक उपाय (Preventive Measures):\n- अप्रैल में 3-4 दिनों के लिए एक पतली परत में बिनौले (seed cotton) को धूप में सुखाएं (इसमें लार्वा हो सकता है)।\n- सितंबर के अंत तक आखिरी सिंचाई करें।\n- संक्रमित क्षेत्रों से कपास की डंडियों को न ले जाएं; अंतिम तुड़ाई के बाद संक्रमित खेतों की कटाई/श्रेडिंग करें।\n\nसुरक्षा चेतावनी (Safety Warning):\n- 15 सितंबर से पहले सिंथेटिक पाइरेथroid का उपयोग न करें (इनसे सफेद मक्खी का प्रकोप दोबारा बढ़ सकता है)।\n- कीटनाशकों को आपस में न मिलाएं (tank-mix) और न ही रेडीमेड मिश्रणों का उपयोग करें।\n\nस्रोतों की सूची:\n- Punjab Agricultural University (PAU), Ludhiana - PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 45 and 51-58 [Pink Bollworm (Gulabi Sundhi) Integrated Management].",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "ਨਰਮੇ ਵਿੱਚ ਗੁਲਾਬੀ ਸੁੰਡੀ ਦਾ ਇਲਾਜ ਦੱਸੋ",
+        "language": "pa",
+        "answer": "ਨਰਮੇ ਵਿੱਚ ਗੁਲਾਬੀ ਸੁੰਡੀ ਦੀ ਰੋਕਥਾਮ ਅਤੇ ਪ੍ਰਬੰਧਨ ਲਈ ਹੇਠ ਲਿਖੇ ਉਪਾਅ ਅਤੇ ਰਸਾਇਣਕ ਖੁਰਾਕ ਵਰਤੋਂ:\n\nਲੱਛਣ ਅਤੇ ਪਛਾਣ:\nਸੁੰਡੀ ਕਲੀਆਂ, ਫੁੱਲਾਂ ਅਤੇ ਵਿਕਸਿਤ ਹੋ ਰਹੇ ਟਿੰਡਾਂ ਵਿੱਚ ਸੁਰਾਖ ਕਰਦੀ ਹੈ। ਕੀੜੇ ਨਾਲ ਗ੍ਰਸਤ ਫੁੱਲ ਪੂਰੀ ਤਰ੍ਹਾਂ ਨਹੀਂ ਖੁੱਲ੍ਹਦੇ ਅਤੇ 'ਰੋਜ਼ੇਟ ਫੁੱਲ' (ਗੁਲਾਬ ਦੇ ਫੁੱਲ ਵਰਗੇ) ਦਿਖਾਈ ਦਿੰਦੇ ਹਨ। ਪਰਿਪੱਕ ਹਰੇ ਟਿੰਡਾਂ ਉੱਤੇ ਮਲ ਦੇ ਨਾਲ ਬਾਹਰ ਨਿਕਲਣ ਵਾਲੇ ਸੁਰਾਖ ਦਿਖਾਈ ਦਿੰਦੇ ਹਨ, ਜਿਸ ਨਾਲ ਰੂੰ ਖਰਾਬ ਹੁੰਦੀ ਹੈ ਅਤੇ ਬੀਜ ਨਸ਼ਟ ਹੋ ਜਾਂਦੇ ਹਨ।\n\nਸਿਫਾਰਸ਼ੀ ਕਾਰਵਾਈ ਅਤੇ ਰਸਾਇਣਕ ਖੁਰਾਕ:\n1. ਫੁੱਲ ਆਉਣ ਦੇ ਸਮੇਂ ਤੋਂ ਫੇਰੋਮੋਨ (ਗੌਸੀਪਲੂਰ) ਟਰੈਪ ਨਾਲ ਨਿਗਰਾਨੀ ਰੱਖੋ ਅਤੇ ਹਰ ਦੂਜੇ ਦਿਨ ਮੋਥ ਫੜੇ ਜਾਣ ਦੀ ਗਿਣਤੀ ਦਰਜ ਕਰੋ।\n2. ਮੇਟਿੰਗ ਡਿਸਰਪਸ਼ਨ (ਜੋੜੇ ਬਣਨ ਨੂੰ ਰੋਕਣਾ): ਬੀਜਾਈ ਤੋਂ 45-55 ਦਿਨਾਂ ਬਾਅਦ (ਕਲੀ ਬਣਨ ਦੇ ਸਮੇਂ) 125 ਗ੍ਰਾਮ ਪ੍ਰਤੀ ਏਕੜ ਦੇ ਹਿਸਾਬ ਨਾਲ ਗੌਸੀਪਲੂਰ 4% ਪੇਸਟ (CREMIT-PBW/Natamate-PBW) ਨੂੰ 400 ਥਾਵਾਂ 'ਤੇ ਮੂੰਗਫਲੀ ਦੇ ਆਕਾਰ ਦੀਆਂ ਪਿੰਡਾਂ ਵਜੋਂ ਲਗਾਓ। ਇਸ ਤੋਂ ਬਾਅਦ 30 ਦਿਨਾਂ ਦੇ ਵਕਫੇ 'ਤੇ ਦੋ ਹੋਰ ਵਾਰ ਇਹੋ ਜਿਹੀ ਵਰਤੋਂ ਕਰੋ।\n3. ਜਦੋਂ 5 ਫ਼ੀਸਦੀ ਫੁੱਲ ਅਤੇ ਹਰੇ ਟਿੰਡ ਨੁਕਸਾਨੇ ਜਾਣ, ਤਾਂ ਹੇਠ ਲਿਖੇ ਵਿੱਚੋਂ ਕਿਸੇ ਇੱਕ ਦੀ ਸਪਰੇਅ ਪ੍ਰਤੀ ਏਕੜ ਕਰੋ:\n- 170 ਮਿਲੀਲੀਟਰ Delegate 11.7 SC (spinetoram)\n- ਜਾਂ 100 ਗ੍ਰਾਮ Proclaim 5 SG (emamectin benzoate)\n- ਜਾਂ 500 ਮਿਲੀਲੀਟਰ Curacron 50 EC (profenophos)\n\nਰੋਕਥਾਮ ਦੇ ਉਪਾਅ:\n- ਅਪ੍ਰੈਲ ਮਹੀਨੇ ਵਿੱਚ ਨਰਮੇ ਦੇ ਬੀਜ ਨੂੰ ਪਤਲੀ ਤਹਿ ਵਿੱਚ 3-4 ਦਿਨਾਂ ਲਈ ਧੁੱਪ ਵਿੱਚ ਸੁਕਾਓ (ਇਸ ਵਿੱਚ ਸੁੰਡੀ ਦੀਆਂ ਸੁੰਡੀਆਂ ਹੋ ਸਕਦੀਆਂ ਹਨ)।\n- ਆਖਰੀ ਸਿੰਚਾਈ ਸਤੰਬਰ ਦੇ ਅੰਤ ਤੱਕ ਕਰੋ।\n- ਕੀੜੇ ਨਾਲ ਪ੍ਰਭਾਵਿਤ ਖੇਤਰਾਂ ਵਿੱਚੋਂ ਨਰਮੇ ਦੀਆਂ ਸੋਟੀਆਂ ਨੂੰ ਨਾ ਹਿਲਾਓ; ਆਖਰੀ ਚੁਗਾਈ ਤੋਂ ਬਾਅਦ ਪ੍ਰਭਾਵਿਤ ਖੇਤਾਂ ਦੀ ਰਹਿੰਦ-ਖੂੰਹਦ ਨੂੰ ਕੁਤਰ ਦਿਓ (ਸ਼ਰੈਡ ਕਰੋ)।\n\nਸੁਰੱਖਿਆ ਚੇਤਾਵਨੀ:\n15 ਸਤੰਬਰ ਤੋਂ ਪਹਿਲਾਂ ਸਿੰਥੈਟਿਕ ਪਾਈਰੈਥਰਾਇਡਜ਼ ਦੀ ਵਰਤੋਂ ਨਾ ਕਰੋ (ਇਸ ਨਾਲ ਚਿੱਟੇ ਮੱਛਰ ਦਾ ਮੁੜ ਉਭਾਰ ਹੁੰਦਾ ਹੈ), ਅਤੇ ਕੀੜੇਮਾਰ ਦਵਾਈਆਂ ਨੂੰ ਆਪਸ ਵਿੱਚ ਮਿਲਾ ਕੇ (ਟੈਂਕ-ਮਿਕਸ) ਜਾਂ ਤਿਆਰ-ਸ਼ੁਦਾ ਮਿਸ਼ਰਣਾਂ ਦੀ ਵਰਤੋਂ ਨਾ ਕਰੋ।\n\nਅਧਿਕਾਰਤ ਸਰੋਤ:\n- PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 45 and 51-58 [Pink Bollworm (Gulabi Sundhi) Integrated Management], Punjab Agricultural University (PAU), Ludhiana.",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "kapas mein gulabi sundhi lag gayi hai kya karein",
+        "language": "hinglish",
+        "answer": "Kapas mein gulabi sundhi (Pink Bollworm) ke roktham ke liye yeh tareeqe apnayein:\n\nPehchan aur Monitor:\nPheromone (gossyplure) traps ka istemal karke flowering ke samay se monitoring karein aur har alternate day par moth catch record karein.\n\nMating Disruption:\nSquare formation (buwai ke 45-55 din baad) par 125 g per acre ke hisab se gossyplure 4% paste (CREMIT-PBW/Natamate-PBW) ko peanut-size dollops ke roop mein 400 spots per acre par lagayein. Iske baad 30-30 din ke antar par do aur applications karein.\n\nChemical Spray (Chemical Dosage):\nJab 5 percent phool aur green bolls damaged hon, tab spray karein. Inme se kisi ek ka istemal karein:\n- 170 ml Delegate 11.7 SC (spinetoram) per acre\n- 100 g Proclaim 5 SG (emamectin benzoate) per acre\n- 500 ml Curacron 50 EC (profenophos) per acre\n\nPreventive Measures:\n- April mein seed cotton ko 3-4 din tak patli layer mein dhoop mein sukhayein (ispe larvae ho sakte hain).\n- September ke ant tak aakhri irrigation de dein.\n- Prabhavit kshetron se kapas ki lakdiyan (cotton sticks) na le jayein; aakhri chugai ke baad prabhavit kheton ki shredding karein.\n\nSafety Warnings:\n- 15 September se pehle synthetic pyrethroids ka istemal na karein (isse whitefly badh sakti hai).\n- Insecticides ko aapas mein tank-mix na karein aur na hi ready-made mixtures ka istemal karein.\n\nOfficial Sources:\n- PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 45 and 51-58 (Punjab Agricultural University, Ludhiana).",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "White flies under cotton leaves and the leaves are curling, what should I do?",
+        "language": "en",
+        "answer": "For whitefly and leaf curl symptoms on cotton, where adults and nymphs suck sap from the undersides of leaves causing yellowing and downward leaf curling, follow these recommended actions:\n\nRecommended Action and Chemical Dosages:\nSpray your cotton crop when whitefly reaches 6 adults per leaf in the upper canopy (count before 10 AM) or when honeydew appears on 50 percent of plants. Use any one of the following per acre:\n- 400 ml Sefina 50 DC (afidopyropen)\n- 200 g Polo 50 WP (diafenthiuron)\n- 80 g Ulala 50 WG (flonicamid)\n- 500 ml Lano 10 EC (pyriproxyfen, against nymphs)\n- 1200 ml PAU homemade neem extract\n\nNote that there is no spray for the leaf curl virus itself. For the virus, you should uproot diseased plants and control the whitefly.\n\nPreventive Measures:\n- Complete sowing by 15 May.\n- Put up 40 yellow sticky traps per acre early in the season.\n- Destroy weed hosts such as kanghi buti and peeli buti.\n- Where whitefly and leaf curl are severe, prefer desi cotton, which resists leaf curl.\n\nSafety Warnings:\n- Do not use synthetic pyrethroids before 15 September, as they cause whitefly resurgence.\n- Do not tank-mix insecticides or use ready-made mixtures.\n\nSources Used:\n- PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 45 and 51-61 [Cotton Whitefly and Leaf Curl Virus (CLCuD) Control], Punjab Agricultural University (PAU), Ludhiana.",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "narma mein safed makhi aur patte mud rahe hain",
+        "language": "hinglish",
+        "answer": "Narma (cotton) mein safed makhi (whitefly) aur patte mudne (Leaf Curl Virus) ki samasya ke liye PAU ki sifarishon ke anusaar yeh kadam utayein:\n\nPahchan aur Lakshyan:\nAdults aur nymphs patton ke niche se ras chuste hain, jisse patte peele padte hain aur niche ki taraf mud jate hain. Isse Cotton Leaf Curl Virus failta hai, jisse veins moti ho jati hain aur patton ke niche ki taraf leaf-like outgrowths (enation) ban jati hain. Leaf curl virus ki koi spray nahi hoti, isliye bimari wale paudhon ko ukhad kar fenk dein aur safed makhi ko control karein.\n\nSpray karne ka sahi samay:\nSpray tabhi karein jab whitefly upper canopy mein prati patta 6 adults tak ho (subah 10 baje se pehle count karein) ya 50 percent paudhon par honeydew dikhai de.\n\nChemical Dosage (Prati Acre):\n- 400 ml Sefina 50 DC (afidopyropen)\n- Ya 200 g Polo 50 WP (diafenthiuron)\n- Ya 80 g Ulala 50 WG (flonicamid)\n- Ya 500 ml Lano 10 EC (pyriproxyfen, nymphs ke liye)\n- Ya 1200 ml PAU homemade neem extract\n\nBachav aur Savdhani (Precautions):\n- 15 May tak sowing poori kar lein.\n- Mausam ke shuru mein prati acre 40 yellow sticky traps lagayein.\n- Kanghi buti aur peeli buti jaise weed hosts ko nasht karein.\n- Jahan whitefly aur leaf curl zyada ho, wahan desi cotton pasand karein kyunki yeh leaf curl ko resist karti hai.\n- 15 September se pehle synthetic pyrethroids ka use bilkul na karein (isase whitefly dobara badh sakti hai).\n- Insecticides ko aapas mein tank-mix na karein aur na hi ready-made mixtures ka use karein.\n\nOfficial Sources:\n- Punjab Agricultural University (PAU) Package of Practices for Crops of Punjab, Kharif 2026, pages 45 and 51-61 (Cotton Whitefly and Leaf Curl Virus Control).",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "कपास में सफेद मक्खी का नियंत्रण कैसे करें?",
+        "language": "hi",
+        "answer": "कपास में सफेद मक्खी (Whitefly) के नियंत्रण के लिए पंजाब कृषि विश्वविद्यालय (PAU) की सिफ़ारिशें इस प्रकार हैं:\n\nनिवारक उपाय (Preventive Measures):\n1. 15 मई तक बुवाई का काम पूरा कर लें।\n2. मौसम की शुरुआत में प्रति एकड़ 40 पीले चिपचिपे फंदा (yellow sticky traps) लगाएं।\n3. खरपतवार के मेजबानों जैसे कंगी बूटी और पीली बूटी को नष्ट कर दें।\n4. जहाँ सफेद मक्खी और पत्ती मरोड़ वायरस (leaf curl) गंभीर रूप से हों, वहाँ देसी कपास को प्राथमिकता दें, जो पत्ती मरोड़ के प्रति सहनशील होती है।\n\nअनुशंसित कार्रवाई और रासायनिक खुराक (Recommended Action & Chemical Dosage):\nसफेद मक्खी के नियंत्रण के लिए छिड़काव तब करें जब ऊपरी छतरी (upper canopy) में सफेद मक्खी 6 वयस्क प्रति पत्ती तक पहुँच जाए (सुबह 10 बजे से पहले गिनती करें) या जब 50 प्रतिशत पौधों पर चिपचिपा रस (honeydew) दिखाई दे। \n\nप्रति एकड़ निम्नलिखित में से किसी एक का उपयोग करें:\n- 400 ml Sefina 50 DC (afidopyropen)\n- 200 g Polo 50 WP (diafenthiuron)\n- 80 g Ulala 50 WG (flonicamid)\n- 500 ml Lano 10 EC (pyriproxyfen, nymphs के खिलाफ)\n- या 1200 ml PAU घर का बना नीम का अर्क।\n\nनोट: पत्ती मरोड़ वायरस (leaf curl virus) के लिए कोई छिड़काव नहीं है; रोगग्रस्त पौधों को उखाड़ कर फेंक दें और सफेद मक्खी को नियंत्रित करें।\n\nसुरक्षा चेतावनी (Safety Warning):\n15 सितंबर से पहले सिंथेटिक पाइथ्रॉइड्स का उपयोग न करें (इनसे सफेद मक्खी का प्रकोप दोबारा बढ़ सकता है), और कीटनाशकों को आपस में मिलाकर (tank-mix) या रेडीमेड मिश्रण का उपयोग न करें।\n\nआधिकारिक स्रोत (Official Sources):\n- PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 45 and 51-61 (Cotton Whitefly and Leaf Curl Virus Control).",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "Aphids on my mustard crop, how to control them?",
+        "language": "en",
+        "answer": "To control aphids (chetpa/mahu) on your mustard crop, follow these steps and chemical dosages:\n\nMonitoring and Thresholds:\nFrom the first week of January, check 12 to 16 scattered plants per acre twice a week. Start spraying when you see any of the following economic thresholds:\n- There are 50 to 60 aphids per 10 cm of the central shoot tip.\n- Or, 0.5 to 1.0 cm of the tip is covered by aphids.\n- Or, 40 to 50 percent of the plants are infested.\n\nRecommended Action and Chemical Dosage:\nSpray any one of the following chemicals per acre:\n- 40 g Actara 25 WG (thiamethoxam) in 80 to 125 liters of water.\n- Or, 400 ml Rogor 30 EC (dimethoate) in 80 to 125 liters of water.\n- Or, 400 ml Metasystox 25 EC (oxydemeton methyl) in 80 to 125 liters of water.\nRepeat the spray whenever the threshold is reached again.\n\nPreventive Measures:\n- Sow your crop at the recommended time, preferably by the third week of October.\n- Apply the recommended dose of fertilizers.\n\nSafety Warning:\n- Spray in the late afternoon to protect honeybees visiting the flowers.\n\nOfficial Sources Used:\n- PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 54-55 (Mustard Aphid Management), Punjab Agricultural University (PAU), Ludhiana.",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "सरसों में माहू का इलाज बताइए",
+        "language": "hi",
+        "answer": "सरसों में माहू (चेतपा/एफिड) के प्रबंधन और इलाज के लिए पंजाब कृषि विश्वविद्यालय (पीएयू) द्वारा निम्नलिखित सिफारिशें दी गई हैं:\n\nलक्षण और पहचान:\nनिर्म और वयस्क कोमल टहनियों, पुष्पक्रम, पत्तियों और फली से रस चूसते हैं। ग्रसित पौधों की पत्तियाँ मुड़ जाती हैं, वृद्धि रुक जाती है और फली नहीं बनती। यह चिपचिपा पदार्थ छोड़ते हैं जिससे कालिख फफूंद (सोटी मोल्ड) विकसित हो जाती है।\n\nअनुशंसित कार्रवाई और रासायनिक खुराक:\nजनवरी के पहले सप्ताह से, प्रति एकड़ 12-16 बिखरे हुए पौधों की सप्ताह में दो बार जाँच करें। स्प्रे तब करें जब केंद्रीय टिप के प्रति 10 सेमी में 50-60 माहू हों, या टिप का 0.5 से 1.0 सेमी हिस्सा माहू से ढका हो, या 40-50% पौधे ग्रसित हों। \n\nप्रति एकड़ 80-125 लीटर पानी में इनमें से किसी एक की स्प्रे करें:\n- 40 g Actara 25 WG (thiamethoxam)\n- या 400 ml Rogor 30 EC (dimethoate)\n- या 400 ml Metasystox 25 EC (oxydemeton methyl)\n\nथ्रेशोल्ड (सीमा) फिर से पहुँचने पर स्प्रे को दोहराएँ।\n\nरोकथाम के उपाय और सुरक्षा चेतावनी:\n- अनुशंसित समय पर, अधिमानतः अक्टूबर के तीसरे सप्ताह तक बुवाई करें और उर्वरकों की अनुशंसित खुराक का उपयोग करें।\n- फूलों पर आने वाली मधुमक्खियों की सुरक्षा के लिए शाम के समय स्प्रे करें।\n\nउपयोग किए गए आधिकारिक स्रोत:\n- PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 54-55 (Mustard Aphid (Chetpa/Mahu) Management), Punjab Agricultural University (PAU), Ludhiana.",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "ਸਰ੍ਹੋਂ ਵਿੱਚ ਚੇਪੇ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ?",
+        "language": "pa",
+        "answer": "ਸਰ੍ਹੋਂ ਵਿੱਚ ਚੇਪੇ (ਮਹੂ) ਦੀ ਰੋਕਥਾਮ ਲਈ ਹੇਠ ਲਿਖੇ ਅਨੁصار ਕਾਰਵਾਈ ਕਰੋ:\n\nਲੱਛਣ ਅਤੇ ਪਛਾਣ:\nਨਿੰਫ਼ ਅਤੇ ਬਾਲਗ ਕੀੜੇ ਨਾਜ਼ੁਕ ਟਾਹਣੀਆਂ, ਫੁੱਲਾਂ, ਪੱਤਿਆਂ ਅਤੇ ਫਲੀਆਂ ਵਿੱਚੋਂ ਰਸ ਚੂਸਦੇ ਹਨ। ਪ੍ਰਭਾਵਿਤ ਪੌਦਿਆਂ ਦੇ ਪੱਤੇ ਮੁੜ ਜਾਂਦੇ ਹਨ, ਵਾਧਾ ਰੁਕ ਜਾਂਦਾ ਹੈ ਅਤੇ ਫਲੀਆਂ ਨਹੀਂ ਬਣਦੀਆਂ। ਇਹ ਮਿੱਠਾ ਰਸ ਛੱਡਦੇ ਹਨ ਜਿਸ ਨਾਲ ਕਾਲੀ ਉੱਲੀ (ਸੋਟੀ ਮੋਲਡ) ਪੈਦਾ ਹੋ ਜਾਂਦੀ ਹੈ।\n\nਸਿਫਾਰਸ਼ੀ ਕਾਰਵਾਈ ਅਤੇ ਰਸਾਇਣਕ ਮਾਤਰਾ:\nਜਨਵਰੀ ਦੇ ਪਹਿਲੇ ਹਫ਼ਤੇ ਤੋਂ, ਪ੍ਰਤੀ ਏਕੜ 12-16 ਖਿਲਰੇ ਹੋਏ ਪੌਦਿਆਂ ਦਾ ਹਫ਼ਤੇ ਵਿੱਚ ਦੋ ਵਾਰ ਮੁਆਇਨਾ ਕਰੋ। ਸਪਰੇਅ ਉਸ ਸਮੇਂ ਕਰੋ ਜਦੋਂ ਕੇਂਦਰੀ ਟਾਹਣੀ ਦੇ 10 ਸੈਂਟੀਮੀਟਰ ਹਿੱਸੇ 'ਤੇ 50-60 ਚੇਪੇ ਹੋਣ, ਜਾਂ ਟਾਹਣੀ ਦਾ 0.5 ਤੋਂ 1.0 ਸੈਂਟੀਮੀਟਰ ਹਿੱਸਾ ਚੇਪਿਆਂ ਨਾਲ ਘਿਰਿਆ ਹੋਵੇ, ਜਾਂ 40-50% ਪੌਦੇ ਪ੍ਰਭਾਵਿਤ ਹੋਣ। \n\nਪ੍ਰਤੀ ਏਕੜ 80-125 ਲੀਟਰ ਪਾਣੀ ਵਿੱਚ 40 g Actara 25 WG (thiamethoxam) ਜਾਂ 400 ml Rogor 30 EC (dimethoate) ਜਾਂ 400 ml Metasystox 25 EC (oxydemeton methyl) ਦੀ ਸਪਰੇਅ ਕਰੋ। ਜਦੋਂ ਵੀ ਨਿਰਧਾਰਤ ਹੱਦ ਦੁਬਾਰਾ ਪਹੁੰਚ ਜਾਵੇ, ਤਾਂ ਸਪਰੇਅ ਨੂੰ ਦੁਰਾਓ।\n\nਰੋਕਥਾਮ ਦੇ ਉਪਾਅ:\nਫਸਲ ਦੀ ਬਿਜਾਈ ਸਿਫਾਰਸ਼ ਕੀਤੇ ਸਮੇਂ 'ਤੇ, ਤਰਜੀਹੀ ਤੌਰ 'ਤੇ ਅਕਤੂਬਰ ਦੇ ਤੀਜੇ ਹਫ਼ਤੇ ਤੱਕ ਕਰੋ, ਅਤੇ ਖਾਦਾਂ ਦੀ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਮਾਤਰਾ ਦੀ ਵਰਤੋ ਕਰੋ।\n\nਸੁਰੱਖਿਆ ਚੇਤਾਵਨੀ:\nਫੁੱਲਾਂ ਦਾ ਰਸ ਚੂਸਣ ਆਉਣ ਵਾਲੀਆਂ ਮਧੂ-ਮੱਖੀਆਂ ਦੀ ਰੱਖਿਆ ਲਈ ਸਪਰੇਅ ਸ਼ਾਮ ਦੇ ਵੇਲੇ ਕਰੋ।\n\nਸਰੋਤ:\nPAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 54-55 (Mustard Aphid (Chetpa/Mahu) Management), Punjab Agricultural University (PAU), Ludhiana.",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "sarson mein chepa ka ilaj kya hai",
+        "language": "hinglish",
+        "answer": "### Fasal Salah: Mustard (Sarson ke aphid (chetpa/mahu) ka management)\n\n**Pehchaan aur Lakshan:**\nNymphs aur adults tender twigs, inflorescence, leaves aur siliquae (pods) se cell sap suck karte hain. Infested plants ke patte curl ho jaate hain, growth stunt ho jaati hai aur pods nahi bante hain. Yeh honeydew secrete karta hai jisse sooty mold develop ho jaata hai.\n\n**Sujhaya Ilaaj aur Dose:**\nJanuary ke pehle hafte se, prati acre 12-16 scattered paudhon ko hafte mein do baar check karein. Spray tab karein jab central shoot tip ke 10 cm par 50-60 aphids hon, ya tip ka 0.5 se 1.0 cm hissa aphids se cover ho, ya 40-50% paudhe infested hon. Prati acre 80-125 liters paani mein 40 g Actara 25 WG (thiamethoxam) ya 400 ml Rogor 30 EC (dimethoate) ya 400 ml Metasystox 25 EC (oxydemeton methyl) spray karein. Jab bhi threshold dobara pahunch jaye, repeat karein.\n\n**Rokthaam aur Savdhaniyan:**\nRecommended time par sow karein, preferably October ke third week tak, aur fertilizers ki recommended dose apply karein.\n\n**Vishesh Kanooni Chetavani:**\nPhoolon par aane wali honeybees ki raksha ke liye late afternoon mein spray karein.\n",
+        "answer_source": "template_numbers_replaced",
+        "gemini_unbacked_numbers": [
+          "40 ml"
+        ],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "White blisters on the underside of my mustard leaves",
+        "language": "en",
+        "answer": "Based on your symptoms of white blisters on the underside of your mustard leaves, your crop is likely affected by White Rust (Safed Kungi). \n\nHere are the recommended actions, chemical dosages, and preventive measures:\n\nRecommended Action & Chemical Dosage:\nFor white rust, spray 250 g Ridomil Gold (metalaxyl 4% + mancozeb 64%) dissolved in 100 liters of water per acre at 60 and 80 days after sowing. If needed, you can repeat the spray after 20 days.\n\nPreventive Measures:\nDestroy diseased crop debris from the previous crop, as this helps reduce both white rust and Alternaria blight.\n\nSources Used:\n- PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 55-56 [White Rust (Safed Kungi) and Blight Management in Mustard], Punjab Agricultural University (PAU), Ludhiana (2025).",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "sarson ke patton par safed kungi aa gayi",
+        "language": "hinglish",
+        "answer": "Sarson ke patton par safed kungi (White Rust) ke liye, 250 g Ridomil Gold (metalaxyl 4% + mancozeb 64%) ko 100 liter pani mein mila kar prati acre ke hisab se 60 aur 80 din ki buwai par spray karein. Agar zaroorat ho, toh spray 20 din ke baad doosri baar bhi kar sakte hain.\n\nBachav ke liye, pichli fasal ka roggrast kachra (crop debris) poori tarah nasht kar dein; isse safed kungi aur Alternaria blight dono kam hote hain.\n\nOfficial Sources:\n- PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 55-56 [White Rust (Safed Kungi) and Blight Management in Mustard], Punjab Agricultural University (PAU), Ludhiana.",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "सरसों में सफेद रतुआ रोग का उपचार",
+        "language": "hi",
+        "answer": "सरसों में सफेद रतुआ (Safed Kungi) रोग के उपचार के लिए, बुवाई के 60 और 80 दिन बाद प्रति एकड़ 100 लीटर पानी में 250 ग्राम Ridomil Gold (metalaxyl 4% + mancozeb 64%) घोलकर स्प्रे करें। यदि आवश्यकता हो, तो 20 दिन बाद स्प्रे को दोहराया जा सकता है।\n\nरोकथाम के उपाय: पिछले साल के रोगग्रस्त फसल के अवशेषों को नष्ट कर दें, जिससे सफेद रतुआ और अल्टरनेरिया ब्लाइट दोनों कम होते हैं।\n\nआधिकारिक स्रोत:\n- PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 55-56 [White Rust (Safed Kungi) and Blight Management in Mustard], पंजाब कृषि विश्वविद्यालय (PAU), लुधियाना",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "How much fertilizer and irrigation does mustard need?",
+        "language": "en",
+        "answer": "For irrigated mustard (raya, gobhi sarson), apply 40 kg N and 12 kg P2O5 per acre. This is equal to 90 kg urea and 75 kg single superphosphate. \n\nGive half of the urea and all of the single superphosphate at the time of sowing. Give the other half of the urea with the first irrigation. \n\nSingle superphosphate also supplies sulphur. If it is not available, apply 80 kg gypsum per acre at sowing on sulphur-deficient soils. Apply 10 kg muriate of potash per acre only on potassium-deficient soils.\n\nFor irrigation management:\n- Give the first irrigation 3 to 4 weeks after sowing.\n- In gobhi sarson, give the second irrigation at the end of December.\n- Give the last irrigation in the second fortnight of February. Irrigating after that can cause lodging.\n\nSources used:\n- PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 50-53 [Mustard Fertilizer and Irrigation Management]",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "sarson mein kitni khad aur paani dena chahiye",
+        "language": "hinglish",
+        "answer": "Namaskar! Sarson mein khad aur paani ke prabandhan ke liye PAU ki sifarish is prakaar hai:\n\nKhad Prabandhan (Fertilizer):\nIrrigated sarson (raya, gobhi sarson) ke liye prati acre 40 kg N aur 12 kg P2O5 ki sifarish hai, yaani 90 kg urea aur 75 kg single superphosphate. \n- Adhi urea aur saari superphosphate buwaai ke samay dein.\n- Bachi hui adhi urea pehli sinchai ke samay dein.\n- Single superphosphate se sulphur bhi milta hai. Agar yeh uplabdh na ho, toh sulphur-deficient mitti mein buwaai ke waqt 80 kg gypsum prati acre daalein.\n- Potassium-deficient mitti mein hi 10 kg muriate of potash prati acre daalein.\n\nPaani Prabandhan (Irrigation):\n- Pehli sinchai buwaai ke 3 se 4 hafte baad dein.\n- Gobhi sarson mein doosri sinchai December ke ant mein aur aakhri sinchai February ke doosre fortnight mein dein. Iske baad sinchai karne se fasal gir sakti hai.\n\nOfficial Sources:\n- PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 50-53 (Mustard Fertilizer and Irrigation Management)",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "सरसों में खाद और सिंचाई कब करें?",
+        "language": "hi",
+        "answer": "किसान सहायक।\n\nसरसों में खाद और सिंचाई का प्रबंधन इस प्रकार है:\n\nखाद प्रबंधन:\nसिंचित सरसों (रायया, गोभी सरसों) के लिए प्रति एकड़ 40 किलोग्राम नाइट्रोजन और 12 किलोग्राम P2O5 (अर्थात 90 किलोग्राम यूरिया और 75 किलोग्राम सिंगल सुपरफॉस्फेट) दें। यूरिया का आधा हिस्सा और सारा सुपरफॉस्फेट बुवाई के समय दें, और यूरिया का बाकी बचा आधा हिस्सा पहली सिंचाई के साथ दें। सिंगल सुपरफॉस्फेट से सल्फर भी मिलता है; यदि यह उपलब्ध न हो, तो सल्फर की कमी वाली मिट्टी पर बुवाई के समय 80 किलोग्राम जिप्सम प्रति एकड़ डालें। केवल पोटेशियम की कमी वाली मिट्टी पर 10 किलोग्राम म्युरेट ऑफ़ पोटाश प्रति एकड़ डालें।\n\nसिंचाई प्रबंधन:\nबुवाई के 3 से 4 सप्ताह बाद पहली सिंचाई करें। गोभी सरसों में, दूसरी सिंचाई दिसंबर के अंत में और आखिरी सिंचाई फरवरी के दूसरे पखवाड़े में करें; उसके बाद सिंचाई करने से फसल गिर सकती है (लॉजिंग हो सकती है)।\n\nआधिकारिक स्रोत:\n- PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 50-53 [Mustard Fertilizer and Irrigation Management], Punjab Agricultural University (PAU), Ludhiana (2025).",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "Paddy leaves are turning yellow and drying from the tips",
+        "language": "en",
+        "answer": "For symptoms where paddy leaves are turning yellow and drying from the tips and edges, along with water-soaked translucent lesions starting from leaf tips and margins that progress downwards, the target disease is Bacterial Leaf Blight (Peela Jhulsa). \n\nRecommended Action and Chemical Dosage:\nPunjab Agricultural University (PAU) recommends no chemical spray for bacterial blight. \n\nManagement and Preventive Measures:\n1. Do not apply excess nitrogen, and do not apply any nitrogen later than six weeks after transplanting unless you are using the leaf colour chart.\n2. Do not keep water standing continuously in the field.\n3. Do not raise the nursery under shade or near wheat straw stacks.\n4. Use disease-free seed.\n5. Grow varieties that are resistant to most bacterial blight pathotypes in Punjab, such as PR 133, PR 132, PR 131, PR 130, PR 129, PR 128, PR 127, PR 126, PR 122, PR 121, and PR 113.\n\nSources Used:\n- Punjab Agricultural University (PAU) Package of Practices for Crops of Punjab, Kharif 2026, pages 16-19 (Bacterial Leaf Blight in Paddy).",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "dhan mein peela jhulsa rog ka ilaj",
+        "language": "hinglish",
+        "answer": "Dhan mein Bacterial Leaf Blight (BLB / Peela Jhulsa) ke liye PAU ki salah hai ki is rog ke liye koi chemical spray nahi karni chahiye. \n\nBachav aur roktham ke tarike:\n- Fasal mein zyada nitrogen khat khad na dalein. \n- Transplanting ke 6 hafte baad nitrogen bilkul na dalein (jab tak leaf colour chart ka prayog na ho raha ho).\n- Khet mein lagatar paani khada na rakhein.\n- Nursery ko chhao (shade) mein ya gehun ke bhuse ke dher ke paas na ugayein.\n- Rog-mukt beej ka istemal karein.\n- Punjab mein adhikansh bacterial blight pathotypes ke khilaf pratiroodhi (resistant) kismein ugayein jaise: PR 133, PR 132, PR 131, PR 130, PR 129, PR 128, PR 127, PR 126, PR 122, PR 121 aur PR 113.\n\nOfficial Sources:\n- PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 16-19 [Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy], Punjab Agricultural University (PAU), Ludhiana.",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "ਝੋਨੇ ਦੇ ਪੱਤੇ ਸਿਰਿਆਂ ਤੋਂ ਪੀਲੇ ਹੋ ਕੇ ਸੁੱਕ ਰਹੇ ਹਨ",
+        "language": "pa",
+        "answer": "ਝੋਨੇ ਦੇ ਪੱਤਿਆਂ ਦਾ ਸਿਰਿਆਂ ਅਤੇ ਕਿਨਾਰਿਆਂ ਤੋਂ ਪੀਲੇ ਹੋ ਕੇ ਸੁੱਕਣਾ ਬੈਕਟੀਰੀਅਲ ਲੀਫ ਬਲਾਇਟ (ਬੀ.ਐਲ.ਬੀ. / ਪੀਲਾ ਝੁਲਸਾ) ਰੋਗ ਦੇ ਲੱਛਣ ਹਨ। ਇਸ ਰੋਗ ਵਿੱਚ ਪੱਤਿਆਂ ਦੇ ਸਿਰਿਆਂ ਅਤੇ ਕਿਨਾਰਿਆਂ ਤੋਂ ਪਾਣੀ ਨਾਲ ਭਿੱਜੇ ਹੋਏ ਪਾਰਦਰਸ਼ੀ ਧੱਬੇ ਸ਼ੁਰੂ ਹੁੰਦੇ ਹਨ, ਜੋ ਹੇਠਾਂ ਵੱਲ ਲਹਿਰੇਦਾਰ ਕਿਨਾਰਿਆਂ ਨਾਲ ਵਧਦੇ ਹਨ ਅਤੇ ਪੀਲੇ ਤੋਂ ਤੂੜੀ ਵਰਗੇ ਰੰਗ ਦੇ ਹੋ ਜਾਂਦੇ ਹਨ। ਗੰਭੀਰ ਮਾਮਲਿਆਂ ਵਿੱਚ ਮੁਰਝਾਉਣ ਦੀ ਹਾਲਤ (ਕ੍ਰੇਸੇਕ ਸਟੇਜ) ਵੀ ਹੋ ਜਾਂਦੀ ਹੈ।\n\nਸਿਫਾਰਸ਼ ਕੀਤੀ ਕਾਰਵਾਈ ਅਤੇ ਸਾਵਧਾਨੀਆਂ:\n- ਪੰਜਾਬ ਐਗਰੀਕਲਚਰਲ ਯੂਨੀਵਰਸਿਟੀ (ਪੀ.ਏ.ਯੂ.) ਵੱਲੋਂ ਬੈਕਟੀਰੀਅਲ ਬਲਾਇਟ (ਪੀਲਾ ਝੁਲਸਾ) ਲਈ ਕਿਸੇ ਵੀ ਰਸਾਇਣਕ ਸਪਰੇਅ ਦੀ ਸਿਫਾਰਸ਼ ਨਹੀਂ ਕੀਤੀ ਜਾਂਦੀ।\n- ਖੇਤ ਵਿੱਚ ਲਗਾਤਾਰ ਪਾਣੀ ਖੜ੍ਹਾ ਨਾ ਰੱਖੋ।\n- ਬਹੁਤੀ ਨਾਈਟ੍ਰੋਜਨ (ਯੂਰੀਆ) ਦੀ ਵਰਤੋਂ ਨਾ ਕਰੋ ਅਤੇ ਪਨੀਰੀ ਨੂੰ ਛਾਂ ਹੇਠ ਜਾਂ ਕਣਕ ਦੀ ਤੂੜੀ ਦੇ ਢੇਰਾਂ ਨੇੜੇ ਨਾ ਤਿਆਰ ਕਰੋ।\n- ਟਰਾਂਸਪਲਾਂਟ ਕਰਨ ਤੋਂ ਛੇ ਹਫ਼ਤਿਆਂ ਬਾਅਦ ਨਾਈਟ੍ਰੋਜਨ ਨਾ ਪਾਓ (ਜਦੋਂ ਤੱਕ ਕਿ ਪੱਤੇ ਦੇ ਰੰਗ ਵਾਲੇ ਚਾਰਟ ਦੀ ਵਰਤੋਂ ਨਾ ਕੀਤੀ ਜਾ ਰਹੀ ਹੋਵੇ)।\n- ਰੋਗ ਮੁਕਤ ਬੀਜ ਦੀ ਵਰਤੋਂ ਕਰੋ।\n- ਪੰਜਾਬ ਵਿੱਚ ਇਸ ਰੋਗ ਪ੍ਰਤੀ ਰੋਧਕ ਕਿਸਮਾਂ ਉਗਾਓ: PR 133, PR 132, PR 131, PR 130, PR 129, PR 128, PR 127, PR 126, PR 122, PR 121 ਅਤੇ PR 113।\n\nਅਧਿਕਾਰਤ ਸਰੋਤ:\n- PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 16-19 [Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy], Punjab Agricultural University (PAU), Ludhiana.",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "Brown planthopper attack in rice, what should I spray?",
+        "language": "en",
+        "answer": "To manage Brown Planthopper (BPH / Bhoora Tilla) in rice, start checking your fields one month after transplanting by tilting a few plants and tapping their base every week. When you find 5 or more planthoppers per hill floating on the water, you should spray one of the following recommended chemicals in 100 liters of water per acre:\n\n- 94 ml Pexalon 10 SC (triflumezopyrim)\n- 120 g Chess 50 WG (pymetrozine)\n- 60 g Ulala 50 WG (flonicamid)\n\nPrecautions and Application Instructions:\n- Direct the spray at the base of the plants.\n- At the very start of the attack, you can use 4 liters of PAU homemade neem extract instead of chemical sprays.\n- If hopper burn appears in the field, treat those patches and 3 to 4 meters around them at once.\n- Avoid using synthetic pyrethroids, because they kill the spiders that naturally eat planthoppers.\n\nOfficial Sources:\n- PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 14-16 [Brown Planthopper (BPH / Bhoora Tilla) Management], Punjab Agricultural University (PAU), Ludhiana.",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "धान में भूरा तेला का क्या इलाज है?",
+        "language": "hi",
+        "answer": "धान में भूरा तेला (Brown Planthopper / BPH) के प्रबंधन और इलाज के लिए पंजाब कृषि विश्वविद्यालय (PAU) के अनुसार निम्नलिखित उपाय किए जा सकते हैं:\n\nधान की रोपाई के एक महीने बाद, हर हफ्ते कुछ पौधों को झुकाकर उनके आधार को थपथपाएं। जब प्रति हिल (Hill) 5 या उससे अधिक प्लान्टहोपर पानी पर तैरते हुए दिखाई दें (जो कि आर्थिक हानि स्तर या ETL है), तो निम्नलिखित में से किसी एक रसायन की अनुशंसित मात्रा का छिड़काव पौधों के आधार (तनों) पर करें:\n1. 94 ml Pexalon 10 SC (triflumezopyrim) प्रति 100 लीटर पानी में प्रति एकड़\n2. 120 g Chess 50 WG (pymetrozine) प्रति 100 लीटर पानी में प्रति एकड़\n3. 60 g Ulala 50 WG (flonicamid) प्रति 100 लीटर पानी में प्रति एकड़\n\nहमले की शुरुआत में, रासायनिक छिड़काव के बजाय 4 लीटर PAU होममेड नीम अर्क का उपयोग किया जा सकता है।\n\nसावधानियां:\n- सिंथेटिक पाइरेथroid (synthetic pyrethroids) रसायनों के छिड़काव से बचें, क्योंकि वे उन मकड़ियों को मार देते हैं जो तेला (planthoppers) को खाती हैं।\n- यदि हॉपर बर्न (hopper burn) के लक्षण दिखाई दें, तो उन प्रभावित पैच और उनके आसपास के 3-4 मीटर क्षेत्र में तुरंत उपचार करें।\n\nआधिकारिक स्रोत:\n- PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 14-16 [Brown Planthopper (BPH / Bhoora Tilla) Management], Punjab Agricultural University (PAU), Ludhiana",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "dhan mein bhoora tilla lag gaya",
+        "language": "hinglish",
+        "answer": "Namaste KisanSahayak, dhan mein bhoora tilla (Brown Planthopper / BPH) ki roktham ke liye yeh jankari di gayi hai:\n\nPehchan aur Niyantran:\nTransplanting ke ek mahine baad se, har hafte kuch paudhon ko jhuka kar unke base ko thapthapayen. Jab paanch ya usse zyada planthopper prati hill (ETL) pani par tairne lagein, tab spray karein. Spray karte samay dawai ko paudhon ke base (jar ke paas) par lagana chahiye.\n\nChemical Dosage (Dawai ki Matra):\nPrati acre 100 liters pani mein milakar inmein se kisi ek dawa ka spray karein:\n- 94 ml Pexalon 10 SC (triflumezopyrim)\n- ya 120 g Chess 50 WG (pymetrozine)\n- ya 60 g Ulala 50 WG (flonicamid)\n\nAap attack ke shuruat mein iske badle 4 liters PAU homemade neem extract ka bhi upyog kar sakte hain.\n\nPrecautions (Savdhaniyan):\n- Agar hopper burn dikhai de, toh un patches aur uske aas-paas 3-4 metre area mein turant treatment karein.\n- Synthetic pyrethroids ka prayog na karein, kyunki yeh un spiders (makdiyon) ko maar dete hain jo planthoppers ko khate hain.\n\nOfficial Sources:\n- Punjab Agricultural University (PAU), Ludhiana - PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 14-16 (Brown Planthopper / Bhoora Tilla Management).",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      },
+      {
+        "query": "How to manage sheath blight in paddy?",
+        "language": "en",
+        "answer": "To manage Sheath Blight in paddy, follow these recommendations:\n\nSymptoms & Identification: Look for oval or elliptical greenish-grey spots on leaf sheaths near the water level. These spots enlarge with irregular dark brown margins like a snake skin pattern.\n\nRecommended Action & Chemical Dosage: From maximum tillering to boot stage, as soon as the disease appears, spray one of the following chemicals in 200 liters of water per acre:\n- 80 g Nativo 75 WG (trifloxystrobin + tebuconazole)\n- 26.8 g Epic 75 WG (hexaconazole)\n- 200 ml Tilt/Bumper 25 EC (propiconazole)\n- 150 ml Pulsor 24 SC (thifluzamide)\n\nGive a second spray 15 days later.\n\nPreventive Measures: Destroy the rice straw and stubble after harvesting an affected crop. Avoid excess nitrogen. Keep the bunds clean by removing grass.\n\nSources:\n- PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 16-19 (Punjab Agricultural University, Ludhiana)",
+        "answer_source": "llm",
+        "gemini_unbacked_numbers": [],
+        "shown_unbacked_numbers": []
+      }
+    ]
+  },
   "failures": [
     "Intent: \"White flies under cotton leaves and the leaves are curling, what should I do?\" → general_agriculture, expected crop_question",
     "Retrieval: \"सरसों में सफेद रतुआ रोग का उपचार\" → got *Mustard Aphid (Chetpa/Mahu) Management*, expected *White Rust*",
@@ -64,6 +292,7 @@
     "Retrieval: \"ਝੋਨੇ ਦੇ ਪੱਤੇ ਸਿਰਿਆਂ ਤੋਂ ਪੀਲੇ ਹੋ ਕੇ ਸੁੱਕ ਰਹੇ ਹਨ\" → got *Brown Planthopper (BPH / Bhoora Tilla) Management*, expected *Bacterial Leaf Blight*",
     "Retrieval: \"dhan mein sheath blight ki dawai batao\" → got *Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy*, expected *Paddy Sheath Blight*",
     "Retrieval: \"kya endosulfan use kar sakte hain\" → got *Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy*, expected *Banned and Strictly*",
-    "Retrieval: \"gehun ki bijai kab karein aur beej kitna lage\" → got *Karnal Bunt (Tilletia indica) Management in Wheat*, expected *Wheat Sowing*"
+    "Retrieval: \"gehun ki bijai kab karein aur beej kitna lage\" → got *Karnal Bunt (Tilletia indica) Management in Wheat*, expected *Wheat Sowing*",
+    "LLM: \"sarson mein chepa ka ilaj kya hai\": Gemini stated ['40 ml'], not in the sources (checked text shown)"
   ]
 }

@@ -86,7 +86,8 @@ class AskResponse(BaseModel):
     language: str
     intent: str
     answer_source: Optional[str] = Field(
-        None, description="llm, template_offline, template_llm_failed or no_results"
+        None, description="llm, template_offline, template_llm_failed, template_numbers_replaced (the LLM answer "
+                    "stated a number not in the sources, so the checked text was used) or no_results"
     )
     is_grounded: bool
     citations: List[str]

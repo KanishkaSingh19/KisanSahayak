@@ -33,6 +33,7 @@ REASONS = {
     "low_grounding": "AI answer weakly backed by the sources",
     "photo_uncertain": "Photo diagnosis not certain",
     "low_retrieval_confidence": "Search could not confirm it used the right advisory",
+    "llm_numbers_replaced": "AI answer stated numbers not in the sources (checked text shown instead)",
     "not_covered": "Question our advisories do not cover",
 }
 
@@ -58,6 +59,8 @@ def review_reasons(result: GroundedAnswer) -> List[str]:
         reasons.append("photo_uncertain")  # unsure, or no treatment could be given (unclear / crop not covered)
     if result.intent in ("crop_not_covered", "topic_not_covered"):
         reasons.append("not_covered")
+    if meta.get("unbacked_numbers"):
+        reasons.append("llm_numbers_replaced")  # logged so the team can see how often the LLM changes numbers
     if meta.get("retrieval") == "low_confidence":
         reasons.append("low_retrieval_confidence")  # the search could not confirm the advisory it used
     return reasons

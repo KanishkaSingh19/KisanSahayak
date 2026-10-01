@@ -296,6 +296,8 @@ def render_answer(result, pipeline, lang: str, msg_id: int, speak_now: bool = Fa
     answer_source = meta.get("answer_source")
     if answer_source == "template_llm_failed":
         st.warning(t("note_template_llm_failed", lang))
+    elif answer_source == "template_numbers_replaced":
+        st.info(t("note_template_numbers_replaced", lang))
     elif answer_source == "template_offline":
         st.info(t("note_template_offline", lang))
     st.markdown(result.answer)
