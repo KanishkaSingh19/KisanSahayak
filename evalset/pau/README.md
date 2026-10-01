@@ -24,9 +24,15 @@ Follow-ups stay on PAU ("And weeds?" after a wheat question; "What is the dose?"
 | Expected PAU section first | 20/28 | **24/28** |
 | Expected PAU section in the top 3 | 23/28 | 28/28 |
 
+With Gemini embeddings (the live app's search), after adding the keywords: 28/28 from PAU, expected section first **27/28**, in the top 3 28/28.
+
 The first run is the fair number: these 28 questions were written after the search was built. Its 5 misses were all routing (mealybug, painted bug, paddy straw, Bt hybrids, Punjabi "ਜੈਸਿਡ" were not in the topic word lists, so they went to an unrelated advisory). The words were then added, so the second column is no longer a held-out score.
 
 On the 200 real Kisan Call Centre questions, the 140 outside our advisories are now: **126 answered from the right crop's PAU chapter**, 8 referred to the KVK, 6 shown advice on something else (as before). On 74 held-out KCC queries: 55 from PAU, 6 referred, 13 something else (unchanged).
+
+## Fast start on Streamlit Cloud
+
+Embedding ~400 chunks with Gemini on every cold start took 13 minutes on the free quota. The vectors are computed once by `scripts/build_embedding_cache.py` and shipped in `data/vectors/gemini_embedding_cache.npz` (numbers only, no PAU text); a cold start reuses them and takes about 15 seconds. On Gemini, PAU's chapters are searched only when that file covers them (PyMuPDF is pinned so the extracted text matches).
 
 ## Limits
 
