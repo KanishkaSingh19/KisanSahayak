@@ -6,7 +6,7 @@ from app.crops import COVERED_CROPS
 from app.i18n import normalize_language, t
 from app.agent.state import ConversationTurn, FarmerProfile, GroundedAnswer, IntentResult
 from app.tools.schemes import SchemeGuide, check_eligibility
-from app.agent.router import IntentRouter, weather_topics
+from app.agent.router import IntentRouter, asks_repeat_spray, weather_topics
 from app.agent.synthesizer import get_synthesizer
 from app.agent.guardrails import AgriculturalGuardrails
 from app.rag.hybrid_retriever import HybridRetriever
@@ -459,6 +459,10 @@ class KisanPipeline:
             covered = [c for c in profile.crops if c.lower() in COVERED_CROPS]
             if len(covered) == 1:
                 intent.detected_crop = covered[0].title()
+        # "Should I spray again?" with no crop or problem to go on: ask, rather than show some advisory
+        if (not intent.detected_crop and intent.detected_topic in (None, "Agronomy/General")
+                and not intent.follow_up_of and asks_repeat_spray(req.query.lower())):
+            return self._reply(req, t("spray_ask_crop", req.lang), meta={"needs_crop": True})
 
         # Add the crop and pest (detected, or carried over from an earlier turn) so that short
         # follow-ups like "what is the dose?" still retrieve the right advisory

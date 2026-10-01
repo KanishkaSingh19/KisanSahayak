@@ -149,3 +149,26 @@ def test_follow_up_about_this_disease_keeps_the_topic():
                                    "Information regarding sowing time of toria?", "बासमती में खाद की सिफारिश की गई मात्रा कितनी है?"])
 def test_more_uncovered_topics(query):
     assert IntentRouter().classify(query).intent == "topic_not_covered"
+
+
+def test_spraying_water_is_irrigation_not_a_pesticide_spray():
+    from app.agent.router import weather_topics
+
+    result = IntentRouter().classify("SHOULD I SPRAY WATER IN THE RICE TODAY")
+    assert result.intent == "weather"
+    assert weather_topics("SHOULD I SPRAY WATER IN THE RICE TODAY") == {"irrigation"}
+    assert weather_topics("Can I spray pesticide today?") == {"spray"}
+
+
+def test_spray_again_after_a_weather_question_is_not_weather():
+    """"Should I spray again?" depends on the crop and problem, not on the weather just asked about."""
+    from app.agent.state import ConversationTurn
+
+    weather = ConversationTurn(query="weather in delhi", answer="...", intent="weather", district="Delhi")
+    result = IntentRouter().classify_with_context("I HAVE SPRAYED ONCE, SHOULD I SPRAY AGAIN", [weather])
+    assert result.intent != "weather"
+    # The farmer's answer to "which crop and problem?" is searched with the original question
+    asked = ConversationTurn(query="I have sprayed once, should I spray again", answer="Which crop...?",
+                             intent="general_agriculture", awaiting_crop=True)
+    reply = IntentRouter().classify_with_context("wheat, for aphids", [weather, asked])
+    assert reply.detected_crop == "Wheat" and reply.follow_up_of.startswith("I have sprayed once")

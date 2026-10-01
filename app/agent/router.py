@@ -60,6 +60,27 @@ MARKET_KEYWORDS = [
 # "seed rate" is a sowing question and "stock market" is off-topic
 NOT_MARKET = re.compile(r"seed rate|stock|growth rate|rate of (spray|application)|spray rate|dose rate", re.I)
 
+# "Spray water" is watering (irrigation), not a pesticide spray
+SPRAY_WATER = re.compile(
+    r"\bspray(ing)?\s+(of\s+)?(water|paani|pani)\b|\b(water|paani|pani)\s+(ka\s+|di\s+)?(spray|chhidka+v)"
+    r"|पानी\s*(का)?\s*छिड़काव|ਪਾਣੀ\s*(ਦਾ)?\s*ਛਿੜਕਾਅ"
+)
+# "Should I spray again?", "second spray": whether to repeat a treatment depends on the crop and the
+# problem, not on the weather
+REPEAT_SPRAY_KEYWORDS = ["again", "second", "once", "twice", "repeat", "another", "dobara", "dubara", "phir se",
+                         "doosra", "dusra", "दोबारा", "फिर से", "दूसरा", "ਦੁਬਾਰਾ", "ਫਿਰ ਤੋਂ", "ਦੂਜਾ", "ਦੂਜੀ"]
+
+
+def sprays_water(clean: str) -> bool:
+    return bool(SPRAY_WATER.search(clean))
+
+
+def asks_repeat_spray(clean: str) -> bool:
+    """"I have sprayed once, should I spray again?" """
+    return (not sprays_water(clean) and any(matches_keyword(k, clean) for k in SPRAY_KEYWORDS)
+            and any(matches_keyword(k, clean) for k in REPEAT_SPRAY_KEYWORDS))
+
+
 TIME_KEYWORDS = [
     "today", "now", "tonight", "tomorrow", "aaj", "abhi", "kal",
     "आज", "अभी", "कल", "ਅੱਜ", "ਹੁਣ", "ਕੱਲ੍ਹ",
@@ -258,6 +279,8 @@ def weather_topics(query: str) -> set:
     """Which extra advice a weather question asks for: {"spray", "irrigation"} or empty."""
     clean = query.lower()
     topics = set()
+    if sprays_water(clean):
+        return {"irrigation"}
     if any(matches_keyword(k, clean) for k in SPRAY_KEYWORDS):
         topics.add("spray")
     if any(matches_keyword(k, clean) for k in IRRIGATION_KEYWORDS):
@@ -320,11 +343,12 @@ class IntentRouter:
         detected_topic = detect_pest(clean)
 
         # Rule 5. Weather and spray timing
-        # "Can I spray today?" is a spray-timing (weather) question unless a pest is named
+        # "Can I spray today?" is a spray-timing (weather) question unless a pest is named or it asks
+        # whether to spray again; "Should I spray water today?" asks when to irrigate
+        asks_today = any(matches_keyword(k, clean) for k in TIME_KEYWORDS)
         asks_spray_timing = (
-            not detected_topic
-            and any(matches_keyword(k, clean) for k in SPRAY_KEYWORDS)
-            and any(matches_keyword(k, clean) for k in TIME_KEYWORDS)
+            not detected_topic and asks_today and not asks_repeat_spray(clean)
+            and (sprays_water(clean) or any(matches_keyword(k, clean) for k in SPRAY_KEYWORDS))
         )
         if asks_spray_timing or any(matches_keyword(w, clean) for w in WEATHER_KEYWORDS):
             return IntentResult(
@@ -442,6 +466,13 @@ class IntentRouter:
         place_reply = self._place_reply(query, result, history[-1])
         if place_reply:
             return place_reply
+        if history[-1].awaiting_crop and result.detected_crop and result.intent in CROP_INTENTS + ("topic_not_covered",):
+            # "Wheat, for aphids" answering "which crop and problem?": search it with the original question
+            result.follow_up_of = history[-1].query
+            if result.intent == "general_agriculture":
+                result.intent = "crop_question"
+            result.reasoning += " Reply to 'which crop?': the original question is added to the search."
+            return result
         if result.intent in ("greeting", "out_of_scope", "crop_not_covered", "topic_not_covered"):
             return result
         # Checked in this order; the first that applies decides
@@ -549,7 +580,8 @@ class IntentRouter:
                 result.reasoning += " Place carried over from an earlier weather question."
             return result
         previous = history[-1]
-        if previous.intent == "weather" and _names_no_subject(result) and (result.detected_district or weather_topics(query)):
+        if (previous.intent == "weather" and _names_no_subject(result) and not asks_repeat_spray(query.lower())
+                and (result.detected_district or weather_topics(query))):
             return IntentResult(
                 intent="weather",
                 confidence=0.85,

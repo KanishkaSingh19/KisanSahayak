@@ -232,6 +232,24 @@ STRINGS: Dict[str, Dict[str, str]] = {
     },
     # ------------------------------------------------------------------ offline template headings
     "crop_advisory": {"en": "Crop Advisory", "pa": "ਫ਼ਸਲ ਸਲਾਹ", "hinglish": "Fasal Salah", "hi": "फसल परामर्श"},
+    "spray_ask_crop": {
+        "en": (
+            "Whether to spray again depends on the crop and the problem. Which crop is it, and which pest or disease "
+            "did you spray for (or which pesticide)? Then I can tell you what the recommendation says about a second spray."
+        ),
+        "pa": (
+            "ਦੁਬਾਰਾ ਛਿੜਕਾਅ ਕਰਨਾ ਹੈ ਜਾਂ ਨਹੀਂ, ਇਹ ਫ਼ਸਲ ਅਤੇ ਸਮੱਸਿਆ 'ਤੇ ਨਿਰਭਰ ਕਰਦਾ ਹੈ। ਕਿਹੜੀ ਫ਼ਸਲ ਹੈ, ਅਤੇ ਤੁਸੀਂ ਕਿਹੜੇ ਕੀੜੇ "
+            "ਜਾਂ ਬਿਮਾਰੀ ਲਈ (ਜਾਂ ਕਿਹੜੀ ਦਵਾਈ ਦਾ) ਛਿੜਕਾਅ ਕੀਤਾ ਸੀ? ਫਿਰ ਮੈਂ ਦੂਜੇ ਛਿੜਕਾਅ ਬਾਰੇ ਸਿਫ਼ਾਰਸ਼ ਦੱਸ ਸਕਦਾ ਹਾਂ।"
+        ),
+        "hinglish": (
+            "Dobara spray karna hai ya nahin, yeh fasal aur samasya par nirbhar karta hai. Kaun si fasal hai, aur aapne "
+            "kis keede ya bimari ke liye (ya kaun si dawai ka) spray kiya tha? Phir main doosre spray ki salah bata sakta hoon."
+        ),
+        "hi": (
+            "दोबारा छिड़काव करना है या नहीं, यह फसल और समस्या पर निर्भर करता है। कौन सी फसल है, और आपने किस कीट या "
+            "रोग के लिए (या कौन सी दवा का) छिड़काव किया था? फिर मैं दूसरे छिड़काव के बारे में सिफ़ारिश बता सकता हूँ।"
+        ),
+    },
     "pau_heading": {
         "en": "From PAU's Package of Practices",
         "pa": "PAU ਦੀ ਫ਼ਸਲਾਂ ਦੀ ਸਿਫ਼ਾਰਸ਼ ਕਿਤਾਬ (Package of Practices) ਤੋਂ",

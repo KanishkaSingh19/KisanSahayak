@@ -122,3 +122,9 @@ def test_pipeline_symptom_then_pronoun_follow_up(pipeline):
         "Is it dangerous?", language="en", generate_audio=False, history=[ConversationTurn.from_answer(first)]
     )
     assert "Yellow Rust" in second.retrieved_chunks[0].section
+
+
+def test_spray_again_with_no_crop_asks_which_crop(pipeline):
+    res = pipeline.process_query("I have sprayed once, should I spray again?", language="en", generate_audio=False)
+    assert "Which crop" in res.answer and res.processing_metadata.get("needs_crop")
+    assert not res.retrieved_chunks

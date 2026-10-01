@@ -84,6 +84,8 @@ class ConversationTurn(BaseModel):
     district_from_profile: bool = False
     # True when the answer asked "which place?": the farmer's next message is the place
     awaiting_place: bool = False
+    # True when the answer asked "which crop and which problem?": the next message completes the question
+    awaiting_crop: bool = False
     # True when the answer came from PAU's Package of Practices: follow-ups search it too
     used_pau: bool = False
 
@@ -104,5 +106,6 @@ class ConversationTurn(BaseModel):
             district=meta.get("district"),
             district_from_profile=bool(meta.get("district_from_profile")),
             awaiting_place=bool(meta.get("needs_place")),
+            awaiting_crop=bool(meta.get("needs_crop")),
             used_pau=meta.get("knowledge") == "pau",
         )
