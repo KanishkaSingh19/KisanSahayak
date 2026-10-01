@@ -1,6 +1,6 @@
 # Held-out check: real KCC queries not used for tuning
 
-*2026-10-01 · 85 queries (exact logged English), ranked after the 200-question set · offline answers*
+*2026-10-02 · 85 queries (exact logged English), ranked after the 200-question set · offline answers*
 
 | Metric | Result |
 |---|---|
@@ -14,7 +14,7 @@
 ## Outside our advisories and answered with something other than PAU's chapter for the crop
 
 - "Information regarding the spray of any fungicide at the Boot stage or Ear heading stage of crop?" → Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management
-- "Information regarding correct timing of urea application before or after the irrigation?" → Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages
+- "Information regarding correct timing of urea application before or after the irrigation?" → Mustard Fertilizer and Irrigation Management
 - "Information regarding the control of Head blight or Scab in wheat crop?" → Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management
 - "Information regarding the control of leaf blight, glume blight and black tip of grains disease in wheat?" → Karnal Bunt (Tilletia indica) Management in Wheat
 - "How to control fungal disease in wheat crop?" → Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management

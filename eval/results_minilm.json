@@ -27,7 +27,7 @@
     }
   },
   "embedding_fallbacks": 0,
-  "date": "2026-10-01",
+  "date": "2026-10-02",
   "embeddings": "minilm",
   "intent": {
     "correct": 41,
@@ -52,8 +52,8 @@
     "total": 6
   },
   "latency_ms": {
-    "median": 36.775150008907076,
-    "p95": 43.86249999515712
+    "median": 53.796100000909064,
+    "p95": 77.40410001133569
   },
   "llm": null,
   "failures": [

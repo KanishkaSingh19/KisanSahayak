@@ -60,7 +60,7 @@
   "top_sections": [
    "Wheat - Important tips for use of fertilizers",
    "Wheat - Fertilizer Application - III) Chemical Fertilizers",
-   "Wheat - PAU tips"
+   "Wheat - Fertilizer Application"
   ],
   "referred": false,
   "from_pau": true,
@@ -109,8 +109,8 @@
   "intent": "crop_question",
   "top_sections": [
    "Wheat - Weed Control - C. Control of both grass and broadleaf weeds:",
-   "Wheat - Weed Control - B. Control of broadleaf weeds only:",
-   "Wheat - Weed Control"
+   "Wheat - Weed Control",
+   "Wheat - Weed Control - i. Control of Phalaris minor (Gulli danda)"
   ],
   "referred": false,
   "from_pau": true,
@@ -225,7 +225,7 @@
   "top_sections": [
    "Wheat - Weed Control - i. Control of Phalaris minor (Gulli danda)",
    "Wheat - Sowing Method and Spacing",
-   "All Crops - Introduction"
+   "Wheat - Useful hints"
   ],
   "referred": false,
   "from_pau": true,
@@ -260,7 +260,7 @@
   "top_sections": [
    "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages",
    "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
-   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control"
+   "Pink Bollworm (Gulabi Sundhi) Integrated Management"
   ],
   "top3": true
  },
@@ -273,9 +273,9 @@
   },
   "intent": "general_agriculture",
   "top_sections": [
-   "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages",
    "Mustard Fertilizer and Irrigation Management",
-   "Pink Bollworm (Gulabi Sundhi) Integrated Management"
+   "Pink Bollworm (Gulabi Sundhi) Integrated Management",
+   "Brown Planthopper (BPH / Bhoora Tilla) Management"
   ],
   "referred": false,
   "from_pau": false,
@@ -564,8 +564,8 @@
   },
   "intent": "crop_question",
   "top_sections": [
+   "Paddy (Rice) - Management of Paddy Straw - 1. In-situ management of paddy straw",
    "Paddy (Rice) - Transplanted Rice",
-   "Paddy (Rice) - Transplanted Rice - I. For Conventional Transplanting",
    "Paddy (Rice) - PAU tips"
   ],
   "referred": false,
@@ -615,9 +615,9 @@
   },
   "intent": "crop_question",
   "top_sections": [
-   "Paddy (Rice) - other varieties",
    "Paddy (Rice) - Improved Varieties",
-   "Paddy (Rice) - Basmati Rice - Improved Varieties"
+   "Paddy (Rice) - Basmati Rice - Improved Varieties",
+   "Paddy (Rice) - Do not grow these varieties"
   ],
   "referred": false,
   "from_pau": true,
@@ -645,9 +645,9 @@
   },
   "intent": "crop_question",
   "top_sections": [
-   "Paddy (Rice) - Basmati Rice - Unpuddled Direct Seeded Rice (DSR)",
    "Paddy (Rice) - Basmati Rice - Irrigation",
-   "Paddy (Rice) - Basmati Rice - Unpuddled Direct Seeded Basmati Rice (DSBR)"
+   "Paddy (Rice) - Management of Paddy Straw - 1. In-situ management of paddy straw",
+   "Paddy (Rice) - Transplanted Rice - I. For Conventional Transplanting"
   ],
   "referred": false,
   "from_pau": true,
@@ -696,8 +696,8 @@
   },
   "intent": "crop_question",
   "top_sections": [
-   "Paddy (Rice) - PAU-Leaf Colour Chart (PAU-LCC) for need based Urea application",
    "Paddy (Rice) - Fertilizer Application",
+   "Paddy (Rice) - PAU-Leaf Colour Chart (PAU-LCC) for need based Urea application",
    "Paddy (Rice) - PAU tips"
   ],
   "referred": false,
@@ -868,7 +868,7 @@
   "top_sections": [
    "Paddy (Rice) - Basmati Rice - Plant Protection - A. Insect Pests",
    "Paddy (Rice) - A. Insect Pests",
-   "Paddy (Rice) - B. Diseases"
+   "Paddy (Rice) - Basmati Rice - Plant Protection - B. Diseases"
   ],
   "referred": false,
   "from_pau": true,
@@ -1098,7 +1098,7 @@
   "top_sections": [
    "Cotton - Desi Cotton - Improved Varieties",
    "Cotton - Bt cotton variety",
-   "Cotton - Non-Bt cotton"
+   "Cotton - Rotations"
   ],
   "referred": false,
   "from_pau": true,
@@ -1113,9 +1113,9 @@
   },
   "intent": "crop_question",
   "top_sections": [
-   "Cotton - Bt cotton variety",
    "Cotton - Desi Cotton - Improved Varieties",
-   "Cotton - Bt cotton hybrids"
+   "Cotton - Bt cotton variety",
+   "Cotton - Rotations"
   ],
   "referred": false,
   "from_pau": true,
@@ -1180,9 +1180,9 @@
   },
   "intent": "crop_question",
   "top_sections": [
-   "Cotton - Agronomic Practices",
    "Cotton - Desi Cotton - Improved Varieties",
-   "Cotton - Insecticide Resistance Management (IRM) Strategy - i. Sucking pests management (From sowing up to first week of July)"
+   "Cotton - Insecticide Resistance Management (IRM) Strategy - i. Sucking pests management (From sowing up to first week of July)",
+   "Cotton - Agronomic Practices"
   ],
   "referred": false,
   "from_pau": true,
@@ -1278,7 +1278,7 @@
   "intent": "crop_question",
   "top_sections": [
    "Mustard - Rapeseed And Mustard - Improved Varieties/ Hybrids",
-   "Mustard - Rapeseed And Mustard - Raya",
+   "Mustard - Introduction",
    "Mustard - Rapeseed And Mustard - African sarson"
   ],
   "referred": false,
@@ -1327,9 +1327,9 @@
   },
   "intent": "crop_question",
   "top_sections": [
-   "Mustard - Rapeseed And Mustard - Raya",
    "Mustard - Rapeseed And Mustard - Agronomic Practices",
-   "Mustard - Rapeseed And Mustard - Introduction"
+   "Mustard - Rapeseed And Mustard - Hybrid seed production involves following steps:",
+   "Mustard - Introduction"
   ],
   "referred": false,
   "from_pau": true,

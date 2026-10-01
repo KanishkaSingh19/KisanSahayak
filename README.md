@@ -96,6 +96,8 @@ Orchestrated end-to-end by `app/agent/pipeline.py` (`KisanPipeline`).
 
 **PAU's full chapters** (`app/rag/pau_kb.py`): topics our 14 advisories don't cover, for wheat, mustard, paddy and cotton (weeds, varieties, nutrients, other pests, nursery, harvest…), are answered from PAU's *Package of Practices* chapters, searched only for that crop, with PAU's page numbers. PAU's text is copyrighted, so it is not in the repository: `python scripts/build_pau_kb.py` downloads the two books from pau.edu and extracts the chapters (git-ignored), and the app does this on its first start (`PAU_AUTO_BUILD`). Without them the app works as before and refers those questions to the KVK. See [`evalset/pau/README.md`](evalset/pau/README.md).
 
+**Corrective search** (`app/agent/pipeline.py`): the top advisory is trusted when the meaning-based and keyword searches both rank it first. If they disagree, the app searches again with the crop and the topic's English words ("ਕਣਕ ਨੂੰ ਪਾਣੀ ਕਦੋਂ ਲਾਈਏ?" -> "Wheat irrigation") and uses that result if keyword search confirms it; otherwise the first answer stands and goes to KVK expert review. On 95 labelled questions this raised the right advisory first from 79 to 82, and every corrected answer was right (KCC covered questions: top 3 23/25 -> 25/25).
+
 **Advisory sources:** the crop advisories follow PAU's *Package of Practices for Crops of Punjab* (Rabi 2025-26 and Kharif 2026). Each section records the printed pages it comes from (`source_reference`), and citations show them, e.g. "PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 18-21".
 
 ---
@@ -270,7 +272,7 @@ Full reports, including every failure: `eval/results_minilm.md`, `eval/results_g
 
 | Metric | Result |
 |---|---|
-| Right advisory in top 3 (questions our advisories cover) | 23/25 (92%) |
+| Right advisory in top 3 (questions our advisories cover) | 25/25 (100%); first 23/25 |
 | Banned-pesticide question warned | 1/1 |
 | Weather for the right district / PM-KISAN recognised | 15/15 / 15/15 |
 | Price (MSP) questions answered with the price | 4/4 |

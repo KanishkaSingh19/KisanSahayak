@@ -1,6 +1,6 @@
 # Answers from PAU's Package of Practices
 
-*2026-10-01 · 28 questions (topics our own advisories don't cover, for the four covered crops) · offline answers · search embeddings: minilm*
+*2026-10-02 · 28 questions (topics our own advisories don't cover, for the four covered crops) · offline answers · search embeddings: minilm*
 
 | Metric | Result |
 |---|---|

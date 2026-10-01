@@ -6,7 +6,7 @@ from app.crops import COVERED_CROPS
 from app.i18n import normalize_language, t
 from app.agent.state import ConversationTurn, FarmerProfile, GroundedAnswer, IntentResult
 from app.tools.schemes import OTHER_SCHEME_PREFIX, OTHER_SCHEMES, PM_KISAN, SchemeGuide, check_eligibility, load_schemes
-from app.agent.router import IntentRouter, asks_repeat_spray, weather_topics
+from app.agent.router import IntentRouter, asks_repeat_spray, topic_search_terms, weather_topics
 from app.agent.synthesizer import get_synthesizer
 from app.agent.guardrails import AgriculturalGuardrails
 from app.rag.hybrid_retriever import HybridRetriever
@@ -18,6 +18,16 @@ from app.tools.location import STATES, state_named
 from app.tools.market import MarketPriceService, detect_commodity, load_msp, state_for
 from app.tools.vision import CropVision
 from app.tools.weather_tool import AgWeatherTool
+
+def is_confident(results, keyword_only: bool = False) -> bool:
+    """The meaning-based (dense) and keyword (BM25) searches both rank the top result first (or just
+    keyword search, with `keyword_only`). On the labelled test questions, a top result they agree on
+    was wrong 4 times in 54; one they disagree on, 12 times in 41."""
+    main = [c for c in results if not c.rank_details.get("same_section_as_above")]
+    if not main or main[0].rank_details.get("sparse_rank") != 1:
+        return False
+    return keyword_only or main[0].rank_details.get("dense_rank") == 1
+
 
 @dataclass
 class Request:
@@ -489,6 +499,39 @@ class KisanPipeline:
                   "top_section": sections[0]["title"]},
         )
 
+    def _search(self, req: "Request", search: str, kind: Optional[str]) -> List:
+        intent = req.intent
+        # A PAU answer comes from the farmer's crop's chapter (or the general spraying chapter)
+        retrieved = self.retriever.retrieve(search, kind=kind, crop=intent.detected_crop if intent.use_pau else None)
+        if intent.detected_crop:
+            # Equal fusion scores (e.g. wheat vs mustard aphid) must not put another crop first
+            # ("Paddy" is the crop "Paddy (Rice)"; the ranked sections stay ahead of the extra chunks that complete them)
+            crop = intent.detected_crop.lower()
+            retrieved.sort(key=lambda c: (bool(c.rank_details.get("same_section_as_above")),
+                                          not (c.crop or "").lower().startswith(crop)))
+        return retrieved
+
+    def _search_with_check(self, req: "Request", search: str, kind: Optional[str]):
+        """Search, check the result, and correct it once if it looks unreliable.
+
+        Returns (results, "confident" | "corrected" | "low_confidence"). The top result is trusted when
+        the meaning-based and keyword searches both rank it first. Otherwise the search is repeated with
+        the crop and the topic's English words ("ਕਣਕ ਨੂੰ ਪਾਣੀ ਕਦੋਂ ਲਾਈਏ?" -> "Wheat irrigation"), and that
+        result is used only if both searches agree on it. If not, the first answer stands and is sent
+        to KVK expert review (see app/review.py).
+        """
+        retrieved = self._search(req, search, kind)
+        if is_confident(retrieved):
+            return retrieved, "confident"
+        terms = topic_search_terms(req.query.lower().strip())
+        retry = " ".join(filter(None, [req.intent.detected_crop, terms]))
+        if terms and retry.strip().lower() != search.strip().lower():
+            corrected = self._search(req, retry, kind)
+            # The retry is plain English topic words, where keyword search is the reliable one
+            if is_confident(corrected, keyword_only=True):
+                return corrected, "corrected"
+        return retrieved, "low_confidence"
+
     def _answer_crop(self, req: "Request") -> GroundedAnswer:
         """Crop, pest and pesticide questions: hybrid search of the verified advisories, a grounded
         answer, then safety guardrails and a grounding check."""
@@ -521,14 +564,7 @@ class KisanPipeline:
             # PAU's book is in English: Gurmukhi/Devanagari words only add noise to its search, so
             # search with the crop and topic in English ("Cotton thrips")
             search = " ".join(context_terms)
-        # A PAU answer comes from the farmer's crop's chapter (or the general spraying chapter)
-        retrieved = self.retriever.retrieve(search, kind=kind, crop=intent.detected_crop if intent.use_pau else None)
-        if intent.detected_crop:
-            # Equal fusion scores (e.g. wheat vs mustard aphid) must not put another crop first
-            # ("Paddy" is the crop "Paddy (Rice)"; the ranked sections stay ahead of the extra chunks that complete them)
-            crop = intent.detected_crop.lower()
-            retrieved.sort(key=lambda c: (bool(c.rank_details.get("same_section_as_above")),
-                                          not (c.crop or "").lower().startswith(crop)))
+        retrieved, retrieval = self._search_with_check(req, search, kind)
 
         if hasattr(self.synthesizer, "generate"):
             draft, source = self.synthesizer.generate(
@@ -561,5 +597,6 @@ class KisanPipeline:
                 "answer_source": source,
                 "knowledge": retrieved[0].kind if retrieved else (kind or "advisory"),
                 "dose_totals_for_acres": acres if dose_totals else None,
+                "retrieval": retrieval,
             },
         )

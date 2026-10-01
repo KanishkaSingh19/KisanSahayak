@@ -1,6 +1,6 @@
 # Real farmer questions: Kisan Call Centre test set
 
-*2026-10-01 · 200 questions (50 each English, Hindi, Punjabi, Hinglish) · source: Kisan Call Centre, Punjab, Jan-Jul 2025 (data.gov.in KCC transcripts, via huggingface.co/datasets/whitesnek/punjab_kcc) · answers: offline template (no API quota) · search embeddings: minilm*
+*2026-10-02 · 200 questions (50 each English, Hindi, Punjabi, Hinglish) · source: Kisan Call Centre, Punjab, Jan-Jul 2025 (data.gov.in KCC transcripts, via huggingface.co/datasets/whitesnek/punjab_kcc) · answers: offline template (no API quota) · search embeddings: minilm*
 
 ## Coverage
 
@@ -16,8 +16,8 @@
 
 | Metric | Result |
 |---|---|
-| Retrieval: right advisory in top 3 (covered questions) | **23/25 (92%)** |
-| Retrieval: right advisory first | 20/25 (80%) |
+| Retrieval: right advisory in top 3 (covered questions) | **25/25 (100%)** |
+| Retrieval: right advisory first | 23/25 (92%) |
 | Banned-pesticide questions warned | 1/1 (100%) |
 | Weather questions answered with weather | 15/15 (100%) |
 | Weather for the right district | 15/15 (100%) |
@@ -27,7 +27,7 @@
 | Outside our advisories: referred to KVK | 8/140 (6%) |
 | Outside our advisories: shown advice on something else | 6/140 (4%) |
 | Answer in the requested language (script) | 200/200 (100%) |
-| Response time median / p95 | 64 ms / 833 ms |
+| Response time median / p95 | 59 ms / 838 ms |
 
 | Language | Answer in the right script |
 |---|---|
@@ -35,11 +35,6 @@
 | hi | 50/50 (100%) |
 | pa | 50/50 (100%) |
 | hinglish | 50/50 (100%) |
-
-## Covered questions where the right advisory was not in the top 3
-
-- (pa) "ਕਣਕ ਦੀ ਫ਼ਸਲ ਵਿੱਚ ਪਾਣੀ ਦਾ ਪ੍ਰਬੰਧ ਕਿਵੇਂ ਕਰੀਏ?" → got Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management, Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy, Brown Planthopper (BPH / Bhoora Tilla) Management; expected Wheat Sowing
-- (hi) "तिलहन फसलों में सिंचाई का प्रबंधन कैसे करें?" → got Brown Planthopper (BPH / Bhoora Tilla) Management, Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy, Pink Bollworm (Gulabi Sundhi) Integrated Management; expected Mustard Fertilizer
 
 ## Notes
 

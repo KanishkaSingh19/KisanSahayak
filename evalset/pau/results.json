@@ -312,9 +312,9 @@
   ],
   "intent": "crop_question",
   "top_sections": [
-   "Paddy (Rice) - A. Insect Pests",
    "Paddy (Rice) - Basmati Rice - Plant Protection - A. Insect Pests",
-   "Paddy (Rice) - B. Diseases"
+   "Paddy (Rice) - A. Insect Pests",
+   "Paddy (Rice) - Basmati Rice - Plant Protection - B. Diseases"
   ],
   "result": {
    "from_pau": true,
@@ -323,7 +323,7 @@
    "top3": true,
    "script_ok": true
   },
-  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 14-16 [Paddy (Rice) - A. Insect Pests]. PAU's text is not stored here: run this evaluation locally to see it.]"
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Kharif 2026, page 23 [Paddy (Rice) - Basmati Rice - Plant Protection - A. Insect Pests]. PAU's text is not stored here: run this evaluation locally to see it.]"
  },
  {
   "id": 15,
@@ -454,8 +454,8 @@
   "intent": "crop_question",
   "top_sections": [
    "Cotton - a. Insect Pests (Bt cotton)",
-   "Cotton - Table 1. Insecticides for the management of sucking insect pests",
-   "Cotton - b. Insect Pests (Non-Bt cotton)"
+   "Cotton - b. Insect Pests (Non-Bt cotton)",
+   "Cotton - Plant-Protection - A. Insect-Pests"
   ],
   "result": {
    "from_pau": true,
@@ -550,7 +550,7 @@
   "intent": "crop_question",
   "top_sections": [
    "Mustard - Rapeseed And Mustard - Improved Varieties/ Hybrids",
-   "Mustard - Rapeseed And Mustard - Raya",
+   "Mustard - Introduction",
    "Mustard - Rapeseed And Mustard - African sarson"
   ],
   "result": {
