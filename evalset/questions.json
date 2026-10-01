@@ -144,15 +144,15 @@
     },
     {
       "id": 23, "feature": "Photo diagnosis: upload and take a photo of a covered crop", "mode": "photo", "language": "en",
-      "manual": "Photo -> Upload a photo -> data/sample_photos/02_wheat_leaf_rust.jpg. Pass: identifies rust on wheat, treatment from the advisory, 'AI estimate, confirm with your KVK' note. Repeat with Photo -> Take a photo on a phone."
+      "manual": "Type 'My wheat leaves look like this, what should I spray?', attach data/sample_photos/02_wheat_leaf_rust.jpg with +, press send once. Pass: one message with photo and text; identifies rust on wheat, treatment from the advisory, 'AI estimate, confirm with your KVK' note. Repeat with Take a photo on a phone."
     },
     {
       "id": 24, "feature": "Photo diagnosis: crop the advisories do not cover", "mode": "photo", "language": "en",
-      "manual": "Photo -> Upload a photo -> data/sample_photos/07_tomato_early_blight.jpg. Pass: names the problem but says it is not covered, gives no treatment, refers to the KVK."
+      "manual": "Attach data/sample_photos/08_chilli_leaf_curl.jpg with + and send. Pass: names the problem but says it is not covered, gives no treatment, refers to the KVK."
     },
     {
       "id": 25, "feature": "Voice: live recording in English and Punjabi, answer read aloud", "mode": "voice", "language": "en",
-      "manual": "Voice -> record 'How to control aphids in mustard?' -> stop. Pass: sent automatically, transcript shown as the question, mustard aphid answer read aloud. Repeat in Punjabi: 'ਸਰ੍ਹੋਂ ਵਿੱਚ ਚੇਪੇ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ?' (can take 10-20 s)."
+      "manual": "Microphone in the chat box -> record 'How to control aphids in mustard?' -> stop -> send. Pass: transcript shown as the question, mustard aphid answer read aloud. Repeat in Punjabi: 'ਸਰ੍ਹੋਂ ਵਿੱਚ ਚੇਪੇ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ?' (can take 10-20 s). Then record a question and attach a photo, and send both together."
     }
   ]
 }

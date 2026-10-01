@@ -146,6 +146,37 @@ class KisanPipeline:
         ans.processing_metadata["input_modality"] = "voice"
         return ans
 
+    def process_message(
+        self,
+        text: str = "",
+        image_bytes: Optional[bytes] = None,
+        audio: Optional[tuple] = None,
+        language: Optional[str] = None,
+        history: Optional[List[ConversationTurn]] = None,
+        profile: Optional[FarmerProfile] = None,
+    ) -> GroundedAnswer:
+        """One message from the chat box: typed text, a voice note (audio bytes, filename) and a photo,
+        in any combination. The voice note is transcribed and joined to the text; with a photo, both
+        are the question about the photo."""
+        text = (text or "").strip()
+        transcript = ""
+        if audio is not None:
+            if not text and image_bytes is None:
+                return self.process_audio_query(audio[0], filename=audio[1], language=language, generate_audio=False,
+                                                history=history, profile=profile)
+            ok, said = self.stt_adapter.transcribe_audio_bytes(audio[0], filename=audio[1], language=language)
+            transcript = said.strip() if ok else ""  # the text or photo still carries the message
+        question = " ".join(part for part in (text, transcript) if part)
+        if image_bytes is not None:
+            result = self.process_image_query(image_bytes, question=question, language=language, history=history,
+                                              profile=profile)
+        else:
+            result = self.process_query(question, language=language, generate_audio=False, history=history,
+                                        profile=profile)
+        if transcript:
+            result.processing_metadata["stt_transcript"] = transcript
+        return result
+
     def process_image_query(
         self,
         image_bytes: bytes,

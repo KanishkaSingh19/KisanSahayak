@@ -76,17 +76,13 @@ st.markdown(
         color: #FFFFFF; padding: 5px 13px; border-radius: 999px; font-size: 0.85rem;
     }
 
-    /* Photo (bottom-left) and Voice (bottom-right) sit in a strip added to the bottom of the chat
-       box. They are taken out of the layout and the chat area has no inner gap, so the area ends
-       exactly at the chat box and the offsets hold at any width and as the box grows. */
+    /* "Take a photo" sits in a strip added to the bottom of the chat box (the box's own paperclip
+       attaches a photo and its microphone records). The button is taken out of the layout and the
+       chat area has no inner gap, so the offset holds at any width and as the box grows. */
     .st-key-chat_area { position: relative; gap: 0; }
     [data-testid="stChatInput"] > div { padding-bottom: 3.2rem; }
-    .st-key-chat_area .st-key-photo_tool,
-    .st-key-chat_area .st-key-voice_tool { position: absolute; bottom: 0.4rem; z-index: 5; width: auto; }
-    .st-key-chat_area .st-key-photo_tool { left: 0.6rem; }
-    .st-key-chat_area .st-key-voice_tool { right: 0.6rem; }
-    .st-key-photo_tool [data-testid="stPopoverButton"],
-    .st-key-voice_tool [data-testid="stPopoverButton"] { min-height: 2.4rem; padding: 0 0.6rem; }
+    .st-key-chat_area .st-key-photo_tool { position: absolute; bottom: 0.4rem; left: 0.6rem; z-index: 5; width: auto; }
+    .st-key-photo_tool [data-testid="stPopoverButton"] { min-height: 2.4rem; padding: 0 0.6rem; }
 
     /* Cards: bordered containers are keyed "card_*" (Streamlit adds a st-key-<key> class) */
     [class*="st-key-card_"] {
@@ -488,99 +484,71 @@ def main():
                         render_answer(msg["result"], pipeline, lang, msg["id"], speak_now=msg.get("speak", False))
                     msg["speak"] = False  # read aloud only the first time it is shown
 
-        # One chat box for everything: type a question, or use the Photo and Voice buttons pinned to
-        # its bottom-left corner. They share one container with the box, so they stay in place at
-        # any screen width.
+        # One chat box for the whole message: type, attach a photo (paperclip), record a voice note
+        # (microphone), in any combination, then send them together with the arrow. "Take a photo"
+        # (laptop or phone camera) sits under the box and attaches the photo to the next message.
+        staged_slot = st.container()  # the photo taken with the camera, waiting to be sent
         chat_area = st.container(key="chat_area")
-        prompt = chat_area.chat_input(t("input_placeholder", lang), key="chat_box")
-        photo_slot = chat_area.container(key="photo_tool")  # bottom-left corner
-        voice_slot = chat_area.container(key="voice_tool")  # bottom-right corner
+        message = chat_area.chat_input(
+            t("input_placeholder", lang), key="chat_box", accept_file=True, file_type=PHOTO_TYPES,
+            max_upload_size=10, accept_audio=True,
+        )
+        camera_slot = chat_area.container(key="photo_tool")  # bottom-left corner, under the box
 
-        # Photo opens a menu (upload or take a photo); Voice opens the live recorder. Menu contents
-        # only load when opened, so the camera and microphone (and their permission prompts) only
-        # start then. What is picked, taken or recorded is sent straight away; a new key after each
-        # one resets and closes the menu.
+        # The camera only starts when the menu is opened; a new key after each photo closes it
         st.session_state.setdefault("photo_round", 0)
-        st.session_state.setdefault("voice_round", 0)
-        photo_round, voice_round = st.session_state["photo_round"], st.session_state["voice_round"]
-        photo_question, image_bytes, voice = "", None, None  # voice: (audio bytes, filename)
-        with photo_slot:
-            photo_menu = st.popover(
-                t("photo_menu", lang), icon=":material/photo_camera:", type="tertiary",
+        photo_round = st.session_state["photo_round"]
+        with camera_slot:
+            camera_menu = st.popover(
+                t("photo_take_tab", lang), icon=":material/photo_camera:", type="tertiary",
                 key=f"photo_popover_{photo_round}", on_change="rerun",
             )
-        with voice_slot:
-            voice_menu = st.popover(
-                t("voice_menu", lang), icon=":material/mic:", type="tertiary",
-                key=f"voice_popover_{voice_round}", on_change="rerun",
-            )
-        with photo_menu:
-            if photo_menu.open:
-                photo_question = st.text_input(t("photo_question", lang), key=f"photo_q_{photo_round}")
-                upload_tab, camera_tab = st.tabs(
-                    [t("photo_upload_tab", lang), t("photo_take_tab", lang)],
-                    key=f"photo_tabs_{photo_round}", on_change="rerun",
-                )
-                with upload_tab:
-                    if upload_tab.open:
-                        photo = st.file_uploader(
-                            t("photo_upload", lang), type=PHOTO_TYPES, max_upload_size=10, key=f"photo_{photo_round}",
-                        )
-                        if photo is not None:
-                            image_bytes = photo.getvalue()
-                with camera_tab:
-                    if camera_tab.open:
-                        camera = st.camera_input(t("photo_camera", lang), key=f"camera_{photo_round}")
-                        if camera is not None:
-                            image_bytes = camera.getvalue()
-        with voice_menu:
-            if voice_menu.open:
-                # Live recording only; 16 kHz WAV is what speech-to-text works best with
-                recording = st.audio_input(t("record_label", lang), key=f"mic_{voice_round}")
-                if recording is not None:
-                    voice = (recording.getvalue(), "recording.wav")
+        with camera_menu:
+            if camera_menu.open:
+                shot = st.camera_input(t("photo_camera", lang), key=f"camera_{photo_round}")
+                if shot is not None:
+                    st.session_state["staged_photo"] = shot.getvalue()
+                    st.session_state["photo_round"] += 1
+                    st.rerun()
+        if st.session_state.get("staged_photo"):
+            with staged_slot:
+                thumb, note = st.columns([1, 4], vertical_alignment="center")
+                thumb.image(st.session_state["staged_photo"], width=80)
+                note.caption(t("photo_attached", lang))
+                note.button(t("photo_remove", lang), key="remove_staged_photo",
+                            on_click=lambda: st.session_state.pop("staged_photo", None))
 
-        if image_bytes:
+        # The message: typed text, an attached photo and a voice note, or a tapped sample question
+        text, image_bytes, voice = "", None, None  # voice: (audio bytes, filename)
+        if message is not None:
+            text = (message.text or "").strip()
+            if message.files:
+                image_bytes = message.files[0].getvalue()
+            if message.audio is not None:
+                voice = (message.audio.getvalue(), "recording.wav")
+        else:
+            text = st.session_state.pop("pending_query", None) or ""
+        if (text or image_bytes or voice) and image_bytes is None and st.session_state.get("staged_photo"):
+            image_bytes = st.session_state.pop("staged_photo")
+
+        if text or image_bytes or voice:
             history = conversation_history()
+            spinner = "spinner_photo" if image_bytes else "spinner_audio" if voice and not text else "spinner_text"
             with chat:
                 with st.chat_message("user", avatar="🧑‍🌾"):
-                    st.image(image_bytes, width=220)
-                    st.markdown(photo_question or t("photo_user_label", lang))
+                    if image_bytes:
+                        st.image(image_bytes, width=220)
+                    if text:
+                        st.markdown(text)
                 with st.chat_message("assistant", avatar="🌾"):
-                    with st.spinner(t("spinner_photo", lang)):
-                        result = pipeline.process_image_query(
-                            image_bytes, question=photo_question, language=lang, history=history, profile=profile
+                    with st.spinner(t(spinner, lang)):
+                        result = pipeline.process_message(
+                            text, image_bytes=image_bytes, audio=voice, language=lang, history=history, profile=profile,
                         )
             send_for_review(result)
-            st.session_state["messages"].append(
-                {"role": "user", "text": photo_question or t("photo_user_label", lang), "image": image_bytes}
-            )
-            st.session_state["messages"].append({"role": "assistant", "result": result, "id": len(st.session_state["messages"])})
-            st.session_state["photo_round"] += 1
-            st.rerun()
-
-        # New message: typed, tapped sample question, recorded or uploaded voice
-        prompt = prompt or st.session_state.pop("pending_query", None)
-        if prompt or voice:
-            history = conversation_history()
-            with chat:
-                if prompt:
-                    with st.chat_message("user", avatar="🧑‍🌾"):
-                        st.markdown(prompt)
-                with st.chat_message("assistant", avatar="🌾"):
-                    if prompt:
-                        with st.spinner(t("spinner_text", lang)):
-                            result = pipeline.process_query(
-                                prompt, language=lang, generate_audio=False, history=history, profile=profile
-                            )
-                    else:
-                        with st.spinner(t("spinner_audio", lang)):
-                            result = pipeline.process_audio_query(
-                                voice[0], filename=voice[1], language=lang, generate_audio=False, history=history, profile=profile,
-                            )
-            send_for_review(result)
-            user_text = prompt or result.processing_metadata.get("stt_transcript") or t("voice_not_understood", lang)
-            st.session_state["messages"].append({"role": "user", "text": user_text})
+            said = " ".join(p for p in (text, result.processing_metadata.get("stt_transcript")) if p)
+            fallback = "photo_user_label" if image_bytes else "voice_not_understood"
+            st.session_state["messages"].append({"role": "user", "text": said or t(fallback, lang), "image": image_bytes})
             st.session_state["messages"].append({
                 "role": "assistant",
                 "result": result,
@@ -588,8 +556,6 @@ def main():
                 # Spoken questions get a spoken answer (unless speech-to-text failed)
                 "speak": voice is not None and result.intent != "voice_stt_unavailable",
             })
-            if voice is not None:
-                st.session_state["voice_round"] += 1
             st.rerun()
 
     st.markdown(f'<div class="ks-footer">{t("sidebar_caption", lang)}</div>', unsafe_allow_html=True)

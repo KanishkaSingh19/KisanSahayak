@@ -77,6 +77,6 @@ Ask the 8 turns in order, in the same chat.
 
 | # | Do | Pass if… |
 |---|---|---|
-| 23 | **Photo → Upload a photo** → `data/sample_photos/02_wheat_leaf_rust.jpg`. Repeat with **Photo → Take a photo** on a phone | identifies **rust on wheat**, treatment from the advisory, **"AI estimate, confirm with your KVK"** note |
-| 24 | **Photo → Upload a photo** → `data/sample_photos/07_tomato_early_blight.jpg` | names the problem, says it is **not covered**, **no treatment**, refers to the KVK |
-| 25 | **Voice** → say "How to control aphids in mustard?" → stop. Repeat in Punjabi: ਸਰ੍ਹੋਂ ਵਿੱਚ ਚੇਪੇ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ? | sent automatically, **transcript** shown, mustard aphid answer **read aloud** (Punjabi can take 10–20 s) |
+| 23 | Type "My wheat leaves look like this, what should I spray?", attach `data/sample_photos/02_wheat_leaf_rust.jpg` with **+**, press send once. Repeat with **Take a photo** on a phone | one message with the photo and the text; identifies **rust on wheat**, treatment from the advisory, **"AI estimate, confirm with your KVK"** note |
+| 24 | Attach `data/sample_photos/08_chilli_leaf_curl.jpg` with **+** and send | names the problem, says it is **not covered**, **no treatment**, refers to the KVK |
+| 25 | Microphone in the chat box → say "How to control aphids in mustard?" → stop → send. Repeat in Punjabi: ਸਰ੍ਹੋਂ ਵਿੱਚ ਚੇਪੇ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ? Then record a question **and** attach a photo, and send both together | **transcript** shown as the question, mustard aphid answer **read aloud** (Punjabi can take 10–20 s); voice and photo arrive as one message |
