@@ -80,6 +80,8 @@ class ConversationTurn(BaseModel):
     # True when the place came from the farm profile, not the question: such a place is not
     # carried over, so a changed profile district is used on the next question
     district_from_profile: bool = False
+    # True when the answer asked "which place?": the farmer's next message is the place
+    awaiting_place: bool = False
 
     @classmethod
     def from_answer(cls, answer: "GroundedAnswer") -> "ConversationTurn":
@@ -97,4 +99,5 @@ class ConversationTurn(BaseModel):
             topic=topic,
             district=meta.get("district"),
             district_from_profile=bool(meta.get("district_from_profile")),
+            awaiting_place=bool(meta.get("needs_place")),
         )

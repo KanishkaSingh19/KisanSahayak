@@ -1,18 +1,14 @@
 import re
 import unicodedata
-from typing import Optional
+from typing import List, Optional
 from app.agent.guardrails import AgriculturalGuardrails
+from app.crops import COVERED_CROPS, CROP_NAMES, OTHER_PLANTS
+from app.textmatch import contains_term
 from app.agent.state import ConversationTurn, IntentResult
 from app.tools.location import detect_place
 
 # Lexicons for multilingual agricultural intent detection
-CROPS_DICT = {
-    "wheat": ["wheat", "gehun", "gehu", "kanak", "गेहूं", "ਕਣਕ"],
-    "mustard": ["mustard", "sarson", "sarsonn", "raya", "toria", "gobhi sarson", "rapeseed", "सरसों", "तोरिया", "ਸਰ੍ਹੋਂ",
-                "ਸਰੋਂ", "ਤੋਰੀਆ", "ਤੋਰੀਏ", "ਰਾਇਆ"],
-    "paddy": ["paddy", "rice", "dhan", "dhaan", "jhona", "basmati", "धान", "बासमती", "ਝੋਨਾ", "ਝੋਨੇ", "ਬਾਸਮਤੀ"],
-    "cotton": ["cotton", "kapas", "narma", "कपास", "ਨਰਮਾ", "ਨਰਮੇ"],
-}
+CROPS_DICT = {crop: CROP_NAMES[crop] for crop in COVERED_CROPS}
 
 PESTS_AND_DISEASES = {
     "yellow_rust": ["yellow rust", "peeli kungi", "pila rataua", "puccinia", "kungi", "पीली कुंगी", "ਪੀਲੀ ਕੁੰਗੀ"],
@@ -81,22 +77,7 @@ OUT_OF_SCOPE_KEYWORDS = [
 
 # Crops our verified advisories do NOT cover: answering these from another crop's advisory
 # would give a wrong dose, so they get a "not covered, ask your KVK" reply instead
-UNCOVERED_CROPS = {
-    "sugarcane": ["sugarcane", "ganna", "ganne", "गन्ना", "गन्ने", "ਗੰਨਾ", "ਗੰਨੇ"],
-    "maize": ["maize", "corn", "makka", "makki", "मक्का", "ਮੱਕੀ"],
-    "potato": ["potato", "aloo", "आलू", "ਆਲੂ"],
-    "tomato": ["tomato", "tamatar", "टमाटर", "ਟਮਾਟਰ"],
-    "onion": ["onion", "pyaz", "pyaaz", "प्याज", "ਪਿਆਜ਼"],
-    "chilli": ["chilli", "chili", "mirch", "मिर्च", "ਮਿਰਚ"],
-    "brinjal": ["brinjal", "eggplant", "baingan", "बैंगन", "ਬੈਂਗਣ"],
-    "soybean": ["soybean", "soyabean", "सोयाबीन"],
-    "chickpea": ["chickpea", "chana", "चना", "ਛੋਲੇ"],
-    "groundnut": ["groundnut", "peanut", "moongphali", "मूंगफली", "ਮੂੰਗਫਲੀ"],
-    "millet": ["bajra", "millet", "jowar", "बाजरा", "ज्वार", "ਬਾਜਰਾ"],
-    "barley": ["barley", "jau", "जौ", "ਜੌਂ"],
-    "vegetables": ["cauliflower", "cabbage", "gobhi", "okra", "bhindi", "गोभी", "भिंडी", "ਗੋਭੀ", "ਭਿੰਡੀ"],
-    "fruits": ["mango", "banana", "apple", "grapes", "citrus", "kinnow", "आम", "केला", "ਕਿੰਨੂ", "ਅੰਬ"],
-}
+UNCOVERED_CROPS = {**{k: v for k, v in CROP_NAMES.items() if k not in COVERED_CROPS}, **OTHER_PLANTS}
 
 
 BANNED_CHECK = AgriculturalGuardrails()
@@ -176,12 +157,31 @@ def normalize_indic(text: str) -> str:
     return unicodedata.normalize("NFC", text).replace("ਂ", "ੰ")
 
 
-def matches_keyword(keyword: str, text: str) -> bool:
-    """Match keyword supporting both ASCII word boundaries and Unicode Indic scripts."""
+def matches_keyword(keyword: str, text: str, whole_word: bool = False) -> bool:
+    """Match a keyword in any script. Indian-script topic words are stems and may match inside longer
+    words; pass whole_word=True for names (crops), which must not ("तिल" is not in "तिलहन")."""
     kw = keyword.lower().strip()
-    if any(ord(c) > 127 for c in kw):
-        return normalize_indic(kw) in normalize_indic(text)
-    return bool(re.search(rf"\b{re.escape(kw)}\b", text))
+    if kw.isascii():
+        return contains_term(kw, text)
+    return contains_term(normalize_indic(kw), normalize_indic(text), whole_word=whole_word)
+
+
+def detect_covered_crop(clean: str) -> Optional[str]:
+    """The covered crop a question names (wheat, mustard, paddy, cotton), in any script."""
+    for crop_name, aliases in CROPS_DICT.items():
+        if any(matches_keyword(alias, clean, whole_word=True) for alias in aliases):
+            return crop_name.capitalize()
+    return None
+
+
+def detect_pest(clean: str) -> Optional[str]:
+    """The covered pest or disease a question names. The most specific (longest) name wins:
+    "safed kungi" is white rust, not "kungi" (yellow rust); "bhoora tilla" is brown planthopper, not "tilla" (aphid)."""
+    matches = [
+        (len(alias), topic) for topic, aliases in PESTS_AND_DISEASES.items()
+        for alias in aliases if matches_keyword(alias, clean)
+    ]
+    return max(matches)[1].replace("_", " ").title() if matches else None
 
 
 def weather_topics(query: str) -> set:
@@ -201,7 +201,7 @@ class IntentRouter:
     def classify(self, query: str) -> IntentResult:
         clean = query.lower().strip()
 
-        # 1. Check for Greetings
+        # Rule 1. Greetings
         if any(matches_keyword(g, clean) for g in GREETING_KEYWORDS) and len(clean.split()) <= 4:
             return IntentResult(
                 intent="greeting",
@@ -209,7 +209,7 @@ class IntentRouter:
                 reasoning="Short conversational greeting identified.",
             )
 
-        # 1b. Government scheme questions (before the off-topic check: "minister" or "government"
+        # Rule 2. Government scheme questions (before the off-topic check: "minister" or "government"
         # appear in legitimate eligibility questions)
         if any(matches_keyword(k, clean) for k in SCHEME_KEYWORDS):
             return IntentResult(
@@ -219,7 +219,7 @@ class IntentRouter:
                 reasoning="Question about the PM-KISAN government scheme.",
             )
 
-        # 1c. Market prices (before the off-topic and crop checks: "MSP of maize" is a price question)
+        # Rule 3. Market prices (before the off-topic and crop checks: "MSP of maize" is a price question)
         if not NOT_MARKET.search(clean) and any(matches_keyword(k, clean) for k in MARKET_KEYWORDS):
             return IntentResult(
                 intent="market_price",
@@ -229,7 +229,7 @@ class IntentRouter:
                 reasoning="Question about MSP or mandi prices.",
             )
 
-        # 2. Check for explicit Out-of-Scope indicators
+        # Rule 4. Off-topic questions
         for oos in OUT_OF_SCOPE_KEYWORDS:
             if matches_keyword(oos, clean):
                 return IntentResult(
@@ -238,28 +238,12 @@ class IntentRouter:
                     reasoning=f"Query references non-agricultural topic: '{oos}'",
                 )
 
-        # 3. Detect District / place (any script; unknown names are verified later by geocoding)
+        # What the question is about: place (verified later by geocoding), covered crop, pest or disease
         detected_district: Optional[str] = detect_place(query)
+        detected_crop = detect_covered_crop(clean)
+        detected_topic = detect_pest(clean)
 
-        # 4. Detect Crops
-        detected_crop: Optional[str] = None
-        for crop_name, aliases in CROPS_DICT.items():
-            if any(matches_keyword(alias, clean) for alias in aliases):
-                detected_crop = crop_name.capitalize()
-                break
-
-        # 5. Detect Pest/Disease Topic
-        # The most specific (longest) matching name wins: "safed kungi" is white rust, not "kungi" (yellow rust),
-        # and "bhoora tilla" is brown planthopper, not "tilla" (aphid)
-        detected_topic: Optional[str] = None
-        matches = [
-            (len(alias), topic_name) for topic_name, aliases in PESTS_AND_DISEASES.items()
-            for alias in aliases if matches_keyword(alias, clean)
-        ]
-        if matches:
-            detected_topic = max(matches)[1].replace("_", " ").title()
-
-        # 6. Check for Weather & Spray Window Query
+        # Rule 5. Weather and spray timing
         # "Can I spray today?" is a spray-timing (weather) question unless a pest is named
         asks_spray_timing = (
             not detected_topic
@@ -276,7 +260,7 @@ class IntentRouter:
                 reasoning="Agricultural weather, rainfall probability, or spraying condition query.",
             )
 
-        # 7. Check for Safety Query (a banned pesticide named in any script counts, so the warning
+        # Rule 6. Pesticide safety (a banned pesticide named in any script counts, so the warning
         # always wins, e.g. over "crop not covered" for "मोनोक्रोटोफॉस on brinjal")
         if any(matches_keyword(s, clean) for s in SAFETY_KEYWORDS) or BANNED_CHECK.check_banned_chemicals(query)[0]:
             return IntentResult(
@@ -288,11 +272,11 @@ class IntentRouter:
                 reasoning="Query specifically pertains to pesticide bans, toxicity, or safety protocols.",
             )
 
-        # 7b. A crop our advisories don't cover (and none they do): say so instead of answering
+        # Rule 7. A crop our advisories don't cover (and none they do): say so instead of answering
         # from another crop's advisory. Banned-pesticide questions were handled above.
         if not detected_crop:
             uncovered = next(
-                (name for name, aliases in UNCOVERED_CROPS.items() if any(matches_keyword(a, clean) for a in aliases)),
+                (name for name, aliases in UNCOVERED_CROPS.items() if any(matches_keyword(a, clean, whole_word=True) for a in aliases)),
                 None,
             )
             if uncovered:
@@ -303,7 +287,7 @@ class IntentRouter:
                     reasoning=f"Question about {uncovered}, which the verified advisories do not cover.",
                 )
 
-        # 7c. A farming topic our advisories don't cover (weeds, deficiencies, varieties, prices...) when no
+        # Rule 8. A farming topic our advisories don't cover (weeds, deficiencies, varieties, prices...) when no
         # pest or disease we cover is named, or a covered pest asked about another crop ("aphid in cotton")
         topic_gap = None
         if not detected_topic:
@@ -319,7 +303,7 @@ class IntentRouter:
                 reasoning=f"Question about {topic_gap}, which the verified advisories do not cover.",
             )
 
-        # 8. Check for Crop-specific health/disease query
+        # Rule 9. Crop pest and disease questions
         if detected_topic or (detected_crop and any(w in clean for w in ["spray", "disease", "pest", "control", "ilaj", "roktham", "dawa", "dawai", "keeda", "keet"])):
             return IntentResult(
                 intent="crop_question",
@@ -330,7 +314,7 @@ class IntentRouter:
                 reasoning="Identified disease/pest management query for crop.",
             )
 
-        # 7. General Agriculture (irrigation, sowing, fertilizer, general farming query)
+        # Rule 10. General farming (irrigation, sowing, fertilizer)
         agri_words = ["irrigation", "sowing", "seed", "fertilizer", "urea", "dap", "paani", "bijai", "khad", "soil", "kheti", "yield", "pau", "icar"]
         if detected_crop or any(w in clean for w in agri_words):
             return IntentResult(
@@ -364,41 +348,65 @@ class IntentRouter:
             history = [history]
         history = list(history or [])
         result = self.classify(query)
-        if history and result.intent == "topic_not_covered" and any(matches_keyword(w, query.lower()) for w in REFERS_BACK):
-            # "Which varieties resist this disease?" asks about the earlier topic, not about varieties in general
-            result = IntentResult(
-                intent="general_agriculture",
-                confidence=0.7,
-                detected_crop=result.detected_crop,
-                reasoning="Refers back to an earlier question.",
-            )
-        if not history or result.intent in ("greeting", "out_of_scope", "crop_not_covered", "topic_not_covered"):
+        if not history:
             return result
+        result = self._refers_back(query, result)
+        place_reply = self._place_reply(query, result, history[-1])
+        if place_reply:
+            return place_reply
+        if result.intent in ("greeting", "out_of_scope", "crop_not_covered", "topic_not_covered"):
+            return result
+        # Checked in this order; the first that applies decides
+        for follow_up in (self._price_follow_up, self._scheme_follow_up, self._weather_follow_up, self._crop_follow_up):
+            decided = follow_up(query, result, history)
+            if decided is not None:
+                return decided
+        return result
 
-        # A photo diagnosis counts as a crop question, so "What is the dose?" after a photo stays on it
-        crop_intents = ("crop_question", "general_agriculture", "safety_query", "image_diagnosis")
-        previous = history[-1]
-        last_weather = next((turn for turn in reversed(history) if turn.intent == "weather"), None)
-        last_crop = next((turn for turn in reversed(history) if turn.intent in crop_intents and turn.crop), None)
+    @staticmethod
+    def _refers_back(query: str, result: IntentResult) -> IntentResult:
+        """"Which varieties resist this disease?" asks about the earlier topic, not about varieties in general."""
+        if result.intent == "topic_not_covered" and any(matches_keyword(w, query.lower()) for w in REFERS_BACK):
+            return IntentResult(intent="general_agriculture", confidence=0.7, detected_crop=result.detected_crop,
+                                reasoning="Refers back to an earlier question.")
+        return result
+
+    @staticmethod
+    def _place_reply(query: str, result: IntentResult, previous: ConversationTurn) -> Optional[IntentResult]:
+        """The last answer asked "which place?": a short reply ("NOIDA", "Sangrur", "ਸੰਗਰੂਰ") is the place,
+        and the original weather or price question is answered for it."""
+        topic_named = result.detected_topic not in (None, "Agronomy/General", "Market prices",
+                                                    "Ag-Weather & Spray Window Advisory")
+        if not (previous.awaiting_place and len(query.split()) <= 4
+                and result.intent not in ("greeting", "out_of_scope", "scheme_query")
+                and not result.detected_crop and not topic_named):
+            return None
+        return IntentResult(
+            intent=previous.intent,
+            confidence=0.9,
+            detected_topic="Market prices" if previous.intent == "market_price" else "Ag-Weather & Spray Window Advisory",
+            detected_district=result.detected_district or query.strip(" ?.!,").title(),
+            follow_up_of=previous.query,
+            reasoning="Reply to 'which place?': answering the earlier question for this place.",
+        )
+
+    @staticmethod
+    def _price_follow_up(query: str, result: IntentResult, history: List[ConversationTurn]) -> Optional[IntentResult]:
+        """Prices keep the place of the last price question ("rice ka rate?" after Delhi), and short
+        follow-ups ("and mustard?", "Sangrur mandi?") right after a price answer stay on prices."""
         last_market = next((turn for turn in reversed(history) if turn.intent == "market_price"), None)
         # A place named in an earlier price question (not one filled in from the farm profile)
         market_place = (
             last_market.district if last_market and last_market.district and not last_market.district_from_profile else None
         )
-
-        topic = result.detected_topic if result.detected_topic not in (None, "Agronomy/General") else None
-        names_no_subject = not result.detected_crop and not topic
-
-        # Price questions without a place keep the place of the last price question ("rice ka rate?" after Delhi)
         if result.intent == "market_price":
             if not result.detected_district and market_place:
                 result.detected_district = market_place
                 result.reasoning += " Place carried over from an earlier price question."
             return result
-
-        # Market follow-ups: "and mustard?" / "what about rice?" / "Sangrur mandi?" right after a price answer
-        if previous.intent == "market_price" and len(query.split()) <= 6 and result.intent != "market_price" and (
-            result.detected_crop or result.detected_district or result.intent in ("crop_not_covered",)
+        previous = history[-1]
+        if previous.intent == "market_price" and len(query.split()) <= 6 and (
+            result.detected_crop or result.detected_district or result.intent == "crop_not_covered"
         ):
             return IntentResult(
                 intent="market_price",
@@ -408,24 +416,34 @@ class IntentRouter:
                 follow_up_of=previous.query,
                 reasoning="Follow-up to the previous price question.",
             )
+        return None
 
-        # Scheme follow-ups: "How do I apply?" / "What documents?" right after a PM-KISAN answer
-        if previous.intent == "scheme_query" and names_no_subject and result.intent in crop_intents:
+    @staticmethod
+    def _scheme_follow_up(query: str, result: IntentResult, history: List[ConversationTurn]) -> Optional[IntentResult]:
+        """"How do I apply?" / "What documents?" right after a PM-KISAN answer."""
+        if history[-1].intent == "scheme_query" and _names_no_subject(result) and result.intent in CROP_INTENTS:
             return IntentResult(
                 intent="scheme_query",
                 confidence=0.85,
                 detected_topic="PM-KISAN",
-                follow_up_of=previous.query,
+                follow_up_of=history[-1].query,
                 reasoning="Follow-up to the previous PM-KISAN question.",
             )
+        return None
 
-        # Weather follow-ups
+    @staticmethod
+    def _weather_follow_up(query: str, result: IntentResult, history: List[ConversationTurn]) -> Optional[IntentResult]:
+        """Weather keeps the place of the last weather question, and "aur Sangrur?" / "kal?" after a
+        weather answer stay on weather."""
         if result.intent == "weather":
-            if not result.detected_district and last_weather and last_weather.district and not last_weather.district_from_profile:
+            last_weather = next((turn for turn in reversed(history) if turn.intent == "weather"), None)
+            if (not result.detected_district and last_weather and last_weather.district
+                    and not last_weather.district_from_profile):
                 result.detected_district = last_weather.district
                 result.reasoning += " Place carried over from an earlier weather question."
             return result
-        if previous.intent == "weather" and names_no_subject and (result.detected_district or weather_topics(query)):
+        previous = history[-1]
+        if previous.intent == "weather" and _names_no_subject(result) and (result.detected_district or weather_topics(query)):
             return IntentResult(
                 intent="weather",
                 confidence=0.85,
@@ -434,26 +452,42 @@ class IntentRouter:
                 follow_up_of=previous.query,  # "Sangrur" answering "Can I spray today?" keeps the spray question
                 reasoning="Follow-up to the previous weather question.",
             )
+        return None
 
-        # Crop / pest / safety follow-ups: use the most recent crop question, even if other
-        # questions (e.g. weather) came in between
-        if last_crop and result.intent in crop_intents:
-            previous_topic = last_crop.topic if last_crop.topic not in (None, "Agronomy/General") else None
-            if names_no_subject:
-                # "What is the dose?" / "Is it dangerous?" -> same crop and pest as before
-                inherited = "crop_question" if last_crop.intent == "image_diagnosis" else last_crop.intent
-                return IntentResult(
-                    intent=result.intent if result.confidence > 0.70 else inherited,
-                    confidence=0.85,
-                    detected_crop=last_crop.crop,
-                    detected_topic=previous_topic,
-                    detected_district=result.detected_district,
-                    follow_up_of=last_crop.query,
-                    reasoning="Follow-up: crop and pest carried over from an earlier question.",
-                )
-            if result.detected_crop and not topic and previous_topic and len(query.split()) <= 5:
-                # "What about wheat?" -> same pest, new crop
-                result.detected_topic = previous_topic
-                result.intent = "crop_question"
-                result.reasoning = "Follow-up: pest carried over to a new crop."
+    @staticmethod
+    def _crop_follow_up(query: str, result: IntentResult, history: List[ConversationTurn]) -> Optional[IntentResult]:
+        """Crop, pest and safety follow-ups use the most recent crop question, even if other questions
+        (e.g. weather) came in between."""
+        last_crop = next((turn for turn in reversed(history) if turn.intent in CROP_INTENTS and turn.crop), None)
+        if not last_crop or result.intent not in CROP_INTENTS:
+            return None
+        previous_topic = last_crop.topic if last_crop.topic not in (None, "Agronomy/General") else None
+        if _names_no_subject(result):
+            # "What is the dose?" / "Is it dangerous?" -> same crop and pest as before
+            inherited = "crop_question" if last_crop.intent == "image_diagnosis" else last_crop.intent
+            return IntentResult(
+                intent=result.intent if result.confidence > 0.70 else inherited,
+                confidence=0.85,
+                detected_crop=last_crop.crop,
+                detected_topic=previous_topic,
+                detected_district=result.detected_district,
+                follow_up_of=last_crop.query,
+                reasoning="Follow-up: crop and pest carried over from an earlier question.",
+            )
+        topic = result.detected_topic if result.detected_topic not in (None, "Agronomy/General") else None
+        if result.detected_crop and not topic and previous_topic and len(query.split()) <= 5:
+            # "What about wheat?" -> same pest, new crop
+            result.detected_topic = previous_topic
+            result.intent = "crop_question"
+            result.reasoning = "Follow-up: pest carried over to a new crop."
         return result
+
+
+# A photo diagnosis counts as a crop question, so "What is the dose?" after a photo stays on it
+CROP_INTENTS = ("crop_question", "general_agriculture", "safety_query", "image_diagnosis")
+
+
+def _names_no_subject(result: IntentResult) -> bool:
+    """True when a message names neither a crop nor a pest ("What is the dose?")."""
+    topic = result.detected_topic if result.detected_topic not in (None, "Agronomy/General") else None
+    return not result.detected_crop and not topic

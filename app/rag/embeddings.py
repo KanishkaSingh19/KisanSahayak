@@ -1,6 +1,4 @@
 import hashlib
-import math
-import re
 import unicodedata
 from typing import List, Optional
 import numpy as np

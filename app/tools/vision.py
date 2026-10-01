@@ -12,9 +12,10 @@ from typing import List, Literal, Optional, Tuple
 from pydantic import BaseModel, Field
 
 from app.config import settings
+from app.crops import COVERED_CROPS as SHARED_COVERED_CROPS
 
 # Crops our verified advisories cover (the vision model's "crop" field uses these keys)
-COVERED_CROPS = {"wheat", "mustard", "paddy", "cotton"}
+COVERED_CROPS = set(SHARED_COVERED_CROPS)
 MAX_SIDE_PX = 1024  # photos are shrunk before sending: faster, cheaper, enough detail for leaves
 
 LANGUAGE_NAMES = {"en": "English", "pa": "Punjabi (Gurmukhi script)", "hinglish": "Hinglish (Hindi in Roman letters)", "hi": "Hindi (Devanagari script)"}

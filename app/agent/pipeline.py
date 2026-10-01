@@ -1,8 +1,10 @@
 import time
+from dataclasses import dataclass
 from typing import List, Optional
 from app.config import settings
+from app.crops import COVERED_CROPS
 from app.i18n import normalize_language, t
-from app.agent.state import AgentQuery, ConversationTurn, FarmerProfile, GroundedAnswer, IntentResult
+from app.agent.state import ConversationTurn, FarmerProfile, GroundedAnswer, IntentResult
 from app.tools.schemes import SchemeGuide, check_eligibility
 from app.agent.router import IntentRouter, weather_topics
 from app.agent.synthesizer import get_synthesizer
@@ -11,11 +13,28 @@ from app.rag.hybrid_retriever import HybridRetriever
 from app.rag.chunker import AgriculturalChunker
 from app.speech.stt import WhisperSTTAdapter
 from app.speech.tts import EdgeTTSAdapter
+from app.tools.location import STATES, state_named
 from app.tools.market import MarketPriceService, detect_commodity, load_msp, state_for
 from app.tools.vision import CropVision
 from app.tools.weather_tool import AgWeatherTool
 
-# Shown (with a visible note) when the farmer names no place or one that can't be found
+@dataclass
+class Request:
+    """What every answer needs: the question, its language, the conversation and the farm profile."""
+
+    query: str
+    lang: str  # language of the reply
+    chosen_language: Optional[str]  # the language the farmer picked (None: detected from the script)
+    history: List[ConversationTurn]
+    profile: Optional[FarmerProfile]
+    intent: IntentResult
+    start_time: float
+    generate_audio: bool
+
+    @property
+    def llm_language(self) -> Optional[str]:
+        # Only force the answer language when the farmer chose one; otherwise the LLM mirrors the question
+        return self.lang if self.chosen_language else None
 
 
 def detect_language(text: str) -> str:
@@ -189,135 +208,7 @@ class KisanPipeline:
             safety_disclaimers=[t("photo_disclaimer", lang)] + disclaimers,
         )
 
-    def _answer_market(self, query, intent_res, lang, profile, start_time) -> GroundedAnswer:
-        """MSP from the government table plus the latest mandi prices when Agmarknet can be reached."""
-        msp_data = load_msp()
-        commodity = detect_commodity(query) or (detect_commodity(intent_res.follow_up_of or "") if intent_res.follow_up_of else None)
-        if not commodity and profile and len(profile.crops) == 1:
-            commodity = detect_commodity(profile.crops[0])  # "What is today's rate?" -> the farmer's crop
-        district = intent_res.detected_district or (profile.district if profile and profile.district else None)
-        meta = {
-            "answer_source": "market_tool", "detected_topic": "Market prices", "district": district,
-            # a place from the farm profile is not carried over, so a changed profile district is used next time
-            "district_from_profile": bool(district and not intent_res.detected_district),
-        }
-
-        def crop_name(key: str) -> str:
-            if key in ("wheat", "mustard", "paddy", "cotton"):
-                return t(f"crop_{key}", lang)
-            return msp_data["crops"].get(key, {}).get("name", key.title())
-
-        if not commodity:
-            crops = ", ".join(crop_name(k) for k in msp_data["crops"])
-            answer, citations = t("market_which_crop", lang, crops=crops), []
-        else:
-            meta["detected_crop"] = commodity.title()
-            parts, citations = [], []
-            msp = msp_data["crops"].get(commodity)
-            if msp:
-                parts.append(t("market_msp", lang, crop=crop_name(commodity), season=msp["season"], price=f"{msp['msp']:,}"))
-                if msp.get("variants"):
-                    variants = ", ".join(f"{name} Rs {price:,}" for name, price in msp["variants"].items())
-                    parts.append(t("market_msp_variants", lang, variants=variants))
-                if msp.get("previous"):
-                    parts.append(t("market_msp_previous", lang, season=msp["previous"]["season"],
-                                   price=f"{msp['previous']['msp']:,}"))
-                citations.append(msp_data["source"])
-            else:
-                parts.append(t("market_no_msp", lang, crop=crop_name(commodity)))
-
-            # Mandi prices need a place: there is no default state, so ask when none is known
-            state = state_for(district, self.weather_tool.resolve_place) if district else None
-            lookup = None
-            if not district:
-                parts.append("\n" + t("market_ask_place", lang))
-                meta["mandi_error"] = "no place given"
-            elif not state:
-                parts.append("\n" + t("market_place_unknown", lang, place=district))
-                meta["mandi_error"] = f"place not found: {district}"
-            else:
-                lookup = self.mandi.latest(commodity, state=state, district=district)
-            if lookup is not None and lookup.prices:
-                parts.append("\n" + t("market_mandi_header", lang, crop=crop_name(commodity), date=lookup.prices[0].date))
-                parts += [
-                    t("market_mandi_row", lang, market=p.market, district=p.district, modal=f"{p.modal_price:,.0f}",
-                      low=f"{p.min_price:,.0f}", high=f"{p.max_price:,.0f}")
-                    if p.min_price is not None else
-                    t("market_avg_row", lang, date=p.date, price=f"{p.modal_price:,.0f}", place=p.market)
-                    for p in lookup.prices
-                ]
-                if not lookup.local:
-                    parts.append(t("market_state_fallback", lang, district=district, state=state))
-                citations.append(lookup.source or "Agmarknet daily mandi prices")
-                meta["mandi_local"] = lookup.local
-            elif lookup is not None:
-                parts.append("\n" + t("market_mandi_unavailable", lang))
-                meta["mandi_error"] = lookup.error
-            answer = "\n".join(parts)
-
-        meta["latency_ms"] = int((time.time() - start_time) * 1000)
-        return GroundedAnswer(
-            query=query,
-            intent="market_price",
-            answer=answer,
-            citations=citations,
-            retrieved_chunks=[],
-            is_grounded=True,
-            safety_disclaimers=[t("market_disclaimer", lang, date=msp_data["last_verified"])] if commodity else [],
-            detected_language=lang,
-            processing_metadata=meta,
-        )
-
-    def _answer_scheme(self, query, intent_res, lang, language, history, profile, start_time) -> GroundedAnswer:
-        """PM-KISAN answer: rule-based eligibility from the profile + scheme text from the official website."""
-        guide = self.scheme_guide
-        sections = guide.select_sections(" ".join(filter(None, [intent_res.follow_up_of, query])))
-        context = guide.as_context(sections)
-
-        # Eligibility is decided by fixed rules, never by the LLM
-        status, reasons, may_be_withheld = check_eligibility(profile)
-        asked_eligibility = any(s["id"] in ("eligibility", "exclusions") for s in sections)
-        eligibility_text = ""
-        if status == "likely_eligible":
-            eligibility_text = t("pmk_likely_eligible", lang)
-        elif status == "not_eligible":
-            eligibility_text = t("pmk_not_eligible", lang, reasons="; ".join(t(r, lang) for r in reasons))
-        elif asked_eligibility:
-            eligibility_text = t("pmk_needs_info", lang)
-        if may_be_withheld:
-            eligibility_text += "\n\n" + t("pmk_withheld", lang)
-
-        notes = [profile.summary()] if profile and not profile.is_empty() else []
-        if status != "needs_info":
-            notes.append(f"Rule-based PM-KISAN eligibility check from the profile: {status.replace('_', ' ')} "
-                         "(already shown to the farmer; do not contradict it).")
-        draft, source = self.synthesizer.generate(
-            query, context, language=lang if language else None, history=history, context_note=" ".join(notes),
-        )
-        if source != "llm":
-            draft = guide.offline_answer(sections, lang)  # stored official text in the farmer's language
-
-        answer = f"{eligibility_text}\n\n{draft}" if eligibility_text else draft
-        is_grounded, score = self.guardrails.validate_grounding(draft, [c.text for c in context])
-        return GroundedAnswer(
-            query=query,
-            intent="scheme_query",
-            answer=answer,
-            citations=[guide.citation],
-            retrieved_chunks=context,
-            is_grounded=is_grounded or source != "llm",
-            safety_disclaimers=[t("scheme_disclaimer", lang, date=guide.data["last_verified"])],
-            detected_language=lang,
-            processing_metadata={
-                "latency_ms": int((time.time() - start_time) * 1000),
-                "answer_source": source,
-                "detected_topic": "PM-KISAN",
-                "pmk_eligibility": status,
-                "grounding_score": score,
-                "top_section": sections[0]["title"],
-            },
-        )
-
+    # ------------------------------------------------------------------ answering a typed question
     def process_query(
         self,
         query: str,
@@ -327,7 +218,7 @@ class KisanPipeline:
         history: Optional[List[ConversationTurn]] = None,
         profile: Optional[FarmerProfile] = None,
     ) -> GroundedAnswer:
-        """Process farmer query through intent routing, hybrid RAG, synthesis, and guardrails.
+        """Route a farmer's question to the right kind of answer.
 
         `language` ("en", "pa", "hinglish", "hi") sets the reply language; when omitted it is
         detected from the query script. `history` holds earlier turns of the conversation so
@@ -335,228 +226,18 @@ class KisanPipeline:
         `profile` (optional) personalises answers: the farmer's district for weather, their crop
         when none is named, and PM-KISAN eligibility.
         """
-        history = history or []
         start_time = time.time()
         clean_query = query.strip()
         detected_lang = normalize_language(language) if language else detect_language(clean_query)
-
-        # 1. Validation for empty or invalid queries
         if not clean_query:
             return GroundedAnswer(
-                query=query,
-                intent="empty",
-                answer=t("empty_query", detected_lang),
-                citations=[],
-                retrieved_chunks=[],
-                is_grounded=True,
-                safety_disclaimers=[],
-                detected_language=detected_lang,
+                query=query, intent="empty", answer=t("empty_query", detected_lang), citations=[], retrieved_chunks=[],
+                is_grounded=True, safety_disclaimers=[], detected_language=detected_lang,
             )
-
         try:
-            # 2. Intent Detection & Canonical Entity Extraction
-            intent_res: IntentResult = self.router.classify_with_context(clean_query, history)
-
-            # 3. Handle Greetings
-            if intent_res.intent == "greeting":
-                greeting_text = t("greeting", detected_lang)
-                audio_path = self.tts_adapter.synthesize_speech(greeting_text, language=detected_lang) if generate_audio else None
-                return GroundedAnswer(
-                    query=clean_query,
-                    intent=intent_res.intent,
-                    answer=greeting_text,
-                    citations=["ICAR & PAU Agricultural Extension"],
-                    retrieved_chunks=[],
-                    is_grounded=True,
-                    safety_disclaimers=[],
-                    audio_output_path=str(audio_path) if audio_path else None,
-                    detected_language=detected_lang,
-                    processing_metadata={"latency_ms": int((time.time() - start_time) * 1000)},
-                )
-
-            # 4. Handle Out-of-Scope Queries
-            if intent_res.intent == "out_of_scope":
-                oos_text = t("out_of_scope", detected_lang)
-                return GroundedAnswer(
-                    query=clean_query,
-                    intent=intent_res.intent,
-                    answer=oos_text,
-                    citations=[],
-                    retrieved_chunks=[],
-                    is_grounded=True,
-                    safety_disclaimers=[],
-                    detected_language=detected_lang,
-                    processing_metadata={"latency_ms": int((time.time() - start_time) * 1000)},
-                )
-
-            # 4b. A crop the verified advisories don't cover: no treatment from another crop's advisory
-            # (or a topic they don't cover: weeds, deficiencies, varieties, prices...)
-            if intent_res.intent in ("crop_not_covered", "topic_not_covered"):
-                return GroundedAnswer(
-                    query=clean_query,
-                    intent=intent_res.intent,
-                    answer=t(intent_res.intent, detected_lang),
-                    citations=[],
-                    retrieved_chunks=[],
-                    is_grounded=True,
-                    safety_disclaimers=[],
-                    detected_language=detected_lang,
-                    processing_metadata={
-                        "latency_ms": int((time.time() - start_time) * 1000),
-                        "detected_crop": intent_res.detected_crop,
-                        "detected_topic": intent_res.detected_topic,
-                    },
-                )
-
-            # 5. Handle Agricultural Weather Tool Intent (Phase 2)
-            if intent_res.intent == "weather":
-                lang = detected_lang
-                requested = intent_res.detected_district
-                from_profile = False
-                if not requested and profile and profile.district:
-                    requested = profile.district  # "Will it rain today?" -> the farmer's own district
-                    from_profile = True
-                place = self.weather_tool.resolve_place(requested) if requested else None
-                if place is None:
-                    # There is no default place: ask for one (or say the named place wasn't found)
-                    key = "location_not_found" if requested else "location_default"
-                    return GroundedAnswer(
-                        query=clean_query,
-                        intent=intent_res.intent,
-                        answer=t(key, lang, place=requested or ""),
-                        citations=[],
-                        retrieved_chunks=[],
-                        is_grounded=True,
-                        safety_disclaimers=[],
-                        detected_language=detected_lang,
-                        processing_metadata={
-                            "latency_ms": int((time.time() - start_time) * 1000),
-                            "location_found": False,
-                            "needs_place": True,
-                        },
-                    )
-                report = self.weather_tool.get_weather_for_district(place.name, language=lang, place=place)
-                district = report.district
-
-                # Answer only what was asked: spray / irrigation advice only when the question (or, for a
-                # reply like "Sangrur", the question it answers) mentions it
-                topics = weather_topics(f"{clean_query} {intent_res.follow_up_of or ''}")
-                summary = t(
-                    "weather_summary", lang, place=report.district, temp=report.temperature_c,
-                    humidity=report.relative_humidity, wind=report.wind_speed_kmh, rain=report.rain_probability_pct,
-                )
-                parts = [f"### {t('weather_advisory_title', lang)}: {report.district}\n\n{summary}"]
-                if "spray" in topics:
-                    parts.append(f"**{t('spray_advisory', lang)}:**\n{report.spray_recommendation}")
-                if "irrigation" in topics:
-                    parts.append(f"**{t('irrigation_advice', lang)}:**\n{report.irrigation_advisory}")
-                weather_ans = "\n\n".join(parts)
-                citations = [report.source_notice]
-                if topics:
-                    citations.append("ICAR Agromet Advisory Guidelines")
-                audio_path = self.tts_adapter.synthesize_speech(weather_ans, language=detected_lang) if generate_audio else None
-
-                return GroundedAnswer(
-                    query=clean_query,
-                    intent=intent_res.intent,
-                    answer=weather_ans,
-                    citations=citations,
-                    retrieved_chunks=[],
-                    is_grounded=True,
-                    safety_disclaimers=[],
-                    audio_output_path=str(audio_path) if audio_path else None,
-                    weather_report=report.model_dump(),
-                    detected_language=detected_lang,
-                    processing_metadata={
-                        "latency_ms": int((time.time() - start_time) * 1000),
-                        "district": district,
-                        "district_from_profile": from_profile,
-                        "location_found": place is not None,
-                        "is_live_weather": report.is_live,
-                    },
-                )
-
-            # 5b. Government scheme guidance (PM-KISAN)
-            if intent_res.intent == "scheme_query":
-                return self._answer_scheme(clean_query, intent_res, detected_lang, language, history, profile, start_time)
-
-            # 5c. Market prices: MSP and live mandi prices (numbers come only from the data, never the LLM)
-            if intent_res.intent == "market_price":
-                return self._answer_market(clean_query, intent_res, detected_lang, profile, start_time)
-
-            # No crop named or carried over: use the farmer's crop if their profile lists exactly one we cover
-            if not intent_res.detected_crop and profile:
-                covered = [c for c in profile.crops if c.lower() in ("wheat", "mustard", "paddy", "cotton")]
-                if len(covered) == 1:
-                    intent_res.detected_crop = covered[0].title()
-
-            # 6. Hybrid Agricultural Retrieval (FAISS + BM25 + RRF)
-            # Add the crop and pest (detected, or carried over from the previous turn) so that
-            # short follow-ups like "what is the dose?" still retrieve the right advisory
-            context_terms = [
-                term for term in (intent_res.detected_crop, intent_res.detected_topic)
-                if term and term != "Agronomy/General" and term.lower() not in clean_query.lower()
-            ]
-            if intent_res.follow_up_of:
-                # "Is it dangerous?" alone matches nothing; with the earlier question it finds the right advisory
-                context_terms.append(intent_res.follow_up_of)
-            search_query = " ".join(context_terms + [clean_query])
-
-            retrieved = self.retriever.retrieve(search_query)
-            if intent_res.detected_crop:
-                # Equal fusion scores (e.g. wheat vs mustard aphid) must not put another crop first
-                crop = intent_res.detected_crop.lower()
-                retrieved.sort(key=lambda c: (c.crop or "").lower() != crop)
-
-            # 7. Response Synthesis
-            # Only force an answer language when the farmer chose one; otherwise the LLM mirrors the query
-            answer_lang = detected_lang if language else None
-            if hasattr(self.synthesizer, "generate"):
-                draft_answer, answer_source = self.synthesizer.generate(
-                    clean_query, retrieved, language=answer_lang, history=history,
-                    context_note=profile.summary() if profile else "",
-                )
-            else:
-                draft_answer, answer_source = self.synthesizer.synthesize(clean_query, retrieved, language=answer_lang), "unknown"
-
-            # 8. Safety Guardrails & Grounding Check
-            sanitized_answer, disclaimers = self.guardrails.enforce_safety(draft_answer, clean_query, language=detected_lang)
-            context_texts = [c.text for c in retrieved]
-            is_grounded, grounding_score = self.guardrails.validate_grounding(sanitized_answer, context_texts)
-
-            # 9. Deduplicate citations
-            raw_citations = [c.citation for c in retrieved]
-            unique_citations = list(dict.fromkeys(raw_citations))
-
-            # 10. Non-blocking Optional Audio Synthesis
-            audio_path = None
-            if generate_audio and settings.ENABLE_TTS:
-                audio_path = self.tts_adapter.synthesize_speech(sanitized_answer, language=detected_lang)
-
-            latency = int((time.time() - start_time) * 1000)
-
-            return GroundedAnswer(
-                query=clean_query,
-                intent=intent_res.intent,
-                answer=sanitized_answer,
-                citations=unique_citations,
-                retrieved_chunks=retrieved,
-                is_grounded=is_grounded,
-                safety_disclaimers=disclaimers,
-                audio_output_path=str(audio_path) if audio_path else None,
-                detected_language=detected_lang,
-                processing_metadata={
-                    "latency_ms": latency,
-                    "grounding_score": grounding_score,
-                    "detected_crop": intent_res.detected_crop,
-                    "detected_topic": intent_res.detected_topic,
-                    "router_confidence": intent_res.confidence,
-                    "router_reasoning": intent_res.reasoning,
-                    "top_section": retrieved[0].section if retrieved else None,
-                    "answer_source": answer_source,
-                },
-            )
-
+            intent = self.router.classify_with_context(clean_query, history or [])
+            req = Request(clean_query, detected_lang, language, history or [], profile, intent, start_time, generate_audio)
+            return self._handler(intent.intent)(req)
         except Exception as e:
             return GroundedAnswer(
                 query=clean_query,
@@ -569,3 +250,254 @@ class KisanPipeline:
                 detected_language=detected_lang,
                 processing_metadata={"error": str(e)},
             )
+
+    def _handler(self, intent: str):
+        """The method that answers each kind of question; anything else is a crop question."""
+        return {
+            "greeting": self._answer_greeting,
+            "out_of_scope": self._answer_out_of_scope,
+            "crop_not_covered": self._answer_not_covered,
+            "topic_not_covered": self._answer_not_covered,
+            "weather": self._answer_weather,
+            "scheme_query": self._answer_scheme,
+            "market_price": self._answer_market,
+        }.get(intent, self._answer_crop)
+
+    def _reply(self, req: "Request", answer: str, meta: Optional[dict] = None, **fields) -> GroundedAnswer:
+        """An answer with the usual defaults: no sources, nothing retrieved, nothing to warn about."""
+        values = {"citations": [], "retrieved_chunks": [], "is_grounded": True, "safety_disclaimers": [], **fields}
+        return GroundedAnswer(
+            query=req.query,
+            intent=req.intent.intent,
+            answer=answer,
+            detected_language=req.lang,
+            processing_metadata={"latency_ms": int((time.time() - req.start_time) * 1000), **(meta or {})},
+            **values,
+        )
+
+    def _speak(self, req: "Request", text: str) -> Optional[str]:
+        path = self.tts_adapter.synthesize_speech(text, language=req.lang) if req.generate_audio else None
+        return str(path) if path else None
+
+    def _answer_greeting(self, req: "Request") -> GroundedAnswer:
+        text = t("greeting", req.lang)
+        return self._reply(req, text, citations=["ICAR & PAU Agricultural Extension"],
+                           audio_output_path=self._speak(req, text))
+
+    def _answer_out_of_scope(self, req: "Request") -> GroundedAnswer:
+        return self._reply(req, t("out_of_scope", req.lang))
+
+    def _answer_not_covered(self, req: "Request") -> GroundedAnswer:
+        """A crop or topic the verified advisories don't cover: refer the farmer instead of borrowing
+        another crop's or topic's advice."""
+        return self._reply(req, t(req.intent.intent, req.lang),
+                           meta={"detected_crop": req.intent.detected_crop, "detected_topic": req.intent.detected_topic})
+
+    def _answer_weather(self, req: "Request") -> GroundedAnswer:
+        """Live weather for a place, with spray / irrigation advice only when asked. There is no default
+        place: with none known, or a whole state named, the farmer is asked which district."""
+        lang, requested, from_profile = req.lang, req.intent.detected_district, False
+        if not requested and req.profile and req.profile.district:
+            requested, from_profile = req.profile.district, True  # "Will it rain today?" -> the farmer's district
+        whole_state = state_named(requested) if requested else None
+        place = self.weather_tool.resolve_place(requested) if requested and not whole_state else None
+        if place is None:
+            if whole_state:  # "weather in Punjab": the weather differs by district, so ask which one
+                answer = t("location_is_state", lang, state=whole_state, examples=", ".join(STATES[whole_state][1]))
+            else:
+                answer = t("location_not_found" if requested else "location_default", lang, place=requested or "")
+            return self._reply(req, answer, meta={"location_found": False, "needs_place": True})
+
+        report = self.weather_tool.get_weather_for_district(place.name, language=lang, place=place)
+        # Spray / irrigation advice only when the question (or, for a reply like "Sangrur", the question
+        # it answers) mentions it
+        topics = weather_topics(f"{req.query} {req.intent.follow_up_of or ''}")
+        summary = t(
+            "weather_summary", lang, place=report.district, temp=report.temperature_c,
+            humidity=report.relative_humidity, wind=report.wind_speed_kmh, rain=report.rain_probability_pct,
+        )
+        parts = [f"### {t('weather_advisory_title', lang)}: {report.district}\n\n{summary}"]
+        if "spray" in topics:
+            parts.append(f"**{t('spray_advisory', lang)}:**\n{report.spray_recommendation}")
+        if "irrigation" in topics:
+            parts.append(f"**{t('irrigation_advice', lang)}:**\n{report.irrigation_advisory}")
+        answer = "\n\n".join(parts)
+        citations = [report.source_notice] + (["ICAR Agromet Advisory Guidelines"] if topics else [])
+        return self._reply(
+            req, answer, citations=citations, audio_output_path=self._speak(req, answer),
+            weather_report=report.model_dump(),
+            meta={"district": report.district, "district_from_profile": from_profile, "location_found": True,
+                  "is_live_weather": report.is_live},
+        )
+
+    def _answer_market(self, req: "Request") -> GroundedAnswer:
+        """MSP from the government table plus the latest mandi prices (numbers only from the data,
+        never the LLM). Mandi prices need a place: with none known, the farmer is asked."""
+        lang, intent, profile = req.lang, req.intent, req.profile
+        msp_data = load_msp()
+        commodity = detect_commodity(req.query) or (detect_commodity(intent.follow_up_of) if intent.follow_up_of else None)
+        if not commodity and profile and len(profile.crops) == 1:
+            commodity = detect_commodity(profile.crops[0])  # "What is today's rate?" -> the farmer's crop
+        district = intent.detected_district or (profile.district if profile and profile.district else None)
+        meta = {
+            "answer_source": "market_tool", "detected_topic": "Market prices", "district": district,
+            # a place from the farm profile is not carried over, so a changed profile district is used next time
+            "district_from_profile": bool(district and not intent.detected_district),
+        }
+
+        def crop_name(key: str) -> str:
+            if key in COVERED_CROPS:
+                return t(f"crop_{key}", lang)
+            return msp_data["crops"].get(key, {}).get("name", key.title())
+
+        if not commodity:
+            crops = ", ".join(crop_name(k) for k in msp_data["crops"])
+            return self._reply(req, t("market_which_crop", lang, crops=crops), meta=meta)
+
+        meta["detected_crop"] = commodity.title()
+        parts, citations = [], []
+        msp = msp_data["crops"].get(commodity)
+        if msp:
+            parts.append(t("market_msp", lang, crop=crop_name(commodity), season=msp["season"], price=f"{msp['msp']:,}"))
+            if msp.get("variants"):
+                variants = ", ".join(f"{name} Rs {price:,}" for name, price in msp["variants"].items())
+                parts.append(t("market_msp_variants", lang, variants=variants))
+            if msp.get("previous"):
+                parts.append(t("market_msp_previous", lang, season=msp["previous"]["season"],
+                               price=f"{msp['previous']['msp']:,}"))
+            citations.append(msp_data["source"])
+        else:
+            parts.append(t("market_no_msp", lang, crop=crop_name(commodity)))
+
+        # A state named on its own ("wheat price in Punjab") asks for the state average
+        whole_state = state_named(district) if district else None
+        if whole_state:
+            state, district = whole_state, None
+        else:
+            state = state_for(district, self.weather_tool.resolve_place) if district else None
+
+        if not state:
+            if district:
+                parts.append("\n" + t("market_place_unknown", lang, place=district))
+                meta["mandi_error"] = f"place not found: {district}"
+            else:
+                parts.append("\n" + t("market_ask_place", lang))
+                meta["mandi_error"] = "no place given"
+                meta["needs_place"] = True  # the farmer's next message is taken as the place
+        else:
+            lookup = self.mandi.latest(commodity, state=state, district=district)
+            if lookup.prices:
+                parts.append("\n" + t("market_mandi_header", lang, crop=crop_name(commodity), date=lookup.prices[0].date))
+                parts += [
+                    t("market_mandi_row", lang, market=p.market, district=p.district, modal=f"{p.modal_price:,.0f}",
+                      low=f"{p.min_price:,.0f}", high=f"{p.max_price:,.0f}")
+                    if p.min_price is not None else
+                    t("market_avg_row", lang, date=p.date, price=f"{p.modal_price:,.0f}", place=p.market)
+                    for p in lookup.prices
+                ]
+                if district and not lookup.local:
+                    parts.append(t("market_state_fallback", lang, district=district, state=state))
+                citations.append(lookup.source or "Agmarknet daily mandi prices")
+                meta["mandi_local"] = lookup.local
+            else:
+                parts.append("\n" + t("market_mandi_unavailable", lang))
+                meta["mandi_error"] = lookup.error
+
+        return self._reply(
+            req, "\n".join(parts), meta=meta, citations=citations,
+            safety_disclaimers=[t("market_disclaimer", lang, date=msp_data["last_verified"])],
+        )
+
+    def _answer_scheme(self, req: "Request") -> GroundedAnswer:
+        """PM-KISAN answer: rule-based eligibility from the profile + scheme text from the official website."""
+        lang, guide = req.lang, self.scheme_guide
+        sections = guide.select_sections(" ".join(filter(None, [req.intent.follow_up_of, req.query])))
+        context = guide.as_context(sections)
+
+        # Eligibility is decided by fixed rules, never by the LLM
+        status, reasons, may_be_withheld = check_eligibility(req.profile)
+        asked_eligibility = any(s["id"] in ("eligibility", "exclusions") for s in sections)
+        eligibility_text = ""
+        if status == "likely_eligible":
+            eligibility_text = t("pmk_likely_eligible", lang)
+        elif status == "not_eligible":
+            eligibility_text = t("pmk_not_eligible", lang, reasons="; ".join(t(r, lang) for r in reasons))
+        elif asked_eligibility:
+            eligibility_text = t("pmk_needs_info", lang)
+        if may_be_withheld:
+            eligibility_text += "\n\n" + t("pmk_withheld", lang)
+
+        notes = [req.profile.summary()] if req.profile and not req.profile.is_empty() else []
+        if status != "needs_info":
+            notes.append(f"Rule-based PM-KISAN eligibility check from the profile: {status.replace('_', ' ')} "
+                         "(already shown to the farmer; do not contradict it).")
+        draft, source = self.synthesizer.generate(
+            req.query, context, language=req.llm_language, history=req.history, context_note=" ".join(notes),
+        )
+        if source != "llm":
+            draft = guide.offline_answer(sections, lang)  # stored official text in the farmer's language
+
+        is_grounded, score = self.guardrails.validate_grounding(draft, [c.text for c in context])
+        return self._reply(
+            req, f"{eligibility_text}\n\n{draft}" if eligibility_text else draft,
+            citations=[guide.citation],
+            retrieved_chunks=context,
+            is_grounded=is_grounded or source != "llm",
+            safety_disclaimers=[t("scheme_disclaimer", lang, date=guide.data["last_verified"])],
+            meta={"answer_source": source, "detected_topic": "PM-KISAN", "pmk_eligibility": status,
+                  "grounding_score": score, "top_section": sections[0]["title"]},
+        )
+
+    def _answer_crop(self, req: "Request") -> GroundedAnswer:
+        """Crop, pest and pesticide questions: hybrid search of the verified advisories, a grounded
+        answer, then safety guardrails and a grounding check."""
+        intent, profile = req.intent, req.profile
+        # No crop named or carried over: use the farmer's crop if their profile lists exactly one we cover
+        if not intent.detected_crop and profile:
+            covered = [c for c in profile.crops if c.lower() in COVERED_CROPS]
+            if len(covered) == 1:
+                intent.detected_crop = covered[0].title()
+
+        # Add the crop and pest (detected, or carried over from an earlier turn) so that short
+        # follow-ups like "what is the dose?" still retrieve the right advisory
+        context_terms = [
+            term for term in (intent.detected_crop, intent.detected_topic)
+            if term and term != "Agronomy/General" and term.lower() not in req.query.lower()
+        ]
+        if intent.follow_up_of:
+            # "Is it dangerous?" alone matches nothing; with the earlier question it finds the right advisory
+            context_terms.append(intent.follow_up_of)
+        retrieved = self.retriever.retrieve(" ".join(context_terms + [req.query]))
+        if intent.detected_crop:
+            # Equal fusion scores (e.g. wheat vs mustard aphid) must not put another crop first
+            crop = intent.detected_crop.lower()
+            retrieved.sort(key=lambda c: (c.crop or "").lower() != crop)
+
+        if hasattr(self.synthesizer, "generate"):
+            draft, source = self.synthesizer.generate(
+                req.query, retrieved, language=req.llm_language, history=req.history,
+                context_note=profile.summary() if profile else "",
+            )
+        else:
+            draft, source = self.synthesizer.synthesize(req.query, retrieved, language=req.llm_language), "unknown"
+
+        answer, disclaimers = self.guardrails.enforce_safety(draft, req.query, language=req.lang)
+        is_grounded, grounding_score = self.guardrails.validate_grounding(answer, [c.text for c in retrieved])
+        audio = self._speak(req, answer) if settings.ENABLE_TTS else None
+        return self._reply(
+            req, answer,
+            citations=list(dict.fromkeys(c.citation for c in retrieved)),
+            retrieved_chunks=retrieved,
+            is_grounded=is_grounded,
+            safety_disclaimers=disclaimers,
+            audio_output_path=audio,
+            meta={
+                "grounding_score": grounding_score,
+                "detected_crop": intent.detected_crop,
+                "detected_topic": intent.detected_topic,
+                "router_confidence": intent.confidence,
+                "router_reasoning": intent.reasoning,
+                "top_section": retrieved[0].section if retrieved else None,
+                "answer_source": source,
+            },
+        )

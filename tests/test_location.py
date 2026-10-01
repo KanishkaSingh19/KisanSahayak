@@ -152,3 +152,38 @@ def test_all_punjab_districts_have_built_in_coordinates():
     assert 29.5 < mansa.latitude < 30.5 and 75 < mansa.longitude < 76  # Mansa, Punjab
     for name in ["Barnala", "Faridkot", "Fatehgarh Sahib", "Hoshiarpur", "Muktsar", "Tarn Taran", "Nawanshahr"]:
         assert AgWeatherTool().resolve_place(name) is not None, name
+
+
+@pytest.mark.parametrize("reply,place", [("NOIDA", "Noida"), ("gurgaon", "Gurugram"), ("ਸੰਗਰੂਰ", "Sangrur"), ("Nashik", "Nashik")])
+def test_reply_to_which_place_is_the_place(pipeline, monkeypatch, reply, place):
+    from app.agent.state import ConversationTurn
+
+    real_resolve = pipeline.weather_tool.resolve_place
+    monkeypatch.setattr(pipeline.weather_tool, "resolve_place",
+                        lambda name: real_resolve(name) if name != "Nashik" else Place(name="Nashik", latitude=20.0, longitude=73.8))
+    asked = pipeline.process_query("WILL IT RAIN TODAY?", language="en", generate_audio=False)
+    reply_res = pipeline.process_query(reply, language="en", generate_audio=False, history=[ConversationTurn.from_answer(asked)])
+    assert reply_res.intent == "weather" and reply_res.processing_metadata["district"] == place
+
+
+def test_a_new_question_is_not_taken_as_a_place():
+    from app.agent.router import IntentRouter
+    from app.agent.state import ConversationTurn
+
+    asked = ConversationTurn(query="will it rain today?", answer="Which place?", intent="weather", awaiting_place=True)
+    router = IntentRouter()
+    assert router.classify_with_context("How to control aphids in mustard?", [asked]).intent == "crop_question"
+    assert router.classify_with_context("hello", [asked]).intent == "greeting"
+
+
+def test_delhi_ncr_towns_are_built_in():
+    for name in ["Noida", "Greater Noida", "Ghaziabad", "Gurugram", "Faridabad", "Sonipat", "Panipat", "Meerut"]:
+        assert AgWeatherTool().resolve_place(name) is not None, name
+    assert detect_place("नोएडा में मौसम") == "Noida" and detect_place("weather in gurgaon") == "Gurugram"
+
+
+@pytest.mark.parametrize("question,state", [("weather in Punjab", "Punjab"), ("ਪੰਜਾਬ ਵਿੱਚ ਮੌਸਮ", "Punjab"), ("weather in UP", "Uttar Pradesh")])
+def test_weather_for_a_whole_state_asks_for_a_district(pipeline, question, state):
+    res = pipeline.process_query(question, language="en", generate_audio=False)
+    assert res.weather_report is None and state in res.answer and "district" in res.answer
+    assert res.processing_metadata["needs_place"] is True  # the reply ("Ludhiana") is taken as the place

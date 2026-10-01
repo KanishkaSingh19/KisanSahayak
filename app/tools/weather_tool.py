@@ -1,6 +1,6 @@
-from typing import Any, Dict, Optional, Tuple
+from typing import Dict, Optional, Tuple
 import requests
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 from app.i18n import t
 from app.tools.location import Place, geocode
@@ -34,6 +34,15 @@ DISTRICT_COORDINATES: Dict[str, Tuple[float, float]] = {
     "tarn taran": (31.4518, 74.9278),
     "chandigarh": (30.7333, 76.7794),
     "delhi": (28.6139, 77.2090),
+    # Delhi-NCR
+    "noida": (28.5355, 77.3910),
+    "greater noida": (28.4744, 77.5040),
+    "ghaziabad": (28.6692, 77.4538),
+    "gurugram": (28.4595, 77.0266),
+    "faridabad": (28.4089, 77.3178),
+    "sonipat": (28.9931, 77.0151),
+    "panipat": (29.3909, 76.9635),
+    "meerut": (28.9845, 77.7064),
     "karnal": (29.6857, 76.9905),
     "hisar": (29.1492, 75.7217),
     "sirsa": (29.5349, 75.0298),
@@ -123,7 +132,7 @@ class AgWeatherTool:
                     is_live=True,
                     source_notice="Live Open-Meteo Ag-Weather Feed",
                 )
-        except Exception as e:
+        except Exception:
             # Fallback gracefully to seasonal cache
             pass
 

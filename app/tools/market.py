@@ -18,38 +18,16 @@ from typing import Dict, List, Optional
 import requests
 
 from app.config import settings
+from app.crops import CROP_NAMES, PRICED_CROPS
+from app.textmatch import contains_term
 
 MSP_PATH = settings.DATA_DIR / "market" / "msp.json"
 MANDI_URL = "https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070"
 # data.gov.in's documented public sample key (limited rows); set DATA_GOV_API_KEY for your own
 SAMPLE_API_KEY = "579b464db66ec23bdd000001cdd3946e44ce4aad7209ff7b23ac571b"
 
-# Commodity -> spellings farmers use (Latin, Devanagari, Gurmukhi)
-COMMODITY_ALIASES: Dict[str, List[str]] = {
-    "wheat": ["wheat", "gehun", "gehu", "kanak", "गेहूं", "गेहूँ", "ਕਣਕ"],
-    "mustard": ["mustard", "sarson", "raya", "rapeseed", "toria", "सरसों", "ਸਰ੍ਹੋਂ", "ਸਰੋਂ", "ਰਾਇਆ"],
-    "paddy": ["paddy", "rice", "dhan", "dhaan", "jhona", "basmati", "धान", "ਝੋਨਾ", "ਝੋਨੇ"],
-    "cotton": ["cotton", "kapas", "narma", "कपास", "ਨਰਮਾ", "ਨਰਮੇ", "ਕਪਾਹ"],
-    "maize": ["maize", "corn", "makka", "makki", "मक्का", "ਮੱਕੀ"],
-    "gram": ["gram", "chana", "chickpea", "चना", "ਛੋਲੇ"],
-    "barley": ["barley", "jau", "जौ", "ਜੌਂ"],
-    "lentil": ["lentil", "masur", "masoor", "मसूर", "ਮਸਰ"],
-    "moong": ["moong", "green gram", "मूंग", "ਮੂੰਗੀ"],
-    "bajra": ["bajra", "pearl millet", "बाजरा", "ਬਾਜਰਾ"],
-    "jowar": ["jowar", "sorghum", "ज्वार", "ਜਵਾਰ"],
-    "ragi": ["ragi", "finger millet", "रागी"],
-    "tur": ["tur", "arhar", "toor", "अरहर", "तुअर", "ਅਰਹਰ"],
-    "urad": ["urad", "black gram", "उड़द", "ਮਾਂਹ"],
-    "groundnut": ["groundnut", "peanut", "moongphali", "मूंगफली", "ਮੂੰਗਫਲੀ"],
-    "sunflower": ["sunflower", "surajmukhi", "सूरजमुखी", "ਸੂਰਜਮੁਖੀ"],
-    "soybean": ["soybean", "soyabean", "सोयाबीन"],
-    "sesamum": ["sesamum", "sesame", "til", "तिल", "ਤਿਲ"],
-    "safflower": ["safflower", "kusum", "कुसुम"],
-    "nigerseed": ["nigerseed", "niger seed", "ramtil"],
-    "potato": ["potato", "aloo", "आलू", "ਆਲੂ"],
-    "onion": ["onion", "pyaz", "pyaaz", "प्याज", "ਪਿਆਜ਼"],
-    "tomato": ["tomato", "tamatar", "टमाटर", "ਟਮਾਟਰ"],
-}
+# Commodity -> spellings farmers use: the shared crop list (app/crops.py)
+COMMODITY_ALIASES: Dict[str, List[str]] = {k: CROP_NAMES[k] for k in PRICED_CROPS}
 
 # Commodity names in Agmarknet's daily price data
 AGMARKNET_NAMES = {
@@ -73,8 +51,7 @@ def detect_commodity(text: str) -> Optional[str]:
     for key, aliases in COMMODITY_ALIASES.items():
         for alias in aliases:
             a = _norm(alias)
-            found = a in clean if any(ord(c) > 127 for c in a) else re.search(rf"\b{re.escape(a)}\b", clean)
-            if found and (best is None or len(a) > best[0]):
+            if contains_term(a, clean) and (best is None or len(a) > best[0]):
                 best = (len(a), key)
     return best[1] if best else None
 
@@ -174,6 +151,8 @@ PLACE_STATES = {
     "karnal": "Haryana", "hisar": "Haryana", "sirsa": "Haryana", "varanasi": "Uttar Pradesh", "lucknow": "Uttar Pradesh",
     "kanpur": "Uttar Pradesh", "indore": "Madhya Pradesh", "bhopal": "Madhya Pradesh", "jaipur": "Rajasthan",
     "kota": "Rajasthan", "patna": "Bihar", "delhi": "NCT of Delhi", "chandigarh": "Chandigarh",
+    "noida": "Uttar Pradesh", "greater noida": "Uttar Pradesh", "ghaziabad": "Uttar Pradesh", "meerut": "Uttar Pradesh",
+    "gurugram": "Haryana", "faridabad": "Haryana", "sonipat": "Haryana", "panipat": "Haryana",
 }
 
 

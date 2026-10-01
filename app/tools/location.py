@@ -13,6 +13,9 @@ from typing import List, Optional
 import requests
 from pydantic import BaseModel
 
+from app.crops import latin_crop_words
+from app.textmatch import contains_term
+
 GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search"
 
 
@@ -50,6 +53,15 @@ PLACE_ALIASES = {
     "Tarn Taran": ["tarn taran", "tarntaran", "तरनतारन", "तरन तारन", "ਤਰਨ ਤਾਰਨ"],
     "Chandigarh": ["chandigarh", "चंडीगढ़", "ਚੰਡੀਗੜ੍ਹ"],
     "Delhi": ["delhi", "new delhi", "dilli", "दिल्ली", "ਦਿੱਲੀ"],
+    # Delhi-NCR
+    "Noida": ["noida", "नोएडा", "नोयडा", "ਨੋਇਡਾ"],
+    "Greater Noida": ["greater noida", "ग्रेटर नोएडा", "ਗ੍ਰੇਟਰ ਨੋਇਡਾ"],
+    "Ghaziabad": ["ghaziabad", "गाज़ियाबाद", "गाजियाबाद", "ਗਾਜ਼ੀਆਬਾਦ"],
+    "Gurugram": ["gurugram", "gurgaon", "गुरुग्राम", "गुड़गांव", "ਗੁਰੂਗ੍ਰਾਮ"],
+    "Faridabad": ["faridabad", "फरीदाबाद", "ਫ਼ਰੀਦਾਬਾਦ", "ਫਰੀਦਾਬਾਦ"],
+    "Sonipat": ["sonipat", "sonepat", "सोनीपत", "ਸੋਨੀਪਤ"],
+    "Panipat": ["panipat", "पानीपत", "ਪਾਣੀਪਤ"],
+    "Meerut": ["meerut", "मेरठ", "ਮੇਰਠ"],
     "Karnal": ["karnal", "करनाल", "ਕਰਨਾਲ"],
     "Hisar": ["hisar", "hissar", "हिसार", "ਹਿਸਾਰ"],
     "Sirsa": ["sirsa", "सिरसा", "ਸਿਰਸਾ"],
@@ -63,17 +75,49 @@ PLACE_ALIASES = {
     "Patna": ["patna", "पटना", "ਪਟਨਾ"],
 }
 
+# States: weather needs a district or town, but mandi prices can be a state average
+STATES = {
+    "Punjab": (["punjab", "पंजाब", "ਪੰਜਾਬ"], ["Ludhiana", "Sangrur", "Bathinda", "Amritsar"]),
+    "Haryana": (["haryana", "हरियाणा", "ਹਰਿਆਣਾ"], ["Karnal", "Hisar", "Sirsa", "Panipat"]),
+    "Uttar Pradesh": (["uttar pradesh", "up", "उत्तर प्रदेश", "ਉੱਤਰ ਪ੍ਰਦੇਸ਼"], ["Noida", "Meerut", "Lucknow", "Kanpur"]),
+    "Rajasthan": (["rajasthan", "राजस्थान", "ਰਾਜਸਥਾਨ"], ["Jaipur", "Kota"]),
+    "Madhya Pradesh": (["madhya pradesh", "mp", "मध्य प्रदेश", "ਮੱਧ ਪ੍ਰਦੇਸ਼"], ["Indore", "Bhopal"]),
+    "Bihar": (["bihar", "बिहार", "ਬਿਹਾਰ"], ["Patna"]),
+    "Himachal Pradesh": (["himachal pradesh", "himachal", "हिमाचल", "ਹਿਮਾਚਲ"], ["Shimla", "Mandi"]),
+}
+
+
+def state_named(text: str) -> Optional[str]:
+    """The state a place name refers to ("Punjab", "UP", "पंजाब"), or None for a district or town."""
+    clean = (text or "").lower().strip(" ?.!,")
+    for state, (aliases, _) in STATES.items():
+        if any(clean == a or (any(ord(c) > 127 for c in a) and a in clean) for a in aliases):
+            return state
+    return None
+
+
+def find_state(text: str) -> Optional[str]:
+    """A state mentioned anywhere in a question ("weather in Punjab", "ਪੰਜਾਬ ਵਿੱਚ ਮੌਸਮ", "rate in UP")."""
+    clean = unicodedata.normalize("NFC", (text or "").lower())
+    # "UP" / "MP" only after "in/at/for": "pick up" is not Uttar Pradesh
+    short = re.search(r"\b(?:in|at|for)\s+(up|mp)\b", clean)
+    if short:
+        return {"up": "Uttar Pradesh", "mp": "Madhya Pradesh"}[short.group(1)]
+    for state, (aliases, _) in STATES.items():
+        for alias in aliases:
+            if alias in ("up", "mp"):
+                continue
+            if _contains(alias, clean):
+                return state
+    return None
+
+
 # Words that sit in place-like positions but are never places
 _NOT_PLACES = {
     "aaj", "kal", "abhi", "today", "tomorrow", "now", "the", "my", "our", "khet", "field", "farm",
-    "mausam", "weather", "barish", "baarish", "rain", "spray", "wheat", "gehun", "sarson", "mustard",
-    "paddy", "dhan", "cotton", "kapas", "crop", "fasal", "area", "village", "gaon", "pind", "india",
-    # other crops and price words: "rice ka rate", "aloo ka bhav" are not places
-    "rice", "dhaan", "jhona", "basmati", "kanak", "gehu", "narma", "raya", "toria", "maize", "makka", "makki",
-    "gram", "chana", "barley", "jau", "moong", "urad", "tur", "arhar", "bajra", "jowar", "ragi", "til",
-    "groundnut", "soybean", "sunflower", "potato", "aloo", "onion", "pyaz", "pyaaz", "tomato", "tamatar",
-    "msp", "rate", "price", "prices", "bhav", "bhaav", "mandi", "keemat", "daam",
-}
+    "mausam", "weather", "barish", "baarish", "rain", "spray", "crop", "fasal", "area", "village", "gaon", "pind",
+    "india", "msp", "rate", "price", "prices", "bhav", "bhaav", "mandi", "keemat", "daam",
+} | latin_crop_words()  # "rice ka rate", "aloo ka bhav": crop names are not places
 
 # "in Nashik", "at Sangrur", "for Moga" / "Nashik mein", "Sangrur me", "Moga vich"
 _BEFORE = re.compile(r"\b(?:in|at|for|near)\s+([a-z][a-z]{2,}(?:\s+[a-z]{3,})?)\b")
@@ -81,10 +125,7 @@ _AFTER = re.compile(r"\b([a-z][a-z]{2,})\s+(?:mein|me|main|vich|ch|da|ka|ki|ke)\
 
 
 def _contains(alias: str, text: str) -> bool:
-    if any(ord(c) > 127 for c in alias):
-        # NFC: letters like ਫ਼ / फ़ can be typed as one character or two
-        return unicodedata.normalize("NFC", alias) in unicodedata.normalize("NFC", text)
-    return bool(re.search(rf"\b{re.escape(alias)}\b", text))
+    return contains_term(alias, text)  # whole words, any script (app/textmatch.py)
 
 
 def find_known_place(text: str) -> Optional[str]:
@@ -115,6 +156,9 @@ def detect_place(text: str) -> Optional[str]:
     known = find_known_place(text)
     if known:
         return known
+    state = find_state(text)
+    if state:
+        return state
     candidates = place_candidates(text)
     return candidates[0].title() if candidates else None
 

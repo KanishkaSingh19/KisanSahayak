@@ -21,6 +21,7 @@ except Exception:
 from app.agent.pipeline import KisanPipeline
 from app.agent.state import ConversationTurn, FarmerProfile
 from app.config import settings
+from app.crops import COVERED_CROPS
 from app.agent.synthesizer import GeminiSynthesizer, OpenAISynthesizer
 from app.i18n import DEFAULT_LANGUAGE, LANGUAGES, SAMPLE_QUESTIONS, t
 from app.review import ReviewQueue
@@ -356,7 +357,7 @@ def render_profile(lang: str) -> FarmerProfile:
         st.caption(t("profile_privacy", lang))
         district = st.text_input(t("profile_district", lang), key="p_district")
         crops = st.multiselect(
-            t("profile_crops", lang), ["wheat", "mustard", "paddy", "cotton"],
+            t("profile_crops", lang), list(COVERED_CROPS),
             format_func=lambda c: t(f"crop_{c}", lang), key="p_crops",
         )
         land = st.number_input(t("profile_land", lang), min_value=0.0, step=0.5, value=None, key="p_land")

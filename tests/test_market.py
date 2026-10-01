@@ -251,3 +251,19 @@ def test_state_comes_from_the_place(monkeypatch):
     assert market.state_for("Atlantis", pipeline.weather_tool.resolve_place) is None
     res = pipeline.process_query("onion price in Atlantis", language="en", generate_audio=False)
     assert "couldn't find" in res.answer and pipeline.mandi.calls == []
+
+
+def test_reply_with_a_place_after_price_question():
+    pipeline = pipeline_with(MandiLookup(error="x"))
+    asked = pipeline.process_query("What is the MSP of wheat?", language="en", generate_audio=False)
+    assert asked.processing_metadata.get("needs_place")
+    reply = pipeline.process_query("Noida", language="en", generate_audio=False, history=[ConversationTurn.from_answer(asked)])
+    assert reply.intent == "market_price" and "Rs 2,585" in reply.answer
+    assert pipeline.mandi.calls == [("wheat", "Noida")]  # wheat from the earlier question, place from the reply
+
+
+def test_price_for_a_whole_state_is_the_state_average():
+    pipeline = pipeline_with(MandiLookup(prices=[MandiPrice("Punjab", "Punjab", "29/09/2026", None, None, 2720)]))
+    res = pipeline.process_query("wheat price in Punjab", language="en", generate_audio=False)
+    assert "Rs 2,720" in res.answer and "No mandi in" not in res.answer
+    assert pipeline.mandi.calls == [("wheat", None)]  # state average, no district

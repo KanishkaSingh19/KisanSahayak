@@ -1,9 +1,8 @@
 import json
 import math
 import os
-import re
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Dict, List, Tuple
 
 from app.rag.chunker import DocumentChunk
 

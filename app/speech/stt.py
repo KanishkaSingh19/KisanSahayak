@@ -1,5 +1,4 @@
 import io
-import os
 from pathlib import Path
 from typing import Optional, Tuple
 import requests

@@ -281,6 +281,12 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hinglish": "Kis jagah ka mausam dekhun? Apna zila ya nazdeeki shehar batayein, jaise \"Sangrur\" ya \"Sangrur mein mausam\". Aap 'Mera khet' mein apna zila bhi bhar sakte hain.",
         "hi": "किस जगह का मौसम देखूँ? अपना ज़िला या नज़दीकी शहर बताएँ, जैसे \"संगरूर\" या \"संगरूर में मौसम\"। आप 'मेरा खेत' में अपना ज़िला भी भर सकते हैं।",
     },
+    "location_is_state": {
+        "en": "{state} is a whole state, and the weather differs from district to district. Which district or town should I check? For example: {examples}.",
+        "pa": "{state} ਪੂਰਾ ਸੂਬਾ ਹੈ, ਅਤੇ ਹਰ ਜ਼ਿਲ੍ਹੇ ਦਾ ਮੌਸਮ ਵੱਖਰਾ ਹੁੰਦਾ ਹੈ। ਮੈਂ ਕਿਹੜੇ ਜ਼ਿਲ੍ਹੇ ਜਾਂ ਸ਼ਹਿਰ ਦਾ ਮੌਸਮ ਵੇਖਾਂ? ਜਿਵੇਂ: {examples}।",
+        "hinglish": "{state} poora rajya hai, aur har zile ka mausam alag hota hai. Kis zile ya shehar ka mausam dekhun? Jaise: {examples}.",
+        "hi": "{state} पूरा राज्य है, और हर ज़िले का मौसम अलग होता है। किस ज़िले या शहर का मौसम देखूँ? जैसे: {examples}।",
+    },
     "location_not_found": {
         "en": "I couldn't find \"{place}\". Tell me your district or nearest town, for example \"weather in Sangrur\".",
         "pa": "\"{place}\" ਨਹੀਂ ਲੱਭਿਆ। ਆਪਣਾ ਜ਼ਿਲ੍ਹਾ ਜਾਂ ਨੇੜਲਾ ਸ਼ਹਿਰ ਦੱਸੋ, ਜਿਵੇਂ \"ਸੰਗਰੂਰ ਵਿੱਚ ਮੌਸਮ\"।",

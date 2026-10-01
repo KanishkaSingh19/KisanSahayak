@@ -35,3 +35,6 @@ Thumbs.db
 
 # Raw Kisan Call Centre download (61 MB); the selected questions live in evalset/kcc/
 data/kcc/
+
+# PAU Package of Practices PDFs and extracted text (copyrighted; rebuilt by scripts/build_pau_kb.py)
+data/pau/
