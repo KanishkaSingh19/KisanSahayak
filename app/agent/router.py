@@ -380,11 +380,23 @@ class IntentRouter:
         previous = history[-1]
         last_weather = next((turn for turn in reversed(history) if turn.intent == "weather"), None)
         last_crop = next((turn for turn in reversed(history) if turn.intent in crop_intents and turn.crop), None)
+        last_market = next((turn for turn in reversed(history) if turn.intent == "market_price"), None)
+        # A place named in an earlier price question (not one filled in from the farm profile)
+        market_place = (
+            last_market.district if last_market and last_market.district and not last_market.district_from_profile else None
+        )
 
         topic = result.detected_topic if result.detected_topic not in (None, "Agronomy/General") else None
         names_no_subject = not result.detected_crop and not topic
 
-        # Market follow-ups: "and mustard?" / "Sangrur mandi?" right after a price answer
+        # Price questions without a place keep the place of the last price question ("rice ka rate?" after Delhi)
+        if result.intent == "market_price":
+            if not result.detected_district and market_place:
+                result.detected_district = market_place
+                result.reasoning += " Place carried over from an earlier price question."
+            return result
+
+        # Market follow-ups: "and mustard?" / "what about rice?" / "Sangrur mandi?" right after a price answer
         if previous.intent == "market_price" and len(query.split()) <= 6 and result.intent != "market_price" and (
             result.detected_crop or result.detected_district or result.intent in ("crop_not_covered",)
         ):
@@ -392,7 +404,7 @@ class IntentRouter:
                 intent="market_price",
                 confidence=0.85,
                 detected_topic="Market prices",
-                detected_district=result.detected_district,
+                detected_district=result.detected_district or market_place,
                 follow_up_of=previous.query,
                 reasoning="Follow-up to the previous price question.",
             )

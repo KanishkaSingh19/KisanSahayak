@@ -68,6 +68,11 @@ _NOT_PLACES = {
     "aaj", "kal", "abhi", "today", "tomorrow", "now", "the", "my", "our", "khet", "field", "farm",
     "mausam", "weather", "barish", "baarish", "rain", "spray", "wheat", "gehun", "sarson", "mustard",
     "paddy", "dhan", "cotton", "kapas", "crop", "fasal", "area", "village", "gaon", "pind", "india",
+    # other crops and price words: "rice ka rate", "aloo ka bhav" are not places
+    "rice", "dhaan", "jhona", "basmati", "kanak", "gehu", "narma", "raya", "toria", "maize", "makka", "makki",
+    "gram", "chana", "barley", "jau", "moong", "urad", "tur", "arhar", "bajra", "jowar", "ragi", "til",
+    "groundnut", "soybean", "sunflower", "potato", "aloo", "onion", "pyaz", "pyaaz", "tomato", "tamatar",
+    "msp", "rate", "price", "prices", "bhav", "bhaav", "mandi", "keemat", "daam",
 }
 
 # "in Nashik", "at Sangrur", "for Moga" / "Nashik mein", "Sangrur me", "Moga vich"

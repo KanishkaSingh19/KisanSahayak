@@ -197,7 +197,11 @@ class KisanPipeline:
         if not commodity and profile and len(profile.crops) == 1:
             commodity = detect_commodity(profile.crops[0])  # "What is today's rate?" -> the farmer's crop
         district = intent_res.detected_district or (profile.district if profile and profile.district else None)
-        meta = {"answer_source": "market_tool", "detected_topic": "Market prices", "district": district}
+        meta = {
+            "answer_source": "market_tool", "detected_topic": "Market prices", "district": district,
+            # a place from the farm profile is not carried over, so a changed profile district is used next time
+            "district_from_profile": bool(district and not intent_res.detected_district),
+        }
 
         def crop_name(key: str) -> str:
             if key in ("wheat", "mustard", "paddy", "cotton"):

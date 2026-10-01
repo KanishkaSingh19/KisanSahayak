@@ -7,7 +7,7 @@
       {
         "query": "My wheat leaves have yellow powdery stripes, and the powder sticks to my hands. What is it?",
         "intent": "general_agriculture",
-        "ms": 93,
+        "ms": 210,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -18,7 +18,7 @@
       {
         "query": "What should I spray?",
         "intent": "general_agriculture",
-        "ms": 93,
+        "ms": 98,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -29,7 +29,7 @@
       {
         "query": "How many times?",
         "intent": "general_agriculture",
-        "ms": 72,
+        "ms": 68,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -40,29 +40,29 @@
       {
         "query": "Can I spray today in Ludhiana?",
         "intent": "weather",
-        "ms": 1275,
+        "ms": 917,
         "passed": true,
         "problems": [],
         "top_section": null,
         "district": "Ludhiana",
         "answer_source": null,
-        "answer": "### Farm Weather Advisory: Ludhiana\n\nLudhiana: 32.5°C, humidity 47.0%, wind 8.6 km/h, and a 2.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
+        "answer": "### Farm Weather Advisory: Ludhiana\n\nLudhiana: 33.1°C, humidity 44.0%, wind 10.0 km/h, and a 2.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
       },
       {
         "query": "And in Sangrur?",
         "intent": "weather",
-        "ms": 1157,
+        "ms": 790,
         "passed": true,
         "problems": [],
         "top_section": null,
         "district": "Sangrur",
         "answer_source": null,
-        "answer": "### Farm Weather Advisory: Sangrur\n\nSangrur: 31.5°C, humidity 58.0%, wind 8.7 km/h, and a 2.0% chance of rain in the next 12 hours."
+        "answer": "### Farm Weather Advisory: Sangrur\n\nSangrur: 31.9°C, humidity 56.0%, wind 9.6 km/h, and a 2.0% chance of rain in the next 12 hours."
       },
       {
         "query": "Which varieties resist this disease?",
         "intent": "general_agriculture",
-        "ms": 71,
+        "ms": 73,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -73,7 +73,7 @@
       {
         "query": "Can I use Monocrotophos instead?",
         "intent": "safety_query",
-        "ms": 77,
+        "ms": 72,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -84,7 +84,7 @@
       {
         "query": "छिड़काव करते समय क्या सावधानी रखें?",
         "intent": "general_agriculture",
-        "ms": 61,
+        "ms": 59,
         "passed": true,
         "problems": [],
         "top_section": "Paddy Sheath Blight Management",
@@ -120,7 +120,7 @@
       {
         "query": "Dhaan mein bhoora tela lag gaya hai, kya karein?",
         "intent": "crop_question",
-        "ms": 56,
+        "ms": 55,
         "passed": true,
         "problems": [],
         "top_section": "Brown Planthopper (BPH / Bhoora Tilla) Management",
@@ -138,7 +138,7 @@
       {
         "query": "धान की पत्तियाँ किनारों से पीली होकर सूख रही हैं, क्या करूँ?",
         "intent": "general_agriculture",
-        "ms": 67,
+        "ms": 61,
         "passed": true,
         "problems": [],
         "top_section": "Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy",
@@ -156,7 +156,7 @@
       {
         "query": "How do I control pink bollworm in cotton?",
         "intent": "crop_question",
-        "ms": 54,
+        "ms": 49,
         "passed": true,
         "problems": [],
         "top_section": "Pink Bollworm (Gulabi Sundhi) Integrated Management",
@@ -174,7 +174,7 @@
       {
         "query": "कपास के पत्ते नीचे की ओर मुड़ रहे हैं और सफेद मक्खी दिख रही है, क्या करें?",
         "intent": "crop_question",
-        "ms": 66,
+        "ms": 62,
         "passed": true,
         "problems": [],
         "top_section": "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
@@ -192,7 +192,7 @@
       {
         "query": "When should I sow wheat and how much seed per acre?",
         "intent": "general_agriculture",
-        "ms": 62,
+        "ms": 58,
         "passed": true,
         "problems": [],
         "top_section": "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages",
@@ -210,7 +210,7 @@
       {
         "query": "How much fertilizer does mustard need?",
         "intent": "general_agriculture",
-        "ms": 54,
+        "ms": 57,
         "passed": true,
         "problems": [],
         "top_section": "Mustard Fertilizer and Irrigation Management",
@@ -246,7 +246,7 @@
       {
         "query": "Some of my wheat grains have turned into black powder and smell like rotten fish. What is this?",
         "intent": "general_agriculture",
-        "ms": 63,
+        "ms": 66,
         "passed": true,
         "problems": [],
         "top_section": "Karnal Bunt (Tilletia indica) Management in Wheat",
@@ -264,7 +264,7 @@
       {
         "query": "Dhaan ke tane par paani ke paas saanp ki khaal jaise dhabbe hain",
         "intent": "crop_question",
-        "ms": 65,
+        "ms": 61,
         "passed": true,
         "problems": [],
         "top_section": "Paddy Sheath Blight Management",
@@ -311,7 +311,7 @@
       {
         "query": "क्या मैं बैंगन पर मोनोक्रोटोफॉस छिड़क सकता हूँ?",
         "intent": "safety_query",
-        "ms": 61,
+        "ms": 62,
         "passed": true,
         "problems": [],
         "top_section": "Pink Bollworm (Gulabi Sundhi) Integrated Management",
@@ -329,7 +329,7 @@
       {
         "query": "Pesticide fell on my skin while spraying. What should I do?",
         "intent": "general_agriculture",
-        "ms": 57,
+        "ms": 58,
         "passed": true,
         "problems": [],
         "top_section": "Personal Protective Equipment (PPE) and Spraying Precautions",
@@ -365,13 +365,13 @@
       {
         "query": "Will it rain in Patiala today? Can I spray pesticide?",
         "intent": "weather",
-        "ms": 859,
+        "ms": 887,
         "passed": true,
         "problems": [],
         "top_section": null,
         "district": "Patiala",
         "answer_source": null,
-        "answer": "### Farm Weather Advisory: Patiala\n\nPatiala: 31.3°C, humidity 55.0%, wind 10.9 km/h, and a 2.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
+        "answer": "### Farm Weather Advisory: Patiala\n\nPatiala: 31.8°C, humidity 53.0%, wind 11.8 km/h, and a 2.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
       }
     ]
   },
@@ -383,13 +383,13 @@
       {
         "query": "What's the weather in Atlantis?",
         "intent": "weather",
-        "ms": 1652,
+        "ms": 1754,
         "passed": true,
         "problems": [],
         "top_section": null,
         "district": "Ludhiana",
         "answer_source": null,
-        "answer": "Couldn't find \"Atlantis\", so this shows **Ludhiana** instead. Try your district name, e.g. \"weather in Sangrur\".\n\n### Farm Weather Advisory: Ludhiana\n\nLudhiana: 32.5°C, humidity 47.0%, wind 8.6 km/h, and a 2.0% chance of rain in the next 12 hours."
+        "answer": "Couldn't find \"Atlantis\", so this shows **Ludhiana** instead. Try your district name, e.g. \"weather in Sangrur\".\n\n### Farm Weather Advisory: Ludhiana\n\nLudhiana: 33.1°C, humidity 44.0%, wind 10.0 km/h, and a 2.0% chance of rain in the next 12 hours."
       }
     ]
   },
@@ -401,24 +401,24 @@
       {
         "query": "Will it rain today?",
         "intent": "weather",
-        "ms": 882,
+        "ms": 1195,
         "passed": true,
         "problems": [],
         "top_section": null,
         "district": "Sangrur",
         "answer_source": null,
-        "answer": "### Farm Weather Advisory: Sangrur\n\nSangrur: 31.5°C, humidity 58.0%, wind 8.7 km/h, and a 2.0% chance of rain in the next 12 hours."
+        "answer": "### Farm Weather Advisory: Sangrur\n\nSangrur: 31.9°C, humidity 56.0%, wind 9.6 km/h, and a 2.0% chance of rain in the next 12 hours."
       },
       {
         "query": "Will it rain today?",
         "intent": "weather",
-        "ms": 2131,
+        "ms": 2210,
         "passed": true,
         "problems": [],
         "top_section": null,
         "district": "Noida",
         "answer_source": null,
-        "answer": "### Farm Weather Advisory: Noida\n\nNoida: 32.8°C, humidity 48.0%, wind 11.8 km/h, and a 0.0% chance of rain in the next 12 hours."
+        "answer": "### Farm Weather Advisory: Noida\n\nNoida: 33.4°C, humidity 41.0%, wind 12.9 km/h, and a 0.0% chance of rain in the next 12 hours."
       }
     ]
   },
@@ -448,7 +448,7 @@
       {
         "query": "PM Kisan mein kitna paisa milta hai?",
         "intent": "scheme_query",
-        "ms": 3,
+        "ms": 5,
         "passed": true,
         "problems": [],
         "top_section": "What PM-KISAN gives",
@@ -466,7 +466,7 @@
       {
         "query": "Am I eligible for PM-KISAN?",
         "intent": "scheme_query",
-        "ms": 0,
+        "ms": 1,
         "passed": true,
         "problems": [],
         "top_section": "Who is eligible",
@@ -477,7 +477,7 @@
       {
         "query": "How do I apply?",
         "intent": "scheme_query",
-        "ms": 4,
+        "ms": 6,
         "passed": true,
         "problems": [],
         "top_section": "Who is eligible",

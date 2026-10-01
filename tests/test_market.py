@@ -202,3 +202,28 @@ def test_average_prices_and_state_note_in_answer():
     assert "Rs 8,691 per quintal (average of reporting mandis, Punjab)" in res.answer
     assert "No mandi in Bathinda reported this crop recently" in res.answer
     assert "Agmarknet daily prices (agmarknet.gov.in)" in res.citations
+
+
+def test_price_follow_up_keeps_the_place():
+    earlier = ConversationTurn(query="what is msp of wheat in delhi", answer="...", intent="market_price", district="Delhi")
+    router = IntentRouter()
+    follow_up = router.classify_with_context("what about rice?", [earlier])
+    assert follow_up.intent == "market_price" and follow_up.detected_district == "Delhi"
+    full_question = router.classify_with_context("rice ka rate kya hai?", [earlier])
+    assert full_question.intent == "market_price" and full_question.detected_district == "Delhi"
+    new_place = router.classify_with_context("cotton price in Bathinda", [earlier])
+    assert new_place.detected_district == "Bathinda"  # a newly named place wins
+
+
+def test_profile_place_is_not_carried_over():
+    earlier = ConversationTurn(query="today's rate?", answer="...", intent="market_price", district="Moga",
+                               district_from_profile=True)
+    assert IntentRouter().classify_with_context("what about rice?", [earlier]).detected_district is None
+
+
+def test_follow_up_answer_uses_the_remembered_place():
+    pipeline = pipeline_with(MandiLookup(error="x"))
+    first = pipeline.process_query("what is msp of wheat in delhi", language="en", generate_audio=False)
+    second = pipeline.process_query("what about rice?", language="en", generate_audio=False,
+                                    history=[ConversationTurn.from_answer(first)])
+    assert "Rs 2,441" in second.answer and pipeline.mandi.calls == [("wheat", "Delhi"), ("paddy", "Delhi")]
