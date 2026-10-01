@@ -1,6 +1,6 @@
 # KisanSahayak feature test results
 
-*2026-10-01 · 28 test cases (`evalset/questions.json`) · answers: offline template (no API quota) · search embeddings: minilm · weather: live Open-Meteo*
+*2026-10-02 · 28 test cases (`evalset/questions.json`) · answers: offline template (no API quota) · search embeddings: minilm · weather: live Open-Meteo*
 
 | Result | Value |
 |---|---|
