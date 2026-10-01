@@ -10,7 +10,7 @@ from app.agent.router import IntentRouter, weather_topics
 from app.agent.synthesizer import get_synthesizer
 from app.agent.guardrails import AgriculturalGuardrails
 from app.rag.hybrid_retriever import HybridRetriever
-from app.rag.chunker import AgriculturalChunker
+from app.rag.ingest import load_knowledge_chunks
 from app.speech.stt import WhisperSTTAdapter
 from app.speech.tts import EdgeTTSAdapter
 from app.tools.location import STATES, state_named
@@ -78,11 +78,13 @@ class KisanPipeline:
         # Auto-initialize retriever if not already loaded
         if not self.retriever.is_ready:
             self._ensure_retriever_initialized()
+        # PAU's Package of Practices chapters are searched only for topics our advisories don't cover
+        self.pau_indexed = any(c.metadata.get("kind") == "pau" for c in self.retriever.dense_retriever.chunks)
+        self.router.pau_available = self.pau_indexed
 
     def _ensure_retriever_initialized(self) -> None:
         """Load saved indices; rebuild them from the raw documents if they are missing or stale."""
-        chunker = AgriculturalChunker(chunk_size=settings.CHUNK_SIZE, chunk_overlap=settings.CHUNK_OVERLAP)
-        chunks = chunker.load_and_chunk_directory(settings.RAW_DATA_DIR)  # fast: no embeddings
+        chunks = load_knowledge_chunks()  # fast: no embeddings
         loaded = self.retriever.load_indices(settings.INDEX_DIR)
         # An index saved before the advisories or the chunk settings changed must not be reused
         saved = [(c.chunk_id, c.text) for c in self.retriever.dense_retriever.chunks] if loaded else []
@@ -178,7 +180,7 @@ class KisanPipeline:
 
         # Search the advisories with what the photo shows, then check they actually cover it
         search = " ".join(filter(None, [diagnosis.crop_name, diagnosis.problem, diagnosis.visible_symptoms, question]))
-        retrieved = self.retriever.retrieve(search)
+        retrieved = self.retriever.retrieve(search, kind="advisory" if self.pau_indexed else None)
         top_crop = retrieved[0].crop.lower() if retrieved else ""
         if not diagnosis.covered or diagnosis.crop not in top_crop:
             return reply(f"{summary}\n\n{t('photo_not_covered', lang)}", "image_diagnosis", meta)
@@ -467,12 +469,23 @@ class KisanPipeline:
         if intent.follow_up_of:
             # "Is it dangerous?" alone matches nothing; with the earlier question it finds the right advisory
             context_terms.append(intent.follow_up_of)
-        retrieved = self.retriever.retrieve(" ".join(context_terms + [req.query]))
+        # Our checked advisories answer the topics they cover (and symptom descriptions); PAU's chapters
+        # answer the topics the router sends there. (Searching both for every question let PAU's English
+        # text win Hindi/Punjabi symptom questions our advisories answer: see evalset/pau/README.md.)
+        kind = "pau" if intent.use_pau else ("advisory" if self.pau_indexed else None)
+        search = " ".join(context_terms + [req.query])
+        if intent.use_pau and not req.query.isascii() and context_terms:
+            # PAU's book is in English: Gurmukhi/Devanagari words only add noise to its search, so
+            # search with the crop and topic in English ("Cotton thrips")
+            search = " ".join(context_terms)
+        # A PAU answer comes from the farmer's crop's chapter (or the general spraying chapter)
+        retrieved = self.retriever.retrieve(search, kind=kind, crop=intent.detected_crop if intent.use_pau else None)
         if intent.detected_crop:
             # Equal fusion scores (e.g. wheat vs mustard aphid) must not put another crop first
+            # ("Paddy" is the crop "Paddy (Rice)"; the ranked sections stay ahead of the extra chunks that complete them)
             crop = intent.detected_crop.lower()
-            # (the ranked sections stay ahead of the extra chunks that complete them)
-            retrieved.sort(key=lambda c: (bool(c.rank_details.get("same_section_as_above")), (c.crop or "").lower() != crop))
+            retrieved.sort(key=lambda c: (bool(c.rank_details.get("same_section_as_above")),
+                                          not (c.crop or "").lower().startswith(crop)))
 
         if hasattr(self.synthesizer, "generate"):
             draft, source = self.synthesizer.generate(
@@ -500,5 +513,6 @@ class KisanPipeline:
                 "router_reasoning": intent.reasoning,
                 "top_section": retrieved[0].section if retrieved else None,
                 "answer_source": source,
+                "knowledge": retrieved[0].kind if retrieved else (kind or "advisory"),
             },
         )

@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 from app.rag.chunker import DocumentChunk
 
 
@@ -9,8 +9,11 @@ def reciprocal_rank_fusion(
     dense_weight: float = 1.0,
     sparse_weight: float = 1.0,
     top_n: int = 3,
+    title_results: Optional[List[Tuple[DocumentChunk, float]]] = None,
 ) -> List[Tuple[DocumentChunk, float, Dict[str, Any]]]:
     """Combine ranked results from dense and sparse retrievers using Reciprocal Rank Fusion.
+
+    `title_results`, if given, is a third ranking (sections whose title matches the question).
 
     Returns:
         List of tuples: (DocumentChunk, fused_rrf_score, rank_metadata)
@@ -47,10 +50,19 @@ def reciprocal_rank_fusion(
             rank_metadata[cid]["sparse_rank"] = rank
             rank_metadata[cid]["sparse_raw"] = raw_score
 
-    # 3. Sort by fused RRF score descending
+    # 3. Process title-match ranked results
+    for rank_idx, (chunk, raw_score) in enumerate(title_results or []):
+        rank = rank_idx + 1
+        cid = chunk.chunk_id
+        chunk_map[cid] = chunk
+        scores[cid] = scores.get(cid, 0.0) + 1.0 / (k + rank)
+        rank_metadata.setdefault(cid, {"dense_rank": None, "dense_raw": None, "sparse_rank": None, "sparse_raw": None})
+        rank_metadata[cid]["title_rank"] = rank
+
+    # 4. Sort by fused RRF score descending
     sorted_items = sorted(scores.items(), key=lambda item: item[1], reverse=True)
 
-    # 4. Construct final results
+    # 5. Construct final results
     final_results = []
     for cid, fused_score in sorted_items[:top_n]:
         final_results.append((chunk_map[cid], fused_score, rank_metadata[cid]))

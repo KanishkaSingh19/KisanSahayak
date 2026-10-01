@@ -7,16 +7,28 @@ project_root = Path(__file__).resolve().parent.parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
+from typing import List
+
 from app.config import settings
-from app.rag.chunker import AgriculturalChunker
+from app.rag.chunker import AgriculturalChunker, DocumentChunk
 from app.rag.hybrid_retriever import HybridRetriever
+from app.rag.pau_kb import pau_kb_files
+
+
+def load_knowledge_chunks(raw_dir: Path = settings.RAW_DATA_DIR) -> List[DocumentChunk]:
+    """Everything the app searches: the advisories in `raw_dir`, plus PAU's Package of Practices
+    chapters when they have been built (settings.PAU_KB_DIR) and USE_PAU_KB is on."""
+    chunker = AgriculturalChunker(chunk_size=settings.CHUNK_SIZE, chunk_overlap=settings.CHUNK_OVERLAP)
+    chunks = chunker.load_and_chunk_directory(raw_dir)
+    if settings.USE_PAU_KB and pau_kb_files():
+        chunks += chunker.load_and_chunk_directory(settings.PAU_KB_DIR)
+    return chunks
 
 
 def ingest_documents(raw_dir: Path = settings.RAW_DATA_DIR, index_dir: Path = settings.INDEX_DIR) -> int:
     """Ingest agricultural raw JSON documents, chunk, index, and serialize."""
     print(f"Loading raw agricultural documents from: {raw_dir}")
-    chunker = AgriculturalChunker(chunk_size=settings.CHUNK_SIZE, chunk_overlap=settings.CHUNK_OVERLAP)
-    chunks = chunker.load_and_chunk_directory(raw_dir)
+    chunks = load_knowledge_chunks(raw_dir)
 
     print(f"Extracted {len(chunks)} contextual chunks across all crop advisories.")
     for idx, c in enumerate(chunks[:3]):

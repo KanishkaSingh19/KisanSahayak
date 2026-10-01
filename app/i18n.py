@@ -232,6 +232,27 @@ STRINGS: Dict[str, Dict[str, str]] = {
     },
     # ------------------------------------------------------------------ offline template headings
     "crop_advisory": {"en": "Crop Advisory", "pa": "ਫ਼ਸਲ ਸਲਾਹ", "hinglish": "Fasal Salah", "hi": "फसल परामर्श"},
+    "pau_heading": {
+        "en": "From PAU's Package of Practices",
+        "pa": "PAU ਦੀ ਫ਼ਸਲਾਂ ਦੀ ਸਿਫ਼ਾਰਸ਼ ਕਿਤਾਬ (Package of Practices) ਤੋਂ",
+        "hinglish": "PAU ki Package of Practices kitaab se",
+        "hi": "PAU की फसल सिफ़ारिश पुस्तक (Package of Practices) से",
+    },
+    "pau_note": {
+        "en": "This is PAU's own text, {reference}. Check the dose on the product label, and ask your KVK if unsure.",
+        "pa": (
+            "ਇਹ PAU ਦੀ ਕਿਤਾਬ ਦਾ ਅੰਗਰੇਜ਼ੀ ਪਾਠ ਹੈ ({reference})। ਦਵਾਈ ਦੀ ਮਾਤਰਾ ਲੇਬਲ 'ਤੇ ਜਾਂਚੋ, ਅਤੇ ਸ਼ੱਕ ਹੋਵੇ ਤਾਂ "
+            "ਆਪਣੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਤੋਂ ਪੁੱਛੋ।"
+        ),
+        "hinglish": (
+            "Yeh PAU ki kitaab ka English text hai ({reference}). Dawai ki matra label par check karein, "
+            "aur shak ho to apne KVK se poochhein."
+        ),
+        "hi": (
+            "यह PAU की पुस्तक का अंग्रेज़ी पाठ है ({reference})। दवा की मात्रा लेबल पर जाँचें, और संदेह हो तो "
+            "अपने कृषि विज्ञान केंद्र (KVK) से पूछें।"
+        ),
+    },
     "identification": {
         "en": "Identification & Symptoms",
         "pa": "ਪਛਾਣ ਅਤੇ ਲੱਛਣ",

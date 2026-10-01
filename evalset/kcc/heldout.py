@@ -60,12 +60,13 @@ def build() -> list:
 def main() -> int:
     from app.agent.pipeline import KisanPipeline
     from app.agent.synthesizer import DeterministicGroundedSynthesizer
+    from run_kcc import outside_outcome
 
     items = build()
     pipeline = KisanPipeline(synthesizer=DeterministicGroundedSynthesizer())
     covered = [i for i in items if i["expected"]["kind"] in ("advisory", "banned")]
     outside = [i for i in items if i["expected"]["kind"] == "not_in_kb"]
-    top3 = referred = 0
+    top3 = referred = from_pau = 0
     for item in items:
         res = pipeline.process_query(item["kcc_query"], language="en", generate_audio=False)
         sections = [c.section for c in res.retrieved_chunks]
@@ -74,8 +75,9 @@ def main() -> int:
             item["top3"] = any(item["expected"]["section"].lower() in s.lower() for s in sections[:3])
             top3 += item["top3"]
         elif item["expected"]["kind"] == "not_in_kb":
-            item["referred"] = not res.retrieved_chunks
+            item.update(outside_outcome(item["topic"], res))
             referred += item["referred"]
+            from_pau += item["pau_right_crop"]
     adv = [i for i in covered if i["expected"]["kind"] == "advisory"]
     pct = lambda a, b: f"{a}/{b} ({100 * a / b:.0f}%)" if b else "n/a"  # noqa: E731
     lines = [
@@ -89,13 +91,15 @@ def main() -> int:
         f"| Covered by our advisories | {len(covered)} |",
         f"| Right advisory in top 3 (covered) | {pct(top3, len(adv))} |",
         f"| Outside our advisories | {len(outside)} |",
-        f"| Outside our advisories: referred to KVK / Kisan Call Centre | **{pct(referred, len(outside))}** |",
+        f"| Outside our advisories: answered from PAU's Package of Practices, right crop's chapter | **{pct(from_pau, len(outside))}** |",
+        f"| Outside our advisories: referred to KVK / Kisan Call Centre | {pct(referred, len(outside))} |",
+        f"| Outside our advisories: shown advice on something else | {pct(len(outside) - referred - from_pau, len(outside))} |",
         "",
-        "## Outside our advisories but still answered with an advisory",
+        "## Outside our advisories and answered with something other than PAU's chapter for the crop",
         "",
     ]
     lines += [f"- \"{i['kcc_query']}\" → {i['top_sections'][0] if i['top_sections'] else '-'}"
-              for i in outside if not i["referred"]]
+              for i in outside if not i["referred"] and not i["pau_right_crop"]]
     (HERE / "heldout_results.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     (HERE / "heldout.json").write_text(json.dumps(items, ensure_ascii=False, indent=1), encoding="utf-8")
     print("\n".join(lines))

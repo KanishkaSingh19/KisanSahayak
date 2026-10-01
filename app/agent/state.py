@@ -51,6 +51,8 @@ class IntentResult(BaseModel):
     detected_topic: Optional[str] = None
     detected_district: Optional[str] = None
     follow_up_of: Optional[str] = None  # earlier question this one follows up on (added to the search)
+    # Answer from PAU's Package of Practices chapters (a topic our own advisories don't cover)
+    use_pau: bool = False
     reasoning: str = ""
 
 
@@ -82,6 +84,8 @@ class ConversationTurn(BaseModel):
     district_from_profile: bool = False
     # True when the answer asked "which place?": the farmer's next message is the place
     awaiting_place: bool = False
+    # True when the answer came from PAU's Package of Practices: follow-ups search it too
+    used_pau: bool = False
 
     @classmethod
     def from_answer(cls, answer: "GroundedAnswer") -> "ConversationTurn":
@@ -100,4 +104,5 @@ class ConversationTurn(BaseModel):
             district=meta.get("district"),
             district_from_profile=bool(meta.get("district_from_profile")),
             awaiting_place=bool(meta.get("needs_place")),
+            used_pau=meta.get("knowledge") == "pau",
         )

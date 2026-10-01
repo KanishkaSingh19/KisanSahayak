@@ -31,12 +31,12 @@ See [`results.md`](results.md).
 
 **Coverage is the main finding.** Only **26 of 200** real questions are about topics our advisories cover. Most farmer calls are about weeds and herbicides, nutrient deficiencies (zinc, iron, manganese), varieties, fertilizer for paddy and cotton, and other pests. (MSP price questions are now answered by the market-price feature.)
 
-For those questions the correct behaviour is to say so and refer the farmer to the **Kisan Call Centre (1800-180-1551)** or the local **KVK**, not to show the nearest advisory for a different problem. Before this test set, the app referred **1%** of them; it now refers **96%**.
+For those questions the wrong behaviour is to show the nearest advisory for a different problem. Before this test set, the app did that for 99% of them. It then referred 96% to the **Kisan Call Centre (1800-180-1551)** or the local **KVK**. Now, with PAU's *Package of Practices* chapters indexed (see [`../pau/README.md`](../pau/README.md)), **126 of 140 (90%)** are answered from PAU's chapter for the right crop, 8 are referred and 6 still get advice on something else.
 
-**Held-out check.** The routing rules were improved using this set, so it is partly a development set. `heldout.py` checks the next 85 most-asked real queries, which were never looked at while tuning. There, **82%** of out-of-scope questions are referred. That is the fair number to quote.
+**Held-out check.** The routing rules were improved using this set, so it is partly a development set. `heldout.py` checks the next 85 most-asked real queries, which were never looked at while tuning. There, out of 74 out-of-scope questions, **55 (74%)** are answered from the right crop's PAU chapter, 6 are referred and 13 get advice on something else. That is the fair number to quote. Whether each PAU passage fully answers the question is for the agronomist review below.
 
 ## Agronomist review
-Answer and dose accuracy need an expert. **`review_sheet.csv`** lists every answer to a covered question next to the KCC advisor's answer, with columns for *answer correct*, *dose correct* and comments.
+Answer and dose accuracy need an expert. **`review_sheet.csv`** lists every answer to a covered question, and every answer from PAU's chapters, next to the KCC advisor's answer, with columns for *answer correct*, *dose correct* and comments.
 
 Example of what the review should catch: for wheat aphid, KCC advises **Actara (thiamethoxam) 40 g per acre**, while our advisory says **50 g per acre**.
 

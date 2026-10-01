@@ -1,0 +1,659 @@
+[
+ {
+  "id": 1,
+  "language": "en",
+  "crop": "Wheat",
+  "question": "Which herbicide controls broadleaf weeds in wheat?",
+  "section_any": [
+   "Weed Control"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Weed Control - C. Control of both grass and broadleaf weeds:",
+   "Wheat - Weed Control - B. Control of broadleaf weeds only:",
+   "Wheat - Weed Control - i. Control of Phalaris minor (Gulli danda)"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 14-15 [Wheat - Weed Control - C. Control of both grass and broadleaf weeds:]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 2,
+  "language": "hi",
+  "crop": "Wheat",
+  "question": "गेहूं में गुल्ली डंडा कैसे खत्म करें?",
+  "section_any": [
+   "Phalaris minor",
+   "Weed Control"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Weed Control - i. Control of Phalaris minor (Gulli danda)",
+   "Wheat - Weed Control - C. Control of both grass and broadleaf weeds:",
+   "Wheat - Sowing Method and Spacing"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 12-14 [Wheat - Weed Control - i. Control of Phalaris minor (Gulli danda)]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 3,
+  "language": "pa",
+  "crop": "Wheat",
+  "question": "ਕਣਕ ਵਿੱਚ ਨਦੀਨਾਂ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ?",
+  "section_any": [
+   "Weed Control"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Weed Control - C. Control of both grass and broadleaf weeds:",
+   "Wheat - Weed Control",
+   "Wheat - Weed Control - i. Control of Phalaris minor (Gulli danda)"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 14-15 [Wheat - Weed Control - C. Control of both grass and broadleaf weeds:]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 4,
+  "language": "en",
+  "crop": "Wheat",
+  "question": "What wheat varieties are recommended for late sowing?",
+  "section_any": [
+   "Improved Varieties"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Sowing Method and Spacing",
+   "Wheat - Improved Varieties - C. Late Sown Irrigated Conditions",
+   "Wheat - Field Preparation"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": false,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 6-8 [Wheat - Sowing Method and Spacing]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 5,
+  "language": "hinglish",
+  "crop": "Wheat",
+  "question": "gehun ki kaun si kismein lagayein?",
+  "section_any": [
+   "Improved Varieties"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Improved Varieties - B. Timely Sown irrigated condition (special purpose varieties)",
+   "Wheat - Improved Varieties - A. Timely Sown Irrigated Conditions",
+   "Wheat - Improved Varieties - C. Late Sown Irrigated Conditions"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 2-3 [Wheat - Improved Varieties - B. Timely Sown irrigated condition (special purpose varieties)]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 6,
+  "language": "en",
+  "crop": "Wheat",
+  "question": "How should I store wheat grain after harvest?",
+  "section_any": [
+   "Storage",
+   "Harvesting"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Storage",
+   "Wheat - Harvesting and Threshing",
+   "Wheat - Sowing Method and Spacing"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Rabi 2025-26, page 17 [Wheat - Storage]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 7,
+  "language": "hi",
+  "crop": "Wheat",
+  "question": "गेहूं में दीमक का इलाज क्या है?",
+  "section_any": [
+   "Insect Pests"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Plant Protection - (a) Insect Pests",
+   "Wheat - Plant Protection - (b) Diseases",
+   "All Crops - Introduction"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 17-18 [Wheat - Plant Protection - (a) Insect Pests]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 8,
+  "language": "en",
+  "crop": "Wheat",
+  "question": "How to control termites in wheat?",
+  "section_any": [
+   "Insect Pests"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Plant Protection - (a) Insect Pests",
+   "Wheat - Plant Protection - (b) Diseases",
+   "Wheat - Intergrated management of yellow rust:"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 17-18 [Wheat - Plant Protection - (a) Insect Pests]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 9,
+  "language": "en",
+  "crop": "Wheat",
+  "question": "When should I harvest wheat?",
+  "section_any": [
+   "Harvesting"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Storage",
+   "Wheat - Harvesting and Threshing",
+   "Wheat - Sowing Method and Spacing"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": false,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Rabi 2025-26, page 17 [Wheat - Storage]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 10,
+  "language": "en",
+  "crop": "Paddy",
+  "question": "How to control weeds in transplanted paddy?",
+  "section_any": [
+   "Weed Control"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Weed Control - 2. Control of weeds with post-emergence herbicides (within 20-25 days of",
+   "Paddy (Rice) - Weed Control",
+   "Paddy (Rice) - Transplanted Rice - I. For Conventional Transplanting"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Kharif 2026, page 9 [Paddy (Rice) - Weed Control - 2. Control of weeds with post-emergence herbicides (within 20-25 days of]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 11,
+  "language": "hi",
+  "crop": "Paddy",
+  "question": "धान में खरपतवार नियंत्रण कैसे करें?",
+  "section_any": [
+   "Weed Control"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Weed Control",
+   "Paddy (Rice) - Weed Control - 2. Control of weeds with post-emergence herbicides (within 20-25 days of",
+   "Paddy (Rice) - Basmati Rice - Unpuddled Direct Seeded Rice (DSR)"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Kharif 2026, page 8 [Paddy (Rice) - Weed Control]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 12,
+  "language": "pa",
+  "crop": "Paddy",
+  "question": "ਝੋਨੇ ਦੀ ਪਨੀਰੀ ਕਿਵੇਂ ਤਿਆਰ ਕਰੀਏ?",
+  "section_any": [
+   "nursery",
+   "Transplant"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Method of Transplanting",
+   "Paddy (Rice) - II. For Rice Transplanter - Mat-type nursery",
+   "Paddy (Rice) - Transplanting"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 7-8 [Paddy (Rice) - Method of Transplanting]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 13,
+  "language": "en",
+  "crop": "Paddy",
+  "question": "Which paddy varieties should I grow in Punjab?",
+  "section_any": [
+   "Improved Varieties",
+   "varieties"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Basmati Rice - Improved Varieties",
+   "Paddy (Rice) - Do not grow these varieties",
+   "Paddy (Rice) - Improved Varieties"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 20-21 [Paddy (Rice) - Basmati Rice - Improved Varieties]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 14,
+  "language": "hinglish",
+  "crop": "Paddy",
+  "question": "dhan mein tana chhedak ki roktham kaise karein",
+  "section_any": [
+   "Insect Pests"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - A. Insect Pests",
+   "Paddy (Rice) - Basmati Rice - Plant Protection - A. Insect Pests",
+   "Paddy (Rice) - B. Diseases"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 14-16 [Paddy (Rice) - A. Insect Pests]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 15,
+  "language": "en",
+  "crop": "Paddy",
+  "question": "How do I control leaf folder in rice?",
+  "section_any": [
+   "Insect Pests"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Basmati Rice - Plant Protection - A. Insect Pests",
+   "Paddy (Rice) - A. Insect Pests",
+   "Paddy (Rice) - B. Diseases"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Kharif 2026, page 23 [Paddy (Rice) - Basmati Rice - Plant Protection - A. Insect Pests]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 16,
+  "language": "hi",
+  "crop": "Paddy",
+  "question": "धान में जिंक की कमी का इलाज",
+  "section_any": [
+   "Leaf Colour Chart",
+   "Transplanted Rice",
+   "Fertilizer"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - PAU-Leaf Colour Chart (PAU-LCC) for need based Urea application",
+   "Paddy (Rice) - Fertilizer Application",
+   "Paddy (Rice) - Rice Cultivation in Alkali Soils"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 10-12 [Paddy (Rice) - PAU-Leaf Colour Chart (PAU-LCC) for need based Urea application]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 17,
+  "language": "en",
+  "crop": "Paddy",
+  "question": "How to manage paddy straw without burning it?",
+  "section_any": [
+   "Paddy Straw"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Management of Paddy Straw - 2. Management after removal of paddy straw",
+   "Paddy (Rice) - Management of Paddy Straw - 1. In-situ management of paddy straw",
+   "Paddy (Rice) - Management of Paddy Straw"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 13-14 [Paddy (Rice) - Management of Paddy Straw - 2. Management after removal of paddy straw]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 18,
+  "language": "en",
+  "crop": "Paddy",
+  "question": "Which basmati varieties are recommended?",
+  "section_any": [
+   "Basmati Rice - Improved Varieties"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Basmati Rice - Improved Varieties",
+   "Paddy (Rice) - Basmati Rice - Puddled Basmati",
+   "Paddy (Rice) - Do not grow these varieties"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 20-21 [Paddy (Rice) - Basmati Rice - Improved Varieties]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 19,
+  "language": "en",
+  "crop": "Cotton",
+  "question": "Which Bt cotton hybrids are recommended?",
+  "section_any": [
+   "Bt cotton"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Cotton - Bt cotton hybrids",
+   "Cotton - Agronomic Practices",
+   "Cotton - Desi Cotton - Improved Varieties"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Kharif 2026, page 46 [Cotton - Bt cotton hybrids]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 20,
+  "language": "hinglish",
+  "crop": "Cotton",
+  "question": "narma mein thrips ki roktham kaise karein",
+  "section_any": [
+   "Insect Pests",
+   "Table 1"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Cotton - a. Insect Pests (Bt cotton)",
+   "Cotton - Table 1. Insecticides for the management of sucking insect pests",
+   "Cotton - b. Insect Pests (Non-Bt cotton)"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 53-54 [Cotton - a. Insect Pests (Bt cotton)]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 21,
+  "language": "pa",
+  "crop": "Cotton",
+  "question": "ਨਰਮੇ ਵਿੱਚ ਜੈਸਿਡ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ?",
+  "section_any": [
+   "Insect Pests",
+   "Table 1"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Cotton - a. Insect Pests (Bt cotton)",
+   "Cotton - Plant-Protection - A. Insect-Pests",
+   "Cotton - Table 1. Insecticides for the management of sucking insect pests"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 53-54 [Cotton - a. Insect Pests (Bt cotton)]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 22,
+  "language": "en",
+  "crop": "Cotton",
+  "question": "How to control mealybug in cotton?",
+  "section_any": [
+   "Insect Pests",
+   "Table 1"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Cotton - Plant-Protection - A. Insect-Pests",
+   "Cotton - a. Insect Pests (Bt cotton)",
+   "Cotton - Table 1. Insecticides for the management of sucking insect pests"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": false,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 51-53 [Cotton - Plant-Protection - A. Insect-Pests]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 23,
+  "language": "en",
+  "crop": "Cotton",
+  "question": "When should I irrigate cotton?",
+  "section_any": [
+   "Irrigation"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Cotton - Irrigation and Drainage",
+   "Cotton - Drip irrigation and Fertigation",
+   "Cotton - Time of irrigation (min)*"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Kharif 2026, page 50 [Cotton - Irrigation and Drainage]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 24,
+  "language": "en",
+  "crop": "Mustard",
+  "question": "Which mustard varieties are recommended for Punjab?",
+  "section_any": [
+   "Improved Varieties",
+   "Raya",
+   "Gobhi Sarson"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Mustard - Rapeseed And Mustard - Improved Varieties/ Hybrids",
+   "Mustard - Rapeseed And Mustard - Raya",
+   "Mustard - Rapeseed And Mustard - African sarson"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Rabi 2025-26, page 47 [Mustard - Rapeseed And Mustard - Improved Varieties/ Hybrids]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 25,
+  "language": "hinglish",
+  "crop": "Mustard",
+  "question": "sarson mein nadeen ki roktham kaise karein",
+  "section_any": [
+   "Agronomic Practices"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Mustard - Rapeseed And Mustard - Agronomic Practices",
+   "Mustard - Rapeseed And Mustard - Plant Protection - (a) Insect Pests",
+   "Mustard - Rapeseed And Mustard - Gobhi Sarson"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 50-53 [Mustard - Rapeseed And Mustard - Agronomic Practices]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 26,
+  "language": "en",
+  "crop": "Mustard",
+  "question": "How to control painted bug in mustard?",
+  "section_any": [
+   "Insect Pests"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Mustard - Rapeseed And Mustard - Plant Protection - (a) Insect Pests",
+   "Mustard - Rapeseed And Mustard - Plant Protection - (b) Diseases",
+   "All Crops - Introduction"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 54-55 [Mustard - Rapeseed And Mustard - Plant Protection - (a) Insect Pests]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 27,
+  "language": "en",
+  "crop": "Mustard",
+  "question": "What is the seed rate of mustard per acre?",
+  "section_any": [
+   "Agronomic Practices"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Mustard - Rapeseed And Mustard - Hybrid seed production involves following steps:",
+   "Mustard - Rapeseed And Mustard - Agronomic Practices",
+   "Mustard - Rapeseed And Mustard - Raya"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": false,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Rabi 2025-26, page 57 [Mustard - Rapeseed And Mustard - Hybrid seed production involves following steps:]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ },
+ {
+  "id": 28,
+  "language": "hi",
+  "crop": "Mustard",
+  "question": "सरसों की उन्नत किस्में कौन सी हैं?",
+  "section_any": [
+   "Improved Varieties",
+   "Raya",
+   "Gobhi Sarson"
+  ],
+  "intent": "crop_question",
+  "top_sections": [
+   "Mustard - Rapeseed And Mustard - Improved Varieties/ Hybrids",
+   "Mustard - Introduction",
+   "Mustard - Rapeseed And Mustard - African sarson"
+  ],
+  "result": {
+   "from_pau": true,
+   "right_chapter": true,
+   "top1": true,
+   "top3": true,
+   "script_ok": true
+  },
+  "answer": "[Answered from PAU Package of Practices for Crops of Punjab, Rabi 2025-26, page 47 [Mustard - Rapeseed And Mustard - Improved Varieties/ Hybrids]. PAU's text is not stored here: run this evaluation locally to see it.]"
+ }
+]

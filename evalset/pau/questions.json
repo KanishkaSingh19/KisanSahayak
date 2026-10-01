@@ -1,0 +1,33 @@
+{
+  "about": "Questions about the four covered crops on topics our own advisories don't cover, which are answered from PAU's Package of Practices chapters. Written by the team after the PAU search was built (not used to tune it). 'section_any': the answer's top PAU section title should contain one of these.",
+  "questions": [
+    {"id": 1, "language": "en", "crop": "Wheat", "question": "Which herbicide controls broadleaf weeds in wheat?", "section_any": ["Weed Control"]},
+    {"id": 2, "language": "hi", "crop": "Wheat", "question": "गेहूं में गुल्ली डंडा कैसे खत्म करें?", "section_any": ["Phalaris minor", "Weed Control"]},
+    {"id": 3, "language": "pa", "crop": "Wheat", "question": "ਕਣਕ ਵਿੱਚ ਨਦੀਨਾਂ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ?", "section_any": ["Weed Control"]},
+    {"id": 4, "language": "en", "crop": "Wheat", "question": "What wheat varieties are recommended for late sowing?", "section_any": ["Improved Varieties"]},
+    {"id": 5, "language": "hinglish", "crop": "Wheat", "question": "gehun ki kaun si kismein lagayein?", "section_any": ["Improved Varieties"]},
+    {"id": 6, "language": "en", "crop": "Wheat", "question": "How should I store wheat grain after harvest?", "section_any": ["Storage", "Harvesting"]},
+    {"id": 7, "language": "hi", "crop": "Wheat", "question": "गेहूं में दीमक का इलाज क्या है?", "section_any": ["Insect Pests"]},
+    {"id": 8, "language": "en", "crop": "Wheat", "question": "How to control termites in wheat?", "section_any": ["Insect Pests"]},
+    {"id": 9, "language": "en", "crop": "Wheat", "question": "When should I harvest wheat?", "section_any": ["Harvesting"]},
+    {"id": 10, "language": "en", "crop": "Paddy", "question": "How to control weeds in transplanted paddy?", "section_any": ["Weed Control"]},
+    {"id": 11, "language": "hi", "crop": "Paddy", "question": "धान में खरपतवार नियंत्रण कैसे करें?", "section_any": ["Weed Control"]},
+    {"id": 12, "language": "pa", "crop": "Paddy", "question": "ਝੋਨੇ ਦੀ ਪਨੀਰੀ ਕਿਵੇਂ ਤਿਆਰ ਕਰੀਏ?", "section_any": ["nursery", "Transplant"]},
+    {"id": 13, "language": "en", "crop": "Paddy", "question": "Which paddy varieties should I grow in Punjab?", "section_any": ["Improved Varieties", "varieties"]},
+    {"id": 14, "language": "hinglish", "crop": "Paddy", "question": "dhan mein tana chhedak ki roktham kaise karein", "section_any": ["Insect Pests"]},
+    {"id": 15, "language": "en", "crop": "Paddy", "question": "How do I control leaf folder in rice?", "section_any": ["Insect Pests"]},
+    {"id": 16, "language": "hi", "crop": "Paddy", "question": "धान में जिंक की कमी का इलाज", "section_any": ["Leaf Colour Chart", "Transplanted Rice", "Fertilizer"]},
+    {"id": 17, "language": "en", "crop": "Paddy", "question": "How to manage paddy straw without burning it?", "section_any": ["Paddy Straw"]},
+    {"id": 18, "language": "en", "crop": "Paddy", "question": "Which basmati varieties are recommended?", "section_any": ["Basmati Rice - Improved Varieties"]},
+    {"id": 19, "language": "en", "crop": "Cotton", "question": "Which Bt cotton hybrids are recommended?", "section_any": ["Bt cotton"]},
+    {"id": 20, "language": "hinglish", "crop": "Cotton", "question": "narma mein thrips ki roktham kaise karein", "section_any": ["Insect Pests", "Table 1"]},
+    {"id": 21, "language": "pa", "crop": "Cotton", "question": "ਨਰਮੇ ਵਿੱਚ ਜੈਸਿਡ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ?", "section_any": ["Insect Pests", "Table 1"]},
+    {"id": 22, "language": "en", "crop": "Cotton", "question": "How to control mealybug in cotton?", "section_any": ["Insect Pests", "Table 1"]},
+    {"id": 23, "language": "en", "crop": "Cotton", "question": "When should I irrigate cotton?", "section_any": ["Irrigation"]},
+    {"id": 24, "language": "en", "crop": "Mustard", "question": "Which mustard varieties are recommended for Punjab?", "section_any": ["Improved Varieties", "Raya", "Gobhi Sarson"]},
+    {"id": 25, "language": "hinglish", "crop": "Mustard", "question": "sarson mein nadeen ki roktham kaise karein", "section_any": ["Agronomic Practices"]},
+    {"id": 26, "language": "en", "crop": "Mustard", "question": "How to control painted bug in mustard?", "section_any": ["Insect Pests"]},
+    {"id": 27, "language": "en", "crop": "Mustard", "question": "What is the seed rate of mustard per acre?", "section_any": ["Agronomic Practices"]},
+    {"id": 28, "language": "hi", "crop": "Mustard", "question": "सरसों की उन्नत किस्में कौन सी हैं?", "section_any": ["Improved Varieties", "Raya", "Gobhi Sarson"]}
+  ]
+}

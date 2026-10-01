@@ -19,6 +19,7 @@ except Exception:
     pass
 
 from app.agent.pipeline import KisanPipeline
+from app.rag.pau_kb import ensure_pau_kb
 from app.agent.state import ConversationTurn, FarmerProfile
 from app.config import settings
 from app.crops import COVERED_CROPS
@@ -171,7 +172,8 @@ def send_for_review(result) -> None:
 
 @st.cache_resource
 def get_pipeline():
-    """Cache and initialize KisanPipeline."""
+    """Cache and initialize KisanPipeline (first building PAU's Package of Practices index if missing)."""
+    ensure_pau_kb()
     return KisanPipeline()
 
 

@@ -111,6 +111,19 @@ class DeterministicGroundedSynthesizer:
         source = SOURCE_TEMPLATE_OFFLINE if chunks else SOURCE_NO_RESULTS
         return self.synthesize(query, chunks, language), source
 
+    @staticmethod
+    def _pau_passage(chunk: RetrievalResult, lang: str) -> str:
+        """The best-matching passage of a PAU Package of Practices section, in PAU's own (English) words,
+        with a note in the farmer's language saying where it comes from. There are no pre-made
+        translations of PAU's book: the LLM answer translates it."""
+        lines = [line for line in chunk.text.split("\n") if not line.startswith(("Crop:", "Topic:"))]
+        passage = "\n".join(lines).replace("PAU recommendation:", "", 1).strip()
+        reference = chunk.citation.rsplit(" [", 1)[0]
+        return (
+            f"### {t('pau_heading', lang)}: {chunk.section}\n\n{passage}\n\n"
+            f"_{t('pau_note', lang, reference=reference)}_\n"
+        )
+
     def synthesize(self, query: str, chunks: List[RetrievalResult], language: Optional[str] = None) -> str:
         lang = language or "hi"
         if not chunks:
@@ -119,6 +132,8 @@ class DeterministicGroundedSynthesizer:
         top_chunk = chunks[0]
         topic = top_chunk.section
         crop = top_chunk.crop
+        if top_chunk.kind == "pau":
+            return self._pau_passage(top_chunk, lang)
 
         symptoms = ""
         action = ""

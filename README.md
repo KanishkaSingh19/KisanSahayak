@@ -93,6 +93,8 @@ Orchestrated end-to-end by `app/agent/pipeline.py` (`KisanPipeline`).
 
 **Ranking by section** (`app/rag/hybrid_retriever.py`): dense and BM25 results are each reduced to the best chunk per advisory section before Reciprocal Rank Fusion, so a long section split into several chunks cannot fill every slot. The top 3 sections are returned, followed by their other matching chunks so the LLM sees the whole advisory.
 
+**PAU's full chapters** (`app/rag/pau_kb.py`): topics our 14 advisories don't cover, for wheat, mustard, paddy and cotton (weeds, varieties, nutrients, other pests, nursery, harvest…), are answered from PAU's *Package of Practices* chapters, searched only for that crop, with PAU's page numbers. PAU's text is copyrighted, so it is not in the repository: `python scripts/build_pau_kb.py` downloads the two books from pau.edu and extracts the chapters (git-ignored), and the app does this on its first start (`PAU_AUTO_BUILD`). Without them the app works as before and refers those questions to the KVK. See [`evalset/pau/README.md`](evalset/pau/README.md).
+
 **Advisory sources:** the crop advisories follow PAU's *Package of Practices for Crops of Punjab* (Rabi 2025-26 and Kharif 2026). Each section records the printed pages it comes from (`source_reference`), and citations show them, e.g. "PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 18-21".
 
 ---
@@ -272,9 +274,10 @@ Full reports, including every failure: `eval/results_minilm.md`, `eval/results_g
 | Weather for the right district / PM-KISAN recognised | 15/15 / 15/15 |
 | Price (MSP) questions answered with the price | 4/4 |
 | Answer in the requested language | 200/200 (100%) |
-| Questions outside our advisories referred to the Kisan Call Centre / KVK | 134/140 (96%); **82% on held-out queries** not used for tuning |
+| Questions outside our advisories answered from the right crop's chapter of PAU's *Package of Practices* | **126/140 (90%)**; 55/74 (74%) on held-out queries not used for tuning |
+| … referred to the Kisan Call Centre / KVK / shown advice on something else | 8/140 / 6/140 (held-out: 6/74 / 13/74) |
 
-Only 26 of the 200 real questions fall within our 4-crop advisories: most calls are about weeds, nutrient deficiencies and varieties. Those now get a referral to the Kisan Call Centre (1800-180-1551) instead of an unrelated advisory. Answer and dose accuracy still need an agronomist: `evalset/kcc/review_sheet.csv` puts each answer next to the KCC advisor's answer for review.
+Only 26 of the 200 real questions fall within our 4-crop advisories: most calls are about weeds, nutrient deficiencies and varieties. For the four covered crops, those are now answered from PAU's *Package of Practices* chapter for that crop, citing PAU's pages ([`evalset/pau/`](evalset/pau/): on 28 questions written for it, 28/28 answered from PAU and the expected section in the top 3 for all; 23/28 before adding words that first run missed). Other crops and questions that name no crop are referred to the Kisan Call Centre (1800-180-1551). Answer and dose accuracy still need an agronomist: `evalset/kcc/review_sheet.csv` puts each answer next to the KCC advisor's answer for review.
 
 ### Feature test set (25 questions)
 

@@ -68,6 +68,7 @@ class AgriculturalChunker:
                 "pest_or_topic": pest_or_topic,
                 "has_warning": bool(warning),
                 "reference": reference,
+                "kind": "advisory",
             }
 
             # If section fits within chunk_size, keep as a single atomic chunk
@@ -131,13 +132,48 @@ class AgriculturalChunker:
             words.pop(0)
         return [" ".join(words)] if words else []
 
+    def chunk_pau_document(self, doc: Dict[str, Any], doc_id: str) -> List[DocumentChunk]:
+        """Chunks of a PAU Package of Practices chapter (see app/rag/pau_kb.py): PAU's own wording,
+        one section per PAU heading, each citing the section's printed pages."""
+        crop = doc.get("crop", "General Agriculture")
+        season = doc.get("season", "All")
+        source = doc.get("source_organization", "Punjab Agricultural University (PAU), Ludhiana")
+        chunks: List[DocumentChunk] = []
+        for sec_idx, sec in enumerate(doc.get("sections", [])):
+            title, text, pages = sec.get("section_title", ""), sec.get("pau_text", ""), sec.get("pages", "")
+            if not text:
+                continue
+            word = "pages" if "-" in pages else "page"
+            metadata = {
+                "doc_id": doc_id,
+                "source": source,
+                "title": doc.get("document_title", "PAU Package of Practices"),
+                "crop": crop,
+                "season": season,
+                "section": title,
+                "pest_or_topic": title,
+                "has_warning": False,
+                "reference": f"{doc.get('document_title', 'PAU Package of Practices')}, {word} {pages}",
+                "kind": "pau",
+            }
+            full_text = f"Crop: {crop} ({season} Season)\nTopic: {title}\nPAU recommendation: {text}"
+            if len(full_text) <= self.chunk_size:
+                pieces = [full_text]
+            else:
+                pieces = self._sliding_window_split(f"PAU recommendation: {text}", f"Crop: {crop} | Topic: {title}\n")
+            for c_idx, piece in enumerate(pieces):
+                chunks.append(DocumentChunk(chunk_id=f"{doc_id}_s{sec_idx}_c{c_idx}", text=piece, metadata=dict(metadata)))
+        return chunks
+
     def load_and_chunk_directory(self, raw_dir: Path) -> List[DocumentChunk]:
-        """Load all json files from the raw directory and chunk them."""
+        """Load all json files from the directory and chunk them (advisories or PAU chapters)."""
         all_chunks: List[DocumentChunk] = []
-        for file_path in raw_dir.glob("*.json"):
+        for file_path in sorted(Path(raw_dir).glob("*.json")):
             doc_id = file_path.stem
             with open(file_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
-            chunks = self.chunk_structured_document(data, doc_id)
-            all_chunks.extend(chunks)
+            if data.get("kind") == "pau_package_of_practices":
+                all_chunks.extend(self.chunk_pau_document(data, doc_id))
+            else:
+                all_chunks.extend(self.chunk_structured_document(data, doc_id))
         return all_chunks

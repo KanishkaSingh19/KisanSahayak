@@ -1,4 +1,5 @@
 import hashlib
+import time
 import unicodedata
 from typing import List, Optional
 import numpy as np
@@ -87,6 +88,8 @@ class GeminiEmbedder(BaseEmbeddings):
 
     DIMENSION = 768
     BATCH_SIZE = 50
+    RATE_LIMIT_RETRIES = 3  # per batch, while building the index
+    RATE_LIMIT_WAIT_SEC = 30
 
     def __init__(self, api_key: str, model: str = "gemini-embedding-001"):
         from google import genai
@@ -118,12 +121,25 @@ class GeminiEmbedder(BaseEmbeddings):
             self.fallback_count += 1
             return self._fallback.embed_text(text)
 
+    def _embed_with_rate_limit(self, batch: List[str]) -> np.ndarray:
+        """Embed a batch of documents, waiting out the free tier's per-minute limit (429) a few times:
+        building the index happens once, and a batch embedded locally instead would search badly."""
+        for attempt in range(self.RATE_LIMIT_RETRIES + 1):
+            try:
+                return self._embed(batch, "RETRIEVAL_DOCUMENT")
+            except Exception as e:
+                if "429" not in str(e) or attempt == self.RATE_LIMIT_RETRIES:
+                    raise
+                print(f"[Info] Gemini embedding rate limit: waiting {self.RATE_LIMIT_WAIT_SEC} s before retrying.")
+                time.sleep(self.RATE_LIMIT_WAIT_SEC)
+        raise RuntimeError("unreachable")
+
     def embed_documents(self, texts: List[str]) -> np.ndarray:
         batches = []
         for start in range(0, len(texts), self.BATCH_SIZE):
             batch = texts[start : start + self.BATCH_SIZE]
             try:
-                batches.append(self._embed(batch, "RETRIEVAL_DOCUMENT"))
+                batches.append(self._embed_with_rate_limit(batch))
             except Exception as e:
                 print(f"[Warning] Gemini embedding failed: {str(e)[:120]}. Using local embedder for this batch.")
                 self.fallback_count += len(batch)

@@ -6,9 +6,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Weed Control - C. Control of both grass and broadleaf weeds:",
+   "Wheat - Weed Control",
+   "Wheat - Weed Control - i. Control of Phalaris minor (Gulli danda)"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -17,9 +23,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Weed Control",
+   "Wheat - Weed Control - i. Control of Phalaris minor (Gulli danda)",
+   "Wheat - Weed Control - C. Control of both grass and broadleaf weeds:"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -44,9 +56,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Important tips for use of fertilizers",
+   "Wheat - Fertilizer Application - III) Chemical Fertilizers",
+   "Wheat - PAU tips"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -55,9 +73,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Important tips for use of fertilizers",
+   "Wheat - Fertilizer Application - III) Chemical Fertilizers",
+   "Wheat - PAU tips"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -82,9 +106,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Weed Control - C. Control of both grass and broadleaf weeds:",
+   "Wheat - Weed Control - B. Control of broadleaf weeds only:",
+   "Wheat - Weed Control"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -93,9 +123,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Irrigation",
+   "Wheat - Weed Control - i. Control of Phalaris minor (Gulli danda)",
+   "Wheat - Fertilizer Application - III) Chemical Fertilizers"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -106,7 +142,9 @@
   },
   "intent": "topic_not_covered",
   "top_sections": [],
-  "referred": true
+  "referred": true,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "wheat",
@@ -115,9 +153,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Improved Varieties - B. Timely Sown irrigated condition (special purpose varieties)",
+   "Wheat - Improved Varieties - A. Timely Sown Irrigated Conditions",
+   "Wheat - PAU tips"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -126,9 +170,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Weed Control - C. Control of both grass and broadleaf weeds:",
+   "Wheat - Weed Control",
+   "Wheat - Weed Control - i. Control of Phalaris minor (Gulli danda)"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -137,9 +187,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Important tips for use of fertilizers",
+   "Wheat - Fertilizer Application",
+   "Wheat - Fertilizer Application - III) Chemical Fertilizers"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -154,7 +210,9 @@
    "Wheat Aphid (Mahu) Control",
    "Karnal Bunt (Tilletia indica) Management in Wheat"
   ],
-  "referred": false
+  "referred": false,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "wheat",
@@ -163,9 +221,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Weed Control - i. Control of Phalaris minor (Gulli danda)",
+   "Wheat - Sowing Method and Spacing",
+   "All Crops - Introduction"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -174,9 +238,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Fertilizer Application - III) Chemical Fertilizers",
+   "Wheat - Important tips for use of fertilizers",
+   "Wheat - Fertilizer Application"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -190,7 +260,7 @@
   "top_sections": [
    "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages",
    "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
-   "Karnal Bunt (Tilletia indica) Management in Wheat"
+   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control"
   ],
   "top3": true
  },
@@ -207,7 +277,9 @@
    "Mustard Fertilizer and Irrigation Management",
    "Pink Bollworm (Gulabi Sundhi) Integrated Management"
   ],
-  "referred": false
+  "referred": false,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "wheat",
@@ -216,9 +288,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Storage",
+   "Wheat - Harvesting and Threshing",
+   "Wheat - Agronomic Practices for Rainfed Conditions"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -233,7 +311,9 @@
    "Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy",
    "White Rust (Safed Kungi) and Blight Management in Mustard"
   ],
-  "referred": false
+  "referred": false,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "wheat",
@@ -242,9 +322,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Weed Control",
+   "Wheat - Weed Control - i. Control of Phalaris minor (Gulli danda)",
+   "Wheat - Weed Control - C. Control of both grass and broadleaf weeds:"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -253,9 +339,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Fertilizer Application - III) Chemical Fertilizers",
+   "Wheat - Important tips for use of fertilizers",
+   "Wheat - Fertilizer Application"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -264,9 +356,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Weed Control - B. Control of broadleaf weeds only:",
+   "Wheat - Weed Control - C. Control of both grass and broadleaf weeds:",
+   "Wheat - Weed Control"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -277,7 +375,9 @@
   },
   "intent": "weather",
   "top_sections": [],
-  "referred": true
+  "referred": true,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "wheat",
@@ -292,7 +392,9 @@
    "White Rust (Safed Kungi) and Blight Management in Mustard",
    "Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy"
   ],
-  "referred": false
+  "referred": false,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "wheat",
@@ -301,9 +403,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Fertilizer Application",
+   "Wheat - Fertilizer Application - III) Chemical Fertilizers",
+   "Wheat - Agronomic Practices for Rainfed Conditions"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -328,7 +436,9 @@
    "Karnal Bunt (Tilletia indica) Management in Wheat",
    "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control"
   ],
-  "referred": false
+  "referred": false,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "wheat",
@@ -337,9 +447,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Wheat - Weed Control - i. Control of Phalaris minor (Gulli danda)",
+   "Wheat - Weed Control - C. Control of both grass and broadleaf weeds:",
+   "Wheat - Weed Control - B. Control of broadleaf weeds only:"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "wheat",
@@ -350,7 +466,9 @@
   },
   "intent": "market_price",
   "top_sections": [],
-  "referred": true
+  "referred": true,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "wheat",
@@ -365,7 +483,9 @@
    "Karnal Bunt (Tilletia indica) Management in Wheat",
    "Brown Planthopper (BPH / Bhoora Tilla) Management"
   ],
-  "referred": false
+  "referred": false,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "paddy",
@@ -374,9 +494,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Weed Control",
+   "Paddy (Rice) - Weed Control - 2. Control of weeds with post-emergence herbicides (within 20-25 days of",
+   "Paddy (Rice) - Basmati Rice - Unpuddled Direct Seeded Rice (DSR)"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -385,9 +511,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Weed Control - 2. Control of weeds with post-emergence herbicides (within 20-25 days of",
+   "Paddy (Rice) - Weed Control",
+   "Paddy (Rice) - Method of Transplanting"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -396,9 +528,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Basmati Rice - Improved Varieties",
+   "Paddy (Rice) - Do not grow these varieties",
+   "Paddy (Rice) - Basmati Rice - Climatic Requirements"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -407,9 +545,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Improved Varieties",
+   "Paddy (Rice) - Fertilizer Application",
+   "Paddy (Rice) - PAU tips"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -418,9 +562,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Transplanted Rice",
+   "Paddy (Rice) - Transplanted Rice - I. For Conventional Transplanting",
+   "Paddy (Rice) - PAU tips"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -429,9 +579,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Transplanted Rice - I. For Conventional Transplanting",
+   "Paddy (Rice) - Transplanting",
+   "Paddy (Rice) - PAU tips"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -440,9 +596,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - PAU-Leaf Colour Chart (PAU-LCC) for need based Urea application",
+   "Paddy (Rice) - Fertilizer Application",
+   "Paddy (Rice) - Transplanted Rice - I. For Conventional Transplanting"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -451,9 +613,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - other varieties",
+   "Paddy (Rice) - Improved Varieties",
+   "Paddy (Rice) - Basmati Rice - Improved Varieties"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -464,7 +632,9 @@
   },
   "intent": "topic_not_covered",
   "top_sections": [],
-  "referred": true
+  "referred": true,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "paddy",
@@ -473,9 +643,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Basmati Rice - Unpuddled Direct Seeded Rice (DSR)",
+   "Paddy (Rice) - Basmati Rice - Irrigation",
+   "Paddy (Rice) - Basmati Rice - Unpuddled Direct Seeded Basmati Rice (DSBR)"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -484,9 +660,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Improved Varieties",
+   "Paddy (Rice) - Basmati Rice - Improved Varieties",
+   "Paddy (Rice) - Do not grow these varieties"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -495,9 +677,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Weed Control - 2. Control of weeds with post-emergence herbicides (within 20-25 days of",
+   "Paddy (Rice) - Weed Control",
+   "Paddy (Rice) - Basmati Rice - Unpuddled Direct Seeded Rice (DSR)"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -506,9 +694,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - PAU-Leaf Colour Chart (PAU-LCC) for need based Urea application",
+   "Paddy (Rice) - Fertilizer Application",
+   "Paddy (Rice) - PAU tips"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -517,9 +711,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - B. Diseases",
+   "Paddy (Rice) - Basmati Rice - Plant Protection - B. Diseases",
+   "Paddy (Rice) - A. Insect Pests"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -528,9 +728,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - PAU-Leaf Colour Chart (PAU-LCC) for need based Urea application",
+   "Paddy (Rice) - Fertilizer Application",
+   "Paddy (Rice) - Transplanted Rice - I. For Conventional Transplanting"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -539,9 +745,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Fertilizer Application",
+   "Paddy (Rice) - Basmati Rice - Fertilizer Application",
+   "Paddy (Rice) - Rice Cultivation in Alkali Soils"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -550,9 +762,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - B. Diseases",
+   "Paddy (Rice) - Basmati Rice - Plant Protection - A. Insect Pests",
+   "Paddy (Rice) - Basmati Rice - Plant Protection - B. Diseases"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -561,9 +779,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Fertilizer Application",
+   "Paddy (Rice) - PAU-Leaf Colour Chart (PAU-LCC) for need based Urea application",
+   "Paddy (Rice) - PAU tips"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -572,9 +796,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Basmati Rice - Improved Varieties",
+   "Paddy (Rice) - Improved Varieties",
+   "Paddy (Rice) - Do not grow these varieties"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -583,9 +813,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Basmati Rice - Fertilizer Application",
+   "Paddy (Rice) - PAU-Leaf Colour Chart (PAU-LCC) for need based Urea application",
+   "Paddy (Rice) - Transplanted Rice - I. For Conventional Transplanting"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -594,9 +830,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - PAU-Leaf Colour Chart (PAU-LCC) for need based Urea application",
+   "Paddy (Rice) - Basmati Rice - Fertilizer Application",
+   "Paddy (Rice) - Fertilizer Application"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -605,9 +847,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Basmati Rice - Plant Protection - B. Diseases",
+   "Paddy (Rice) - B. Diseases",
+   "Paddy (Rice) - A. Insect Pests"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -616,9 +864,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Basmati Rice - Plant Protection - A. Insect Pests",
+   "Paddy (Rice) - A. Insect Pests",
+   "Paddy (Rice) - B. Diseases"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -627,9 +881,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Weed Control - 2. Control of weeds with post-emergence herbicides (within 20-25 days of",
+   "Paddy (Rice) - Weed Control",
+   "Paddy (Rice) - Basmati Rice - Unpuddled Direct Seeded Rice (DSR)"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -640,7 +900,9 @@
   },
   "intent": "topic_not_covered",
   "top_sections": [],
-  "referred": true
+  "referred": true,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "paddy",
@@ -649,8 +911,12 @@
   "expected": {
    "kind": "market"
   },
-  "intent": "topic_not_covered",
-  "top_sections": []
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Basmati Rice - Unpuddled Direct Seeded Rice (DSR)",
+   "Paddy (Rice) - Basmati Rice - Unpuddled Direct Seeded Basmati Rice (DSBR)",
+   "Paddy (Rice) - Transplanted Rice - I. For Conventional Transplanting"
+  ]
  },
  {
   "topic": "paddy",
@@ -661,11 +927,13 @@
   },
   "intent": "general_agriculture",
   "top_sections": [
-   "Wheat Aphid (Mahu) Control",
    "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
+   "Wheat Aphid (Mahu) Control",
    "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control"
   ],
-  "referred": false
+  "referred": false,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "paddy",
@@ -674,9 +942,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - PAU-Leaf Colour Chart (PAU-LCC) for need based Urea application",
+   "Paddy (Rice) - Fertilizer Application",
+   "Paddy (Rice) - PAU tips"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -685,9 +959,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - PAU-Leaf Colour Chart (PAU-LCC) for need based Urea application",
+   "Paddy (Rice) - Transplanted Rice - I. For Conventional Transplanting",
+   "Paddy (Rice) - Fertilizer Application"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "paddy",
@@ -696,9 +976,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Paddy (Rice) - Transplanting",
+   "Paddy (Rice) - II. For Rice Transplanter - Mat-type nursery",
+   "Paddy (Rice) - Transplanted Rice - I. For Conventional Transplanting"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "cotton",
@@ -713,7 +999,9 @@
    "Pink Bollworm (Gulabi Sundhi) Integrated Management",
    "Personal Protective Equipment (PPE) and Spraying Precautions"
   ],
-  "referred": false
+  "referred": false,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "cotton",
@@ -741,10 +1029,12 @@
   "intent": "crop_question",
   "top_sections": [
    "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
-   "Pink Bollworm (Gulabi Sundhi) Integrated Management",
-   "Personal Protective Equipment (PPE) and Spraying Precautions"
+   "Personal Protective Equipment (PPE) and Spraying Precautions",
+   "Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy"
   ],
-  "referred": false
+  "referred": false,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "cotton",
@@ -759,7 +1049,9 @@
    "Pink Bollworm (Gulabi Sundhi) Integrated Management",
    "Personal Protective Equipment (PPE) and Spraying Precautions"
   ],
-  "referred": false
+  "referred": false,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "cotton",
@@ -768,9 +1060,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Cotton - Time of irrigation (min)*",
+   "Cotton - Drip irrigation and Fertigation",
+   "Cotton - Irrigation and Drainage"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "cotton",
@@ -779,9 +1077,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Cotton - Desi Cotton - Improved Varieties",
+   "Cotton - Desi Cotton - B. Diseases",
+   "Cotton - Bt cotton hybrids"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "cotton",
@@ -790,9 +1094,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Cotton - Desi Cotton - Improved Varieties",
+   "Cotton - Bt cotton variety",
+   "Cotton - Non-Bt cotton"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "cotton",
@@ -801,9 +1111,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Cotton - Bt cotton variety",
+   "Cotton - Desi Cotton - Improved Varieties",
+   "Cotton - Bt cotton hybrids"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "cotton",
@@ -812,9 +1128,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Cotton - a. Insect Pests (Bt cotton)",
+   "Cotton - B. Diseases",
+   "Cotton - Desi Cotton - B. Diseases"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "cotton",
@@ -823,9 +1145,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Cotton - a. Insect Pests (Bt cotton)",
+   "Cotton - b. Insect Pests (Non-Bt cotton)",
+   "Cotton - Plant-Protection - A. Insect-Pests"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "cotton",
@@ -835,8 +1163,12 @@
    "kind": "advisory",
    "section": "Bacterial Leaf Blight"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
+  "intent": "crop_question",
+  "top_sections": [
+   "Cotton - B. Diseases",
+   "Cotton - Desi Cotton - B. Diseases",
+   "Cotton - Desi Cotton - Improved Varieties"
+  ],
   "top3": false
  },
  {
@@ -846,9 +1178,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Cotton - Agronomic Practices",
+   "Cotton - Desi Cotton - Improved Varieties",
+   "Cotton - Insecticide Resistance Management (IRM) Strategy - i. Sucking pests management (From sowing up to first week of July)"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "cotton",
@@ -858,8 +1196,12 @@
    "kind": "advisory",
    "section": "Cotton Whitefly"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
+  "intent": "crop_question",
+  "top_sections": [
+   "Cotton - Table 1. Insecticides for the management of sucking insect pests",
+   "Cotton - Agronomic Practices",
+   "Cotton - Spray Technology"
+  ],
   "top3": false
  },
  {
@@ -873,9 +1215,11 @@
   "top_sections": [
    "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
    "Pink Bollworm (Gulabi Sundhi) Integrated Management",
-   "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management"
+   "Karnal Bunt (Tilletia indica) Management in Wheat"
   ],
-  "referred": false
+  "referred": false,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "cotton",
@@ -890,7 +1234,9 @@
    "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
    "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages"
   ],
-  "referred": false
+  "referred": false,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "mustard",
@@ -899,9 +1245,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Mustard - Rapeseed And Mustard - Agronomic Practices",
+   "Mustard - Rapeseed And Mustard - Hybrid seed production involves following steps:",
+   "Mustard - Rapeseed And Mustard - Production of Pure Seed"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "mustard",
@@ -912,7 +1264,9 @@
   },
   "intent": "topic_not_covered",
   "top_sections": [],
-  "referred": true
+  "referred": true,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "mustard",
@@ -921,9 +1275,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Mustard - Rapeseed And Mustard - Improved Varieties/ Hybrids",
+   "Mustard - Rapeseed And Mustard - Raya",
+   "Mustard - Rapeseed And Mustard - African sarson"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "mustard",
@@ -938,7 +1298,9 @@
    "Mustard Aphid (Chetpa/Mahu) Management",
    "White Rust (Safed Kungi) and Blight Management in Mustard"
   ],
-  "referred": false
+  "referred": false,
+  "from_pau": false,
+  "pau_right_crop": false
  },
  {
   "topic": "mustard",
@@ -963,9 +1325,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Mustard - Rapeseed And Mustard - Raya",
+   "Mustard - Rapeseed And Mustard - Agronomic Practices",
+   "Mustard - Rapeseed And Mustard - Introduction"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "mustard",
@@ -994,9 +1362,15 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Mustard - Rapeseed And Mustard - Agronomic Practices",
+   "Mustard - Rapeseed And Mustard - Plant Protection - (a) Insect Pests",
+   "Mustard - Rapeseed And Mustard - Plant Protection - (b) Diseases"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  },
  {
   "topic": "mustard",
@@ -1005,8 +1379,14 @@
   "expected": {
    "kind": "not_in_kb"
   },
-  "intent": "topic_not_covered",
-  "top_sections": [],
-  "referred": true
+  "intent": "crop_question",
+  "top_sections": [
+   "Mustard - Rapeseed And Mustard - Agronomic Practices",
+   "Mustard - Rapeseed And Mustard - Plant Protection - (b) Diseases",
+   "Mustard - Introduction"
+  ],
+  "referred": false,
+  "from_pau": true,
+  "pau_right_crop": true
  }
 ]

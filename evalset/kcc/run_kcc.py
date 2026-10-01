@@ -8,7 +8,8 @@ Metrics (as promised in the idea submission):
 - banned-pesticide detection
 - correct answer language (script)
 - response time
-- questions our advisories do not cover: referred to the KVK, or shown an advisory about something else
+- questions our advisories do not cover: answered from PAU's Package of Practices (from the right crop's
+  chapter), referred to the KVK, or (wrongly) shown an advisory about something else
 Answer and dose accuracy need an agronomist: review_sheet.csv lists every answer next to the Kisan Call Centre
 advisor's answer for that review. Writes results.md, results.json and review_sheet.csv (…_llm with --llm).
 """
@@ -71,8 +72,32 @@ def evaluate(q: dict, res) -> dict:
     elif exp["kind"] == "market":
         r["market_ok"] = res.intent == "market_price" and "Rs " in res.answer
     else:  # not in our advisories
-        r["referred"] = not res.retrieved_chunks or res.intent in ("crop_not_covered", "out_of_scope")
+        r.update(outside_outcome(q["topic"], res))
     return r
+
+
+def stored_answer(res) -> str:
+    """The answer as saved in the committed results: PAU's text is copyrighted and not kept in the
+    repository, so an answer from its chapters is saved as its page reference."""
+    if res.processing_metadata.get("knowledge") == "pau" and res.citations:
+        return f"[Answered from {res.citations[0]}. PAU's text is not stored here: run this evaluation locally to see it.]"
+    return res.answer
+
+
+def outside_outcome(crop: str, res) -> dict:
+    """For a question our advisories don't cover: answered from PAU's chapter for that crop, referred to
+    the KVK, or neither (shown advice on something else, the failure that matters)."""
+    referred = not res.retrieved_chunks or res.intent in ("crop_not_covered", "out_of_scope")
+    from_pau = not referred and res.processing_metadata.get("knowledge") == "pau"
+    top = res.retrieved_chunks[0] if res.retrieved_chunks else None
+    if crop == "pesticide":
+        # A pesticide question names the crop it is for ("chlorpyriphos in mustard"), if any
+        crop = (res.processing_metadata.get("detected_crop") or "all crops")
+    return {
+        "referred": referred,
+        "from_pau": from_pau,
+        "pau_right_crop": from_pau and top is not None and top.crop.lower().startswith((crop.lower(), "all crops")),
+    }
 
 
 def main() -> int:
@@ -95,7 +120,7 @@ def main() -> int:
             print(f"Stopped at question {q['id']}: every Gemini model failed (usually the API quota). No results written.")
             return 2
         latencies.append(ms)
-        rows.append({**q, "result": evaluate(q, res), "answer": res.answer, "answer_source": source, "ms": round(ms)})
+        rows.append({**q, "result": evaluate(q, res), "answer": stored_answer(res), "answer_source": source, "ms": round(ms)})
         print(f"{q['id']:>3} {q['language']:<8} {q['expected']['kind']:<9} {res.intent:<18} "
               f"{(res.retrieved_chunks[0].section if res.retrieved_chunks else '-')[:40]}")
 
@@ -109,6 +134,8 @@ def main() -> int:
     top3 = sum(r["result"]["top3"] for r in adv)
     top1 = sum(r["result"]["top1"] for r in adv)
     referred = sum(r["result"]["referred"] for r in outside)
+    from_pau = sum(r["result"]["pau_right_crop"] for r in outside)
+    unrelated = sum(not r["result"]["referred"] and not r["result"]["pau_right_crop"] for r in outside)
     answers = f"Gemini ({settings.GEMINI_MODEL})" if args.llm else "offline template (no API quota)"
     lines = [
         "# Real farmer questions: Kisan Call Centre test set",
@@ -137,7 +164,9 @@ def main() -> int:
         f"| Weather for the right district | {pct(sum(r['result']['district_ok'] for r in weather), len(weather))} |",
         f"| PM-KISAN questions recognised | {pct(sum(r['result']['scheme_ok'] for r in scheme), len(scheme))} |",
         f"| Price questions answered with the MSP / mandi price | {pct(sum(r['result']['market_ok'] for r in prices), len(prices))} |",
-        f"| Outside our advisories: referred to KVK (not shown another topic's advice) | **{pct(referred, len(outside))}** |",
+        f"| Outside our advisories: answered from PAU's Package of Practices, right crop's chapter | **{pct(from_pau, len(outside))}** |",
+        f"| Outside our advisories: referred to KVK | {pct(referred, len(outside))} |",
+        f"| Outside our advisories: shown advice on something else | {pct(unrelated, len(outside))} |",
         f"| Answer in the requested language (script) | {pct(sum(v[0] for v in lang_stats.values()), len(rows))} |",
         f"| Response time median / p95 | {statistics.median(latencies):.0f} ms / "
         f"{sorted(latencies)[int(0.95 * len(latencies)) - 1]:.0f} ms |",
@@ -170,8 +199,10 @@ def main() -> int:
         w.writerow(["id", "language", "question", "expected", "kisansahayak_answer", "kcc_advisor_answer",
                     "answer_correct (yes/no/partly)", "dose_correct (yes/no/n.a.)", "reviewer_comment"])
         for r in rows:
-            if r["expected"]["kind"] in ("advisory", "banned"):
-                w.writerow([r["id"], r["language"], r["question"], r["expected"].get("section", ""),
+            from_pau = r["result"].get("from_pau")
+            if r["expected"]["kind"] in ("advisory", "banned") or from_pau:
+                expected = "PAU Package of Practices" if from_pau else r["expected"].get("section", "")
+                w.writerow([r["id"], r["language"], r["question"], expected,
                             r["answer"], r["kcc_answer"], "", "", ""])
     print("\n".join(lines[8:30]))
     return 0

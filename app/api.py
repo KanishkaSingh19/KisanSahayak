@@ -18,6 +18,7 @@ from fastapi.responses import FileResponse, RedirectResponse
 from pydantic import BaseModel, Field, ValidationError
 
 from app.agent.pipeline import KisanPipeline
+from app.rag.pau_kb import ensure_pau_kb
 from app.agent.state import ConversationTurn, FarmerProfile, GroundedAnswer
 from app.agent.synthesizer import GeminiSynthesizer, OpenAISynthesizer
 from app.config import settings
@@ -30,7 +31,9 @@ MAX_AUDIO_BYTES = 10 * 1024 * 1024  # 10 MB voice note
 
 @lru_cache(maxsize=1)
 def get_pipeline() -> KisanPipeline:
-    """One shared pipeline (loading MiniLM and the indices takes about a minute)."""
+    """One shared pipeline (loading MiniLM and the indices takes about a minute; building PAU's
+    Package of Practices chapters, the first time, a few seconds more)."""
+    ensure_pau_kb()
     return KisanPipeline()
 
 

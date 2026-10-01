@@ -88,10 +88,12 @@ BANNED_CHECK = AgriculturalGuardrails()
 # advisory would give advice for a different problem, so they get a "not covered" reply instead.
 UNCOVERED_TOPICS = {
     "weeds": ["weed", "weeds", "weedicide", "herbicide", "kharpatwar", "nadeen", "motha", "swank", "dila",
-              "wild oats", "jangli jai", "खरपतवार", "नदीन", "मोथा", "ਨਦੀਨ", "ਨਦੀਨਾਂ", "ਮੋਥਾ", "ਨਦੀਨਨਾਸ਼ਕ"],
+              "wild oats", "jangli jai", "phalaris", "gulli danda", "gullidanda", "खरपतवार", "नदीन", "मोथा",
+              "गुल्ली डंडा", "गुल्लीडंडा", "ਨਦੀਨ", "ਨਦੀਨਾਂ", "ਮੋਥਾ", "ਨਦੀਨਨਾਸ਼ਕ", "ਗੁੱਲੀ ਡੰਡਾ", "ਗੁੱਲੀਡੰਡਾ"],
     "nutrient deficiency": ["deficiency", "zinc", "iron", "manganese", "boron", "calcium", "magnesium", "yellowing",
                             "kami", "कमी", "पीलापन", "पीला पड़", "ਘਾਟ", "ਪੀਲਾਪਣ", "ਪੀਲੀ ਪੈ", "जिंक", "ਜ਼ਿੰਕ"],
-    "varieties": ["variety", "varieties", "kism", "kisme", "kismon", "kismein", "किस्म", "किस्में", "ਕਿਸਮ", "ਕਿਸਮਾਂ"],
+    "varieties": ["variety", "varieties", "hybrid", "hybrids", "kism", "kisme", "kismon", "kismein", "किस्म", "किस्में",
+                  "हाइब्रिड", "ਕਿਸਮ", "ਕਿਸਮਾਂ", "ਹਾਈਬ੍ਰਿਡ"],
     "yield and growth": ["yield", "growth", "quality", "paidawar", "badhwar", "jhaad", "पैदावार", "बढ़वार", "गुणवत्ता",
                          "ਝਾੜ", "ਵਾਧਾ", "ਗੁਣਵੱਤਾ", "growth regulator", "foliar spray"],
     "nano fertilizers": ["nano urea", "nano dap", "नैनो", "ਨੈਨੋ"],
@@ -102,13 +104,15 @@ UNCOVERED_TOPICS = {
                                  "nematodes", "wilt", "parawilt", "para wilt", "leaf spot", "root weevil", "fruit fly",
                                  "fruit flies", "termite", "termites", "rat", "rats", "rodent", "rodents",
                                  "downy mildew", "sucking pest", "sucking pests", "रस चूसने", "पाउडरी मिल्ड्यू", "चूर्णिल", "tana chhedak", "patta lapet", "jad galan", "deemak", "chuhe",
-                                 "तना छेदक", "पत्ता लपेट", "जड़ गलन", "दीमक", "चूहे", "थ्रिप्स", "धब्बा",
+                                 "तना छेदक", "पत्ता लपेट", "जड़ गलन", "दीमक", "चूहे", "थ्रिप्स", "धब्बा", "ਥ੍ਰਿਪਸ", "ਥਰਿੱਪਸ",
+                                 "mealybug", "mealy bug", "painted bug", "मिलीबग", "ਮਿਲੀਬੱਗ", "जैसिड", "ਜੈਸਿਡ",
                                  "ਗੜੂੰਆਂ", "ਪੱਤਾ ਲਪੇਟ", "ਜੜ੍ਹ", "ਸਿਉਂਕ", "ਚੂਹਿਆਂ", "ਕਾਂਗਿਆਰੀ", "ਸੋਕਾ ਰੋਗ"],
     # Caterpillars ("sundi") are covered for cotton only: see CROP_COVERED_TOPICS
     "pesticide mixing": ["tank mix", "tank mixing", "jar test", "mixing", "milakar", "मिलाकर", "ਮਿਕਸਿੰਗ",
                          "emamectin", "chlorpyriphos", "chloropyriphos", "cypermethrin", "इमामेक्टिन", "ਇਮਾਮੈਕਟਿਨ"],
     "irrigation timing": ["last irrigation", "aakhri paani", "आखिरी सिंचाई", "ਆਖ਼ਰੀ ਪਾਣੀ"],
     "harvest and storage": ["harvest", "harvesting", "storage", "maturity", "pakne", "पकने", "ਪੱਕਣ", "khali", "खली"],
+    "straw management": ["straw", "stubble", "parali", "पराली", "ਪਰਾਲੀ", "ਨਾੜ"],
 }
 # Words that point back to an earlier question ("this disease", "iska ilaj")
 REFERS_BACK = ["this", "it", "that", "these", "iska", "iski", "iske", "uska", "uski", "iss",
@@ -131,6 +135,72 @@ TOPIC_CROPS = {
     "Yellow Rust": {"Wheat"}, "Karnal Bunt": {"Wheat"}, "Aphid": {"Wheat", "Mustard"}, "White Rust": {"Mustard"},
     "Sheath Blight": {"Paddy"}, "Blb": {"Paddy"}, "Bph": {"Paddy"}, "Pink Bollworm": {"Cotton"}, "Whitefly": {"Cotton"},
 }
+
+
+# English words for the Hindi, Punjabi and Hinglish topic words above. PAU's Package of Practices is in
+# English, so a question answered from it is searched with these ("धान में जिंक की कमी" -> "zinc deficiency").
+SEARCH_TERMS = {
+    "kharpatwar": "weeds", "nadeen": "weeds", "motha": "motha weeds", "swank": "swank weeds", "dila": "dila weeds",
+    "jangli jai": "wild oats", "gulli danda": "Phalaris minor", "gullidanda": "Phalaris minor",
+    "खरपतवार": "weeds", "नदीन": "weeds", "मोथा": "motha weeds", "गुल्ली डंडा": "Phalaris minor",
+    "गुल्लीडंडा": "Phalaris minor", "ਨਦੀਨ": "weeds", "ਨਦੀਨਾਂ": "weeds", "ਮੋਥਾ": "motha weeds",
+    "ਨਦੀਨਨਾਸ਼ਕ": "weedicide", "ਗੁੱਲੀ ਡੰਡਾ": "Phalaris minor", "ਗੁੱਲੀਡੰਡਾ": "Phalaris minor",
+    "kami": "deficiency", "कमी": "deficiency", "पीलापन": "yellowing", "पीला पड़": "yellowing", "ਘਾਟ": "deficiency",
+    "ਪੀਲਾਪਣ": "yellowing", "ਪੀਲੀ ਪੈ": "yellowing", "जिंक": "zinc", "ਜ਼ਿੰਕ": "zinc",
+    "kism": "varieties", "kisme": "varieties", "kismon": "varieties", "kismein": "varieties", "किस्म": "varieties",
+    "किस्में": "varieties", "ਕਿਸਮ": "varieties", "ਕਿਸਮਾਂ": "varieties",
+    "paidawar": "yield", "badhwar": "growth", "jhaad": "yield", "पैदावार": "yield", "बढ़वार": "growth",
+    "गुणवत्ता": "quality", "ਝਾੜ": "yield", "ਵਾਧਾ": "growth", "ਗੁਣਵੱਤਾ": "quality",
+    "नैनो": "nano", "ਨੈਨੋ": "nano",
+    "नर्सरी": "nursery", "रोपाई": "transplanting", "बीज उपचार": "seed treatment", "ਪਨੀਰੀ": "nursery",
+    "ਲੁਆਈ": "transplanting", "ਬੀਜ ਨੂੰ ਸੋਧ": "seed treatment", "ਬੀਜ ਸੋਧ": "seed treatment",
+    "रस चूसने": "sucking pests", "पाउडरी मिल्ड्यू": "powdery mildew", "चूर्णिल": "powdery mildew",
+    "tana chhedak": "stem borer", "patta lapet": "leaf folder", "jad galan": "root rot", "deemak": "termites",
+    "chuhe": "rats rodents", "तना छेदक": "stem borer", "पत्ता लपेट": "leaf folder", "जड़ गलन": "root rot",
+    "दीमक": "termites", "चूहे": "rats rodents", "थ्रिप्स": "thrips", "धब्बा": "leaf spot",
+    "मिलीबग": "mealybug", "ਮਿਲੀਬੱਗ": "mealybug", "जैसिड": "jassid", "ਜੈਸਿਡ": "jassid",
+    "हाइब्रिड": "hybrids", "ਹਾਈਬ੍ਰਿਡ": "hybrids", "parali": "paddy straw", "पराली": "paddy straw",
+    "ਪਰਾਲੀ": "paddy straw", "ਨਾੜ": "straw",
+    "ਥ੍ਰਿਪਸ": "thrips", "ਥਰਿੱਪਸ": "thrips", "ਗੜੂੰਆਂ": "stem borer", "ਪੱਤਾ ਲਪੇਟ": "leaf folder", "ਜੜ੍ਹ": "root rot", "ਸਿਉਂਕ": "termites",
+    "ਚੂਹਿਆਂ": "rats rodents", "ਕਾਂਗਿਆਰੀ": "smut", "ਸੋਕਾ ਰੋਗ": "wilt",
+    "milakar": "tank mixing", "मिलाकर": "tank mixing", "ਮਿਕਸਿੰਗ": "tank mixing", "इमामेक्टिन": "emamectin",
+    "ਇਮਾਮੈਕਟਿਨ": "emamectin",
+    "aakhri paani": "last irrigation", "आखिरी सिंचाई": "last irrigation", "ਆਖ਼ਰੀ ਪਾਣੀ": "last irrigation",
+    "pakne": "maturity harvesting", "पकने": "maturity harvesting", "ਪੱਕਣ": "maturity harvesting",
+    "khali": "cake", "खली": "cake",
+    "khaad": "fertilizer", "khad": "fertilizer", "खाद": "fertilizer", "ਖਾਦ": "fertilizer",
+    "gandhak": "sulphur", "गंधक": "sulphur", "ਗੰਧਕ": "sulphur", "ਸਲਫ਼ਰ": "sulphur",
+    "paani": "irrigation", "pani": "irrigation", "sinchai": "irrigation", "सिंचाई": "irrigation",
+    "पानी": "irrigation", "ਪਾਣੀ": "irrigation", "ਸਿੰਚਾਈ": "irrigation",
+    "bijai": "sowing", "buwai": "sowing", "बुवाई": "sowing", "बिजाई": "sowing", "ਬਿਜਾਈ": "sowing",
+    "sundi": "caterpillar bollworm", "सुंडी": "caterpillar bollworm", "ਸੁੰਡੀ": "caterpillar bollworm",
+    "illi": "caterpillar", "illiyon": "caterpillar",
+}
+
+
+# Words PAU uses in the titles of the sections on each topic ("Weed Control", "Plant Protection - Insect Pests")
+TOPIC_HINTS = {
+    "weeds": "weed control", "nutrient deficiency": "fertilizer application", "varieties": "improved varieties",
+    "yield and growth": "fertilizer application", "nursery and transplanting": "nursery transplanting",
+    "other pests and diseases": "insect pests diseases", "pesticide mixing": "spray technology",
+    "irrigation timing": "irrigation", "harvest and storage": "harvesting storage", "fertilizer": "fertilizer application",
+    "sulphur": "fertilizer application", "irrigation": "irrigation", "sowing": "sowing",
+    "caterpillars": "insect pests bollworms", "straw management": "straw management",
+}
+
+
+def topic_search_terms(clean: str) -> str:
+    """The farming topics a question names, in English, with the words PAU uses in its section titles
+    ("गेहूं में गुल्ली डंडा" -> "Phalaris minor weed control")."""
+    topics = list(UNCOVERED_TOPICS.items()) + [(topic, words) for topic, words, _ in CROP_COVERED_TOPICS]
+    terms = []
+    for topic, words in topics:
+        matched = [w for w in words if matches_keyword(w, clean)]
+        for word in matched + ([TOPIC_HINTS[topic]] if matched and topic in TOPIC_HINTS else []):
+            term = SEARCH_TERMS.get(word, word if word.isascii() else None)
+            if term and term not in terms:
+                terms.append(term)
+    return " ".join(terms)
 
 
 def uncovered_topic(clean: str, crop: Optional[str]) -> Optional[str]:
@@ -197,6 +267,12 @@ def weather_topics(query: str) -> set:
 
 class IntentRouter:
     """Classifies user query intent with multilingual agricultural entity extraction."""
+
+    def __init__(self, pau_available: bool = False):
+        # With PAU's Package of Practices loaded, questions about a covered crop on a topic our own
+        # advisories don't cover (weeds, varieties, fertilizer for paddy...) are answered from PAU
+        # instead of being referred to the KVK. The pipeline sets this when the chapters are indexed.
+        self.pau_available = pau_available
 
     def classify(self, query: str) -> IntentResult:
         clean = query.lower().strip()
@@ -294,6 +370,17 @@ class IntentRouter:
             topic_gap = uncovered_topic(clean, detected_crop)
         elif detected_crop and detected_crop not in TOPIC_CROPS.get(detected_topic, {detected_crop}):
             topic_gap = f"{detected_topic.lower()} in {detected_crop.lower()}"
+        if topic_gap and self.pau_available and detected_crop:
+            return IntentResult(
+                intent="crop_question",
+                confidence=0.85,
+                detected_crop=detected_crop,
+                # English words for the search (PAU's book is in English); the topic name if none
+                detected_topic=(topic_search_terms(clean) if not detected_topic else "") or topic_gap,
+                detected_district=detected_district,
+                use_pau=True,
+                reasoning=f"Question about {topic_gap}: answered from PAU's Package of Practices.",
+            )
         if topic_gap:
             return IntentResult(
                 intent="topic_not_covered",
@@ -351,6 +438,7 @@ class IntentRouter:
         if not history:
             return result
         result = self._refers_back(query, result)
+        result = self._pau_topic_follow_up(query, result, history)
         place_reply = self._place_reply(query, result, history[-1])
         if place_reply:
             return place_reply
@@ -370,6 +458,24 @@ class IntentRouter:
             return IntentResult(intent="general_agriculture", confidence=0.7, detected_crop=result.detected_crop,
                                 reasoning="Refers back to an earlier question.")
         return result
+
+    def _pau_topic_follow_up(self, query: str, result: IntentResult, history: List[ConversationTurn]) -> IntentResult:
+        """"And weeds?" after a wheat question: a topic our advisories don't cover, for the crop of the
+        last crop question, is answered from PAU's Package of Practices."""
+        if not (self.pau_available and result.intent == "topic_not_covered" and not result.detected_crop):
+            return result
+        last_crop = next((turn for turn in reversed(history) if turn.intent in CROP_INTENTS and turn.crop), None)
+        if not last_crop:
+            return result
+        return IntentResult(
+            intent="crop_question",
+            confidence=0.8,
+            detected_crop=last_crop.crop,
+            detected_topic=topic_search_terms(query.lower().strip()) or result.detected_topic,
+            detected_district=result.detected_district,
+            use_pau=True,
+            reasoning=f"Question about {result.detected_topic} for {last_crop.crop} (earlier question): answered from PAU.",
+        )
 
     @staticmethod
     def _place_reply(query: str, result: IntentResult, previous: ConversationTurn) -> Optional[IntentResult]:
@@ -472,6 +578,7 @@ class IntentRouter:
                 detected_topic=previous_topic,
                 detected_district=result.detected_district,
                 follow_up_of=last_crop.query,
+                use_pau=last_crop.used_pau,
                 reasoning="Follow-up: crop and pest carried over from an earlier question.",
             )
         topic = result.detected_topic if result.detected_topic not in (None, "Agronomy/General") else None
@@ -479,6 +586,7 @@ class IntentRouter:
             # "What about wheat?" -> same pest, new crop
             result.detected_topic = previous_topic
             result.intent = "crop_question"
+            result.use_pau = last_crop.used_pau
             result.reasoning = "Follow-up: pest carried over to a new crop."
         return result
 

@@ -10,6 +10,12 @@ class Settings(BaseSettings):
     DATA_DIR: Path = BASE_DIR / "data"
     RAW_DATA_DIR: Path = DATA_DIR / "raw"
     INDEX_DIR: Path = DATA_DIR / "indices"
+    # PAU Package of Practices chapters (built by scripts/build_pau_kb.py; copyrighted, not committed).
+    # USE_PAU_KB: search them for questions the advisories in RAW_DATA_DIR don't cover.
+    # PAU_AUTO_BUILD: the app downloads and builds them on startup if they are missing.
+    PAU_KB_DIR: Path = DATA_DIR / "pau" / "kb"
+    USE_PAU_KB: bool = True
+    PAU_AUTO_BUILD: bool = True
 
     # App metadata
     APP_NAME: str = "KisanSahayak"

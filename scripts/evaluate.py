@@ -26,7 +26,7 @@ from app.agent.router import IntentRouter
 from app.agent.state import ConversationTurn
 from app.agent.synthesizer import DeterministicGroundedSynthesizer, get_synthesizer
 from app.config import settings
-from app.rag.chunker import AgriculturalChunker
+from app.rag.ingest import load_knowledge_chunks
 from app.rag.embeddings import GeminiEmbedder, LocalDenseEmbedder
 from app.rag.hybrid_retriever import HybridRetriever
 
@@ -73,7 +73,7 @@ def main() -> int:
     print(f"Building search index with {args.embeddings} embeddings...")
     embeddings = make_embeddings(args.embeddings)
     retriever = HybridRetriever(embeddings=embeddings)
-    retriever.build_indices(AgriculturalChunker(settings.CHUNK_SIZE, settings.CHUNK_OVERLAP).load_and_chunk_directory(settings.RAW_DATA_DIR))
+    retriever.build_indices(load_knowledge_chunks())
     # Offline template answers: repeatable and no API quota
     pipeline = KisanPipeline(retriever=retriever, synthesizer=DeterministicGroundedSynthesizer())
     router = IntentRouter()

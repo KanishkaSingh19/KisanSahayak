@@ -21,6 +21,7 @@
 |---|---|
 | Writing answers | Google Gemini 3.7 Flash, with Gemini Flash-Lite as backup, then a deterministic offline template (no AI) |
 | Crop photo diagnosis | Gemini Vision. It names the likely problem only; the treatment always comes from the verified advisories. |
+| Answers from PAU's *Package of Practices* | Not AI: PAU's own text, found by the same search and shown with its page numbers. Gemini, when available, translates and summarises the passages; offline answers show PAU's English text with a note in the farmer's language. |
 | Search embeddings | `gemini-embedding-001` on the cloud; multilingual MiniLM-L12-v2 offline |
 | Speech-to-text | Whisper Large v3 via Groq; Gemini audio for Punjabi and as backup |
 | Text-to-speech | Microsoft Edge-TTS; Google gTTS for Punjabi |
