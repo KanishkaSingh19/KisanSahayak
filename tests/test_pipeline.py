@@ -32,7 +32,8 @@ def test_pipeline_wheat_yellow_rust(pipeline):
     assert len(res.retrieved_chunks) > 0
     assert any("Wheat" in c.crop for c in res.retrieved_chunks)
     assert len(res.citations) > 0
-    assert any("Tebuconazole" in res.answer or "Propiconazole" in res.answer or "Rust" in res.answer for _ in [1])
+    answer = res.answer.lower()  # PAU's names are written in lower case ("Tilt 25 EC (propiconazole)")
+    assert "propiconazole" in answer or "tebuconazole" in answer or "rust" in answer
     assert res.is_grounded is True
 
 
