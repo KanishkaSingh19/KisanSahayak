@@ -20,7 +20,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 7
+  "ms": 8
  },
  {
   "id": 2,
@@ -49,7 +49,7 @@
   },
   "answer": "### फसल परामर्श: Wheat (पीला रतुआ (पीली कुंगी) की पहचान और प्रबंधन)\n\n**पहचान एवं लक्षण (Identification):**\nपत्तियों की नसों के साथ-साथ सीधी पंक्तियों में पीले पाउडर जैसे फफोले बन जाते हैं। प्रभावित पत्तियों को हिलाने पर पीला पाउडर कपड़ों और हाथों पर चिपक जाता है। यह ठंडे, नम और बादल छाए रहने वाले मौसम (10-20°C) में दिखाई देता है।\n\n**अनुशंसित उपचार एवं खुराक (Recommended Control & Dosage):**\nमध्य दिसंबर से फरवरी तक खेतों का नियमित निरीक्षण करें, विशेषकर तलहटी वाले क्षेत्रों में। यदि शुरुआती बीमारी के धब्बे दिखाई दें, तो तुरंत Propiconazole 25% EC (Tilt/Bumper) @ 200 ml या Tebuconazole 25.9% EC (Folicur) @ 200 ml को 200 liters पानी में प्रति acre मिलाकर छिड़काव करें। यदि बादल छाए रहने का मौसम बना रहे तो 15 दिन बाद छिड़काव दोहराएं।\n\n**रोकथाम एवं सावधानियां (Preventive Measures):**\nप्रतिरोधी किस्मों जैसे PBW 725, HD 3086, DBW 187 (Karan Vandana), और DBW 222 की खेती करें। रतुआ संभावित क्षेत्रों में संवेदनशील पुरानी किस्मों जैसे PBW 343 या HD 2967 की लगातार एक ही फसल उगाने से बचें।\n\n**विशेष वैधानिक चेतावनी:**\nरसायन को उड़ने से बचाने के लिए तेज हवा के दौरान फफूंदनाशक का छिड़काव न करें। हमेशा सुरक्षात्मक मास्क पहनें।\n",
   "answer_source": "template_offline",
-  "ms": 57
+  "ms": 55
  },
  {
   "id": 3,
@@ -78,7 +78,7 @@
   },
   "answer": "### ਫ਼ਸਲ ਸਲਾਹ: Wheat (ਕਣਕ ਦਾ ਤੇਲਾ (ਮਹੂ) ਰੋਕਥਾਮ)\n\n**ਪਛਾਣ ਅਤੇ ਲੱਛਣ:**\nਫਰਵਰੀ-ਮਾਰਚ ਦੌਰਾਨ ਪੱਤਿਆਂ ਅਤੇ ਸਿੱਟਿਆਂ 'ਤੇ ਛੋਟੇ ਹਰੇ ਕੀੜੇ ਇਕੱਠੇ ਹੋ ਜਾਂਦੇ ਹਨ। ਇਹ ਰਸ ਚੂਸਦੇ ਹਨ, ਜਿਸ ਨਾਲ ਦਾਣੇ ਪਿੜਕ ਜਾਂਦੇ ਹਨ ਅਤੇ ਝਾੜ ਘੱਟ ਜਾਂਦਾ ਹੈ।\n\n**ਸਿਫ਼ਾਰਸ਼ ਕੀਤਾ ਇਲਾਜ ਅਤੇ ਖੁਰਾਕ:**\nਸਪਰੇਅ ਉਦੋਂ ਹੀ ਕਰੋ ਜਦੋਂ ਆਬਾਦੀ ਆਰਥਿਕ ਨੁਕਸਾਨ ਦੇ ਪੱਧਰ (ETL: 5 ਤੇਲੇ ਪ੍ਰਤੀ ਸਿੱਟਾ) ਤੋਂ ਵੱਧ ਜਾਵੇ। 150 ਲੀਟਰ ਪਾਣੀ ਵਿੱਚ Clothianidin 50% WDG @ 10-12 g ਪ੍ਰਤੀ ਏਕੜ ਜਾਂ Thiamethoxam 25% WG @ 50 g ਪ੍ਰਤੀ ਏਕੜ ਸਪਰੇਅ ਕਰੋ।\n\n**ਰੋਕਥਾਮ ਅਤੇ ਸਾਵਧਾਨੀਆਂ:**\nਲੇਡੀਬਰਡ ਬੀਟਲ ਅਤੇ ਸਰਫਿਡ ਫਲਾਈ ਦੇ ਲਾਰਵੇ ਵਰਗੇ ਕੁਦਰਤੀ ਸ਼ਿਕਾਰੀਆਂ ਦੀ ਸੰਭਾਲ ਕਰੋ ਜੋ ਤੇਲੇ ਦੀਆਂ ਕਲੋਨੀਆਂ ਨੂੰ ਕੁਦਰਤੀ ਤੌਰ 'ਤੇ ਕੰਟਰੋਲ ਕਰਦੇ ਹਨ।\n",
   "answer_source": "template_offline",
-  "ms": 45
+  "ms": 39
  },
  {
   "id": 4,
@@ -101,7 +101,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 5,
@@ -124,7 +124,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 3
+  "ms": 4
  },
  {
   "id": 6,
@@ -176,7 +176,7 @@
   },
   "answer": "### ਫ਼ਸਲ ਸਲਾਹ: Wheat (ਕਣਕ ਵਿੱਚ ਕਰਨਾਲ ਬੰਟ (Tilletia indica) ਦਾ ਪ੍ਰਬੰਧਨ)\n\n**ਪਛਾਣ ਅਤੇ ਲੱਛਣ:**\nਬੱਲੀ ਦੇ ਕੁਝ ਹੀ ਦਾਣੇ ਅੰਸ਼ਕ ਤੌਰ 'ਤੇ ਟੈਲੀਓਸਪੋਰਸ ਦੇ ਕਾਲੇ ਪਾਊਡਰ ਵਰਗੇ ਸਮੂਹ ਵਿੱਚ ਬਦਲ ਜਾਂਦੇ ਹਨ। ਟ੍ਰਾਈਮੇਥਾਈਲਾਮਾਈਨ ਕਾਰਨ ਮੋੜੇ ਹੋए ਦਾਣਿਆਂ ਵਿੱਚੋਂ ਸੜੀ ਹੋਈ ਮੱਛੀ ਵਰਗੀ ਅਪ੍ਰਸੰਨ ਬਦਬੂ ਆਉਂਦੀ ਹੈ।\n\n**ਸਿਫ਼ਾਰਸ਼ ਕੀਤਾ ਇਲਾਜ ਅਤੇ ਖੁਰਾਕ:**\nਜੇਕਰ ਮੌਸਮ ਬੱਦਲਵਾਈ ਵਾਲਾ ਹੋਵੇ ਜਾਂ ਫੁੱਲ ਆਉਣ ਸਮੇਂ ਹਲਕੀ ਬਾਰਸ਼ ਹੋਵੇ, ਤਾਂ ਬੱਲੀ ਨਿਕਲਣ (ਬੂਟ ਲੀਫ) ਦੇ ਪੜਾਅ 'ਤੇ 200 ਮਿਲੀਲੀਟਰ Propiconazole 25% EC ਨੂੰ 200 ਲੀਟਰ ਪਾਣੀ ਵਿੱਚ ਮਿਲਾ ਕੇ ਪ੍ਰਤੀ ਏਕੜ ਸਪਰੇਅ ਕਰੋ।\n\n**ਰੋਕਥਾਮ ਅਤੇ ਸਾਵਧਾਨੀਆਂ:**\nਬਿਮਾਰੀ-ਮੁਕਤ ਪ੍ਰਮਾਣਿਤ ਬੀਜਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ। ਨਾਈਟ੍ਰੋਜਨ ਵਾਲੀਆਂ ਖਾਦਾਂ ਦੀ ਜ਼ਿਆਦਾ ਵਰਤੋਂ ਤੋਂ ਬਚੋ। ਬਹੁਤ ਜ਼ਿਆਦਾ ਪ੍ਰਭਾਵਿਤ ਖੇਤਾਂ ਵਿੱਚ ਲਗਾਤਾਰ ਕਣਕ ਦੀ ਫ਼ਸਲ ਉਗਾਉਣ ਤੋਂ ਪਰਹੇਜ਼ ਕਰੋ।\n",
   "answer_source": "template_offline",
-  "ms": 32
+  "ms": 36
  },
  {
   "id": 8,
@@ -268,7 +268,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 12,
@@ -389,7 +389,7 @@
   },
   "answer": "### Fasal Salah: Wheat (Gehu mein Karnal Bunt (Tilletia indica) ka prabandhan)\n\n**Pehchaan aur Lakshan:**\nBaali ke kewal kuch daane aanshik taur par teliospores ke kaale powder jaise mass mein badal jaate hain. Trimethylamine ke kaaran kusele hue daane se sadi hui machli jaisi durgandh aati hai.\n\n**Sujhaya Ilaaj aur Dose:**\nAgar mausam baadlon wala ho ya phool aate samay halki baarish ho, toh baali nikalne (boot leaf) ki stage par 200 ml Propiconazole 25% EC ko 200 liters paani mein mila kar prati acre spray karein.\n\n**Rokthaam aur Savdhaniyan:**\nDisease-free certified seeds ka use karein. Excessive nitrogenous fertilizers se bachein. Heavily infested fields mein lagataar gehu ki fasal ugane se bachein.\n",
   "answer_source": "template_offline",
-  "ms": 30
+  "ms": 34
  },
  {
   "id": 17,
@@ -418,7 +418,7 @@
   },
   "answer": "### Crop Advisory: Wheat (Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management)\n\n**Identification & Symptoms:**\nYellow powdery pustules arranged in linear rows or stripes along leaf veins. On shaking affected leaves, yellow powder sticks to clothes and hands. Appears in cool, moist, and cloudy weather (10-20°C).\n\n**Recommended Control & Dosage:**\nInspect fields regularly from mid-December to February, especially in sub-mountainous tracts. If initial disease foci are spotted, immediately spray Propiconazole 25% EC (Tilt/Bumper) @ 200 ml or Tebuconazole 25.9% EC (Folicur) @ 200 ml in 200 liters of water per acre. Repeat spray after 15 days if cloudy weather persists.\n\n**Preventive Measures:**\nCultivate resistant varieties like PBW 725, HD 3086, DBW 187 (Karan Vandana), and DBW 222. Avoid monoculture of susceptible older varieties like PBW 343 or HD 2967 in rust-prone areas.\n\n**Special Statutory Warning:**\nDo not spray fungicide during high wind velocity to avoid chemical drift. Always wear protective masks.\n",
   "answer_source": "template_offline",
-  "ms": 31
+  "ms": 35
  },
  {
   "id": 18,
@@ -447,7 +447,7 @@
   },
   "answer": "### फसल परामर्श: Wheat (गेहूं की बु of वाई का समय, बीज की मात्रा और महत्वपूर्ण सिंचाई की अवस्थाएं)\n\n**पहचान एवं लक्षण (Identification):**\nलागू नहीं\n\n**अनुशंसित उपचार एवं खुराक (Recommended Control & Dosage):**\nसमय पर बोए جانے والے गेहूं के लिए उचित बुवाई का समय 25 अक्टूबर से 15 नवंबर है। अनुशंसित बीज की मात्रा 40-45 kg प्रति acre है। उर्वरक की सिफारिश 120 kg Nitrogen (लगभग 130 kg Urea किस्तों में), 60 kg P2O5 (150 kg SSP या 55 kg DAP), और 40 kg K2O (66 kg MOP) प्रति hectare है।\n\n**रोकथाम एवं सावधानियां (Preventive Measures):**\nपहली महत्वपूर्ण सिंचाई Crown Root Initiation (CRI) अवस्था पर, बुवाई के 20-25 दिन बाद दी जानी चाहिए। जलभराव से बचें जिससे पौधों में पीलापन आ जाता है।\n",
   "answer_source": "template_offline",
-  "ms": 28
+  "ms": 34
  },
  {
   "id": 19,
@@ -589,7 +589,7 @@
   },
   "answer": "### Fasal Salah: Wheat (Gehu mein Karnal Bunt (Tilletia indica) ka prabandhan)\n\n**Pehchaan aur Lakshan:**\nBaali ke kewal kuch daane aanshik taur par teliospores ke kaale powder jaise mass mein badal jaate hain. Trimethylamine ke kaaran kusele hue daane se sadi hui machli jaisi durgandh aati hai.\n\n**Sujhaya Ilaaj aur Dose:**\nAgar mausam baadlon wala ho ya phool aate samay halki baarish ho, toh baali nikalne (boot leaf) ki stage par 200 ml Propiconazole 25% EC ko 200 liters paani mein mila kar prati acre spray karein.\n\n**Rokthaam aur Savdhaniyan:**\nDisease-free certified seeds ka use karein. Excessive nitrogenous fertilizers se bachein. Heavily infested fields mein lagataar gehu ki fasal ugane se bachein.\n",
   "answer_source": "template_offline",
-  "ms": 35
+  "ms": 40
  },
  {
   "id": 25,
@@ -796,7 +796,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 34,
@@ -817,9 +817,9 @@
    "script_ok": true,
    "market_ok": true
   },
-  "answer": "**गेहूं का न्यूनतम समर्थन मूल्य (MSP), Rabi Marketing Season 2026-27: Rs 2,585 प्रति क्विंटल।**\nपिछला सीज़न (2025-26): Rs 2,425 प्रति क्विंटल।\n\nअभी ताज़ा मंडी भाव नहीं मिल सके। आज के भाव के लिए agmarknet.gov.in या eNAM ऐप देखें, या किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें।",
+  "answer": "**गेहूं का न्यूनतम समर्थन मूल्य (MSP), Rabi Marketing Season 2026-27: Rs 2,585 प्रति क्विंटल।**\nपिछला सीज़न (2025-26): Rs 2,425 प्रति क्विंटल।\n\n**गेहूं के ताज़ा मंडी भाव** (28/09/2026):\n- 28/09/2026: Rs 2,720 प्रति क्विंटल (रिपोर्ट करने वाली मंडियों का औसत, Punjab)",
   "answer_source": "market_tool",
-  "ms": 275
+  "ms": 1638
  },
  {
   "id": 35,
@@ -848,7 +848,7 @@
   },
   "answer": "### ਫ਼ਸਲ ਸਲਾਹ: Wheat (ਪੀਲਾ ਰਤਵਾ (ਪੀਲੀ ਕੁੰਗੀ) ਦੀ ਪਛਾਣ ਅਤੇ ਰੋਕਥਾਮ)\n\n**ਪਛਾਣ ਅਤੇ ਲੱਛਣ:**\nਪੱਤਿਆਂ ਦੀਆਂ ਨਾੜੀਆਂ ਦੇ ਨਾਲ-ਨਾਲ ਲੰਬੀਆਂ ਕਤਾਰਾਂ ਵਿੱਚ ਪੀਲੇ ਪਾਊਡਰ ਵਰਗੇ ਦਾਣੇ ਬਣ ਜਾਂਦੇ ਹਨ। ਪ੍ਰਭਾਵਿਤ ਪੱਤਿਆਂ ਨੂੰ ਹਿਲਾਉਣ ਨਾਲ ਪੀਲਾ ਪਾਊਡਰ ਕੱپੜਿਆਂ ਅਤੇ ਹੱਥਾਂ ਨਾਲ ਚਿੰਬੜ ਜਾਂਦਾ ਹੈ। ਇਹ ਠੰਡੇ, ਸਿੱਲ੍ਹੇ ਅਤੇ ਬੱਦਲਵਾਈ ਵਾਲੇ ਮੌਸਮ (10-20°C) ਵਿੱਚ ਦਿਖਾਈ ਦਿੰਦਾ ਹੈ।\n\n**ਸਿਫ਼ਾਰਸ਼ ਕੀਤਾ ਇਲਾਜ ਅਤੇ ਖੁਰਾਕ:**\nਅੱਧ ਦਸੰਬਰ ਤੋਂ ਫਰਵਰੀ ਤੱਕ ਖੇਤਾਂ ਦਾ ਲਗਾਤਾਰ ਨਿਰੀਖਣ ਕਰੋ, ਖਾਸ ਕਰਕੇ ਪਹਾੜੀ ਇਲਾਕਿਆਂ ਵਿੱਚ। ਜੇਕਰ ਬਿਮਾਰੀ ਦੇ ਸ਼ੁਰੂਆਤੀ ਕੇਂਦਰ ਦਿਖਾਈ ਦੇਣ, ਤਾਂ ਤੁਰੰਤ Propiconazole 25% EC (Tilt/Bumper) @ 200 ml ਜਾਂ Tebuconazole 25.9% EC (Folicur) @ 200 ml ਨੂੰ 200 liters ਪਾਣੀ ਵਿੱਚ ਪ੍ਰਤੀ acre ਘੋਲ ਕੇ ਛਿੜਕਾਅ ਕਰੋ। ਜੇਕਰ ਬੱਦਲਵਾਈ ਵਾਲਾ ਮੌਸਮ ਜਾਰੀ ਰਹੇ ਤਾਂ 15 ਦਿਨਾਂ ਬਾਅਦ ਛਿੜਕਾਅ ਦੁਹਰਾਓ।\n\n**ਰੋਕਥਾਮ ਅਤੇ ਸਾਵਧਾਨੀਆਂ:**\nਰੋਧਕ ਕਿਸਮਾਂ ਜਿਵੇਂ ਕਿ PBW 725, HD 3086, DBW 187 (Karan Vandana), ਅਤੇ DBW 222 ਦੀ ਕਾਸ਼ਤ ਕਰੋ। ਰਤਵਾ ਪ੍ਰਭਾਵਿਤ ਖੇਤਰਾਂ ਵਿੱਚ ਸੰਵੇਦਨਸ਼ੀਲ ਪੁਰਾਣੀਆਂ ਕਿਸਮਾਂ ਜਿਵੇਂ ਕਿ PBW 343 ਜਾਂ HD 2967 ਦੀ ਲਗਾਤਾਰ ਬਿਜਾਈ ਕਰਨ ਤੋਂ ਬਚੋ।\n\n**ਵਿਸ਼ੇਸ਼ ਕਾਨੂੰਨੀ ਚੇਤਾਵਨੀ:**\nਕੈਮੀਕਲ ਦੇ ਉੱਡਣ ਤੋਂ ਬਚਣ ਲਈ ਤੇਜ਼ ਹਵਾ ਵਿੱਚ ਉੱਲੀਨਾਸ਼ਕ ਦਾ ਛਿੜਕਾਅ ਨਾ ਕਰੋ। ਹਮੇਸ਼ਾ ਸੁਰੱਖਿਆ ਵਾਲੇ ਮਾਸਕ ਪਹਿਨੋ।\n",
   "answer_source": "template_offline",
-  "ms": 34
+  "ms": 51
  },
  {
   "id": 36,
@@ -871,7 +871,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 4
  },
  {
   "id": 37,
@@ -894,7 +894,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 38,
@@ -915,9 +915,9 @@
    "script_ok": true,
    "market_ok": true
   },
-  "answer": "**गेहूं का न्यूनतम समर्थन मूल्य (MSP), Rabi Marketing Season 2026-27: Rs 2,585 प्रति क्विंटल।**\nपिछला सीज़न (2025-26): Rs 2,425 प्रति क्विंटल।\n\nअभी ताज़ा मंडी भाव नहीं मिल सके। आज के भाव के लिए agmarknet.gov.in या eNAM ऐप देखें, या किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें।",
+  "answer": "**गेहूं का न्यूनतम समर्थन मूल्य (MSP), Rabi Marketing Season 2026-27: Rs 2,585 प्रति क्विंटल।**\nपिछला सीज़न (2025-26): Rs 2,425 प्रति क्विंटल।\n\n**गेहूं के ताज़ा मंडी भाव** (28/09/2026):\n- 28/09/2026: Rs 2,720 प्रति क्विंटल (रिपोर्ट करने वाली मंडियों का औसत, Punjab)",
   "answer_source": "market_tool",
-  "ms": 2
+  "ms": 619
  },
  {
   "id": 39,
@@ -940,7 +940,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 40,
@@ -963,7 +963,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 41,
@@ -984,9 +984,9 @@
    "script_ok": true,
    "market_ok": true
   },
-  "answer": "**Minimum Support Price (MSP) for Wheat, Rabi Marketing Season 2026-27: Rs 2,585 per quintal.**\nPrevious season (2025-26): Rs 2,425 per quintal.\n\nLive mandi prices could not be fetched right now. For today's rates, check agmarknet.gov.in or the eNAM app, or call the Kisan Call Centre free on 1800-180-1551.",
+  "answer": "**Minimum Support Price (MSP) for Wheat, Rabi Marketing Season 2026-27: Rs 2,585 per quintal.**\nPrevious season (2025-26): Rs 2,425 per quintal.\n\n**Latest mandi prices for Wheat** (reported 28/09/2026):\n- 28/09/2026: Rs 2,720 per quintal (average of reporting mandis, Punjab)",
   "answer_source": "market_tool",
-  "ms": 1
+  "ms": 502
  },
  {
   "id": 42,
@@ -1009,7 +1009,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 2
+  "ms": 4
  },
  {
   "id": 43,
@@ -1032,7 +1032,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 2
+  "ms": 4
  },
  {
   "id": 44,
@@ -1055,7 +1055,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 45,
@@ -1078,7 +1078,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 46,
@@ -1105,7 +1105,7 @@
   },
   "answer": "### फसल परामर्श: Wheat (गेहूं की बु of वाई का समय, बीज की मात्रा और महत्वपूर्ण सिंचाई की अवस्थाएं)\n\n**पहचान एवं लक्षण (Identification):**\nलागू नहीं\n\n**अनुशंसित उपचार एवं खुराक (Recommended Control & Dosage):**\nसमय पर बोए جانے والے गेहूं के लिए उचित बुवाई का समय 25 अक्टूबर से 15 नवंबर है। अनुशंसित बीज की मात्रा 40-45 kg प्रति acre है। उर्वरक की सिफारिश 120 kg Nitrogen (लगभग 130 kg Urea किस्तों में), 60 kg P2O5 (150 kg SSP या 55 kg DAP), और 40 kg K2O (66 kg MOP) प्रति hectare है।\n\n**रोकथाम एवं सावधानियां (Preventive Measures):**\nपहली महत्वपूर्ण सिंचाई Crown Root Initiation (CRI) अवस्था पर, बुवाई के 20-25 दिन बाद दी जानी चाहिए। जलभराव से बचें जिससे पौधों में पीलापन आ जाता है।\n",
   "answer_source": "template_offline",
-  "ms": 34
+  "ms": 78
  },
  {
   "id": 47,
@@ -1128,7 +1128,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 48,
@@ -1151,7 +1151,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 49,
@@ -1201,7 +1201,7 @@
   },
   "answer": "### फसल परामर्श: Wheat (गेहूं में करनाल बंट (Tilletia indica) का प्रबंधन)\n\n**पहचान एवं लक्षण (Identification):**\nबाली के केवल कुछ दाने आंशिक रूप से टेलियोस्पोर्स के काले पाउडर जैसे द्रव्यमान में बदल जाते हैं। ट्राइमेथिलएमाइन के कारण कुचले हुए दाने से सड़ी हुई मछली जैसी दुर्गंध आती है।\n\n**अनुशंसित उपचार एवं खुराक (Recommended Control & Dosage):**\nयदि मौसम बादलों वाला हो या फूल आते समय हल्की बारिश हो, तो बाली निकलने (बूट लीफ) की अवस्था पर 200 मिलीलीटर Propiconazole 25% EC को 200 लीटर पानी में मिलाकर प्रति एकड़ छिड़काव करें।\n\n**रोकथाम एवं सावधानियां (Preventive Measures):**\nबीमारी मुक्त प्रमाणित बीजों का उपयोग करें। अत्यधिक नाइट्रोजनयुक्त उर्वरकों से बचें। अत्यधिक संक्रमित खेतों में लगातार गेहूं की फसल उगाने से बचें।\n",
   "answer_source": "template_offline",
-  "ms": 35
+  "ms": 55
  },
  {
   "id": 51,
@@ -1224,7 +1224,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 52,
@@ -1247,7 +1247,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 53,
@@ -1316,7 +1316,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 56,
@@ -1339,7 +1339,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 57,
@@ -1362,7 +1362,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 58,
@@ -1385,7 +1385,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 59,
@@ -1408,7 +1408,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 60,
@@ -1431,7 +1431,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 61,
@@ -1454,7 +1454,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 62,
@@ -1477,7 +1477,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 63,
@@ -1500,7 +1500,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 64,
@@ -1523,7 +1523,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 65,
@@ -1546,7 +1546,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 66,
@@ -1569,7 +1569,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 67,
@@ -1592,7 +1592,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 68,
@@ -1621,7 +1621,7 @@
   },
   "answer": "### Fasal Salah: Paddy (Rice) (Brown Planthopper (BPH / Bhoora Tilla) Management)\n\n**Pehchaan aur Lakshan:**\nBPH nymphs aur adults paani ke level se thik upar rice tillers ke base par ikatthe hote hain. Severe infestation ki wajah se kheto me golakar sukhne wale patches bante hain jinko 'hopper burn' kehte hain.\n\n**Sujhaya Ilaaj aur Dose:**\nTiller bases ko weekly monitor karein. Jab per hill 5-10 hoppers ka ETL dikhe, tab per acre 120 g Pymetrozine 50% WDG ya per acre 94 ml Triflumezopyrim 10% SC spray karein. Hollow cone nozzle ka use karke spray strictly plants ke base ki taraf karein.\n\n**Rokthaam aur Savdhaniyan:**\nPeak pest activity ke dauran 2-3 din ke liye paani drain kar dein. Synthetic pyrethroids (jaise Cypermethrin ya Deltamethrin) ka use bilkul na karein kyunki yeh natural spiders ko khatam karke extreme BPH resurgence ko trigger karte hain.\n",
   "answer_source": "template_offline",
-  "ms": 32
+  "ms": 70
  },
  {
   "id": 69,
@@ -1644,7 +1644,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 70,
@@ -1667,7 +1667,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 71,
@@ -1690,7 +1690,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 72,
@@ -1713,7 +1713,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 73,
@@ -1736,7 +1736,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 74,
@@ -1759,7 +1759,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 75,
@@ -1782,7 +1782,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 76,
@@ -1805,7 +1805,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 77,
@@ -1834,7 +1834,7 @@
   },
   "answer": "### Crop Advisory: Mustard (White Rust (Safed Kungi) and Blight Management in Mustard)\n\n**Identification & Symptoms:**\nProminent chalky white blisters appear on the lower surface of leaves. Hypertrophy and malformation of floral parts (Staghead formation) leading to sterile flowers without seeds.\n\n**Recommended Control & Dosage:**\nTreat seeds before sowing with Metalaxyl 35% WS (Apron) @ 6 g per kg seed. On appearance of disease on foliage, spray Metalaxyl 8% + Mancozeb 64% WP (Ridomil MZ) @ 2 g per liter of water (approx 400 g in 200 liters of water per acre).\n\n**Preventive Measures:**\nUse resistant or tolerant varieties like RH-749, NRCHB 101, and DRMRIJ 31 (Giriraj). Maintain balanced plant nutrition and ensure proper field drainage.\n",
   "answer_source": "template_offline",
-  "ms": 28
+  "ms": 48
  },
  {
   "id": 78,
@@ -1857,7 +1857,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 79,
@@ -1880,7 +1880,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 80,
@@ -1903,7 +1903,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 81,
@@ -1926,7 +1926,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 2
+  "ms": 4
  },
  {
   "id": 82,
@@ -1949,7 +1949,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 83,
@@ -1972,7 +1972,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 84,
@@ -1995,7 +1995,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 85,
@@ -2018,7 +2018,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 1
+  "ms": 4
  },
  {
   "id": 86,
@@ -2041,7 +2041,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 87,
@@ -2064,7 +2064,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 88,
@@ -2087,7 +2087,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 89,
@@ -2110,7 +2110,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 90,
@@ -2133,7 +2133,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 91,
@@ -2156,7 +2156,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 92,
@@ -2179,7 +2179,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 93,
@@ -2202,7 +2202,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 2
+  "ms": 4
  },
  {
   "id": 94,
@@ -2225,7 +2225,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 2
+  "ms": 4
  },
  {
   "id": 95,
@@ -2248,7 +2248,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 96,
@@ -2271,7 +2271,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 97,
@@ -2294,7 +2294,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 98,
@@ -2317,7 +2317,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 2
+  "ms": 4
  },
  {
   "id": 99,
@@ -2340,7 +2340,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 100,
@@ -2363,7 +2363,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 101,
@@ -2386,7 +2386,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 102,
@@ -2413,7 +2413,7 @@
   },
   "answer": "### फसल परामर्श: Paddy (Rice) (भूरा प्लांट हॉपर (BPH / भूरा टिड्डा) प्रबंधन)\n\n**पहचान एवं लक्षण (Identification):**\nBPH के निम्फ और वयस्क पानी के स्तर से ठीक ऊपर धान के कल्ले के आधार पर जमा होते हैं। गंभीर संक्रमण के परिणामस्वरूप खेतों में गोलाकार सूखने वाले पैच बनते हैं जिन्हें 'हॉपर बर्न' कहा जाता है।\n\n**अनुशंसित उपचार एवं खुराक (Recommended Control & Dosage):**\nसाप्ताहिक रूप से कल्ले के आधार की निगरानी करें। जब प्रति हिल 5-10 हॉपर का ETL देखा जाए, तो प्रति एकड़ 120 g Pymetrozine 50% WDG या प्रति एकड़ 94 ml Triflumezopyrim 10% SC का छिड़काव करें। होलो कोन नोजल का उपयोग करके छिड़काव सख्ती से पौधों के आधार की ओर करें।\n\n**रोकथाम एवं सावधानियां (Preventive Measures):**\nकीट की अत्यधिक गतिविधि के दौरान 2-3 दिनों के लिए पानी निकाल दें। सिंथेटिक पाइरेथ्रॉइड्स (जैसे Cypermethrin या Deltamethrin) से पूरी तरह बचें क्योंकि वे प्राकृतिक मकड़ियों को खत्म करके अत्यधिक BPH पुनरुत्थान को ट्रिगर करते हैं।\n",
   "answer_source": "template_offline",
-  "ms": 29
+  "ms": 46
  },
  {
   "id": 103,
@@ -2436,7 +2436,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 104,
@@ -2459,7 +2459,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 105,
@@ -2488,7 +2488,7 @@
   },
   "answer": "### Crop Advisory: Cotton (Cotton Whitefly and Leaf Curl Virus (CLCuD) Control)\n\n**Identification & Symptoms:**\nAdults and nymphs suck sap from undersides of leaves, causing yellowing and downward leaf curling. They transmit Cotton Leaf Curl Virus leading to thickening of veins and enation (leaf-like outgrowths) on lower side of leaves.\n\n**Recommended Control & Dosage:**\nSpray when ETL is reached (6-8 whitefly adults per leaf across top, middle, bottom leaves). Spray Diafenthiuron 50% WP @ 250 g or Pyriproxyfen 10% EC @ 500 ml or Afidopyropen 50 g/l DC @ 400 ml in 150 liters of water per acre.\n\n**Preventive Measures:**\nSow recommended CLCuD-tolerant hybrids. Eradicate alternative weed hosts like Kanghi buti (Abutilon indicum) and Peeli buti around borders.\n",
   "answer_source": "template_offline",
-  "ms": 28
+  "ms": 42
  },
  {
   "id": 106,
@@ -2511,7 +2511,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 107,
@@ -2534,7 +2534,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 108,
@@ -2557,7 +2557,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 109,
@@ -2580,7 +2580,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 110,
@@ -2603,7 +2603,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 111,
@@ -2718,7 +2718,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 116,
@@ -2741,7 +2741,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 117,
@@ -2764,7 +2764,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 118,
@@ -2787,7 +2787,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 119,
@@ -2810,7 +2810,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 120,
@@ -2839,7 +2839,7 @@
   },
   "answer": "### Fasal Salah: Cotton (Pink Bollworm (Gulabi Sundhi) Integrated Management)\n\n**Pehchaan aur Lakshan:**\nLarvae squares, flowers, aur developing bolls mein bore karte hain. Infested flowers theek se nahi khulte, aur 'rosette flower' jaisa appearance dikhate hain. Mature green bolls par frass ke sath exit holes dikhte hain; lint staining aur seed destruction hota hai.\n\n**Sujhaya Ilaaj aur Dose:**\nSowing ke 45 days baad monitoring ke liye 5 traps/acre ke hisab se pheromone traps install karein. Jab trap catch lagataar 3 days ke liye 8 moths/trap/night ke ETL se zyada ho jaye ya 10% green bolls damaged hon, toh Profenofos 50% EC @ 500 ml ya Emamectin Benzoate 5% SG @ 100 g ko 150-200 liters water per acre mein spray karein. Alternatively, Trichogramma egg parasitoids @ 60,000/acre weekly release karein.\n\n**Rokthaam aur Savdhaniyan:**\nPest cycle ko todne ke liye January ke end tak crop termination ko strictly follow karein. Fields mein cotton stalks ko stack karne se bachein. Ratoon cotton mat allow karein.\n",
   "answer_source": "template_offline",
-  "ms": 32
+  "ms": 55
  },
  {
   "id": 121,
@@ -2862,7 +2862,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 122,
@@ -2891,7 +2891,7 @@
   },
   "answer": "### फसल परामर्श: Cotton (गुलाबी सुंडी (Pink Bollworm) का एकीकृत प्रबंधन)\n\n**पहचान एवं लक्षण (Identification):**\nसुंडियाँ वर्जित कलियों, फूलों और विकसित होडियों में छेद करती हैं। ग्रसित फूल ठीक से नहीं खुलते हैं, जो एक विशिष्ट 'रोसेट फूल' (rosette flower) जैसा दिखाई देता है। परिपक्व हरी होडियों पर मल के साथ बाहर निकलने के छेद दिखाई देते हैं; रुई का दागदार होना और बीजों का नष्ट होना।\n\n**अनुशंसित उपचार एवं खुराक (Recommended Control & Dosage):**\nबुआई के 45 दिन बाद निगरानी के लिए 5 ट्रैप प्रति एकड़ की दर से फेरोमोन ट्रैप लगाएं। जब ट्रैप में कीटों की संख्या लगातार 3 दिनों तक 8 मोथ्स/ट्रैप/रात से अधिक हो जाए या 10% हरी होडियाँ क्षतिग्रस्त हों, तो Profenofos 50% EC @ 500 ml या Emamectin Benzoate 5% SG @ 100 g को 150-200 लीटर पानी प्रति एकड़ में मिलाकर छिड़काव करें। वैकल्पिक रूप से, साप्ताहिक Trichogramma अंडे के परजीवी @ 60,000/एकड़ छोड़ें।\n\n**रोकथाम एवं सावधानियां (Preventive Measures):**\nकीट चक्र को तोड़ने के लिए जनवरी के अंत तक फसल की कटाई/समाप्ति का सख्ती से पालन करें। खेतों में कपास के डंठल जमा करने से बचें। रतून कपास (ratoon cotton) न उगने दें।\n",
   "answer_source": "template_offline",
-  "ms": 29
+  "ms": 47
  },
  {
   "id": 123,
@@ -2920,7 +2920,7 @@
   },
   "answer": "### ਫ਼ਸਲ ਸਲਾਹ: Cotton (ਗੁਲਾਬੀ ਸੁੰਡੀ (Pink Bollworm) ਦਾ ਏਕੀਕ੍ਰਿਤ ਪ੍ਰਬੰਧਨ)\n\n**ਪਛਾਣ ਅਤੇ ਲੱਛਣ:**\nਸੁੰਡੀਆਂ ਕਲੀਆਂ, ਫੁੱਲਾਂ ਅਤੇ ਵਿਕਸਤ ਹੋਡੀਆਂ ਵਿੱਚ ਸੁਰਾਖ ਕਰਦੀਆਂ ਹਨ। ਕੀੜੇ ਪ੍ਰਭਾਵਿਤ ਫੁੱਲ ਚੰਗੀ ਤਰ੍ਹਾਂ ਨਹੀਂ ਖੁੱਲ੍ਹਦੇ ਅਤੇ 'ਰੋਜ਼ੈੱට් ਫੁੱਲ' (rosette flower) ਵਰਗੇ ਦਿਖਾਈ ਦਿੰਦੇ ਹਨ। ਪੱਕ ਰਹੀਆਂ ਹਰੀਆਂ ਹੋਡੀਆਂ ਉੱਤੇ ਮਲ ਦੇ ਨਾਲ ਬਾਹਰ ਨਿਕਲਣ ਵਾਲੇ ਸੁਰਾਖ ਦਿਖਾਈ ਦਿੰਦੇ ਹਨ; ਰੂੰ ਦਾ ਦਾਗਦਾਰ ਹੋਣਾ ਅਤੇ ਬੀਜਾਂ ਦਾ ਨਸ਼ਟ ਹੋਣਾ।\n\n**ਸਿਫ਼ਾਰਸ਼ ਕੀਤਾ ਇਲਾਜ ਅਤੇ ਖੁਰਾਕ:**\nਬਿਜਾਈ ਤੋਂ 45 ਦਿਨਾਂ ਬਾਅਦ ਨਿਗਰਾਨੀ ਲਈ 5 ਟਰੈਪ ਪ੍ਰਤੀ ਏਕੜ ਦੇ ਹਿਸਾਬ ਨਾਲ ਫੇਰੋਮੋਨ ਟਰੈਪ ਲਗਾਓ। ਜਦੋਂ ਟਰੈਪ ਵਿੱਚ ਕੀੜਿਆਂ ਦੀ ਗਿਣਤੀ ਲਗਾਤਾਰ 3 ਦਿਨਾਂ ਤੱਕ 8 ਮੋਥਸ/ਟਰੈਪ/ਰਾਤ ਤੋਂ ਵੱਧ ਜਾਵੇ ਜਾਂ 10% ਹਰੀਆਂ ਹੋਡੀਆਂ ਨੁਕਸਾਨੀਆਂ ਜਾਣ, ਤਾਂ Profenofos 50% EC @ 500 ml ਜਾਂ Emamectin Benzoate 5% SG @ 100 g ਨੂੰ 150-200 ਲੀਟਰ ਪਾਣੀ ਪ੍ਰਤੀ ਏਕੜ ਵਿੱਚ ਮਿਲਾ ਕੇ ਛਿੜਕਾਅ ਕਰੋ। ਇਸ ਦੀ ਬਜਾਏ, ਹਫ਼ਤਾਵਾਰੀ Trichogramma ਅੰਡੇ ਦੇ ਪਰਜੀਵੀ @ 60,000/ਏਕੜ ਛੱਡੋ।\n\n**ਰੋਕਥਾਮ ਅਤੇ ਸਾਵਧਾਨੀਆਂ:**\nਕੀੜੇ ਦੇ ਜੀਵਨ ਚੱਕਰ ਨੂੰ ਤੋੜਨ ਲਈ ਜਨਵਰੀ ਦੇ ਅੰਤ ਤੱਕ ਫ਼ਸਲ ਨੂੰ ਖ਼ਤਮ ਕਰਨ ਦੀ ਸਖ਼ਤੀ ਨਾਲ ਪਾਲਣਾ ਕਰੋ। ਖੇਤਾਂ ਵਿੱਚ ਕਪਾਹ ਦੀਆਂ ਸਟਾਲਕਾਂ (ਡੰਡੀਆਂ) ਨੂੰ ਇਕੱਠਾ ਕਰਨ ਤੋਂ ਬਚੋ। ਰੇਟੂਨ ਕਪਾਹ (ਪੁਰਾਣੀ ਕਪਾਹ) ਨਾ ਉੱਗਣ ਦਿਓ।\n",
   "answer_source": "template_offline",
-  "ms": 40
+  "ms": 59
  },
  {
   "id": 124,
@@ -2943,7 +2943,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 125,
@@ -2966,7 +2966,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 126,
@@ -2989,7 +2989,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 1
+  "ms": 3
  },
  {
   "id": 127,
@@ -3018,7 +3018,7 @@
   },
   "answer": "### ਫ਼ਸਲ ਸਲਾਹ: Cotton (ਗੁਲਾਬੀ ਸੁੰਡੀ (Pink Bollworm) ਦਾ ਏਕੀਕ੍ਰਿਤ ਪ੍ਰਬੰਧਨ)\n\n**ਪਛਾਣ ਅਤੇ ਲੱਛਣ:**\nਸੁੰਡੀਆਂ ਕਲੀਆਂ, ਫੁੱਲਾਂ ਅਤੇ ਵਿਕਸਤ ਹੋਡੀਆਂ ਵਿੱਚ ਸੁਰਾਖ ਕਰਦੀਆਂ ਹਨ। ਕੀੜੇ ਪ੍ਰਭਾਵਿਤ ਫੁੱਲ ਚੰਗੀ ਤਰ੍ਹਾਂ ਨਹੀਂ ਖੁੱਲ੍ਹਦੇ ਅਤੇ 'ਰੋਜ਼ੈੱට් ਫੁੱਲ' (rosette flower) ਵਰਗੇ ਦਿਖਾਈ ਦਿੰਦੇ ਹਨ। ਪੱਕ ਰਹੀਆਂ ਹਰੀਆਂ ਹੋਡੀਆਂ ਉੱਤੇ ਮਲ ਦੇ ਨਾਲ ਬਾਹਰ ਨਿਕਲਣ ਵਾਲੇ ਸੁਰਾਖ ਦਿਖਾਈ ਦਿੰਦੇ ਹਨ; ਰੂੰ ਦਾ ਦਾਗਦਾਰ ਹੋਣਾ ਅਤੇ ਬੀਜਾਂ ਦਾ ਨਸ਼ਟ ਹੋਣਾ।\n\n**ਸਿਫ਼ਾਰਸ਼ ਕੀਤਾ ਇਲਾਜ ਅਤੇ ਖੁਰਾਕ:**\nਬਿਜਾਈ ਤੋਂ 45 ਦਿਨਾਂ ਬਾਅਦ ਨਿਗਰਾਨੀ ਲਈ 5 ਟਰੈਪ ਪ੍ਰਤੀ ਏਕੜ ਦੇ ਹਿਸਾਬ ਨਾਲ ਫੇਰੋਮੋਨ ਟਰੈਪ ਲਗਾਓ। ਜਦੋਂ ਟਰੈਪ ਵਿੱਚ ਕੀੜਿਆਂ ਦੀ ਗਿਣਤੀ ਲਗਾਤਾਰ 3 ਦਿਨਾਂ ਤੱਕ 8 ਮੋਥਸ/ਟਰੈਪ/ਰਾਤ ਤੋਂ ਵੱਧ ਜਾਵੇ ਜਾਂ 10% ਹਰੀਆਂ ਹੋਡੀਆਂ ਨੁਕਸਾਨੀਆਂ ਜਾਣ, ਤਾਂ Profenofos 50% EC @ 500 ml ਜਾਂ Emamectin Benzoate 5% SG @ 100 g ਨੂੰ 150-200 ਲੀਟਰ ਪਾਣੀ ਪ੍ਰਤੀ ਏਕੜ ਵਿੱਚ ਮਿਲਾ ਕੇ ਛਿੜਕਾਅ ਕਰੋ। ਇਸ ਦੀ ਬਜਾਏ, ਹਫ਼ਤਾਵਾਰੀ Trichogramma ਅੰਡੇ ਦੇ ਪਰਜੀਵੀ @ 60,000/ਏਕੜ ਛੱਡੋ।\n\n**ਰੋਕਥਾਮ ਅਤੇ ਸਾਵਧਾਨੀਆਂ:**\nਕੀੜੇ ਦੇ ਜੀਵਨ ਚੱਕਰ ਨੂੰ ਤੋੜਨ ਲਈ ਜਨਵਰੀ ਦੇ ਅੰਤ ਤੱਕ ਫ਼ਸਲ ਨੂੰ ਖ਼ਤਮ ਕਰਨ ਦੀ ਸਖ਼ਤੀ ਨਾਲ ਪਾਲਣਾ ਕਰੋ। ਖੇਤਾਂ ਵਿੱਚ ਕਪਾਹ ਦੀਆਂ ਸਟਾਲਕਾਂ (ਡੰਡੀਆਂ) ਨੂੰ ਇਕੱਠਾ ਕਰਨ ਤੋਂ ਬਚੋ। ਰੇਟੂਨ ਕਪਾਹ (ਪੁਰਾਣੀ ਕਪਾਹ) ਨਾ ਉੱਗਣ ਦਿਓ।\n",
   "answer_source": "template_offline",
-  "ms": 41
+  "ms": 42
  },
  {
   "id": 128,
@@ -3047,7 +3047,7 @@
   },
   "answer": "### Fasal Salah: Cotton (Cotton Whitefly aur Leaf Curl Virus (CLCuD) Control)\n\n**Pehchaan aur Lakshan:**\nAdults aur nymphs leaves ke niche se sap suck karte hain, jisse yellowing aur leaves niche ki taraf curl ho jati hain. Ye Cotton Leaf Curl Virus transmit karte hain jisse veins thick ho jati hain aur leaves ke lower side par enation (leaf-like outgrowths) banti hain.\n\n**Sujhaya Ilaaj aur Dose:**\nJab ETL reach ho jaye toh spray karein (top, middle, bottom leaves par 6-8 whitefly adults per leaf). Per acre 150 liters water mein Diafenthiuron 50% WP @ 250 g ya Pyriproxyfen 10% EC @ 500 ml ya Afidopyropen 50 g/l DC @ 400 ml spray karein.\n\n**Rokthaam aur Savdhaniyan:**\nRecommended CLCuD-tolerant hybrids sow karein. Borders ke aas-paas alternative weed hosts jaise Kanghi buti (Abutilon indicum) aur Peeli buti ko eradicate karein.\n",
   "answer_source": "template_offline",
-  "ms": 45
+  "ms": 50
  },
  {
   "id": 129,
@@ -3070,7 +3070,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 130,
@@ -3093,7 +3093,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 131,
@@ -3116,7 +3116,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 132,
@@ -3139,7 +3139,7 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 133,
@@ -3162,7 +3162,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 134,
@@ -3185,7 +3185,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 135,
@@ -3208,7 +3208,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 2
+  "ms": 4
  },
  {
   "id": 136,
@@ -3237,7 +3237,7 @@
   },
   "answer": "### Fasal Salah: Mustard (Mustard Aphid (Chetpa/Mahu) Management)\n\n**Pehchaan aur Lakshan:**\nNymphs aur adults tender twigs, inflorescence, leaves aur siliquae (pods) se cell sap suck karte hain. Infested plants ke patte curl ho jaate hain, growth stunt ho jaati hai aur pods nahi bante hain. Yeh honeydew secrete karta hai jisse sooty mold develop ho jaata hai.\n\n**Sujhaya Ilaaj aur Dose:**\nSpray tabhi karein jab ETL reach ho jaye (central shoot par 1.5-2.0 cm aphid colony ya 20-25% infested plants). 150-200 liters pani per acre mein Dimethoate 30% EC @ 250-300 ml ya Thiamethoxam 25% WG @ 50-80 g mix karke spray karein. Honeybees aur pollinators ko protect karne ke liye, spray strictly late afternoon mein (3:30 PM ke baad) karein.\n\n**Rokthaam aur Savdhaniyan:**\nOctober 10 aur October 25 ke beech early sowing karne se aphid attack minimize hota hai. Yellow sticky traps @ 10-15 traps per acre early monitoring aur trapping mein help karte hain.\n",
   "answer_source": "template_offline",
-  "ms": 41
+  "ms": 44
  },
  {
   "id": 137,
@@ -3260,7 +3260,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 138,
@@ -3289,7 +3289,7 @@
   },
   "answer": "### फसल परामर्श: Mustard (सरसों उर्वरक और सिंचाई प्रबंधन)\n\n**पहचान एवं लक्षण (Identification):**\nलागू नहीं\n\n**अनुशंसित उपचार एवं खुराक (Recommended Control & Dosage):**\nप्रति हेक्टेयर 80 kg N, 40 kg P2O5, और 40 kg K2O डालें। elemental sulphur या Gypsum (200 kg/ha) के माध्यम से 20-25 kg/ha सल्फर का उपयोग करने से तेल की मात्रा 2-3% बढ़ जाती है।\n\n**रोकथाम एवं सावधानियां (Preventive Measures):**\nपहली सिंचाई बुवाई के 30-35 दिन बाद rosette अवस्था पर और दूसरी सिंचाई फलियां बनते समय (बुवाई के 60-65 दिन बाद) देनी चाहिए।\n",
   "answer_source": "template_offline",
-  "ms": 38
+  "ms": 47
  },
  {
   "id": 139,
@@ -3318,7 +3318,7 @@
   },
   "answer": "### ਫ਼ਸਲ ਸਲਾਹ: Mustard (ਸਰ੍ਹੋਂ ਵਿੱਚ White Rust (Safed Kungi) ਅਤੇ Blight ਦੀ ਰੋਕਥਾਮ)\n\n**ਪਛਾਣ ਅਤੇ ਲੱਛਣ:**\nਪੱਤਿਆਂ ਦੀ ਹੇਠਲੀ ਸਤਹ 'ਤੇ ਉੱਭਰੇ ਹੋਏ ਚਾਕ ਵਰਗੇ ਚਿੱਟੇ ਛਾਲੇ ਦਿਖਾਈ ਦਿੰਦੇ ਹਨ। ਫੁੱਲਾਂ ਦੇ ਹਿੱਸਿਆਂ ਵਿੱਚ ਅਸਧਾਰਨ ਵਾਧਾ ਅਤੇ ਵਿਗਾੜ (Staghead ਬਣਨਾ) ਹੁੰਦਾ ਹੈ ਜਿਸ ਕਾਰਨ ਬਿਨਾਂ ਬੀਜਾਂ ਵਾਲੇ ਬਾਂਝ ਫੁੱਲ ਬਣਦੇ ਹਨ।\n\n**ਸਿਫ਼ਾਰਸ਼ ਕੀਤਾ ਇਲਾਜ ਅਤੇ ਖੁਰਾਕ:**\nਬਿਜਾਈ ਤੋਂ ਪਹਿਲਾਂ ਬੀਜਾਂ ਨੂੰ Metalaxyl 35% WS (Apron) @ 6 g ਪ੍ਰਤੀ kg ਬੀਜ ਦੇ ਹਿਸਾਬ ਨਾਲ ਸੋਧੋ। ਪੱਤਿਆਂ 'ਤੇ ਬਿਮਾਰੀ ਦਿਖਾਈ ਦੇਣ 'ਤੇ, Metalaxyl 8% + Mancozeb 64% WP (Ridomil MZ) @ 2 g ਪ੍ਰਤੀ liter ਪਾਣੀ (ਲਗਭਗ 400 g ਪ੍ਰਤੀ 200 liters ਪਾਣੀ ਪ੍ਰਤੀ acre) ਦਾ ਛਿੜਕਾਅ ਕਰੋ।\n\n**ਰੋਕਥਾਮ ਅਤੇ ਸਾਵਧਾਨੀਆਂ:**\nRH-749, NRCHB 101, ਅਤੇ DRMRIJ 31 (Giriraj) ਵਰਗੀਆਂ ਰੋਧਕ ਜਾਂ ਸਹਿਣਸ਼ੀਲ ਕਿਸਮਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ। ਪੌਦਿਆਂ ਨੂੰ ਸੰਤੁਲਿਤ ਪੋਸ਼ਣ ਦਿਓ ਅਤੇ ਖੇਤ ਵਿੱਚ ਪਾਣੀ ਦੇ ਨਿਕਾਸ ਦਾ ਸਹੀ ਪ੍ਰਬੰਧ ਯਕੀਨੀ ਬਣਾਓ।\n",
   "answer_source": "template_offline",
-  "ms": 43
+  "ms": 52
  },
  {
   "id": 140,
@@ -3347,7 +3347,7 @@
   },
   "answer": "### Fasal Salah: Mustard (Mustard fertilizer aur irrigation management)\n\n**Pehchaan aur Lakshan:**\nN/A\n\n**Sujhaya Ilaaj aur Dose:**\nPer hectare 80 kg N, 40 kg P2O5, aur 40 kg K2O apply karein. Elemental sulphur ya Gypsum (200 kg/ha) ke through 20-25 kg/ha sulphur dene se oil content 2-3% badh jata hai.\n\n**Rokthaam aur Savdhaniyan:**\nPehli irrigation sowing ke 30-35 days baad rosette stage par aur dusri irrigation siliquae formation stage par (sowing ke 60-65 days baad) deni chahiye.\n",
   "answer_source": "template_offline",
-  "ms": 37
+  "ms": 45
  },
  {
   "id": 141,
@@ -3370,7 +3370,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 142,
@@ -3399,7 +3399,7 @@
   },
   "answer": "### फसल परामर्श: Mustard (सरसों में White Rust (Safed Kungi) और Blight प्रबंधन)\n\n**पहचान एवं लक्षण (Identification):**\nपत्तियों की निचली सतह पर उभरे हुए चाक जैसे सफेद छाले दिखाई देते हैं। फूलों के हिस्सों में असामान्य वृद्धि और विकृति (Staghead बनना) होती है जिससे बिना बीज वाले बांझ फूल बनते हैं।\n\n**अनुशंसित उपचार एवं खुराक (Recommended Control & Dosage):**\nबुवाई से पहले बीजों को Metalaxyl 35% WS (Apron) @ 6 g प्रति kg बीज की दर से उपचारित करें। पत्तियों पर रोग दिखने पर, Metalaxyl 8% + Mancozeb 64% WP (Ridomil MZ) @ 2 g प्रति liter पानी (लगभग 400 g प्रति 200 liters पानी प्रति acre) का छिड़काव करें।\n\n**रोकथाम एवं सावधानियां (Preventive Measures):**\nRH-749, NRCHB 101, और DRMRIJ 31 (Giriraj) जैसी रोग प्रतिरोधी या सहनशील किस्मों का उपयोग करें। संतुलित पौध पोषण बनाए रखें और खेत में जल निकासी की उचित व्यवस्था सुनिश्चित करें।\n",
   "answer_source": "template_offline",
-  "ms": 43
+  "ms": 55
  },
  {
   "id": 143,
@@ -3422,7 +3422,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 144,
@@ -3535,9 +3535,9 @@
    "script_ok": true,
    "market_ok": true
   },
-  "answer": "**Sarson ka nyuntam samarthan mulya (MSP), Rabi Marketing Season 2026-27: Rs 6,200 prati quintal.**\nPichhla season (2025-26): Rs 5,950 prati quintal.\n\nAbhi taaza mandi bhav nahi mil sake. Aaj ke bhav ke liye agmarknet.gov.in ya eNAM app dekhein, ya Kisan Call Centre ko muft number 1800-180-1551 par call karein.",
+  "answer": "**Sarson ka nyuntam samarthan mulya (MSP), Rabi Marketing Season 2026-27: Rs 6,200 prati quintal.**\nPichhla season (2025-26): Rs 5,950 prati quintal.\n\n**Sarson ke taaza mandi bhav** (28/09/2026):\n- 28/09/2026: Rs 7,561 prati quintal (report karne wali mandiyon ka ausat, Punjab)",
   "answer_source": "market_tool",
-  "ms": 1
+  "ms": 572
  },
  {
   "id": 149,
@@ -3587,7 +3587,7 @@
   },
   "answer": "### फसल परामर्श: Mustard (सरसों उर्वरक और सिंचाई प्रबंधन)\n\n**पहचान एवं लक्षण (Identification):**\nलागू नहीं\n\n**अनुशंसित उपचार एवं खुराक (Recommended Control & Dosage):**\nप्रति हेक्टेयर 80 kg N, 40 kg P2O5, और 40 kg K2O डालें। elemental sulphur या Gypsum (200 kg/ha) के माध्यम से 20-25 kg/ha सल्फर का उपयोग करने से तेल की मात्रा 2-3% बढ़ जाती है।\n\n**रोकथाम एवं सावधानियां (Preventive Measures):**\nपहली सिंचाई बुवाई के 30-35 दिन बाद rosette अवस्था पर और दूसरी सिंचाई फलियां बनते समय (बुवाई के 60-65 दिन बाद) देनी चाहिए।\n",
   "answer_source": "template_offline",
-  "ms": 41
+  "ms": 46
  },
  {
   "id": 151,
@@ -3610,7 +3610,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 2
+  "ms": 4
  },
  {
   "id": 152,
@@ -3638,7 +3638,7 @@
   },
   "answer": "### Fasal Salah: Mustard (Mustard fertilizer aur irrigation management)\n\n**Pehchaan aur Lakshan:**\nN/A\n\n**Sujhaya Ilaaj aur Dose:**\nPer hectare 80 kg N, 40 kg P2O5, aur 40 kg K2O apply karein. Elemental sulphur ya Gypsum (200 kg/ha) ke through 20-25 kg/ha sulphur dene se oil content 2-3% badh jata hai.\n\n**Rokthaam aur Savdhaniyan:**\nPehli irrigation sowing ke 30-35 days baad rosette stage par aur dusri irrigation siliquae formation stage par (sowing ke 60-65 days baad) deni chahiye.\n",
   "answer_source": "template_offline",
-  "ms": 40
+  "ms": 46
  },
  {
   "id": 153,
@@ -3661,7 +3661,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 154,
@@ -3690,7 +3690,7 @@
   },
   "answer": "### फसल परामर्श: Mustard (सरसों उर्वरक और सिंचाई प्रबंधन)\n\n**पहचान एवं लक्षण (Identification):**\nलागू नहीं\n\n**अनुशंसित उपचार एवं खुराक (Recommended Control & Dosage):**\nप्रति हेक्टेयर 80 kg N, 40 kg P2O5, और 40 kg K2O डालें। elemental sulphur या Gypsum (200 kg/ha) के माध्यम से 20-25 kg/ha सल्फर का उपयोग करने से तेल की मात्रा 2-3% बढ़ जाती है।\n\n**रोकथाम एवं सावधानियां (Preventive Measures):**\nपहली सिंचाई बुवाई के 30-35 दिन बाद rosette अवस्था पर और दूसरी सिंचाई फलियां बनते समय (बुवाई के 60-65 दिन बाद) देनी चाहिए।\n",
   "answer_source": "template_offline",
-  "ms": 40
+  "ms": 45
  },
  {
   "id": 155,
@@ -3719,7 +3719,7 @@
   },
   "answer": "### ਫ਼ਸਲ ਸਲਾਹ: Mustard (सर੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਜਾਈ ਪ੍ਰਬੰਧਨ)\n\n**ਪਛਾਣ ਅਤੇ ਲੱਛਣ:**\nलागु नहीं\n\n**ਸਿਫ਼ਾਰਸ਼ ਕੀਤਾ ਇਲਾਜ ਅਤੇ ਖੁਰਾਕ:**\nप्रति हैक्टेयर 80 kg N, 40 kg P2O5, ਅਤੇ 40 kg K2O ਪਾਓ। ਐਲੀਮੈਂਟਲ ਸਲਫਰ ਜਾਂ ਜਿਪਸਮ (200 kg/ha) ਰਾਹੀਂ 20-25 kg/ha ਸਲਫਰ ਪਾਉਣ ਨਾਲ ਤੇਲ ਦੀ ਮਾਤਰਾ 2-3% ਵਧ ਜਾਂਦੀ ਹੈ।\n\n**ਰੋਕਥਾਮ ਅਤੇ ਸਾਵਧਾਨੀਆਂ:**\nਪਹਿਲੀ ਸਿੰਜਾਈ ਬਿਜਾਈ ਤੋਂ 30-35 ਦਿਨ ਬਾਅਦ ਰੋਜ਼ੇਟ ਪੜਾਅ 'ਤੇ ਅਤੇ ਦੂਜੀ ਸਿੰਜਾਈ ਫਲੀਆਂ ਬਣਨ ਦੇ ਸਮੇਂ (ਬਿਜਾਈ ਤੋਂ 60-65 ਦਿਨ ਬਾਅਦ) ਕਰਨੀ ਚਾਹੀਦੀ ਹੈ।\n",
   "answer_source": "template_offline",
-  "ms": 42
+  "ms": 44
  },
  {
   "id": 156,
@@ -3748,7 +3748,7 @@
   },
   "answer": "### Fasal Salah: Mustard (Mustard fertilizer aur irrigation management)\n\n**Pehchaan aur Lakshan:**\nN/A\n\n**Sujhaya Ilaaj aur Dose:**\nPer hectare 80 kg N, 40 kg P2O5, aur 40 kg K2O apply karein. Elemental sulphur ya Gypsum (200 kg/ha) ke through 20-25 kg/ha sulphur dene se oil content 2-3% badh jata hai.\n\n**Rokthaam aur Savdhaniyan:**\nPehli irrigation sowing ke 30-35 days baad rosette stage par aur dusri irrigation siliquae formation stage par (sowing ke 60-65 days baad) deni chahiye.\n",
   "answer_source": "template_offline",
-  "ms": 45
+  "ms": 44
  },
  {
   "id": 157,
@@ -3777,7 +3777,7 @@
   },
   "answer": "### Crop Advisory: Mustard (Mustard Aphid (Chetpa/Mahu) Management)\n\n**Identification & Symptoms:**\nNymphs and adults suck cell sap from tender twigs, inflorescence, leaves, and siliquae (pods). Infested plants show curling of leaves, stunted growth, and pod failure. Secretes honeydew leading to sooty mold development.\n\n**Recommended Control & Dosage:**\nSpray only when ETL is reached (1.5–2.0 cm aphid colony on the central shoot or 20-25% infested plants). Apply Dimethoate 30% EC @ 250-300 ml or Thiamethoxam 25% WG @ 50-80 g in 150-200 liters of water per acre. To protect honeybees and pollinators, spray strictly in the late afternoon (after 3:30 PM).\n\n**Preventive Measures:**\nEarly sowing between October 10 and October 25 minimizes aphid attack. Yellow sticky traps @ 10-15 traps per acre help in early monitoring and trapping.\n",
   "answer_source": "template_offline",
-  "ms": 41
+  "ms": 55
  },
  {
   "id": 158,
@@ -3800,7 +3800,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 159,
@@ -3852,7 +3852,7 @@
   },
   "answer": "### Fasal Salah: Mustard (Mustard Aphid (Chetpa/Mahu) Management)\n\n**Pehchaan aur Lakshan:**\nNymphs aur adults tender twigs, inflorescence, leaves aur siliquae (pods) se cell sap suck karte hain. Infested plants ke patte curl ho jaate hain, growth stunt ho jaati hai aur pods nahi bante hain. Yeh honeydew secrete karta hai jisse sooty mold develop ho jaata hai.\n\n**Sujhaya Ilaaj aur Dose:**\nSpray tabhi karein jab ETL reach ho jaye (central shoot par 1.5-2.0 cm aphid colony ya 20-25% infested plants). 150-200 liters pani per acre mein Dimethoate 30% EC @ 250-300 ml ya Thiamethoxam 25% WG @ 50-80 g mix karke spray karein. Honeybees aur pollinators ko protect karne ke liye, spray strictly late afternoon mein (3:30 PM ke baad) karein.\n\n**Rokthaam aur Savdhaniyan:**\nOctober 10 aur October 25 ke beech early sowing karne se aphid attack minimize hota hai. Yellow sticky traps @ 10-15 traps per acre early monitoring aur trapping mein help karte hain.\n",
   "answer_source": "template_offline",
-  "ms": 49
+  "ms": 48
  },
  {
   "id": 161,
@@ -3875,9 +3875,9 @@
    "weather_ok": true,
    "district_ok": true
   },
-  "answer": "### Farm Weather Advisory: Bathinda\n\nBathinda: 25.0°C, humidity 77.0%, wind 1.2 km/h, and a 0.0% chance of rain in the next 12 hours.",
+  "answer": "### Farm Weather Advisory: Bathinda\n\nBathinda: 33.7°C, humidity 46.0%, wind 8.4 km/h, and a 0.0% chance of rain in the next 12 hours.",
   "answer_source": null,
-  "ms": 788
+  "ms": 979
  },
  {
   "id": 162,
@@ -3900,9 +3900,9 @@
    "weather_ok": true,
    "district_ok": true
   },
-  "answer": "### कृषि मौसम परामर्श: Mansa\n\nMansa: तापमान 23.7°C, नमी 83.0%, हवा 3.1 km/h, और अगले 12 घंटों में बारिश की संभावना 0.0% है।",
+  "answer": "### कृषि मौसम परामर्श: Mansa\n\nMansa: तापमान 32.0°C, नमी 57.0%, हवा 7.2 km/h, और अगले 12 घंटों में बारिश की संभावना 0.0% है।",
   "answer_source": null,
-  "ms": 816
+  "ms": 1026
  },
  {
   "id": 163,
@@ -3925,9 +3925,9 @@
    "weather_ok": true,
    "district_ok": true
   },
-  "answer": "### ਖੇਤੀ ਮੌਸਮ ਸਲਾਹ: Sangrur\n\nSangrur: ਤਾਪਮਾਨ 23.3°C, ਨਮੀ 80.0%, ਹਵਾ 5.9 km/h, ਅਤੇ ਅਗਲੇ 12 ਘੰਟਿਆਂ ਵਿੱਚ ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ 0.0% ਹੈ।",
+  "answer": "### ਖੇਤੀ ਮੌਸਮ ਸਲਾਹ: Sangrur\n\nSangrur: ਤਾਪਮਾਨ 31.3°C, ਨਮੀ 59.0%, ਹਵਾ 8.4 km/h, ਅਤੇ ਅਗਲੇ 12 ਘੰਟਿਆਂ ਵਿੱਚ ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ 2.0% ਹੈ।",
   "answer_source": null,
-  "ms": 632
+  "ms": 1149
  },
  {
   "id": 164,
@@ -3950,9 +3950,9 @@
    "weather_ok": true,
    "district_ok": true
   },
-  "answer": "### Krishi Mausam Salah: Muktsar\n\nMuktsar: taapmaan 23.6°C, nami 88.0%, hawa 4.0 km/h, aur agle 12 ghanton mein baarish ki sambhavna 0.0% hai.",
+  "answer": "### Krishi Mausam Salah: Muktsar\n\nMuktsar: taapmaan 33.3°C, nami 47.0%, hawa 7.6 km/h, aur agle 12 ghanton mein baarish ki sambhavna 0.0% hai.",
   "answer_source": null,
-  "ms": 925
+  "ms": 1125
  },
  {
   "id": 165,
@@ -3975,9 +3975,9 @@
    "weather_ok": true,
    "district_ok": true
   },
-  "answer": "### Farm Weather Advisory: Fazilka\n\nFazilka: 23.6°C, humidity 81.0%, wind 4.8 km/h, and a 0.0% chance of rain in the next 12 hours.",
+  "answer": "### Farm Weather Advisory: Fazilka\n\nFazilka: 34.1°C, humidity 39.0%, wind 8.4 km/h, and a 0.0% chance of rain in the next 12 hours.",
   "answer_source": null,
-  "ms": 698
+  "ms": 970
  },
  {
   "id": 166,
@@ -4000,9 +4000,9 @@
    "weather_ok": true,
    "district_ok": true
   },
-  "answer": "### कृषि मौसम परामर्श: Patiala\n\nPatiala: तापमान 23.2°C, नमी 80.0%, हवा 8.9 km/h, और अगले 12 घंटों में बारिश की संभावना 0.0% है।",
+  "answer": "### कृषि मौसम परामर्श: Patiala\n\nPatiala: तापमान 31.2°C, नमी 56.0%, हवा 10.5 km/h, और अगले 12 घंटों में बारिश की संभावना 2.0% है।",
   "answer_source": null,
-  "ms": 847
+  "ms": 788
  },
  {
   "id": 167,
@@ -4025,9 +4025,9 @@
    "weather_ok": true,
    "district_ok": true
   },
-  "answer": "### ਖੇਤੀ ਮੌਸਮ ਸਲਾਹ: Gurdaspur\n\nGurdaspur: ਤਾਪਮਾਨ 22.7°C, ਨਮੀ 85.0%, ਹਵਾ 1.4 km/h, ਅਤੇ ਅਗਲੇ 12 ਘੰਟਿਆਂ ਵਿੱਚ ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ 0.0% ਹੈ।",
+  "answer": "### ਖੇਤੀ ਮੌਸਮ ਸਲਾਹ: Gurdaspur\n\nGurdaspur: ਤਾਪਮਾਨ 31.2°C, ਨਮੀ 51.0%, ਹਵਾ 4.2 km/h, ਅਤੇ ਅਗਲੇ 12 ਘੰਟਿਆਂ ਵਿੱਚ ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ 2.0% ਹੈ।",
   "answer_source": null,
-  "ms": 639
+  "ms": 867
  },
  {
   "id": 168,
@@ -4050,9 +4050,9 @@
    "weather_ok": true,
    "district_ok": true
   },
-  "answer": "### Krishi Mausam Salah: Amritsar\n\nAmritsar: taapmaan 23.9°C, nami 78.0%, hawa 1.1 km/h, aur agle 12 ghanton mein baarish ki sambhavna 0.0% hai.",
+  "answer": "### Krishi Mausam Salah: Amritsar\n\nAmritsar: taapmaan 32.1°C, nami 49.0%, hawa 5.8 km/h, aur agle 12 ghanton mein baarish ki sambhavna 2.0% hai.",
   "answer_source": null,
-  "ms": 724
+  "ms": 1027
  },
  {
   "id": 169,
@@ -4075,9 +4075,9 @@
    "weather_ok": true,
    "district_ok": true
   },
-  "answer": "### Farm Weather Advisory: Hoshiarpur\n\nHoshiarpur: 22.0°C, humidity 86.0%, wind 3.4 km/h, and a 0.0% chance of rain in the next 12 hours.",
+  "answer": "### Farm Weather Advisory: Hoshiarpur\n\nHoshiarpur: 32.2°C, humidity 41.0%, wind 8.3 km/h, and a 2.0% chance of rain in the next 12 hours.",
   "answer_source": null,
-  "ms": 878
+  "ms": 830
  },
  {
   "id": 170,
@@ -4100,9 +4100,9 @@
    "weather_ok": true,
    "district_ok": true
   },
-  "answer": "### कृषि मौसम परामर्श: Ludhiana\n\nLudhiana: तापमान 23.7°C, नमी 78.0%, हवा 4.3 km/h, और अगले 12 घंटों में बारिश की संभावना 0.0% है।",
+  "answer": "### कृषि मौसम परामर्श: Ludhiana\n\nLudhiana: तापमान 32.3°C, नमी 47.0%, हवा 8.0 km/h, और अगले 12 घंटों में बारिश की संभावना 2.0% है।",
   "answer_source": null,
-  "ms": 643
+  "ms": 824
  },
  {
   "id": 171,
@@ -4125,9 +4125,9 @@
    "weather_ok": true,
    "district_ok": true
   },
-  "answer": "### ਖੇਤੀ ਮੌਸਮ ਸਲਾਹ: Tarn Taran\n\nTarn Taran: ਤਾਪਮਾਨ 23.1°C, ਨਮੀ 82.0%, ਹਵਾ 3.6 km/h, ਅਤੇ ਅਗਲੇ 12 ਘੰਟਿਆਂ ਵਿੱਚ ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ 0.0% ਹੈ।",
+  "answer": "### ਖੇਤੀ ਮੌਸਮ ਸਲਾਹ: Tarn Taran\n\nTarn Taran: ਤਾਪਮਾਨ 31.7°C, ਨਮੀ 54.0%, ਹਵਾ 6.7 km/h, ਅਤੇ ਅਗਲੇ 12 ਘੰਟਿਆਂ ਵਿੱਚ ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ 2.0% ਹੈ।",
   "answer_source": null,
-  "ms": 645
+  "ms": 782
  },
  {
   "id": 172,
@@ -4150,9 +4150,9 @@
    "weather_ok": true,
    "district_ok": true
   },
-  "answer": "### Krishi Mausam Salah: Moga\n\nMoga: taapmaan 24.0°C, nami 83.0%, hawa 1.7 km/h, aur agle 12 ghanton mein baarish ki sambhavna 0.0% hai.",
+  "answer": "### Krishi Mausam Salah: Moga\n\nMoga: taapmaan 31.6°C, nami 58.0%, hawa 5.2 km/h, aur agle 12 ghanton mein baarish ki sambhavna 4.0% hai.",
   "answer_source": null,
-  "ms": 790
+  "ms": 1802
  },
  {
   "id": 173,
@@ -4175,9 +4175,9 @@
    "weather_ok": true,
    "district_ok": true
   },
-  "answer": "### Farm Weather Advisory: Faridkot\n\nFaridkot: 24.6°C, humidity 82.0%, wind 2.8 km/h, and a 0.0% chance of rain in the next 12 hours.",
+  "answer": "### Farm Weather Advisory: Faridkot\n\nFaridkot: 32.4°C, humidity 55.0%, wind 8.4 km/h, and a 4.0% chance of rain in the next 12 hours.",
   "answer_source": null,
-  "ms": 819
+  "ms": 932
  },
  {
   "id": 174,
@@ -4200,9 +4200,9 @@
    "weather_ok": true,
    "district_ok": true
   },
-  "answer": "### कृषि मौसम परामर्श: Fatehgarh Sahib\n\nFatehgarh Sahib: तापमान 23.4°C, नमी 81.0%, हवा 9.0 km/h, और अगले 12 घंटों में बारिश की संभावना 0.0% है।",
+  "answer": "### कृषि मौसम परामर्श: Fatehgarh Sahib\n\nFatehgarh Sahib: तापमान 31.5°C, नमी 50.0%, हवा 11.9 km/h, और अगले 12 घंटों में बारिश की संभावना 0.0% है।",
   "answer_source": null,
-  "ms": 647
+  "ms": 1326
  },
  {
   "id": 175,
@@ -4225,9 +4225,9 @@
    "weather_ok": true,
    "district_ok": true
   },
-  "answer": "### ਖੇਤੀ ਮੌਸਮ ਸਲਾਹ: Barnala\n\nBarnala: ਤਾਪਮਾਨ 22.6°C, ਨਮੀ 87.0%, ਹਵਾ 3.9 km/h, ਅਤੇ ਅਗਲੇ 12 ਘੰਟਿਆਂ ਵਿੱਚ ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ 0.0% ਹੈ।",
+  "answer": "### ਖੇਤੀ ਮੌਸਮ ਸਲਾਹ: Barnala\n\nBarnala: ਤਾਪਮਾਨ 31.3°C, ਨਮੀ 60.0%, ਹਵਾ 7.0 km/h, ਅਤੇ ਅਗਲੇ 12 ਘੰਟਿਆਂ ਵਿੱਚ ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ 4.0% ਹੈ।",
   "answer_source": null,
-  "ms": 647
+  "ms": 818
  },
  {
   "id": 176,
@@ -4254,7 +4254,7 @@
   },
   "answer": "**PM-KISAN jaanch:** yogyata jaanchne ke liye 'Mera khet' bharein (kya parivar ke paas kheti ki zameen hai, aur yogyata wale sawal).\n\nPM-KISAN Kendra Sarkar ki yojana hai, jiska poora kharcha Bharat Sarkar deti hai, aur yeh 1 December 2018 se chal rahi hai. Yogya zameen wale kisan parivaron ko har saal Rs 6,000 ki aay sahayata Rs 2,000 ki teen barabar kiston mein seedhe bank khate mein milti hai. Is yojana mein parivar ka matlab pati, patni aur nabalig bachche hai.\n\nSabhi zameen wale kisan parivar yogya hain, jab tak parivar kisi bahar rakhi gayi shreni mein nahi aata. Rajya ya Kendra Shasit Pradesh ki sarkar yojana ke niyamon ke anusaar yogya parivaron ki pehchan karti hai.\n\npmkisan.gov.in par 'New Farmer Registration', PM-KISAN mobile app, Common Service Centre (CSC) ya apne rajya ke PM-KISAN nodal officer ke zariye registration karein. Apna Aadhaar, zameen ke record ki jaankari aur bank khate ki jaankari taiyaar rakhein.",
   "answer_source": "template_offline",
-  "ms": 3
+  "ms": 5
  },
  {
   "id": 177,
@@ -4437,7 +4437,7 @@
   },
   "answer": "pmkisan.gov.in 'ਤੇ 'New Farmer Registration', ਪੀਐਮ-ਕਿਸਾਨ ਮੋਬਾਈਲ ਐਪ, ਕਾਮਨ ਸਰਵਿਸ ਸੈਂਟਰ (CSC) ਜਾਂ ਆਪਣੇ ਰਾਜ ਦੇ ਪੀਐਮ-ਕਿਸਾਨ ਨੋਡਲ ਅਫ਼ਸਰ ਰਾਹੀਂ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਕਰੋ। ਆਪਣਾ ਆਧਾਰ, ਜ਼ਮੀਨ ਦੇ ਰਿਕਾਰਡ ਦੇ ਵੇਰਵੇ ਅਤੇ ਬੈਂਕ ਖਾਤੇ ਦੇ ਵੇਰਵੇ ਤਿਆਰ ਰੱਖੋ।\n\nਸਾਰੇ ਰਜਿਸਟਰਡ ਪੀਐਮ-ਕਿਸਾਨ ਕਿਸਾਨਾਂ ਲਈ eKYC ਲਾਜ਼ਮੀ ਹੈ। ਬਾਇਓਮੈਟ੍ਰਿਕ eKYC ਕਾਮਨ ਸਰਵਿਸ ਸੈਂਟਰ (CSC), ਪੀਐਮ-ਕਿਸਾਨ ਮੋਬਾਈਲ ਐਪ ਅਤੇ ਰਾਜ ਦੇ ਅਧਿਕਾਰਤ ਅਧਿਕਾਰੀਆਂ ਰਾਹੀਂ ਉਪਲਬਧ ਹੈ।",
   "answer_source": "template_offline",
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 184,
@@ -4638,7 +4638,7 @@
   },
   "answer": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਮੇਰੇ ਕੋਲ ਅਜੇ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਨਹੀਂ ਹੈ। ਮੇਰੀਆਂ ਸਲਾਹਾਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨੇ ਅਤੇ ਨਰਮੇ ਦੇ ਚੋਣਵੇਂ ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ, ਕਣਕ ਅਤੇ ਸਰ੍ਹੋਂ ਦੀ ਖਾਦ ਅਤੇ ਸਿੰਚਾਈ, ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਹਨ। ਭਰੋਸੇਯੋਗ ਸਲਾਹ ਲਈ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ ਕ੍ਰਿਸ਼ੀ ਵਿਗਿਆਨ ਕੇਂਦਰ (KVK) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 192,
@@ -4659,9 +4659,9 @@
    "script_ok": true,
    "referred": true
   },
-  "answer": "Aapke sawal mein koi jagah pehchani nahi gayi, isliye yeh **Ludhiana** ka mausam hai. Apna zila batayein, jaise \"Sangrur mein mausam\".\n\n### Krishi Mausam Salah: Ludhiana\n\nLudhiana: taapmaan 23.7°C, nami 78.0%, hawa 4.3 km/h, aur agle 12 ghanton mein baarish ki sambhavna 0.0% hai.\n\n**Chhidkaav Salah:**\nChhidkaav ke liye sahi samay: hawa ki raftaar normal hai. Subah 8-11 baje ya shaam 3:30 baje ke baad chhidkaav karein.",
+  "answer": "Aapke sawal mein koi jagah pehchani nahi gayi, isliye yeh **Ludhiana** ka mausam hai. Apna zila batayein, jaise \"Sangrur mein mausam\".\n\n### Krishi Mausam Salah: Ludhiana\n\nLudhiana: taapmaan 32.3°C, nami 47.0%, hawa 8.0 km/h, aur agle 12 ghanton mein baarish ki sambhavna 2.0% hai.\n\n**Chhidkaav Salah:**\nChhidkaav ke liye sahi samay: hawa ki raftaar normal hai. Subah 8-11 baje ya shaam 3:30 baje ke baad chhidkaav karein.",
   "answer_source": null,
-  "ms": 671
+  "ms": 973
  },
  {
   "id": 193,
@@ -4684,7 +4684,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 194,
@@ -4707,7 +4707,7 @@
   },
   "answer": "इस विषय पर मेरे पास अभी प्रमाणित सलाह नहीं है। मेरी सलाह गेहूं, सरसों, धान और कपास के चुनिंदा कीटों और रोगों, गेहूं और सरसों की खाद और सिंचाई, और कीटनाशक सुरक्षा के लिए है। भरोसेमंद सलाह के लिए किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें, या अपने नज़दीकी कृषि विज्ञान केंद्र (KVK) से संपर्क करें।",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 195,
@@ -4776,7 +4776,7 @@
   },
   "answer": "I don't have a verified advisory on this topic yet. My advisories cover selected pests and diseases of wheat, mustard, paddy and cotton, wheat and mustard fertilizer and irrigation, and pesticide safety. For reliable advice, call the Kisan Call Centre free on 1800-180-1551, or contact your nearest Krishi Vigyan Kendra (KVK).",
   "answer_source": null,
-  "ms": 1
+  "ms": 2
  },
  {
   "id": 198,
@@ -4800,7 +4800,7 @@
   },
   "answer": "मेरी प्रमाणित सलाह केवल गेहूं, सरसों, धान और कपास के लिए है, इसलिए मैं इस फ़सल के लिए कोई इलाज या दवा की मात्रा नहीं बता सकता। कृपया अपने नज़दीकी कृषि विज्ञान केंद्र (KVK), कृषि अधिकारी या किसान कॉल सेंटर (1800-180-1551) से संपर्क करें।",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  },
  {
   "id": 199,
@@ -4828,7 +4828,7 @@
   },
   "answer": "### ਫ਼ਸਲ ਸਲਾਹ: Cotton (ਗੁਲਾਬੀ ਸੁੰਡੀ (Pink Bollworm) ਦਾ ਏਕੀਕ੍ਰਿਤ ਪ੍ਰਬੰਧਨ)\n\n**ਪਛਾਣ ਅਤੇ ਲੱਛਣ:**\nਸੁੰਡੀਆਂ ਕਲੀਆਂ, ਫੁੱਲਾਂ ਅਤੇ ਵਿਕਸਤ ਹੋਡੀਆਂ ਵਿੱਚ ਸੁਰਾਖ ਕਰਦੀਆਂ ਹਨ। ਕੀੜੇ ਪ੍ਰਭਾਵਿਤ ਫੁੱਲ ਚੰਗੀ ਤਰ੍ਹਾਂ ਨਹੀਂ ਖੁੱਲ੍ਹਦੇ ਅਤੇ 'ਰੋਜ਼ੈੱට් ਫੁੱਲ' (rosette flower) ਵਰਗੇ ਦਿਖਾਈ ਦਿੰਦੇ ਹਨ। ਪੱਕ ਰਹੀਆਂ ਹਰੀਆਂ ਹੋਡੀਆਂ ਉੱਤੇ ਮਲ ਦੇ ਨਾਲ ਬਾਹਰ ਨਿਕਲਣ ਵਾਲੇ ਸੁਰਾਖ ਦਿਖਾਈ ਦਿੰਦੇ ਹਨ; ਰੂੰ ਦਾ ਦਾਗਦਾਰ ਹੋਣਾ ਅਤੇ ਬੀਜਾਂ ਦਾ ਨਸ਼ਟ ਹੋਣਾ।\n\n**ਸਿਫ਼ਾਰਸ਼ ਕੀਤਾ ਇਲਾਜ ਅਤੇ ਖੁਰਾਕ:**\nਬਿਜਾਈ ਤੋਂ 45 ਦਿਨਾਂ ਬਾਅਦ ਨਿਗਰਾਨੀ ਲਈ 5 ਟਰੈਪ ਪ੍ਰਤੀ ਏਕੜ ਦੇ ਹਿਸਾਬ ਨਾਲ ਫੇਰੋਮੋਨ ਟਰੈਪ ਲਗਾਓ। ਜਦੋਂ ਟਰੈਪ ਵਿੱਚ ਕੀੜਿਆਂ ਦੀ ਗਿਣਤੀ ਲਗਾਤਾਰ 3 ਦਿਨਾਂ ਤੱਕ 8 ਮੋਥਸ/ਟਰੈਪ/ਰਾਤ ਤੋਂ ਵੱਧ ਜਾਵੇ ਜਾਂ 10% ਹਰੀਆਂ ਹੋਡੀਆਂ ਨੁਕਸਾਨੀਆਂ ਜਾਣ, ਤਾਂ Profenofos 50% EC @ 500 ml ਜਾਂ Emamectin Benzoate 5% SG @ 100 g ਨੂੰ 150-200 ਲੀਟਰ ਪਾਣੀ ਪ੍ਰਤੀ ਏਕੜ ਵਿੱਚ ਮਿਲਾ ਕੇ ਛਿੜਕਾਅ ਕਰੋ। ਇਸ ਦੀ ਬਜਾਏ, ਹਫ਼ਤਾਵਾਰੀ Trichogramma ਅੰਡੇ ਦੇ ਪਰਜੀਵੀ @ 60,000/ਏਕੜ ਛੱਡੋ।\n\n**ਰੋਕਥਾਮ ਅਤੇ ਸਾਵਧਾਨੀਆਂ:**\nਕੀੜੇ ਦੇ ਜੀਵਨ ਚੱਕਰ ਨੂੰ ਤੋੜਨ ਲਈ ਜਨਵਰੀ ਦੇ ਅੰਤ ਤੱਕ ਫ਼ਸਲ ਨੂੰ ਖ਼ਤਮ ਕਰਨ ਦੀ ਸਖ਼ਤੀ ਨਾਲ ਪਾਲਣਾ ਕਰੋ। ਖੇਤਾਂ ਵਿੱਚ ਕਪਾਹ ਦੀਆਂ ਸਟਾਲਕਾਂ (ਡੰਡੀਆਂ) ਨੂੰ ਇਕੱਠਾ ਕਰਨ ਤੋਂ ਬਚੋ। ਰੇਟੂਨ ਕਪਾਹ (ਪੁਰਾਣੀ ਕਪਾਹ) ਨਾ ਉੱਗਣ ਦਿਓ।\n",
   "answer_source": "template_offline",
-  "ms": 36
+  "ms": 70
  },
  {
   "id": 200,
@@ -4851,6 +4851,6 @@
   },
   "answer": "Is vishay par mere paas abhi pramanit salah nahi hai. Meri salah gehun, sarson, dhaan aur kapas ke kuch keedon aur rogon, gehun aur sarson ki khaad aur sinchai, aur keetnashak suraksha ke liye hai. Bharosemand salah ke liye Kisan Call Centre ko muft number 1800-180-1551 par call karein, ya apne nazdeeki Krishi Vigyan Kendra (KVK) se sampark karein.",
   "answer_source": null,
-  "ms": 2
+  "ms": 3
  }
 ]

@@ -57,7 +57,8 @@ def pipeline_with(lookup):
 
 
 def test_msp_and_live_mandi_prices():
-    lookup = MandiLookup(prices=[MandiPrice("Sangrur", "Sangrur", "30/09/2026", 6100, 6450, 6300)], local=True)
+    lookup = MandiLookup(prices=[MandiPrice("Sangrur", "Sangrur", "30/09/2026", 6100, 6450, 6300)], local=True,
+                         source="Agmarknet daily mandi prices (data.gov.in)")
     pipeline = pipeline_with(lookup)
     res = pipeline.process_query("Sangrur mandi mein sarson ka bhav?", language="hinglish", generate_audio=False)
     assert res.intent == "market_price"
@@ -99,7 +100,7 @@ def test_client_backs_off_after_a_failure(monkeypatch):
 
 
 def test_client_prefers_district_and_newest_date(monkeypatch):
-    def fake_get(url, params, timeout):
+    def fake_get(url, params, timeout, headers):
         class Resp:
             def raise_for_status(self):
                 pass
@@ -118,3 +119,86 @@ def test_client_prefers_district_and_newest_date(monkeypatch):
     monkeypatch.setattr(market.requests, "get", fake_get)
     lookup = MandiPriceClient().latest("wheat", district="Barnala")
     assert [p.market for p in lookup.prices] == ["Moga"] and lookup.local is False
+
+
+# ----------------------------------------------------------------------------- Agmarknet 2.0
+FILTERS = {"data": {
+    "state_data": [{"state_id": 100006, "state_name": "All States/UTs"}, {"state_id": 28, "state_name": "Punjab"}],
+    "district_data": [{"id": 454, "state_id": 28, "district_name": "Bhatinda"}, {"id": 472, "state_id": 28, "district_name": "Sangrur"},
+                      {"id": 471, "state_id": 28, "district_name": "Ropar (Rupnagar)"}],
+}}
+PRICE_DATA = {"status": "success", "data": {
+    "columns": [
+        {"key": "commodity_info", "columns": [{"key": "msp_price", "title": "MSP (Rs./Quintal) 2026-27"}]},
+        {"key": "price_group", "columns": [{"key": "as_on_price", "title": "29 Sep, 2026"},
+                                           {"key": "one_day_ago_price", "title": "28 Sep, 2026"},
+                                           {"key": "two_day_ago_price", "title": "27 Sep, 2026"}]},
+    ],
+    "records": [{"cmdt_name": "Cotton", "msp_price": "8267.00", "as_on_price": "8691.18",
+                 "one_day_ago_price": "8439.51", "two_day_ago_price": None}],
+}}
+NO_DATA = {"status": False, "message": "No data available.", "data": []}
+
+
+class FakeResponse:
+    def __init__(self, payload):
+        self.payload = payload
+
+    def raise_for_status(self):
+        pass
+
+    def json(self):
+        return self.payload
+
+
+@pytest.fixture
+def agmarknet(monkeypatch):
+    sent = []
+    monkeypatch.setattr(market.requests, "get", lambda url, timeout, headers: FakeResponse(FILTERS))
+
+    def post(url, json, timeout, headers):
+        sent.append({"body": json, "headers": headers})
+        return FakeResponse(NO_DATA if json["district"] != [market.ALL_DISTRICTS] else PRICE_DATA)
+
+    monkeypatch.setattr(market.requests, "post", post)
+    return sent
+
+
+def test_agmarknet_falls_back_from_district_to_state(agmarknet):
+    lookup = market.AgmarknetClient().latest("cotton", state="Punjab", district="Bathinda")
+    assert [(p.date, p.modal_price) for p in lookup.prices] == [("29/09/2026", 8691.18), ("28/09/2026", 8439.51)]
+    assert lookup.local is False and lookup.prices[0].min_price is None and "agmarknet" in lookup.source
+    assert agmarknet[0]["body"]["district"] == [454]  # "Bathinda" matched Agmarknet's "Bhatinda"
+    assert "KisanSahayak" in agmarknet[0]["headers"]["User-Agent"]  # identifies itself honestly
+
+
+@pytest.mark.parametrize("ours,theirs", [("Bathinda", "Bhatinda"), ("Rupnagar", "Ropar (Rupnagar)"), ("Tarn Taran", "Tarntaran"),
+                                         ("Firozpur", "Ferozpur"), ("Fatehgarh Sahib", "Fatehgarh")])
+def test_district_spellings(ours, theirs):
+    assert market._same_place(ours, theirs)
+
+
+def test_service_uses_the_next_source_when_one_fails():
+    class Source:
+        def __init__(self, lookup):
+            self.lookup, self.states = lookup, []
+
+        def latest(self, commodity, state="Punjab", district=None):
+            self.states.append(state)
+            return self.lookup
+
+    down = Source(MandiLookup(error="data.gov.in unreachable"))
+    up = Source(MandiLookup(prices=[MandiPrice("Punjab", "Punjab", "29/09/2026", None, None, 2471)], source="Agmarknet"))
+    lookup = market.MarketPriceService([down, up]).latest("paddy", district="Karnal")
+    assert lookup.prices[0].modal_price == 2471 and up.states == ["Haryana"]  # Karnal is in Haryana
+    both_down = market.MarketPriceService([down, down]).latest("paddy")
+    assert not both_down.prices and "unreachable" in both_down.error
+
+
+def test_average_prices_and_state_note_in_answer():
+    lookup = MandiLookup(prices=[MandiPrice("Punjab", "Punjab", "29/09/2026", None, None, 8691.18)], local=False,
+                         source="Agmarknet daily prices (agmarknet.gov.in)")
+    res = pipeline_with(lookup).process_query("Cotton price in Bathinda mandi", language="en", generate_audio=False)
+    assert "Rs 8,691 per quintal (average of reporting mandis, Punjab)" in res.answer
+    assert "No mandi in Bathinda reported this crop recently" in res.answer
+    assert "Agmarknet daily prices (agmarknet.gov.in)" in res.citations

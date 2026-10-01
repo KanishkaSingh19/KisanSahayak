@@ -85,13 +85,17 @@ def load_msp(path: Path = MSP_PATH) -> Dict:
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
+# Identify the app honestly to public data services (generic library user agents are often refused)
+HEADERS = {"User-Agent": "KisanSahayak/1.0 (farmer advisory app; github.com/KanishkaSingh19/KisanSahayak)"}
+
+
 @dataclass
 class MandiPrice:
-    market: str
+    market: str  # a mandi, or the area an average covers (e.g. "Punjab")
     district: str
     date: str  # as published, dd/mm/yyyy
-    min_price: float
-    max_price: float
+    min_price: Optional[float]  # None when the source only gives an average
+    max_price: Optional[float]
     modal_price: float
 
 
@@ -100,6 +104,7 @@ class MandiLookup:
     prices: List[MandiPrice] = field(default_factory=list)
     local: bool = False  # prices are from the farmer's district (otherwise state-wide)
     error: Optional[str] = None  # why live prices could not be fetched
+    source: str = ""  # citation for the prices shown
 
 
 class MandiPriceClient:
@@ -115,7 +120,7 @@ class MandiPriceClient:
     def _fetch(self, filters: Dict[str, str]) -> List[Dict]:
         params = {"api-key": self.api_key, "format": "json", "limit": 50}
         params.update({f"filters[{k}]": v for k, v in filters.items()})
-        resp = requests.get(MANDI_URL, params=params, timeout=self.timeout_sec)
+        resp = requests.get(MANDI_URL, params=params, timeout=self.timeout_sec, headers=HEADERS)
         resp.raise_for_status()
         return resp.json().get("records") or []
 
@@ -149,4 +154,145 @@ class MandiPriceClient:
         # Newest first (dates are dd/mm/yyyy)
         prices.sort(key=lambda p: tuple(reversed(p.date.split("/"))), reverse=True)
         newest = prices[0].date
-        return MandiLookup(prices=[p for p in prices if p.date == newest][:5], local=local)
+        return MandiLookup(prices=[p for p in prices if p.date == newest][:5], local=local,
+                           source="Agmarknet daily mandi prices (data.gov.in)")
+
+
+# ----------------------------------------------------------------------------- Agmarknet 2.0
+AGMARKNET_FILTERS_URL = "https://api.agmarknet.gov.in/v1/dashboard-filters/?dashboard_name=marketwise_price_arrival"
+AGMARKNET_DATA_URL = "https://api.agmarknet.gov.in/v1/dashboard-data/"
+# Agmarknet commodity ids (from the dashboard filters)
+AGMARKNET_IDS = {
+    "wheat": 1, "paddy": 2, "maize": 4, "jowar": 5, "gram": 6, "urad": 8, "moong": 9, "groundnut": 10, "sesamum": 11,
+    "mustard": 12, "soybean": 13, "sunflower": 14, "cotton": 15, "onion": 23, "potato": 24, "bajra": 28, "barley": 29,
+    "ragi": 30, "tur": 45, "safflower": 48, "lentil": 52, "tomato": 65, "nigerseed": 83,
+}
+# "All" values in the dashboard's filters
+ALL_GROUPS, ALL_VARIETIES, ALL_STATES, ALL_DISTRICTS, ALL_MARKETS, FAQ_GRADE = 100000, 100021, 100006, 100007, 100009, 4
+
+# Our place names -> state, for places outside Punjab that the app knows
+PLACE_STATES = {
+    "karnal": "Haryana", "hisar": "Haryana", "sirsa": "Haryana", "varanasi": "Uttar Pradesh", "lucknow": "Uttar Pradesh",
+    "kanpur": "Uttar Pradesh", "indore": "Madhya Pradesh", "bhopal": "Madhya Pradesh", "jaipur": "Rajasthan",
+    "kota": "Rajasthan", "patna": "Bihar", "delhi": "NCT of Delhi", "chandigarh": "Chandigarh",
+}
+
+
+def _letters(name: str) -> str:
+    return re.sub(r"[^a-z]", "", name.lower())
+
+
+def _same_place(ours: str, theirs: str) -> bool:
+    """Agmarknet spells some districts differently: Bhatinda, Ferozpur, Tarntaran, "Ropar (Rupnagar)"."""
+    a, b = _letters(ours), _letters(theirs)
+    spellings = {"bathinda": "bhatinda", "firozpur": "ferozpur", "fatehgarhsahib": "fatehgarh", "rupnagar": "ropar"}
+    a = spellings.get(a, a)
+    return a == b or b.startswith(a) or a.startswith(b) or a in b
+
+
+class AgmarknetClient:
+    """Average daily mandi prices from Agmarknet 2.0 (agmarknet.gov.in), by state or district."""
+
+    DOWN_COOLDOWN_SEC = 600
+    FILTERS_MAX_AGE_SEC = 24 * 3600
+
+    def __init__(self, timeout_sec: float = 8.0):
+        self.timeout_sec = timeout_sec
+        self._down_until = 0.0
+        self._filters: Optional[Dict] = None
+        self._filters_at = 0.0
+
+    def _get_filters(self) -> Dict:
+        if self._filters is None or time.time() - self._filters_at > self.FILTERS_MAX_AGE_SEC:
+            resp = requests.get(AGMARKNET_FILTERS_URL, timeout=self.timeout_sec, headers=HEADERS)
+            resp.raise_for_status()
+            self._filters, self._filters_at = resp.json()["data"], time.time()
+        return self._filters
+
+    def _ids(self, state: str, district: Optional[str]):
+        filters = self._get_filters()
+        state_row = next((s for s in filters["state_data"] if _same_place(state, s["state_name"])), None)
+        if not state_row:
+            return None, None
+        district_id = None
+        if district:
+            district_id = next((d["id"] for d in filters["district_data"]
+                                if d["state_id"] == state_row["state_id"] and _same_place(district, d["district_name"])), None)
+        return state_row["state_id"], district_id
+
+    def _query(self, commodity_id: int, state_id: int, district_id: Optional[int]) -> Dict:
+        body = {
+            "dashboard": "marketwise_price_arrival", "date": time.strftime("%Y-%m-%d"), "group": [ALL_GROUPS],
+            "commodity": [commodity_id], "variety": ALL_VARIETIES, "state": state_id,
+            "district": [district_id or ALL_DISTRICTS], "market": [ALL_MARKETS], "grades": [FAQ_GRADE],
+            "limit": 10, "format": "json",
+        }
+        resp = requests.post(AGMARKNET_DATA_URL, json=body, timeout=self.timeout_sec, headers=HEADERS)
+        resp.raise_for_status()
+        return resp.json()
+
+    @staticmethod
+    def _parse(data: Dict, place: str) -> List[MandiPrice]:
+        """One average price per reported day: the newest of the last three days that have a price."""
+        content = data.get("data")
+        if not isinstance(content, dict) or not content.get("records"):
+            return []
+        # Column titles carry the dates, e.g. {"key": "as_on_price", "title": "29 Sep, 2026"}
+        dates = {}
+        for group in content.get("columns", []):
+            for col in group.get("columns", []):
+                if col.get("key", "").endswith("_price") and col["key"] != "msp_price":
+                    try:
+                        dates[col["key"]] = time.strftime("%d/%m/%Y", time.strptime(col["title"], "%d %b, %Y"))
+                    except (KeyError, ValueError):
+                        continue
+        record = content["records"][0]
+        prices = []
+        for key in ("as_on_price", "one_day_ago_price", "two_day_ago_price"):
+            if record.get(key) and key in dates:
+                try:
+                    prices.append(MandiPrice(market=place, district=place, date=dates[key], min_price=None,
+                                             max_price=None, modal_price=float(record[key])))
+                except ValueError:
+                    continue
+        return prices
+
+    def latest(self, commodity: str, state: str = "Punjab", district: Optional[str] = None) -> MandiLookup:
+        commodity_id = AGMARKNET_IDS.get(commodity)
+        if not commodity_id:
+            return MandiLookup(error="no Agmarknet prices for this commodity")
+        if time.time() < self._down_until:
+            return MandiLookup(error="Agmarknet unreachable (recent failure)")
+        try:
+            state_id, district_id = self._ids(state, district)
+            if not state_id:
+                return MandiLookup(error=f"state not found on Agmarknet: {state}")
+            prices, local = [], False
+            if district_id:
+                prices = self._parse(self._query(commodity_id, state_id, district_id), district)
+                local = bool(prices)
+            if not prices:
+                prices = self._parse(self._query(commodity_id, state_id, None), state)
+        except (requests.RequestException, ValueError, KeyError) as e:
+            self._down_until = time.time() + self.DOWN_COOLDOWN_SEC
+            return MandiLookup(error=f"Agmarknet unreachable ({type(e).__name__})")
+        if not prices:
+            return MandiLookup(error="no recent prices reported on Agmarknet")
+        return MandiLookup(prices=prices, local=local, source="Agmarknet daily prices (agmarknet.gov.in)")
+
+
+class MarketPriceService:
+    """Tries each price source in turn: data.gov.in (per-mandi prices), then Agmarknet (averages)."""
+
+    def __init__(self, sources=None):
+        self.sources = sources if sources is not None else [MandiPriceClient(), AgmarknetClient()]
+
+    def latest(self, commodity: str, state: Optional[str] = None, district: Optional[str] = None) -> MandiLookup:
+        state = state or PLACE_STATES.get((district or "").lower(), "Punjab")
+        errors = []
+        for source in self.sources:
+            lookup = source.latest(commodity, state=state, district=district)
+            if lookup.prices:
+                return lookup
+            errors.append(lookup.error or "no prices")
+        return MandiLookup(error="; ".join(errors))

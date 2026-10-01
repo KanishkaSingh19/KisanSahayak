@@ -11,7 +11,7 @@ from app.rag.hybrid_retriever import HybridRetriever
 from app.rag.chunker import AgriculturalChunker
 from app.speech.stt import WhisperSTTAdapter
 from app.speech.tts import EdgeTTSAdapter
-from app.tools.market import MandiPriceClient, detect_commodity, load_msp
+from app.tools.market import PLACE_STATES, MarketPriceService, detect_commodity, load_msp
 from app.tools.vision import CropVision
 from app.tools.weather_tool import AgWeatherTool
 
@@ -44,10 +44,10 @@ class KisanPipeline:
         tts_adapter: Optional[EdgeTTSAdapter] = None,
         vision: Optional[CropVision] = None,
         scheme_guide: Optional[SchemeGuide] = None,
-        mandi: Optional[MandiPriceClient] = None,
+        mandi: Optional[MarketPriceService] = None,
     ):
         self.vision = vision or CropVision()
-        self.mandi = mandi or MandiPriceClient()
+        self.mandi = mandi or MarketPriceService()
         self.scheme_guide = scheme_guide or SchemeGuide()
         self.router = router or IntentRouter()
         self.guardrails = guardrails or AgriculturalGuardrails()
@@ -229,9 +229,14 @@ class KisanPipeline:
                 parts += [
                     t("market_mandi_row", lang, market=p.market, district=p.district, modal=f"{p.modal_price:,.0f}",
                       low=f"{p.min_price:,.0f}", high=f"{p.max_price:,.0f}")
+                    if p.min_price is not None else
+                    t("market_avg_row", lang, date=p.date, price=f"{p.modal_price:,.0f}", place=p.market)
                     for p in lookup.prices
                 ]
-                citations.append("Agmarknet daily mandi prices (data.gov.in)")
+                if district and not lookup.local:
+                    state = PLACE_STATES.get(district.lower(), "Punjab")
+                    parts.append(t("market_state_fallback", lang, district=district, state=state))
+                citations.append(lookup.source or "Agmarknet daily mandi prices")
                 meta["mandi_local"] = lookup.local
             else:
                 parts.append("\n" + t("market_mandi_unavailable", lang))

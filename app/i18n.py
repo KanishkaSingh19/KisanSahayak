@@ -89,6 +89,18 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hinglish": "- {market} ({district}): Rs {modal} prati quintal (Rs {low} se {high})",
         "hi": "- {market} ({district}): Rs {modal} प्रति क्विंटल (Rs {low} से {high})",
     },
+    "market_avg_row": {
+        "en": "- {date}: Rs {price} per quintal (average of reporting mandis, {place})",
+        "pa": "- {date}: Rs {price} ਪ੍ਰਤੀ ਕੁਇੰਟਲ (ਰਿਪੋਰਟ ਕਰਨ ਵਾਲੀਆਂ ਮੰਡੀਆਂ ਦੀ ਔਸਤ, {place})",
+        "hinglish": "- {date}: Rs {price} prati quintal (report karne wali mandiyon ka ausat, {place})",
+        "hi": "- {date}: Rs {price} प्रति क्विंटल (रिपोर्ट करने वाली मंडियों का औसत, {place})",
+    },
+    "market_state_fallback": {
+        "en": "No mandi in {district} reported this crop recently, so this is the average for {state}.",
+        "pa": "{district} ਦੀ ਕਿਸੇ ਮੰਡੀ ਨੇ ਹਾਲ ਹੀ ਵਿੱਚ ਇਸ ਫ਼ਸਲ ਦਾ ਭਾਅ ਨਹੀਂ ਦੱਸਿਆ, ਇਸ ਲਈ ਇਹ {state} ਦੀ ਔਸਤ ਹੈ।",
+        "hinglish": "{district} ki kisi mandi ne haal mein is fasal ka bhav report nahi kiya, isliye yeh {state} ka ausat hai.",
+        "hi": "{district} की किसी मंडी ने हाल में इस फ़सल का भाव रिपोर्ट नहीं किया, इसलिए यह {state} का औसत है।",
+    },
     "market_mandi_unavailable": {
         "en": "Live mandi prices could not be fetched right now. For today's rates, check agmarknet.gov.in or the eNAM app, or call the Kisan Call Centre free on 1800-180-1551.",
         "pa": "ਇਸ ਵੇਲੇ ਤਾਜ਼ਾ ਮੰਡੀ ਭਾਅ ਨਹੀਂ ਮਿਲ ਸਕੇ। ਅੱਜ ਦੇ ਭਾਅ ਲਈ agmarknet.gov.in ਜਾਂ eNAM ਐਪ ਵੇਖੋ, ਜਾਂ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ।",
