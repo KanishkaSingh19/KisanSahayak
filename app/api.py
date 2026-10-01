@@ -12,12 +12,12 @@ from contextlib import asynccontextmanager
 from functools import lru_cache
 from typing import Any, Dict, List, Literal, Optional
 
-from fastapi import Depends, FastAPI, File, Form, HTTPException, UploadFile
+from fastapi import Depends, FastAPI, File, Form, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, RedirectResponse
 from pydantic import BaseModel, Field, ValidationError
 
-from app.agent.pipeline import DEFAULT_WEATHER_DISTRICT, KisanPipeline
+from app.agent.pipeline import KisanPipeline
 from app.agent.state import ConversationTurn, FarmerProfile, GroundedAnswer
 from app.agent.synthesizer import GeminiSynthesizer, OpenAISynthesizer
 from app.config import settings
@@ -252,7 +252,11 @@ async def ask_voice(
 
 
 @app.get("/weather", tags=["weather"])
-def weather(place: str = DEFAULT_WEATHER_DISTRICT, language: Language = "en", pipeline: KisanPipeline = Depends(get_pipeline)):
+def weather(
+    place: str = Query(..., min_length=2, description="District, town or village in India (there is no default place)"),
+    language: Language = "en",
+    pipeline: KisanPipeline = Depends(get_pipeline),
+):
     """Current weather with spray and irrigation advice for any place in India."""
     found = pipeline.weather_tool.resolve_place(place)
     if found is None:

@@ -69,7 +69,7 @@ def test_msp_and_live_mandi_prices():
 
 def test_mandi_unavailable_is_said_not_guessed():
     res = pipeline_with(MandiLookup(error="unreachable")).process_query(
-        "MSP of wheat?", language="en", generate_audio=False)
+        "MSP of wheat in Sangrur?", language="en", generate_audio=False)
     assert "Rs 2,585" in res.answer and "agmarknet.gov.in" in res.answer and "1800-180-1551" in res.answer
     assert res.processing_metadata["mandi_error"] == "unreachable"
 
@@ -191,8 +191,10 @@ def test_service_uses_the_next_source_when_one_fails():
     up = Source(MandiLookup(prices=[MandiPrice("Punjab", "Punjab", "29/09/2026", None, None, 2471)], source="Agmarknet"))
     lookup = market.MarketPriceService([down, up]).latest("paddy", district="Karnal")
     assert lookup.prices[0].modal_price == 2471 and up.states == ["Haryana"]  # Karnal is in Haryana
-    both_down = market.MarketPriceService([down, down]).latest("paddy")
+    both_down = market.MarketPriceService([down, down]).latest("paddy", district="Moga")
     assert not both_down.prices and "unreachable" in both_down.error
+    nowhere = market.MarketPriceService([up]).latest("paddy")  # no place: no default state, nothing fetched
+    assert not nowhere.prices and nowhere.error == "no place given" and up.states == ["Haryana"]
 
 
 def test_average_prices_and_state_note_in_answer():
@@ -227,3 +229,25 @@ def test_follow_up_answer_uses_the_remembered_place():
     second = pipeline.process_query("what about rice?", language="en", generate_audio=False,
                                     history=[ConversationTurn.from_answer(first)])
     assert "Rs 2,441" in second.answer and pipeline.mandi.calls == [("wheat", "Delhi"), ("paddy", "Delhi")]
+
+
+
+def test_no_place_asks_instead_of_assuming_a_state():
+    pipeline = pipeline_with(MandiLookup(prices=[MandiPrice("Punjab", "Punjab", "29/09/2026", None, None, 2720)]))
+    res = pipeline.process_query("What is the MSP of wheat?", language="en", generate_audio=False)
+    assert "Rs 2,585" in res.answer  # MSP is national, so it is still given
+    assert "tell me your district or mandi" in res.answer and pipeline.mandi.calls == []  # no mandi lookup without a place
+    assert "Punjab" not in res.answer
+
+
+def test_state_comes_from_the_place(monkeypatch):
+    from app.tools.location import Place
+
+    pipeline = pipeline_with(MandiLookup(error="x"))
+    monkeypatch.setattr(pipeline.weather_tool, "resolve_place",
+                        lambda name: Place(name="Nashik", latitude=20.0, longitude=73.8, state="Maharashtra") if name == "Nashik" else None)
+    assert market.state_for("Nashik", pipeline.weather_tool.resolve_place) == "Maharashtra"
+    assert market.state_for("Sangrur") == "Punjab" and market.state_for("Karnal") == "Haryana"
+    assert market.state_for("Atlantis", pipeline.weather_tool.resolve_place) is None
+    res = pipeline.process_query("onion price in Atlantis", language="en", generate_audio=False)
+    assert "couldn't find" in res.answer and pipeline.mandi.calls == []

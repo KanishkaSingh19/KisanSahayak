@@ -392,11 +392,14 @@ def render_profile(lang: str) -> FarmerProfile:
 
 def render_weather_card(weather_tool, lang: str) -> None:
     st.markdown(f'<div class="ks-section-title">{t("sidebar_weather_header", lang)}</div>', unsafe_allow_html=True)
-    districts = [d.capitalize() for d in sorted(DISTRICT_COORDINATES.keys())]
+    districts = [d.title() for d in sorted(DISTRICT_COORDINATES.keys())]
+    # No default place: start empty (or on the farmer's own district from My farm)
+    own = (st.session_state.get("p_district") or "").strip().title()
     district = st.selectbox(
-        t("select_district", lang), districts, index=districts.index("Ludhiana"), key="weather_district"
+        t("select_district", lang), districts, index=districts.index(own) if own in districts else None,
+        placeholder=t("select_district", lang), key="weather_district",
     )
-    if st.button(t("check_weather", lang), use_container_width=True):
+    if st.button(t("check_weather", lang), use_container_width=True, disabled=district is None):
         with st.spinner("🌦️ ..."):
             st.session_state["weather"] = (lang, weather_tool.get_weather_for_district(district, language=lang))
 

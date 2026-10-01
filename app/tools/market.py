@@ -177,6 +177,30 @@ PLACE_STATES = {
 }
 
 
+PUNJAB_DISTRICTS = {
+    "amritsar", "barnala", "bathinda", "faridkot", "fatehgarh sahib", "fazilka", "firozpur", "gurdaspur", "hoshiarpur",
+    "jalandhar", "kapurthala", "ludhiana", "malerkotla", "mansa", "moga", "mohali", "muktsar", "nawanshahr",
+    "pathankot", "patiala", "rupnagar", "sangrur", "tarn taran",
+}
+
+
+def state_for(place: str, resolve=None) -> Optional[str]:
+    """The state a place is in: built-in places first, then `resolve` (a place lookup returning .state).
+
+    There is no default state: None means the state is not known, and the farmer should be asked.
+    """
+    key = place.lower().strip()
+    if key in PUNJAB_DISTRICTS:
+        return "Punjab"
+    if key in PLACE_STATES:
+        return PLACE_STATES[key]
+    if resolve is not None:
+        found = resolve(place)
+        if found is not None and getattr(found, "state", None):
+            return found.state
+    return None
+
+
 def _letters(name: str) -> str:
     return re.sub(r"[^a-z]", "", name.lower())
 
@@ -287,7 +311,9 @@ class MarketPriceService:
         self.sources = sources if sources is not None else [MandiPriceClient(), AgmarknetClient()]
 
     def latest(self, commodity: str, state: Optional[str] = None, district: Optional[str] = None) -> MandiLookup:
-        state = state or PLACE_STATES.get((district or "").lower(), "Punjab")
+        state = state or (state_for(district) if district else None)
+        if not state:
+            return MandiLookup(error="no place given")  # no default state: the farmer is asked instead
         errors = []
         for source in self.sources:
             lookup = source.latest(commodity, state=state, district=district)

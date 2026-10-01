@@ -11,12 +11,11 @@ from app.rag.hybrid_retriever import HybridRetriever
 from app.rag.chunker import AgriculturalChunker
 from app.speech.stt import WhisperSTTAdapter
 from app.speech.tts import EdgeTTSAdapter
-from app.tools.market import PLACE_STATES, MarketPriceService, detect_commodity, load_msp
+from app.tools.market import MarketPriceService, detect_commodity, load_msp, state_for
 from app.tools.vision import CropVision
 from app.tools.weather_tool import AgWeatherTool
 
 # Shown (with a visible note) when the farmer names no place or one that can't be found
-DEFAULT_WEATHER_DISTRICT = "Ludhiana"
 
 
 def detect_language(text: str) -> str:
@@ -227,8 +226,18 @@ class KisanPipeline:
             else:
                 parts.append(t("market_no_msp", lang, crop=crop_name(commodity)))
 
-            lookup = self.mandi.latest(commodity, district=district)
-            if lookup.prices:
+            # Mandi prices need a place: there is no default state, so ask when none is known
+            state = state_for(district, self.weather_tool.resolve_place) if district else None
+            lookup = None
+            if not district:
+                parts.append("\n" + t("market_ask_place", lang))
+                meta["mandi_error"] = "no place given"
+            elif not state:
+                parts.append("\n" + t("market_place_unknown", lang, place=district))
+                meta["mandi_error"] = f"place not found: {district}"
+            else:
+                lookup = self.mandi.latest(commodity, state=state, district=district)
+            if lookup is not None and lookup.prices:
                 parts.append("\n" + t("market_mandi_header", lang, crop=crop_name(commodity), date=lookup.prices[0].date))
                 parts += [
                     t("market_mandi_row", lang, market=p.market, district=p.district, modal=f"{p.modal_price:,.0f}",
@@ -237,12 +246,11 @@ class KisanPipeline:
                     t("market_avg_row", lang, date=p.date, price=f"{p.modal_price:,.0f}", place=p.market)
                     for p in lookup.prices
                 ]
-                if district and not lookup.local:
-                    state = PLACE_STATES.get(district.lower(), "Punjab")
+                if not lookup.local:
                     parts.append(t("market_state_fallback", lang, district=district, state=state))
                 citations.append(lookup.source or "Agmarknet daily mandi prices")
                 meta["mandi_local"] = lookup.local
-            else:
+            elif lookup is not None:
                 parts.append("\n" + t("market_mandi_unavailable", lang))
                 meta["mandi_error"] = lookup.error
             answer = "\n".join(parts)
@@ -409,21 +417,35 @@ class KisanPipeline:
                     requested = profile.district  # "Will it rain today?" -> the farmer's own district
                     from_profile = True
                 place = self.weather_tool.resolve_place(requested) if requested else None
-                location_note = ""
                 if place is None:
-                    # Never silently swap in another place: say which default is shown and why
+                    # There is no default place: ask for one (or say the named place wasn't found)
                     key = "location_not_found" if requested else "location_default"
-                    location_note = t(key, lang, place=requested or "", default=DEFAULT_WEATHER_DISTRICT) + "\n\n"
-                report = self.weather_tool.get_weather_for_district(DEFAULT_WEATHER_DISTRICT, language=lang, place=place)
+                    return GroundedAnswer(
+                        query=clean_query,
+                        intent=intent_res.intent,
+                        answer=t(key, lang, place=requested or ""),
+                        citations=[],
+                        retrieved_chunks=[],
+                        is_grounded=True,
+                        safety_disclaimers=[],
+                        detected_language=detected_lang,
+                        processing_metadata={
+                            "latency_ms": int((time.time() - start_time) * 1000),
+                            "location_found": False,
+                            "needs_place": True,
+                        },
+                    )
+                report = self.weather_tool.get_weather_for_district(place.name, language=lang, place=place)
                 district = report.district
 
-                # Answer only what was asked: spray / irrigation advice only when the question mentions it
-                topics = weather_topics(clean_query)
+                # Answer only what was asked: spray / irrigation advice only when the question (or, for a
+                # reply like "Sangrur", the question it answers) mentions it
+                topics = weather_topics(f"{clean_query} {intent_res.follow_up_of or ''}")
                 summary = t(
                     "weather_summary", lang, place=report.district, temp=report.temperature_c,
                     humidity=report.relative_humidity, wind=report.wind_speed_kmh, rain=report.rain_probability_pct,
                 )
-                parts = [f"{location_note}### {t('weather_advisory_title', lang)}: {report.district}\n\n{summary}"]
+                parts = [f"### {t('weather_advisory_title', lang)}: {report.district}\n\n{summary}"]
                 if "spray" in topics:
                     parts.append(f"**{t('spray_advisory', lang)}:**\n{report.spray_recommendation}")
                 if "irrigation" in topics:

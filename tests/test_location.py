@@ -108,7 +108,25 @@ def test_pipeline_weather_says_when_place_not_found(pipeline, monkeypatch):
     monkeypatch.setattr(pipeline.weather_tool, "resolve_place", lambda name: None)
     res = pipeline.process_query("weather in atlantis today", language="en", generate_audio=False)
     assert res.processing_metadata["location_found"] is False
-    assert "Couldn't find" in res.answer and "Ludhiana" in res.answer
+    assert "couldn't find" in res.answer.lower() and "Ludhiana" not in res.answer  # no default place
+    assert res.weather_report is None
+
+
+def test_weather_without_a_place_asks(pipeline):
+    res = pipeline.process_query("will it rain today?", language="en", generate_audio=False)
+    assert res.intent == "weather" and res.processing_metadata["needs_place"] is True
+    assert "Which place" in res.answer and res.weather_report is None and "Ludhiana" not in res.answer
+
+
+def test_replying_with_a_place_answers_the_original_question(pipeline, monkeypatch):
+    from app.agent.state import ConversationTurn
+
+    monkeypatch.setattr(pipeline.weather_tool, "resolve_place", lambda name: Place(name=name, latitude=30.2, longitude=75.8))
+    asked = pipeline.process_query("Can I spray pesticide today?", language="en", generate_audio=False)
+    assert asked.processing_metadata.get("needs_place")
+    reply = pipeline.process_query("Sangrur", language="en", generate_audio=False, history=[ConversationTurn.from_answer(asked)])
+    assert reply.intent == "weather" and reply.processing_metadata["district"] == "Sangrur"
+    assert reply.weather_report and "Spray" in reply.answer  # the spray question is still answered
 
 
 @pytest.mark.parametrize(

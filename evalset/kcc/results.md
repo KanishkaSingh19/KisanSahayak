@@ -25,7 +25,7 @@
 | Price questions answered with the MSP / mandi price | 4/4 (100%) |
 | Outside our advisories: referred to KVK (not shown another topic's advice) | **134/140 (96%)** |
 | Answer in the requested language (script) | 200/200 (100%) |
-| Response time median / p95 | 3 ms / 890 ms |
+| Response time median / p95 | 3 ms / 806 ms |
 
 | Language | Answer in the right script |
 |---|---|

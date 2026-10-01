@@ -431,6 +431,7 @@ class IntentRouter:
                 confidence=0.85,
                 detected_topic="Ag-Weather & Spray Window Advisory",
                 detected_district=result.detected_district or (None if previous.district_from_profile else previous.district),
+                follow_up_of=previous.query,  # "Sangrur" answering "Can I spray today?" keeps the spray question
                 reasoning="Follow-up to the previous weather question.",
             )
 

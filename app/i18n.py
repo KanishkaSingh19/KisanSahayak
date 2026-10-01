@@ -95,6 +95,18 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hinglish": "- {date}: Rs {price} prati quintal (report karne wali mandiyon ka ausat, {place})",
         "hi": "- {date}: Rs {price} प्रति क्विंटल (रिपोर्ट करने वाली मंडियों का औसत, {place})",
     },
+    "market_ask_place": {
+        "en": "For today's mandi prices, tell me your district or mandi, for example \"wheat price in Sangrur mandi\". You can also set your district in My farm.",
+        "pa": "ਅੱਜ ਦੇ ਮੰਡੀ ਭਾਅ ਲਈ ਆਪਣਾ ਜ਼ਿਲ੍ਹਾ ਜਾਂ ਮੰਡੀ ਦੱਸੋ, ਜਿਵੇਂ \"ਸੰਗਰੂਰ ਮੰਡੀ ਵਿੱਚ ਕਣਕ ਦਾ ਭਾਅ\"। ਤੁਸੀਂ 'ਮੇਰਾ ਖੇਤ' ਵਿੱਚ ਆਪਣਾ ਜ਼ਿਲ੍ਹਾ ਵੀ ਭਰ ਸਕਦੇ ਹੋ।",
+        "hinglish": "Aaj ke mandi bhav ke liye apna zila ya mandi batayein, jaise \"Sangrur mandi mein gehun ka bhav\". Aap 'Mera khet' mein apna zila bhi bhar sakte hain.",
+        "hi": "आज के मंडी भाव के लिए अपना ज़िला या मंडी बताएँ, जैसे \"संगरूर मंडी में गेहूं का भाव\"। आप 'मेरा खेत' में अपना ज़िला भी भर सकते हैं।",
+    },
+    "market_place_unknown": {
+        "en": "I couldn't find \"{place}\". Tell me the district or mandi name, for example \"wheat price in Sangrur mandi\".",
+        "pa": "\"{place}\" ਨਹੀਂ ਲੱਭਿਆ। ਜ਼ਿਲ੍ਹੇ ਜਾਂ ਮੰਡੀ ਦਾ ਨਾਂ ਦੱਸੋ, ਜਿਵੇਂ \"ਸੰਗਰੂਰ ਮੰਡੀ ਵਿੱਚ ਕਣਕ ਦਾ ਭਾਅ\"।",
+        "hinglish": "\"{place}\" nahi mila. Zile ya mandi ka naam batayein, jaise \"Sangrur mandi mein gehun ka bhav\".",
+        "hi": "\"{place}\" नहीं मिला। ज़िले या मंडी का नाम बताएँ, जैसे \"संगरूर मंडी में गेहूं का भाव\"।",
+    },
     "market_state_fallback": {
         "en": "No mandi in {district} reported this crop recently, so this is the average for {state}.",
         "pa": "{district} ਦੀ ਕਿਸੇ ਮੰਡੀ ਨੇ ਹਾਲ ਹੀ ਵਿੱਚ ਇਸ ਫ਼ਸਲ ਦਾ ਭਾਅ ਨਹੀਂ ਦੱਸਿਆ, ਇਸ ਲਈ ਇਹ {state} ਦੀ ਔਸਤ ਹੈ।",
@@ -264,16 +276,16 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hi": "{place}: तापमान {temp}°C, नमी {humidity}%, हवा {wind} km/h, और अगले 12 घंटों में बारिश की संभावना {rain}% है।",
     },
     "location_default": {
-        "en": "No place was recognised in your question, so this shows **{default}**. Mention your district, e.g. \"weather in Sangrur\".",
-        "pa": "ਤੁਹਾਡੇ ਸਵਾਲ ਵਿੱਚ ਕੋਈ ਥਾਂ ਨਹੀਂ ਪਛਾਣੀ ਗਈ, ਇਸ ਲਈ ਇਹ **{default}** ਦਾ ਮੌਸਮ ਹੈ। ਆਪਣਾ ਜ਼ਿਲ੍ਹਾ ਦੱਸੋ, ਜਿਵੇਂ \"ਸੰਗਰੂਰ ਵਿੱਚ ਮੌਸਮ\"।",
-        "hinglish": "Aapke sawal mein koi jagah pehchani nahi gayi, isliye yeh **{default}** ka mausam hai. Apna zila batayein, jaise \"Sangrur mein mausam\".",
-        "hi": "आपके प्रश्न में कोई स्थान नहीं पहचाना गया, इसलिए यह **{default}** का मौसम है। अपना ज़िला बताएँ, जैसे \"संगरूर में मौसम\"।",
+        "en": "Which place should I check? Tell me your district or nearest town, for example \"Sangrur\" or \"weather in Sangrur\". You can also set your district in My farm.",
+        "pa": "ਮੈਂ ਕਿਹੜੀ ਥਾਂ ਦਾ ਮੌਸਮ ਵੇਖਾਂ? ਆਪਣਾ ਜ਼ਿਲ੍ਹਾ ਜਾਂ ਨੇੜਲਾ ਸ਼ਹਿਰ ਦੱਸੋ, ਜਿਵੇਂ \"ਸੰਗਰੂਰ\" ਜਾਂ \"ਸੰਗਰੂਰ ਵਿੱਚ ਮੌਸਮ\"। ਤੁਸੀਂ 'ਮੇਰਾ ਖੇਤ' ਵਿੱਚ ਆਪਣਾ ਜ਼ਿਲ੍ਹਾ ਵੀ ਭਰ ਸਕਦੇ ਹੋ।",
+        "hinglish": "Kis jagah ka mausam dekhun? Apna zila ya nazdeeki shehar batayein, jaise \"Sangrur\" ya \"Sangrur mein mausam\". Aap 'Mera khet' mein apna zila bhi bhar sakte hain.",
+        "hi": "किस जगह का मौसम देखूँ? अपना ज़िला या नज़दीकी शहर बताएँ, जैसे \"संगरूर\" या \"संगरूर में मौसम\"। आप 'मेरा खेत' में अपना ज़िला भी भर सकते हैं।",
     },
     "location_not_found": {
-        "en": "Couldn't find \"{place}\", so this shows **{default}** instead. Try your district name, e.g. \"weather in Sangrur\".",
-        "pa": "\"{place}\" ਨਹੀਂ ਲੱਭਿਆ, ਇਸ ਲਈ ਇਹ **{default}** ਦਾ ਮੌਸਮ ਹੈ। ਆਪਣੇ ਜ਼ਿਲ੍ਹੇ ਦਾ ਨਾਮ ਲਿਖੋ, ਜਿਵੇਂ \"ਸੰਗਰੂਰ ਵਿੱਚ ਮੌਸਮ\"।",
-        "hinglish": "\"{place}\" nahi mila, isliye yeh **{default}** ka mausam hai. Apne zile ka naam likhein, jaise \"Sangrur mein mausam\".",
-        "hi": "\"{place}\" नहीं मिला, इसलिए यह **{default}** का मौसम है। अपने ज़िले का नाम लिखें, जैसे \"संगरूर में मौसम\"।",
+        "en": "I couldn't find \"{place}\". Tell me your district or nearest town, for example \"weather in Sangrur\".",
+        "pa": "\"{place}\" ਨਹੀਂ ਲੱਭਿਆ। ਆਪਣਾ ਜ਼ਿਲ੍ਹਾ ਜਾਂ ਨੇੜਲਾ ਸ਼ਹਿਰ ਦੱਸੋ, ਜਿਵੇਂ \"ਸੰਗਰੂਰ ਵਿੱਚ ਮੌਸਮ\"।",
+        "hinglish": "\"{place}\" nahi mila. Apna zila ya nazdeeki shehar batayein, jaise \"Sangrur mein mausam\".",
+        "hi": "\"{place}\" नहीं मिला। अपना ज़िला या नज़दीकी शहर बताएँ, जैसे \"संगरूर में मौसम\"।",
     },
     "spray_rain": {
         "en": "Postpone spraying: rain is likely in the next 12-24 hours and could wash the chemical off.",

@@ -192,3 +192,8 @@ def test_pesticide_answer_is_sent_for_review(client, fake):
     # An answer without a pesticide dose is not sent
     fake.process_query = lambda query, **kw: fake._answer(query, kw.get("language"), kw.get("history"))
     assert client.post("/ask", json={"query": "hello"}).json()["sent_for_review"] is None
+
+
+
+def test_weather_endpoint_needs_a_place(client):
+    assert client.get("/weather").status_code == 422  # no default place
