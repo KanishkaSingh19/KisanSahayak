@@ -7,7 +7,6 @@
 """
 
 import json
-import os
 import re
 import time
 import unicodedata
@@ -113,7 +112,7 @@ class MandiPriceClient:
     DOWN_COOLDOWN_SEC = 600  # after a failure, don't make every farmer wait for the same timeout
 
     def __init__(self, api_key: Optional[str] = None, timeout_sec: float = 5.0):
-        self.api_key = api_key or os.environ.get("DATA_GOV_API_KEY") or SAMPLE_API_KEY
+        self.api_key = api_key or settings.DATA_GOV_API_KEY or SAMPLE_API_KEY
         self.timeout_sec = timeout_sec
         self._down_until = 0.0
 

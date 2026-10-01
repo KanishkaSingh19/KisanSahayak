@@ -48,6 +48,12 @@ class Settings(BaseSettings):
     RAG_FINAL_TOP_K: int = 3
     RRF_K: int = 60
 
+    # Market prices: your own data.gov.in key ("" = the public demo key)
+    DATA_GOV_API_KEY: str = ""
+    # KVK expert review page: passcode ("" = open demo) and queue file ("" = data/review/queue.jsonl)
+    REVIEW_PASSCODE: str = ""
+    REVIEW_QUEUE_PATH: str = ""
+
     model_config = SettingsConfigDict(
         env_file=str(Path(__file__).resolve().parent.parent / ".env"),
         env_file_encoding="utf-8",

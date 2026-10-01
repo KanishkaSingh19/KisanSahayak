@@ -14,7 +14,6 @@ so a permanent deployment should point REVIEW_QUEUE_PATH at lasting storage.
 """
 
 import json
-import os
 import threading
 import uuid
 from datetime import datetime, timezone
@@ -65,7 +64,7 @@ class ReviewQueue:
     """Flagged answers waiting for, or checked by, a KVK expert."""
 
     def __init__(self, path: Optional[Path] = None):
-        self.path = Path(path or os.environ.get("REVIEW_QUEUE_PATH") or DEFAULT_PATH)
+        self.path = Path(path or settings.REVIEW_QUEUE_PATH or DEFAULT_PATH)
         self._lock = threading.Lock()
 
     def _read(self) -> List[Dict]:

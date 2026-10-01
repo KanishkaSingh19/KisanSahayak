@@ -2,7 +2,6 @@
 
 import csv
 import io
-import os
 import sys
 from pathlib import Path
 
@@ -17,6 +16,7 @@ try:
 except Exception:
     pass
 
+from app.config import settings  # noqa: E402
 from app.review import REASONS, ReviewQueue  # noqa: E402
 
 st.set_page_config(page_title="KVK expert review - KisanSahayak", page_icon="🌾", layout="wide")
@@ -41,7 +41,7 @@ st.caption(
 )
 
 # Optional passcode, so only KVK experts can mark answers (set REVIEW_PASSCODE in .env or Streamlit Secrets)
-passcode = os.environ.get("REVIEW_PASSCODE", "")
+passcode = settings.REVIEW_PASSCODE
 if passcode:
     if st.session_state.get("review_ok") is not True:
         entered = st.text_input("Reviewer passcode", type="password")
