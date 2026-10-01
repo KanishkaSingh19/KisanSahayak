@@ -1,0 +1,81 @@
+{
+  "scheme": "Kisan Credit Card (KCC) with the Modified Interest Subvention Scheme",
+  "short_name": "Kisan Credit Card",
+  "source": "PIB: Cabinet decision of 28 May 2025 (Modified Interest Subvention Scheme), PIB backgrounder 'Kisan Credit Card' of 11 March 2026, RBI collateral-free limit from 1 January 2025 (PIB)",
+  "source_url": "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2238004",
+  "last_verified": "2026-10-01",
+  "names": ["kisan credit card", "kisan credit", "credit card", "kcc card", "kcc loan", "kcc limit", "kcc interest",
+            "crop loan", "fasal loan", "kheti loan", "krishi loan", "kisan loan", "fasal rin",
+            "किसान क्रेडिट कार्ड", "क्रेडिट कार्ड", "फसल ऋण", "फसल लोन", "कृषि ऋण",
+            "ਕਿਸਾਨ ਕ੍ਰੈਡਿਟ ਕਾਰਡ", "ਕ੍ਰੈਡਿਟ ਕਾਰਡ", "ਫ਼ਸਲੀ ਕਰਜ਼ਾ", "ਫਸਲੀ ਕਰਜ਼ਾ"],
+  "default_sections": ["benefit", "interest", "apply"],
+  "always_sections": [],
+  "sections": [
+    {
+      "id": "benefit",
+      "title": "What the Kisan Credit Card is",
+      "keywords": ["kya hai", "what is", "benefit", "faida", "use", "kis kaam", "क्या है", "लाभ", "ਕੀ ਹੈ", "ਲਾਭ"],
+      "text": {
+        "en": "The Kisan Credit Card (KCC) gives farmers bank credit for growing crops, post-harvest and marketing costs, household needs, farm maintenance, and allied activities such as dairy, poultry, fisheries and beekeeping. It is a revolving limit valid for up to 5 years, with a RuPay card for withdrawals and digital payments. It is given by commercial banks, regional rural banks and cooperative banks.",
+        "pa": "ਕਿਸਾਨ ਕ੍ਰੈਡਿਟ ਕਾਰਡ (KCC) ਕਿਸਾਨਾਂ ਨੂੰ ਫ਼ਸਲ ਉਗਾਉਣ, ਵਾਢੀ ਤੋਂ ਬਾਅਦ ਅਤੇ ਮੰਡੀਕਰਨ ਦੇ ਖ਼ਰਚਿਆਂ, ਘਰੇਲੂ ਲੋੜਾਂ, ਖੇਤ ਦੀ ਸਾਂਭ-ਸੰਭਾਲ, ਅਤੇ ਡੇਅਰੀ, ਮੁਰਗੀ ਪਾਲਣ, ਮੱਛੀ ਪਾਲਣ ਅਤੇ ਮਧੂ ਮੱਖੀ ਪਾਲਣ ਵਰਗੇ ਸਹਾਇਕ ਕੰਮਾਂ ਲਈ ਬੈਂਕ ਕਰਜ਼ਾ ਦਿੰਦਾ ਹੈ। ਇਹ 5 ਸਾਲ ਤੱਕ ਚੱਲਣ ਵਾਲੀ ਘੁੰਮਦੀ ਲਿਮਿਟ ਹੈ, ਪੈਸੇ ਕਢਵਾਉਣ ਅਤੇ ਡਿਜੀਟਲ ਭੁਗਤਾਨ ਲਈ RuPay ਕਾਰਡ ਨਾਲ। ਇਹ ਵਪਾਰਕ ਬੈਂਕ, ਖੇਤਰੀ ਪੇਂਡੂ ਬੈਂਕ ਅਤੇ ਸਹਿਕਾਰੀ ਬੈਂਕ ਦਿੰਦੇ ਹਨ।",
+        "hinglish": "Kisan Credit Card (KCC) kisanon ko fasal ugaane, katai ke baad aur bikri ke kharchon, gharelu zarooraton, khet ki dekhbhal, aur dairy, murgi palan, machhli palan aur madhumakkhi palan jaise sahayak kaamon ke liye bank loan deta hai. Yeh 5 saal tak chalne wali ghoomne wali limit hai, paise nikalne aur digital payment ke liye RuPay card ke saath. Ise vyavsayik bank, kshetriya gramin bank aur sahkari bank dete hain.",
+        "hi": "किसान क्रेडिट कार्ड (KCC) किसानों को फसल उगाने, कटाई के बाद और बिक्री के खर्चों, घरेलू ज़रूरतों, खेत के रखरखाव, और डेयरी, मुर्गी पालन, मछली पालन और मधुमक्खी पालन जैसे सहायक कामों के लिए बैंक ऋण देता है। यह 5 साल तक चलने वाली घूमने वाली (revolving) सीमा है, पैसे निकालने और डिजिटल भुगतान के लिए RuPay कार्ड के साथ। इसे वाणिज्यिक बैंक, क्षेत्रीय ग्रामीण बैंक और सहकारी बैंक देते हैं।"
+      }
+    },
+    {
+      "id": "interest",
+      "title": "Interest rate and loan limit",
+      "keywords": ["interest", "byaj", "vyaj", "rate", "4%", "7%", "limit", "kitna", "how much", "lakh", "subsidy", "ब्याज", "सीमा", "कितना", "ਵਿਆਜ", "ਲਿਮਿਟ", "ਕਿੰਨਾ"],
+      "text": {
+        "en": "Short-term crop loans through KCC up to Rs 3 lakh are given at 7% interest, and farmers who repay on time get up to 3% back as a Prompt Repayment Incentive, so they pay 4%. The Union Budget 2025-26 raised the loan limit under this interest scheme from Rs 3 lakh to Rs 5 lakh, so ask your bank how much of your loan gets the lower rate. For loans only for animal husbandry or fisheries, the interest benefit applied up to Rs 2 lakh in the May 2025 decision.",
+        "pa": "KCC ਰਾਹੀਂ Rs 3 lakh ਤੱਕ ਦੇ ਥੋੜ੍ਹੇ ਸਮੇਂ ਦੇ ਫ਼ਸਲੀ ਕਰਜ਼ੇ 7% ਵਿਆਜ 'ਤੇ ਮਿਲਦੇ ਹਨ, ਅਤੇ ਸਮੇਂ ਸਿਰ ਮੋੜਨ ਵਾਲੇ ਕਿਸਾਨਾਂ ਨੂੰ 3% ਤੱਕ ਵਾਪਸ ਮਿਲਦਾ ਹੈ (Prompt Repayment Incentive), ਇਸ ਤਰ੍ਹਾਂ ਉਹ 4% ਦਿੰਦੇ ਹਨ। ਕੇਂਦਰੀ ਬਜਟ 2025-26 ਨੇ ਇਸ ਵਿਆਜ ਯੋਜਨਾ ਹੇਠ ਕਰਜ਼ੇ ਦੀ ਲਿਮਿਟ Rs 3 lakh ਤੋਂ ਵਧਾ ਕੇ Rs 5 lakh ਕੀਤੀ ਹੈ, ਇਸ ਲਈ ਆਪਣੇ ਬੈਂਕ ਤੋਂ ਪੁੱਛੋ ਕਿ ਤੁਹਾਡੇ ਕਰਜ਼ੇ ਦੇ ਕਿੰਨੇ ਹਿੱਸੇ 'ਤੇ ਘੱਟ ਵਿਆਜ ਲੱਗੇਗਾ। ਸਿਰਫ਼ ਪਸ਼ੂ ਪਾਲਣ ਜਾਂ ਮੱਛੀ ਪਾਲਣ ਲਈ ਕਰਜ਼ੇ 'ਤੇ, ਮਈ 2025 ਦੇ ਫ਼ੈਸਲੇ ਵਿੱਚ ਵਿਆਜ ਦਾ ਲਾਭ Rs 2 lakh ਤੱਕ ਸੀ।",
+        "hinglish": "KCC ke zariye Rs 3 lakh tak ke chhoti avadhi ke fasal loan 7% byaj par milte hain, aur samay par chukane wale kisanon ko 3% tak wapas milta hai (Prompt Repayment Incentive), is tarah ve 4% dete hain. Kendriya Budget 2025-26 ne is byaj yojana ke tahat loan ki seema Rs 3 lakh se badhakar Rs 5 lakh ki hai, isliye apne bank se poochhein ki aapke loan ke kitne hisse par kam byaj lagega. Sirf pashupalan ya machhli palan ke loan par, May 2025 ke nirnay mein byaj ka laabh Rs 2 lakh tak tha.",
+        "hi": "KCC के ज़रिए Rs 3 lakh तक के अल्पकालिक फसल ऋण 7% ब्याज पर मिलते हैं, और समय पर चुकाने वाले किसानों को 3% तक वापस मिलता है (Prompt Repayment Incentive), इस तरह वे 4% देते हैं। केंद्रीय बजट 2025-26 ने इस ब्याज योजना के तहत ऋण सीमा Rs 3 lakh से बढ़ाकर Rs 5 lakh की है, इसलिए अपने बैंक से पूछें कि आपके ऋण के कितने हिस्से पर कम ब्याज लगेगा। केवल पशुपालन या मछली पालन के ऋण पर, मई 2025 के निर्णय में ब्याज का लाभ Rs 2 lakh तक था।"
+      }
+    },
+    {
+      "id": "collateral",
+      "title": "Security (collateral)",
+      "keywords": ["collateral", "security", "guarantee", "girvi", "zamanat", "mortgage", "gehne", "गिरवी", "ज़मानत", "गारंटी", "ਗਹਿਣੇ", "ਜ਼ਮਾਨਤ", "ਗਾਰੰਟੀ"],
+      "text": {
+        "en": "From 1 January 2025, banks must not ask for collateral security or margin for agricultural loans, including allied activities, up to Rs 2 lakh per borrower.",
+        "pa": "1 ਜਨਵਰੀ 2025 ਤੋਂ, ਬੈਂਕ ਪ੍ਰਤੀ ਕਰਜ਼ਦਾਰ Rs 2 lakh ਤੱਕ ਦੇ ਖੇਤੀ ਕਰਜ਼ਿਆਂ (ਸਹਾਇਕ ਕੰਮਾਂ ਸਮੇਤ) ਲਈ ਕੋਈ ਜ਼ਮਾਨਤ (collateral) ਜਾਂ ਮਾਰਜਿਨ ਨਹੀਂ ਮੰਗ ਸਕਦੇ।",
+        "hinglish": "1 January 2025 se, bank prati karzdaar Rs 2 lakh tak ke krishi loan (sahayak kaamon samet) ke liye koi zamanat (collateral) ya margin nahi maang sakte.",
+        "hi": "1 जनवरी 2025 से, बैंक प्रति कर्ज़दार Rs 2 lakh तक के कृषि ऋण (सहायक कामों सहित) के लिए कोई ज़मानत (collateral) या मार्जिन नहीं माँग सकते।"
+      }
+    },
+    {
+      "id": "eligibility",
+      "title": "Who can get a KCC",
+      "keywords": ["eligible", "eligibility", "kaun", "who", "tenant", "batai", "theke", "पात्र", "कौन", "किरायेदार", "बटाई", "ਯੋਗ", "ਕੌਣ", "ਠੇਕੇ"],
+      "text": {
+        "en": "Individual farmers and joint borrowers who own and cultivate land; tenant farmers, oral lessees and sharecroppers; and Self Help Groups or Joint Liability Groups of farmers, including groups of tenant farmers and sharecroppers. KCC is also given for animal husbandry, dairy and fisheries.",
+        "pa": "ਆਪਣੀ ਜ਼ਮੀਨ 'ਤੇ ਖੇਤੀ ਕਰਨ ਵਾਲੇ ਇਕੱਲੇ ਕਿਸਾਨ ਅਤੇ ਸਾਂਝੇ ਕਰਜ਼ਦਾਰ; ਠੇਕੇ 'ਤੇ ਖੇਤੀ ਕਰਨ ਵਾਲੇ, ਜ਼ੁਬਾਨੀ ਠੇਕੇਦਾਰ ਅਤੇ ਹਿੱਸੇਦਾਰ; ਅਤੇ ਕਿਸਾਨਾਂ ਦੇ ਸਵੈ-ਸਹਾਇਤਾ ਸਮੂਹ ਜਾਂ ਸਾਂਝੀ ਜ਼ਿੰਮੇਵਾਰੀ ਸਮੂਹ, ਠੇਕੇ ਅਤੇ ਹਿੱਸੇ 'ਤੇ ਖੇਤੀ ਕਰਨ ਵਾਲਿਆਂ ਦੇ ਸਮੂਹਾਂ ਸਮੇਤ। KCC ਪਸ਼ੂ ਪਾਲਣ, ਡੇਅਰੀ ਅਤੇ ਮੱਛੀ ਪਾਲਣ ਲਈ ਵੀ ਮਿਲਦਾ ਹੈ।",
+        "hinglish": "Apni zameen par kheti karne wale akele kisan aur sanjhe karzdaar; kirayedar, maukhik patte wale aur batai par kheti karne wale; aur kisanon ke Self Help Group ya Joint Liability Group, kirayedar aur batai wale kisanon ke samoohon samet. KCC pashupalan, dairy aur machhli palan ke liye bhi milta hai.",
+        "hi": "अपनी ज़मीन पर खेती करने वाले व्यक्तिगत किसान और संयुक्त कर्ज़दार; किरायेदार, मौखिक पट्टेदार और बटाईदार; और किसानों के स्वयं सहायता समूह या संयुक्त देयता समूह, किरायेदार और बटाईदार किसानों के समूहों सहित। KCC पशुपालन, डेयरी और मछली पालन के लिए भी मिलता है।"
+      }
+    },
+    {
+      "id": "apply",
+      "title": "How to apply",
+      "keywords": ["apply", "kaise", "banwayein", "banaye", "form", "documents", "document", "aavedan", "register", "आवेदन", "कैसे", "बनवाएं", "दस्तावेज़", "ਅਰਜ਼ੀ", "ਕਿਵੇਂ", "ਦਸਤਾਵੇਜ਼"],
+      "text": {
+        "en": "Apply at any commercial bank, regional rural bank or cooperative bank. There is a simple one-page KCC form, which you can download from pmkisan.gov.in or the bank's website; for PM-KISAN beneficiaries the bank pre-fills your details. Submit it with a copy of your land records and the crops you grow. A Common Service Centre (CSC) can help fill it in and send it to the bank.",
+        "pa": "ਕਿਸੇ ਵੀ ਵਪਾਰਕ ਬੈਂਕ, ਖੇਤਰੀ ਪੇਂਡੂ ਬੈਂਕ ਜਾਂ ਸਹਿਕਾਰੀ ਬੈਂਕ ਵਿੱਚ ਅਰਜ਼ੀ ਦਿਓ। KCC ਲਈ ਇੱਕ ਸੌਖਾ ਇੱਕ ਸਫ਼ੇ ਦਾ ਫ਼ਾਰਮ ਹੈ, ਜੋ ਤੁਸੀਂ pmkisan.gov.in ਜਾਂ ਬੈਂਕ ਦੀ ਵੈੱਬਸਾਈਟ ਤੋਂ ਡਾਊਨਲੋਡ ਕਰ ਸਕਦੇ ਹੋ; ਪੀਐਮ-ਕਿਸਾਨ ਲਾਭਪਾਤਰੀਆਂ ਦੇ ਵੇਰਵੇ ਬੈਂਕ ਪਹਿਲਾਂ ਹੀ ਭਰ ਦਿੰਦਾ ਹੈ। ਇਸ ਨੂੰ ਜ਼ਮੀਨ ਦੇ ਰਿਕਾਰਡ ਦੀ ਕਾਪੀ ਅਤੇ ਆਪਣੀਆਂ ਫ਼ਸਲਾਂ ਦੇ ਵੇਰਵੇ ਨਾਲ ਜਮ੍ਹਾਂ ਕਰੋ। ਕਾਮਨ ਸਰਵਿਸ ਸੈਂਟਰ (CSC) ਇਸ ਨੂੰ ਭਰਨ ਅਤੇ ਬੈਂਕ ਨੂੰ ਭੇਜਣ ਵਿੱਚ ਮਦਦ ਕਰ ਸਕਦਾ ਹੈ।",
+        "hinglish": "Kisi bhi vyavsayik bank, kshetriya gramin bank ya sahkari bank mein aavedan karein. KCC ka ek saral ek-panne ka form hai, jo aap pmkisan.gov.in ya bank ki website se download kar sakte hain; PM-KISAN labharthiyon ki details bank pehle se bhar deta hai. Ise zameen ke record ki copy aur aapki fasalon ki jaankari ke saath jama karein. Common Service Centre (CSC) ise bharne aur bank ko bhejne mein madad kar sakta hai.",
+        "hi": "किसी भी वाणिज्यिक बैंक, क्षेत्रीय ग्रामीण बैंक या सहकारी बैंक में आवेदन करें। KCC का एक सरल एक-पेज का फ़ॉर्म है, जिसे आप pmkisan.gov.in या बैंक की वेबसाइट से डाउनलोड कर सकते हैं; पीएम-किसान लाभार्थियों का विवरण बैंक पहले से भर देता है। इसे भूमि रिकॉर्ड की प्रति और अपनी फसलों की जानकारी के साथ जमा करें। कॉमन सर्विस सेंटर (CSC) इसे भरने और बैंक को भेजने में मदद कर सकता है।"
+      }
+    },
+    {
+      "id": "calamity",
+      "title": "If a natural calamity hits",
+      "keywords": ["calamity", "disaster", "flood", "baadh", "aapda", "repay", "chuka", "nahi chuka", "restructure", "आपदा", "बाढ़", "चुका", "ਆਫ਼ਤ", "ਹੜ੍ਹ", "ਮੋੜ"],
+      "text": {
+        "en": "After a natural calamity, interest relief is given for up to 1 year, which can be extended up to 5 years in severe disasters. Talk to your bank branch about relief and rescheduling of your KCC loan.",
+        "pa": "ਕੁਦਰਤੀ ਆਫ਼ਤ ਤੋਂ ਬਾਅਦ, 1 ਸਾਲ ਤੱਕ ਵਿਆਜ ਵਿੱਚ ਰਾਹਤ ਮਿਲਦੀ ਹੈ, ਜੋ ਗੰਭੀਰ ਆਫ਼ਤਾਂ ਵਿੱਚ 5 ਸਾਲ ਤੱਕ ਵਧਾਈ ਜਾ ਸਕਦੀ ਹੈ। ਆਪਣੇ KCC ਕਰਜ਼ੇ ਦੀ ਰਾਹਤ ਅਤੇ ਕਿਸ਼ਤਾਂ ਦੇ ਨਵੇਂ ਸਮੇਂ ਬਾਰੇ ਆਪਣੀ ਬੈਂਕ ਸ਼ਾਖਾ ਨਾਲ ਗੱਲ ਕਰੋ।",
+        "hinglish": "Prakritik aapda ke baad, 1 saal tak byaj mein rahat milti hai, jo gambhir aapdaon mein 5 saal tak badhayi ja sakti hai. Apne KCC loan ki rahat aur kiston ke naye samay ke baare mein apni bank shakha se baat karein.",
+        "hi": "प्राकृतिक आपदा के बाद, 1 साल तक ब्याज में राहत मिलती है, जो गंभीर आपदाओं में 5 साल तक बढ़ाई जा सकती है। अपने KCC ऋण की राहत और किस्तों के नए समय के बारे में अपनी बैंक शाखा से बात करें।"
+      }
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 # KisanSahayak feature test results
 
-*2026-10-01 · 25 test cases (`evalset/questions.json`) · answers: offline template (no API quota) · search embeddings: minilm · weather: live Open-Meteo*
+*2026-10-01 · 28 test cases (`evalset/questions.json`) · answers: offline template (no API quota) · search embeddings: minilm · weather: live Open-Meteo*
 
 | Result | Value |
 |---|---|
-| Automated cases passed | **21/22** |
-| Conversation turns passed | 33/34 |
+| Automated cases passed | **24/25** |
+| Conversation turns passed | 38/39 |
 | Manual cases (photo, voice) | 3, see `evalset/questions.md` |
-| Answers by source | template_offline: 25 |
+| Answers by source | template_offline: 29 |
 
 | # | Feature | Result |
 |---|---|---|
@@ -33,6 +33,9 @@
 | 20 | PM-KISAN: benefit amount | pass |
 | 21 | PM-KISAN: rule-based eligibility from the profile, and a follow-up | pass |
 | 22 | PM-KISAN: why an instalment is held, and eKYC | pass |
+| 26 | Crop insurance (PMFBY): not run in Punjab, and a claim follow-up | pass |
+| 27 | Kisan Credit Card: interest and collateral, in Hindi | pass |
+| 28 | A scheme without checked information is referred, not answered with another scheme | pass |
 | 23 | Photo diagnosis: upload and take a photo of a covered crop | manual |
 | 24 | Photo diagnosis: crop the advisories do not cover | manual |
 | 25 | Voice: live recording in English and Punjabi, answer read aloud | manual |

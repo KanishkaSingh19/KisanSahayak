@@ -24,6 +24,7 @@ Farmers ask about crops, pests, pesticides or weather in Hindi, Punjabi, Hinglis
 - **Real-time voice** — tap **Voice** inside the chat box, record your question, and it is sent when you stop; answers to spoken questions are read aloud.
 - **Photo diagnosis** — tap **Photo** inside the chat box and choose **Upload a photo** (from the device) or **Take a photo** (phone or laptop camera); the photo is sent as soon as it is chosen or taken. Gemini Vision names the likely disease or pest and its confidence, and the treatment comes only from the verified advisories. Unclear photos, healthy plants and crops the advisories don't cover get no treatment, and every photo answer carries an "AI estimate, confirm with your KVK" note.
 - **PM-KISAN guidance** — benefit, eligibility, exclusions, how to apply, eKYC, status checks and why an instalment can be held, from the official site ([pmkisan.gov.in](https://pmkisan.gov.in), checked 30 Sep 2026) in all four languages. Eligibility is decided by fixed rules from the farm profile, never by the LLM, and every answer says to confirm on the official portal.
+- **Crop insurance (PMFBY) and Kisan Credit Card guidance** — premiums, what is covered, who can enrol, how to enrol and claim (72 hours, helpline 14447); KCC interest (7%, 4% with timely repayment), loan limit, collateral-free limit, who can get one and how to apply. Written from official sources (PMFBY operational guidelines, PIB releases of 2025-26, checked 1 Oct 2026) in all four languages. Crop insurance answers always say that **Punjab has not implemented PMFBY**. Other schemes (Soil Health Card, PM-KISAN Maandhan, PM-KUSUM, PMKSY) are recognised by name and referred to their official website instead of being answered with another scheme's rules.
 - **My farm profile (optional)** — district, crops, land and a few yes/no PM-KISAN questions. Used for the local weather when no place is named, for the crop when a question names none (if only one covered crop is listed), and for eligibility. Nothing is stored: it lasts only for the browser session and asks for no name, phone or Aadhaar.
 - **Language switch** — English (default), Punjabi, Hinglish or Hindi for the UI, the answer, warnings and voice.
 - **Gemini fallback chain** — a busy main model hands over to a backup model, then to the offline template with a visible note.
@@ -126,7 +127,7 @@ KisanSahayak/
 │       ├── weather_tool.py       # Open-Meteo ag-weather & spray window advisory
 │       ├── location.py           # Place-name lookup (any place in India)
 │       ├── vision.py             # Gemini Vision crop-photo diagnosis
-│       └── schemes.py            # PM-KISAN sections and rule-based eligibility check
+│       └── schemes.py            # Scheme guidance (PM-KISAN, PMFBY, KCC), PM-KISAN eligibility rules
 ├── data/
 │   ├── raw/                      # Crop advisories from PAU's Package of Practices (with page numbers) & CIBRC safety (JSON)
 │   │   ├── wheat_pau_icar.json
@@ -134,7 +135,7 @@ KisanSahayak/
 │   │   ├── paddy_rice_management.json
 │   │   ├── cotton_pest_control.json
 │   │   └── pesticide_safety_cibrc.json
-│   ├── schemes/pm_kisan.json     # PM-KISAN guidance from pmkisan.gov.in (4 languages)
+│   ├── schemes/                  # PM-KISAN, PMFBY crop insurance, Kisan Credit Card (official sources, 4 languages)
 │   ├── indices/                  # Serialized FAISS & BM25 indices
 │   └── audio/                    # Generated TTS audio files
 ├── frontend/
@@ -279,9 +280,9 @@ Full reports, including every failure: `eval/results_minilm.md`, `eval/results_g
 
 Only 26 of the 200 real questions fall within our 4-crop advisories: most calls are about weeds, nutrient deficiencies and varieties. For the four covered crops, those are now answered from PAU's *Package of Practices* chapter for that crop, citing PAU's pages ([`evalset/pau/`](evalset/pau/): on 28 questions written for it, 28/28 answered from PAU and the expected section in the top 3 for all; 23/28 before adding words that first run missed). Other crops and questions that name no crop are referred to the Kisan Call Centre (1800-180-1551). Answer and dose accuracy still need an agronomist: `evalset/kcc/review_sheet.csv` puts each answer next to the KCC advisor's answer for review.
 
-### Feature test set (25 questions)
+### Feature test set (28 questions)
 
-[`evalset/`](evalset/) checks every feature end to end: whole conversations with follow-ups, all four languages, the farm profile, PM-KISAN eligibility, weather, safety guardrails, the "crop not covered" guard, photo and voice. Cases 1–22 run automatically: **21/22 pass** (33/34 conversation turns) with offline answers after the PAU update; the miss is a Hindi symptom-only bacterial blight question ranked under brown planthopper by the local MiniLM search. The earlier run with real Gemini answers ([`evalset/results_llm.md`](evalset/results_llm.md), 22/22) predates the PAU update; photo and voice (23–25) are checked by hand.
+[`evalset/`](evalset/) checks every feature end to end: whole conversations with follow-ups, all four languages, the farm profile, PM-KISAN eligibility, crop insurance and Kisan Credit Card answers, weather, safety guardrails, the "crop not covered" guard, photo and voice. Cases 1–22 and 26–28 run automatically: **24/25 pass** (38/39 conversation turns) with offline answers; the miss is a Hindi symptom-only bacterial blight question ranked under brown planthopper by the local MiniLM search. The earlier run with real Gemini answers ([`evalset/results_llm.md`](evalset/results_llm.md), 22/22) predates the PAU update; photo and voice (23–25) are checked by hand.
 
 ```bash
 python evalset/run_evalset.py

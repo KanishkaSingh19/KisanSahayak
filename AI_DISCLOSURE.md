@@ -35,7 +35,7 @@
 - Evaluations record which model wrote each answer, and never count offline answers as LLM answers.
 
 ## 5. AI-generated data and limitations
-- **AI-generated text in the data:** the Punjabi, Hindi and Hinglish advisory translations (`data/translations.json`), the PM-KISAN guidance text (written from pmkisan.gov.in, `data/schemes/pm_kisan.json`), and the 150 non-English test questions (`evalset/kcc/translations.json`). None of this has yet been checked by native speakers or experts.
+- **AI-generated text in the data:** the Punjabi, Hindi and Hinglish advisory translations (`data/translations.json`), the scheme guidance texts (PM-KISAN from pmkisan.gov.in; PMFBY crop insurance and the Kisan Credit Card from the PMFBY operational guidelines and PIB releases, in `data/schemes/`; Claude read the official pages and wrote the text and its translations, keeping every number identical), and the 150 non-English test questions (`evalset/kcc/translations.json`). None of this has yet been checked by native speakers or experts.
 - **Test questions:**
   - The 200-question test set uses real Kisan Call Centre queries. Its English questions are the exact logged text; the others are AI translations of real queries.
   - The earlier 67- and 25-question sets were written by the team.

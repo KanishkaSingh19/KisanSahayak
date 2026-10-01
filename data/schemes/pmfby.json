@@ -1,0 +1,92 @@
+{
+  "scheme": "PMFBY (Pradhan Mantri Fasal Bima Yojana, crop insurance)",
+  "short_name": "PMFBY crop insurance",
+  "source": "Ministry of Agriculture and Farmers Welfare: PMFBY Revamped Operational Guidelines (2020), PIB backgrounder of 29 August 2026, PIB release of 5 December 2023, myscheme.gov.in",
+  "source_url": "https://pmfby.gov.in",
+  "official_site": "pmfby.gov.in",
+  "last_verified": "2026-10-01",
+  "names": ["pmfby", "fasal bima", "fasal beema", "crop insurance", "crop bima", "bima yojana", "insurance", "bima", "beema",
+            "crop loss claim", "insurance claim", "crop loss compensation", "fasal muavza", "fasal ka muavza",
+            "फसल बीमा", "फ़सल बीमा", "बीमा", "फसल का मुआवज़ा", "फसल मुआवजा", "ਫ਼ਸਲ ਬੀਮਾ", "ਫਸਲ ਬੀਮਾ", "ਬੀਮਾ", "ਫ਼ਸਲ ਦਾ ਮੁਆਵਜ਼ਾ"],
+  "default_sections": ["benefit", "eligibility", "apply"],
+  "always_sections": ["states"],
+  "sections": [
+    {
+      "id": "states",
+      "title": "Is PMFBY available in my state?",
+      "keywords": ["punjab", "haryana", "state", "available", "rajya", "पंजाब", "राज्य", "ਪੰਜਾਬ", "ਰਾਜ"],
+      "text": {
+        "en": "PMFBY runs only in states whose government has joined it: it is voluntary for states. Punjab has not implemented PMFBY (it is not among the 25 States and UTs running it in Kharif 2026). Haryana does run it. In Punjab, ask your district agriculture office about state relief for crop loss.",
+        "pa": "PMFBY ਸਿਰਫ਼ ਉਨ੍ਹਾਂ ਰਾਜਾਂ ਵਿੱਚ ਚੱਲਦੀ ਹੈ ਜਿਨ੍ਹਾਂ ਦੀ ਸਰਕਾਰ ਇਸ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਈ ਹੈ: ਰਾਜਾਂ ਲਈ ਇਹ ਮਰਜ਼ੀ ਦੀ ਹੈ। ਪੰਜਾਬ ਨੇ PMFBY ਲਾਗੂ ਨਹੀਂ ਕੀਤੀ (ਇਹ ਖਰੀਫ਼ 2026 ਵਿੱਚ ਇਸ ਨੂੰ ਚਲਾਉਣ ਵਾਲੇ 25 ਰਾਜਾਂ ਅਤੇ ਕੇਂਦਰ ਸ਼ਾਸਤ ਪ੍ਰਦੇਸ਼ਾਂ ਵਿੱਚ ਨਹੀਂ ਹੈ)। ਹਰਿਆਣਾ ਵਿੱਚ ਇਹ ਚੱਲਦੀ ਹੈ। ਪੰਜਾਬ ਵਿੱਚ ਫ਼ਸਲ ਦੇ ਨੁਕਸਾਨ ਲਈ ਰਾਜ ਸਰਕਾਰ ਦੀ ਰਾਹਤ ਬਾਰੇ ਆਪਣੇ ਜ਼ਿਲ੍ਹਾ ਖੇਤੀਬਾੜੀ ਦਫ਼ਤਰ ਤੋਂ ਪੁੱਛੋ।",
+        "hinglish": "PMFBY sirf un rajyon mein chalti hai jinki sarkar isme shamil hui hai: rajyon ke liye yeh marzi ki hai. Punjab ne PMFBY lagu nahi ki hai (Kharif 2026 mein ise chalane wale 25 rajyon aur kendra shasit pradeshon mein Punjab nahi hai). Haryana mein yeh chalti hai. Punjab mein fasal nuksaan par rajya sarkar ki rahat ke baare mein apne zila krishi daftar se poochhein.",
+        "hi": "PMFBY केवल उन राज्यों में चलती है जिनकी सरकार इसमें शामिल हुई है: राज्यों के लिए यह स्वैच्छिक है। पंजाब ने PMFBY लागू नहीं की है (खरीफ़ 2026 में इसे चलाने वाले 25 राज्यों और केंद्र शासित प्रदेशों में पंजाब नहीं है)। हरियाणा में यह चलती है। पंजाब में फसल नुकसान पर राज्य सरकार की राहत के बारे में अपने ज़िला कृषि कार्यालय से पूछें।"
+      }
+    },
+    {
+      "id": "benefit",
+      "title": "What PMFBY gives and what it costs",
+      "keywords": ["premium", "kitna", "cost", "kharcha", "kya hai", "what is", "benefit", "faida", "प्रीमियम", "कितना", "लाभ", "ਪ੍ਰੀਮੀਅਮ", "ਕਿੰਨਾ", "ਲਾਭ"],
+      "text": {
+        "en": "PMFBY is the Government of India's crop insurance scheme. The farmer pays at most 2% of the sum insured for Kharif food and oilseed crops, 1.5% for Rabi food and oilseed crops, and 5% for annual commercial and horticultural crops. The rest of the premium is paid by the Central and State Governments, half each (90:10 in North-Eastern and Himalayan States).",
+        "pa": "PMFBY ਭਾਰਤ ਸਰਕਾਰ ਦੀ ਫ਼ਸਲ ਬੀਮਾ ਯੋਜਨਾ ਹੈ। ਕਿਸਾਨ ਬੀਮਾ ਰਕਮ ਦਾ ਵੱਧ ਤੋਂ ਵੱਧ 2% ਖਰੀਫ਼ ਦੀਆਂ ਅਨਾਜ ਅਤੇ ਤੇਲ ਬੀਜ ਫ਼ਸਲਾਂ ਲਈ, 1.5% ਹਾੜੀ ਦੀਆਂ ਅਨਾਜ ਅਤੇ ਤੇਲ ਬੀਜ ਫ਼ਸਲਾਂ ਲਈ, ਅਤੇ 5% ਸਾਲਾਨਾ ਵਪਾਰਕ ਅਤੇ ਬਾਗ਼ਬਾਨੀ ਫ਼ਸਲਾਂ ਲਈ ਦਿੰਦਾ ਹੈ। ਬਾਕੀ ਪ੍ਰੀਮੀਅਮ ਕੇਂਦਰ ਅਤੇ ਰਾਜ ਸਰਕਾਰ ਅੱਧਾ-ਅੱਧਾ ਦਿੰਦੀਆਂ ਹਨ (ਉੱਤਰ-ਪੂਰਬੀ ਅਤੇ ਹਿਮਾਲਿਆਈ ਰਾਜਾਂ ਵਿੱਚ 90:10)।",
+        "hinglish": "PMFBY Bharat Sarkar ki fasal bima yojana hai. Kisan bima rashi ka zyada se zyada 2% Kharif ki anaj aur tilhan fasalon ke liye, 1.5% Rabi ki anaj aur tilhan fasalon ke liye, aur 5% salana vyavsayik aur bagwani fasalon ke liye deta hai. Baaki premium Kendra aur Rajya Sarkar aadha-aadha dete hain (North-East aur Himalayi rajyon mein 90:10).",
+        "hi": "PMFBY भारत सरकार की फसल बीमा योजना है। किसान बीमा राशि का अधिकतम 2% खरीफ़ की खाद्य और तिलहन फसलों के लिए, 1.5% रबी की खाद्य और तिलहन फसलों के लिए, और 5% वार्षिक वाणिज्यिक और बागवानी फसलों के लिए देता है। बाकी प्रीमियम केंद्र और राज्य सरकार आधा-आधा देती हैं (उत्तर-पूर्वी और हिमालयी राज्यों में 90:10)।"
+      }
+    },
+    {
+      "id": "risks",
+      "title": "What PMFBY covers",
+      "keywords": ["cover", "covered", "risk", "damage", "nuksaan", "nuksan", "flood", "hail", "olavrishti", "barish", "drought", "sukha", "pest", "नुकसान", "ओलावृष्टि", "बाढ़", "सूखा", "ਨੁਕਸਾਨ", "ਗੜੇ", "ਹੜ੍ਹ", "ਸੋਕਾ"],
+      "text": {
+        "en": "Covered: yield loss of the standing crop from drought, dry spells, floods, inundation, cyclones, hailstorms, lightning, pests and diseases (assessed for the whole notified area); prevented sowing because of bad weather (up to 25% of the sum insured); crops left to dry in the field after harvest, for up to 14 days, against cyclonic and unseasonal rain; and losses on your own field from hailstorm, landslide, inundation, cloud burst or natural fire. Not covered: losses outside notified areas or outside the crop period, war, riots, theft, and preventable or man-made losses.",
+        "pa": "ਕਵਰ: ਸੋਕੇ, ਸੁੱਕੇ ਦੌਰ, ਹੜ੍ਹ, ਪਾਣੀ ਭਰਨ, ਚੱਕਰਵਾਤ, ਗੜੇ, ਬਿਜਲੀ, ਕੀੜਿਆਂ ਅਤੇ ਬਿਮਾਰੀਆਂ ਨਾਲ ਖੜ੍ਹੀ ਫ਼ਸਲ ਦੇ ਝਾੜ ਦਾ ਨੁਕਸਾਨ (ਪੂਰੇ ਨੋਟੀਫਾਈਡ ਖੇਤਰ ਲਈ ਅੰਕਿਆ ਜਾਂਦਾ ਹੈ); ਖ਼ਰਾਬ ਮੌਸਮ ਕਰਕੇ ਬਿਜਾਈ ਨਾ ਹੋ ਸਕਣੀ (ਬੀਮਾ ਰਕਮ ਦਾ 25% ਤੱਕ); ਵਾਢੀ ਤੋਂ ਬਾਅਦ ਖੇਤ ਵਿੱਚ ਸੁਕਾਉਣ ਲਈ ਪਈ ਫ਼ਸਲ, 14 ਦਿਨਾਂ ਤੱਕ, ਚੱਕਰਵਾਤੀ ਅਤੇ ਬੇਮੌਸਮੀ ਮੀਂਹ ਤੋਂ; ਅਤੇ ਤੁਹਾਡੇ ਆਪਣੇ ਖੇਤ ਵਿੱਚ ਗੜੇ, ਜ਼ਮੀਨ ਖਿਸਕਣ, ਪਾਣੀ ਭਰਨ, ਬੱਦਲ ਫਟਣ ਜਾਂ ਕੁਦਰਤੀ ਅੱਗ ਨਾਲ ਨੁਕਸਾਨ। ਕਵਰ ਨਹੀਂ: ਨੋਟੀਫਾਈਡ ਖੇਤਰ ਜਾਂ ਫ਼ਸਲ ਦੇ ਸਮੇਂ ਤੋਂ ਬਾਹਰ ਦਾ ਨੁਕਸਾਨ, ਜੰਗ, ਦੰਗੇ, ਚੋਰੀ, ਅਤੇ ਰੋਕਿਆ ਜਾ ਸਕਣ ਵਾਲਾ ਜਾਂ ਮਨੁੱਖ ਦਾ ਕੀਤਾ ਨੁਕਸਾਨ।",
+        "hinglish": "Cover: sookha, sookhe daur, baadh, paani bharna, chakravat, olavrishti, bijli, keede aur bimariyon se khadi fasal ki paidawar ka nuksaan (poore notified kshetra ke liye aanka jaata hai); kharab mausam ke kaaran buwai na ho paana (bima rashi ka 25% tak); katai ke baad khet mein sookhne ke liye padi fasal, 14 din tak, chakravati aur bemausam barish se; aur aapke apne khet mein ole, bhooskhalan, paani bharne, badal phatne ya prakritik aag se nuksaan. Cover nahi: notified kshetra ya fasal ki avadhi ke bahar ka nuksaan, yudh, dange, chori, aur roka ja sakne wala ya insaan ka kiya nuksaan.",
+        "hi": "कवर: सूखा, सूखे का दौर, बाढ़, जलभराव, चक्रवात, ओलावृष्टि, बिजली, कीट और रोगों से खड़ी फसल की उपज का नुकसान (पूरे अधिसूचित क्षेत्र के लिए आँका जाता है); खराब मौसम के कारण बुवाई न हो पाना (बीमा राशि का 25% तक); कटाई के बाद खेत में सूखने के लिए पड़ी फसल, 14 दिन तक, चक्रवाती और बेमौसम बारिश से; और आपके अपने खेत में ओलावृष्टि, भूस्खलन, जलभराव, बादल फटने या प्राकृतिक आग से नुकसान। कवर नहीं: अधिसूचित क्षेत्र या फसल अवधि के बाहर का नुकसान, युद्ध, दंगे, चोरी, और रोका जा सकने वाला या मानव-जनित नुकसान।"
+      }
+    },
+    {
+      "id": "eligibility",
+      "title": "Who can get PMFBY",
+      "keywords": ["eligible", "eligibility", "kaun", "who", "tenant", "batai", "loan", "compulsory", "zaroori", "opt out", "पात्र", "कौन", "किरायेदार", "बटाई", "ज़रूरी", "ਯੋਗ", "ਕੌਣ", "ਠੇਕੇ"],
+      "text": {
+        "en": "All farmers, including tenant farmers and sharecroppers, growing notified crops in notified areas, with land records or a tenancy agreement or sowing certificate as the state requires. It is voluntary. If you have a seasonal crop loan or Kisan Credit Card from a bank, you are enrolled through the bank and the premium is deducted from the loan, unless you give the bank a signed opt-out declaration at least 7 days before the season's enrolment cut-off date.",
+        "pa": "ਸਾਰੇ ਕਿਸਾਨ, ਠੇਕੇ ਅਤੇ ਹਿੱਸੇ 'ਤੇ ਖੇਤੀ ਕਰਨ ਵਾਲਿਆਂ ਸਮੇਤ, ਜੋ ਨੋਟੀਫਾਈਡ ਖੇਤਰਾਂ ਵਿੱਚ ਨੋਟੀਫਾਈਡ ਫ਼ਸਲਾਂ ਉਗਾਉਂਦੇ ਹਨ, ਅਤੇ ਜਿਨ੍ਹਾਂ ਕੋਲ ਰਾਜ ਦੀ ਲੋੜ ਮੁਤਾਬਕ ਜ਼ਮੀਨ ਦਾ ਰਿਕਾਰਡ ਜਾਂ ਠੇਕੇ ਦਾ ਸਮਝੌਤਾ ਜਾਂ ਬਿਜਾਈ ਸਰਟੀਫਿਕੇਟ ਹੈ। ਇਹ ਮਰਜ਼ੀ ਦੀ ਹੈ। ਜੇ ਤੁਹਾਡੇ ਕੋਲ ਬੈਂਕ ਦਾ ਮੌਸਮੀ ਫ਼ਸਲੀ ਕਰਜ਼ਾ ਜਾਂ ਕਿਸਾਨ ਕ੍ਰੈਡਿਟ ਕਾਰਡ ਹੈ, ਤਾਂ ਤੁਹਾਡਾ ਬੀਮਾ ਬੈਂਕ ਰਾਹੀਂ ਹੁੰਦਾ ਹੈ ਅਤੇ ਪ੍ਰੀਮੀਅਮ ਕਰਜ਼ੇ ਵਿੱਚੋਂ ਕੱਟਿਆ ਜਾਂਦਾ ਹੈ, ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਮੌਸਮ ਦੀ ਆਖ਼ਰੀ ਤਾਰੀਖ਼ ਤੋਂ ਘੱਟੋ-ਘੱਟ 7 ਦਿਨ ਪਹਿਲਾਂ ਬੈਂਕ ਨੂੰ ਦਸਤਖ਼ਤ ਵਾਲਾ ਬਾਹਰ ਰਹਿਣ (opt-out) ਦਾ ਐਲਾਨ ਨਹੀਂ ਦਿੰਦੇ।",
+        "hinglish": "Sabhi kisan, kirayedar aur batai par kheti karne walon samet, jo notified kshetron mein notified fasalein ugaate hain, aur jinke paas rajya ki zaroorat ke hisaab se zameen ka record ya kirayedari samjhauta ya buwai pramaan patra hai. Yeh svaichhik hai. Agar aapke paas bank ka mausami fasal loan ya Kisan Credit Card hai, to aapka bima bank ke zariye hota hai aur premium loan se kat jaata hai, jab tak aap mausam ki enrolment cut-off date se kam se kam 7 din pehle bank ko dastakhat wala opt-out ghoshna patra nahi dete.",
+        "hi": "सभी किसान, किरायेदार और बटाईदार किसानों सहित, जो अधिसूचित क्षेत्रों में अधिसूचित फसलें उगाते हैं, और जिनके पास राज्य की आवश्यकता के अनुसार भूमि रिकॉर्ड या किरायेदारी समझौता या बुवाई प्रमाण पत्र है। यह स्वैच्छिक है। अगर आपके पास बैंक का मौसमी फसल ऋण या किसान क्रेडिट कार्ड है, तो आपका बीमा बैंक के माध्यम से होता है और प्रीमियम ऋण से कट जाता है, जब तक आप मौसम की नामांकन अंतिम तिथि से कम से कम 7 दिन पहले बैंक को हस्ताक्षरित opt-out घोषणा पत्र नहीं देते।"
+      }
+    },
+    {
+      "id": "apply",
+      "title": "How to enrol",
+      "keywords": ["apply", "register", "registration", "enrol", "enroll", "kaise", "form", "documents", "document", "last date", "aavedan", "आवेदन", "पंजीकरण", "दस्तावेज़", "ਅਰਜ਼ੀ", "ਦਸਤਾਵੇਜ਼"],
+      "text": {
+        "en": "Enrol before the cut-off date your state notifies for each season, and apply afresh every season. Farmers without a crop loan can enrol at a bank branch, a Common Service Centre (CSC), on pmfby.gov.in (Farmer Corner) or the Crop Insurance App, and pay the premium there. Keep: a photo, bank passbook, an identity proof (such as Aadhaar), land records or the tenancy agreement, and a declaration of the crop sown. Check the details before submitting and keep the receipt with the application number.",
+        "pa": "ਹਰ ਮੌਸਮ ਲਈ ਤੁਹਾਡੇ ਰਾਜ ਵੱਲੋਂ ਐਲਾਨੀ ਆਖ਼ਰੀ ਤਾਰੀਖ਼ ਤੋਂ ਪਹਿਲਾਂ ਨਾਂ ਦਰਜ ਕਰਵਾਓ, ਅਤੇ ਹਰ ਮੌਸਮ ਨਵੀਂ ਅਰਜ਼ੀ ਦਿਓ। ਬਿਨਾਂ ਫ਼ਸਲੀ ਕਰਜ਼ੇ ਵਾਲੇ ਕਿਸਾਨ ਬੈਂਕ ਸ਼ਾਖਾ, ਕਾਮਨ ਸਰਵਿਸ ਸੈਂਟਰ (CSC), pmfby.gov.in (Farmer Corner) ਜਾਂ Crop Insurance App ਰਾਹੀਂ ਨਾਂ ਦਰਜ ਕਰਵਾ ਕੇ ਉੱਥੇ ਹੀ ਪ੍ਰੀਮੀਅਮ ਭਰ ਸਕਦੇ ਹਨ। ਨਾਲ ਰੱਖੋ: ਫ਼ੋਟੋ, ਬੈਂਕ ਪਾਸਬੁੱਕ, ਪਛਾਣ ਪੱਤਰ (ਜਿਵੇਂ ਆਧਾਰ), ਜ਼ਮੀਨ ਦਾ ਰਿਕਾਰਡ ਜਾਂ ਠੇਕੇ ਦਾ ਸਮਝੌਤਾ, ਅਤੇ ਬੀਜੀ ਫ਼ਸਲ ਦਾ ਐਲਾਨ। ਜਮ੍ਹਾਂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਵੇਰਵੇ ਜਾਂਚੋ ਅਤੇ ਅਰਜ਼ੀ ਨੰਬਰ ਵਾਲੀ ਰਸੀਦ ਸੰਭਾਲ ਕੇ ਰੱਖੋ।",
+        "hinglish": "Har mausam ke liye aapke rajya dwara ghoshit cut-off date se pehle naam darj karwayein, aur har mausam nayi arzi dein. Bina fasal loan wale kisan bank shakha, Common Service Centre (CSC), pmfby.gov.in (Farmer Corner) ya Crop Insurance App se naam darj karwa kar wahin premium bhar sakte hain. Saath rakhein: photo, bank passbook, pehchaan patra (jaise Aadhaar), zameen ka record ya kirayedari samjhauta, aur boyi gayi fasal ki ghoshna. Jama karne se pehle details jaanchein aur arzi number wali raseed sambhal kar rakhein.",
+        "hi": "हर मौसम के लिए आपके राज्य द्वारा घोषित अंतिम तिथि से पहले नामांकन कराएँ, और हर मौसम नया आवेदन करें। बिना फसल ऋण वाले किसान बैंक शाखा, कॉमन सर्विस सेंटर (CSC), pmfby.gov.in (Farmer Corner) या Crop Insurance App से नामांकन कराकर वहीं प्रीमियम भर सकते हैं। साथ रखें: फोटो, बैंक पासबुक, पहचान पत्र (जैसे आधार), भूमि रिकॉर्ड या किरायेदारी समझौता, और बोई गई फसल की घोषणा। जमा करने से पहले विवरण जाँचें और आवेदन संख्या वाली रसीद सँभाल कर रखें।"
+      }
+    },
+    {
+      "id": "claim",
+      "title": "How to claim for crop loss",
+      "keywords": ["claim", "dava", "daava", "report", "loss", "nuksaan", "compensation", "muavza", "muaavza", "paisa kab", "72", "दावा", "मुआवज़ा", "नुकसान", "ਦਾਅਵਾ", "ਮੁਆਵਜ਼ਾ", "ਨੁਕਸਾਨ"],
+      "text": {
+        "en": "For damage to your own field (hailstorm, landslide, inundation, cloud burst, natural fire) or to a harvested crop drying in the field, report it within 72 hours: first on the Crop Insurance App or the toll-free helpline 14447, or through your bank or the agriculture department. Give your name, survey number, crop, area damaged, PMFBY application number, mobile number and bank account. Losses over the whole area are assessed through crop-cutting experiments, with no report needed. Claims are meant to be paid within two months of harvest.",
+        "pa": "ਆਪਣੇ ਖੇਤ ਦੇ ਨੁਕਸਾਨ (ਗੜੇ, ਜ਼ਮੀਨ ਖਿਸਕਣ, ਪਾਣੀ ਭਰਨ, ਬੱਦਲ ਫਟਣ, ਕੁਦਰਤੀ ਅੱਗ) ਜਾਂ ਖੇਤ ਵਿੱਚ ਸੁੱਕ ਰਹੀ ਵੱਢੀ ਫ਼ਸਲ ਦੇ ਨੁਕਸਾਨ ਦੀ ਖ਼ਬਰ 72 ਘੰਟਿਆਂ ਦੇ ਅੰਦਰ ਦਿਓ: ਪਹਿਲਾਂ Crop Insurance App ਜਾਂ ਮੁਫ਼ਤ ਹੈਲਪਲਾਈਨ 14447 'ਤੇ, ਜਾਂ ਆਪਣੇ ਬੈਂਕ ਜਾਂ ਖੇਤੀਬਾੜੀ ਵਿਭਾਗ ਰਾਹੀਂ। ਆਪਣਾ ਨਾਂ, ਖਸਰਾ ਨੰਬਰ, ਫ਼ਸਲ, ਨੁਕਸਾਨ ਵਾਲਾ ਰਕਬਾ, PMFBY ਅਰਜ਼ੀ ਨੰਬਰ, ਮੋਬਾਈਲ ਨੰਬਰ ਅਤੇ ਬੈਂਕ ਖਾਤਾ ਦੱਸੋ। ਪੂਰੇ ਇਲਾਕੇ ਦੇ ਨੁਕਸਾਨ ਦਾ ਅੰਦਾਜ਼ਾ ਫ਼ਸਲ ਕਟਾਈ ਤਜਰਬਿਆਂ ਨਾਲ ਲਗਾਇਆ ਜਾਂਦਾ ਹੈ, ਉਸ ਲਈ ਖ਼ਬਰ ਦੇਣ ਦੀ ਲੋੜ ਨਹੀਂ। ਦਾਅਵੇ ਵਾਢੀ ਤੋਂ ਦੋ ਮਹੀਨਿਆਂ ਦੇ ਅੰਦਰ ਦੇਣ ਦਾ ਟੀਚਾ ਹੈ।",
+        "hinglish": "Apne khet ke nuksaan (ole, bhooskhalan, paani bharna, badal phatna, prakritik aag) ya khet mein sookh rahi kati fasal ke nuksaan ki suchna 72 ghante ke andar dein: pehle Crop Insurance App ya toll-free helpline 14447 par, ya apne bank ya krishi vibhag ke zariye. Apna naam, khasra number, fasal, nuksaan wala rakba, PMFBY arzi number, mobile number aur bank khata batayein. Poore ilaake ke nuksaan ka aanklan crop-cutting experiments se hota hai, uske liye suchna dene ki zaroorat nahi. Daave katai ke do mahine ke andar dene ka lakshya hai.",
+        "hi": "अपने खेत के नुकसान (ओलावृष्टि, भूस्खलन, जलभराव, बादल फटना, प्राकृतिक आग) या खेत में सूख रही कटी फसल के नुकसान की सूचना 72 घंटे के अंदर दें: पहले Crop Insurance App या टोल-फ्री हेल्पलाइन 14447 पर, या अपने बैंक या कृषि विभाग के माध्यम से। अपना नाम, खसरा नंबर, फसल, नुकसान वाला रकबा, PMFBY आवेदन संख्या, मोबाइल नंबर और बैंक खाता बताएँ। पूरे क्षेत्र के नुकसान का आकलन फसल कटाई प्रयोगों से होता है, उसके लिए सूचना देने की ज़रूरत नहीं। दावे कटाई के दो महीने के अंदर देने का लक्ष्य है।"
+      }
+    },
+    {
+      "id": "help",
+      "title": "Where to get help",
+      "keywords": ["help", "helpline", "complaint", "grievance", "shikayat", "contact", "number", "मदद", "शिकायत", "हेल्पलाइन", "ਮਦਦ", "ਸ਼ਿਕਾਇਤ", "ਹੈਲਪਲਾਈਨ"],
+      "text": {
+        "en": "Call the Krishi Rakshak helpline 14447 (toll-free) to report crop loss, ask questions or register a complaint; you get a ticket number to track it. You can also contact your bank branch, a CSC, the insurance company for your district, or the district agriculture office.",
+        "pa": "ਫ਼ਸਲ ਦੇ ਨੁਕਸਾਨ ਦੀ ਖ਼ਬਰ ਦੇਣ, ਸਵਾਲ ਪੁੱਛਣ ਜਾਂ ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰਾਉਣ ਲਈ ਕ੍ਰਿਸ਼ੀ ਰਕਸ਼ਕ ਹੈਲਪਲਾਈਨ 14447 (ਮੁਫ਼ਤ) 'ਤੇ ਫ਼ੋਨ ਕਰੋ; ਸ਼ਿਕਾਇਤ ਦੀ ਜਾਂਚ ਲਈ ਤੁਹਾਨੂੰ ਟਿਕਟ ਨੰਬਰ ਮਿਲਦਾ ਹੈ। ਤੁਸੀਂ ਆਪਣੀ ਬੈਂਕ ਸ਼ਾਖਾ, CSC, ਆਪਣੇ ਜ਼ਿਲ੍ਹੇ ਦੀ ਬੀਮਾ ਕੰਪਨੀ, ਜਾਂ ਜ਼ਿਲ੍ਹਾ ਖੇਤੀਬਾੜੀ ਦਫ਼ਤਰ ਨਾਲ ਵੀ ਸੰਪਰਕ ਕਰ ਸਕਦੇ ਹੋ।",
+        "hinglish": "Fasal nuksaan ki suchna dene, sawal poochhne ya shikayat darj karne ke liye Krishi Rakshak helpline 14447 (toll-free) par call karein; shikayat track karne ke liye aapko ticket number milta hai. Aap apni bank shakha, CSC, apne zile ki bima company, ya zila krishi daftar se bhi sampark kar sakte hain.",
+        "hi": "फसल नुकसान की सूचना देने, सवाल पूछने या शिकायत दर्ज करने के लिए कृषि रक्षक हेल्पलाइन 14447 (टोल-फ्री) पर कॉल करें; शिकायत ट्रैक करने के लिए आपको टिकट नंबर मिलता है। आप अपनी बैंक शाखा, CSC, अपने ज़िले की बीमा कंपनी, या ज़िला कृषि कार्यालय से भी संपर्क कर सकते हैं।"
+      }
+    }
+  ]
+}

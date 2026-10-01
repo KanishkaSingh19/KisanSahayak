@@ -27,7 +27,7 @@
 | Outside our advisories: referred to KVK | 8/140 (6%) |
 | Outside our advisories: shown advice on something else | 6/140 (4%) |
 | Answer in the requested language (script) | 200/200 (100%) |
-| Response time median / p95 | 63 ms / 848 ms |
+| Response time median / p95 | 64 ms / 833 ms |
 
 | Language | Answer in the right script |
 |---|---|

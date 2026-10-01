@@ -7,7 +7,7 @@
       {
         "query": "My wheat leaves have yellow powdery stripes, and the powder sticks to my hands. What is it?",
         "intent": "general_agriculture",
-        "ms": 137,
+        "ms": 115,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -18,7 +18,7 @@
       {
         "query": "What should I spray?",
         "intent": "general_agriculture",
-        "ms": 91,
+        "ms": 96,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -29,7 +29,7 @@
       {
         "query": "How many times?",
         "intent": "general_agriculture",
-        "ms": 76,
+        "ms": 68,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -40,29 +40,29 @@
       {
         "query": "Can I spray today in Ludhiana?",
         "intent": "weather",
-        "ms": 1036,
+        "ms": 1135,
         "passed": true,
         "problems": [],
         "top_section": null,
         "district": "Ludhiana",
         "answer_source": null,
-        "answer": "### Farm Weather Advisory: Ludhiana\n\nLudhiana: 27.1°C, humidity 68.0%, wind 7.7 km/h, and a 2.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
+        "answer": "### Farm Weather Advisory: Ludhiana\n\nLudhiana: 26.2°C, humidity 71.0%, wind 5.0 km/h, and a 2.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
       },
       {
         "query": "And in Sangrur?",
         "intent": "weather",
-        "ms": 830,
+        "ms": 1077,
         "passed": true,
         "problems": [],
         "top_section": null,
         "district": "Sangrur",
         "answer_source": null,
-        "answer": "### Farm Weather Advisory: Sangrur\n\nSangrur: 25.4°C, humidity 79.0%, wind 6.4 km/h, and a 2.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
+        "answer": "### Farm Weather Advisory: Sangrur\n\nSangrur: 24.8°C, humidity 79.0%, wind 6.9 km/h, and a 0.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
       },
       {
         "query": "Which varieties resist this disease?",
         "intent": "general_agriculture",
-        "ms": 67,
+        "ms": 73,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -73,7 +73,7 @@
       {
         "query": "Can I use Monocrotophos instead?",
         "intent": "safety_query",
-        "ms": 56,
+        "ms": 76,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -84,7 +84,7 @@
       {
         "query": "छिड़काव करते समय क्या सावधानी रखें?",
         "intent": "safety_query",
-        "ms": 83,
+        "ms": 95,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -102,7 +102,7 @@
       {
         "query": "ਸਰ੍ਹੋਂ ਵਿੱਚ ਚੇਪੇ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ?",
         "intent": "crop_question",
-        "ms": 64,
+        "ms": 66,
         "passed": true,
         "problems": [],
         "top_section": "Mustard Aphid (Chetpa/Mahu) Management",
@@ -120,7 +120,7 @@
       {
         "query": "Dhaan mein bhoora tela lag gaya hai, kya karein?",
         "intent": "crop_question",
-        "ms": 57,
+        "ms": 55,
         "passed": true,
         "problems": [],
         "top_section": "Brown Planthopper (BPH / Bhoora Tilla) Management",
@@ -138,7 +138,7 @@
       {
         "query": "धान की पत्तियाँ किनारों से पीली होकर सूख रही हैं, क्या करूँ?",
         "intent": "general_agriculture",
-        "ms": 70,
+        "ms": 68,
         "passed": false,
         "problems": [
           "top advisory 'Brown Planthopper (BPH / Bhoora Tilla) Management', expected 'Bacterial Leaf Blight'"
@@ -158,7 +158,7 @@
       {
         "query": "How do I control pink bollworm in cotton?",
         "intent": "crop_question",
-        "ms": 52,
+        "ms": 56,
         "passed": true,
         "problems": [],
         "top_section": "Pink Bollworm (Gulabi Sundhi) Integrated Management",
@@ -176,7 +176,7 @@
       {
         "query": "कपास के पत्ते नीचे की ओर मुड़ रहे हैं और सफेद मक्खी दिख रही है, क्या करें?",
         "intent": "crop_question",
-        "ms": 75,
+        "ms": 78,
         "passed": true,
         "problems": [],
         "top_section": "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
@@ -194,7 +194,7 @@
       {
         "query": "When should I sow wheat and how much seed per acre?",
         "intent": "general_agriculture",
-        "ms": 58,
+        "ms": 55,
         "passed": true,
         "problems": [],
         "top_section": "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages",
@@ -212,7 +212,7 @@
       {
         "query": "How much fertilizer does mustard need?",
         "intent": "general_agriculture",
-        "ms": 52,
+        "ms": 54,
         "passed": true,
         "problems": [],
         "top_section": "Mustard Fertilizer and Irrigation Management",
@@ -230,7 +230,7 @@
       {
         "query": "ਸਰ੍ਹੋਂ ਦੇ ਪੱਤਿਆਂ ਦੇ ਹੇਠਾਂ ਚਿੱਟੇ ਛਾਲੇ ਪੈ ਗਏ ਹਨ, ਕੀ ਕਰੀਏ?",
         "intent": "general_agriculture",
-        "ms": 64,
+        "ms": 72,
         "passed": true,
         "problems": [],
         "top_section": "White Rust (Safed Kungi) and Blight Management in Mustard",
@@ -248,7 +248,7 @@
       {
         "query": "Some of my wheat grains have turned into black powder and smell like rotten fish. What is this?",
         "intent": "general_agriculture",
-        "ms": 68,
+        "ms": 69,
         "passed": true,
         "problems": [],
         "top_section": "Karnal Bunt (Tilletia indica) Management in Wheat",
@@ -266,7 +266,7 @@
       {
         "query": "Dhaan ke tane par paani ke paas saanp ki khaal jaise dhabbe hain",
         "intent": "crop_question",
-        "ms": 65,
+        "ms": 66,
         "passed": true,
         "problems": [],
         "top_section": "Paddy Sheath Blight Management",
@@ -295,7 +295,7 @@
       {
         "query": "Who won the IPL this year?",
         "intent": "out_of_scope",
-        "ms": 0,
+        "ms": 1,
         "passed": true,
         "problems": [],
         "top_section": null,
@@ -331,7 +331,7 @@
       {
         "query": "Pesticide fell on my skin while spraying. What should I do?",
         "intent": "general_agriculture",
-        "ms": 60,
+        "ms": 62,
         "passed": true,
         "problems": [],
         "top_section": "Personal Protective Equipment (PPE) and Spraying Precautions",
@@ -349,7 +349,7 @@
       {
         "query": "How do I control red rot in sugarcane?",
         "intent": "crop_not_covered",
-        "ms": 3,
+        "ms": 4,
         "passed": true,
         "problems": [],
         "top_section": null,
@@ -367,13 +367,13 @@
       {
         "query": "Will it rain in Patiala today? Can I spray pesticide?",
         "intent": "weather",
-        "ms": 833,
+        "ms": 847,
         "passed": true,
         "problems": [],
         "top_section": null,
         "district": "Patiala",
         "answer_source": null,
-        "answer": "### Farm Weather Advisory: Patiala\n\nPatiala: 25.8°C, humidity 75.0%, wind 8.7 km/h, and a 2.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
+        "answer": "### Farm Weather Advisory: Patiala\n\nPatiala: 25.0°C, humidity 78.0%, wind 8.8 km/h, and a 0.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
       }
     ]
   },
@@ -385,7 +385,7 @@
       {
         "query": "What's the weather in Atlantis?",
         "intent": "weather",
-        "ms": 1462,
+        "ms": 1473,
         "passed": true,
         "problems": [],
         "top_section": null,
@@ -403,24 +403,24 @@
       {
         "query": "Will it rain today?",
         "intent": "weather",
-        "ms": 989,
+        "ms": 883,
         "passed": true,
         "problems": [],
         "top_section": null,
         "district": "Sangrur",
         "answer_source": null,
-        "answer": "### Farm Weather Advisory: Sangrur\n\nSangrur: 25.4°C, humidity 79.0%, wind 6.4 km/h, and a 2.0% chance of rain in the next 12 hours."
+        "answer": "### Farm Weather Advisory: Sangrur\n\nSangrur: 24.8°C, humidity 79.0%, wind 6.9 km/h, and a 0.0% chance of rain in the next 12 hours."
       },
       {
         "query": "Will it rain today?",
         "intent": "weather",
-        "ms": 899,
+        "ms": 884,
         "passed": true,
         "problems": [],
         "top_section": null,
         "district": "Noida",
         "answer_source": null,
-        "answer": "### Farm Weather Advisory: Noida\n\nNoida: 26.3°C, humidity 67.0%, wind 7.4 km/h, and a 0.0% chance of rain in the next 12 hours."
+        "answer": "### Farm Weather Advisory: Noida\n\nNoida: 25.5°C, humidity 69.0%, wind 7.3 km/h, and a 2.0% chance of rain in the next 12 hours."
       }
     ]
   },
@@ -432,7 +432,7 @@
       {
         "query": "How do I control aphids?",
         "intent": "crop_question",
-        "ms": 49,
+        "ms": 51,
         "passed": true,
         "problems": [],
         "top_section": "Mustard Aphid (Chetpa/Mahu) Management",
@@ -450,7 +450,7 @@
       {
         "query": "PM Kisan mein kitna paisa milta hai?",
         "intent": "scheme_query",
-        "ms": 7,
+        "ms": 15,
         "passed": true,
         "problems": [],
         "top_section": "What PM-KISAN gives",
@@ -468,7 +468,7 @@
       {
         "query": "Am I eligible for PM-KISAN?",
         "intent": "scheme_query",
-        "ms": 1,
+        "ms": 2,
         "passed": true,
         "problems": [],
         "top_section": "Who is eligible",
@@ -490,7 +490,7 @@
       {
         "query": "Am I eligible for PM-KISAN?",
         "intent": "scheme_query",
-        "ms": 1,
+        "ms": 7,
         "passed": true,
         "problems": [],
         "top_section": "Who is eligible",
@@ -508,7 +508,7 @@
       {
         "query": "My PM-KISAN instalment has stopped coming. Why?",
         "intent": "scheme_query",
-        "ms": 1,
+        "ms": 2,
         "passed": true,
         "problems": [],
         "top_section": "What PM-KISAN gives",
@@ -519,13 +519,89 @@
       {
         "query": "Is eKYC compulsory for PM-KISAN?",
         "intent": "scheme_query",
-        "ms": 1,
+        "ms": 2,
         "passed": true,
         "problems": [],
         "top_section": "eKYC",
         "district": null,
         "answer_source": "template_offline",
         "answer": "eKYC is mandatory for all registered PM-KISAN farmers. Biometric eKYC is available through CSC centres, the PM-KISAN mobile app and state-authorised officials."
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "feature": "Crop insurance (PMFBY): not run in Punjab, and a claim follow-up",
+    "passed": true,
+    "turns": [
+      {
+        "query": "ਕੀ ਪੰਜਾਬ ਵਿੱਚ ਫ਼ਸਲ ਬੀਮਾ ਮਿਲਦਾ ਹੈ?",
+        "intent": "scheme_query",
+        "ms": 4,
+        "passed": true,
+        "problems": [],
+        "top_section": "Is PMFBY available in my state?",
+        "district": null,
+        "answer_source": "template_offline",
+        "answer": "PMFBY ਸਿਰਫ਼ ਉਨ੍ਹਾਂ ਰਾਜਾਂ ਵਿੱਚ ਚੱਲਦੀ ਹੈ ਜਿਨ੍ਹਾਂ ਦੀ ਸਰਕਾਰ ਇਸ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਈ ਹੈ: ਰਾਜਾਂ ਲਈ ਇਹ ਮਰਜ਼ੀ ਦੀ ਹੈ। ਪੰਜਾਬ ਨੇ PMFBY ਲਾਗੂ ਨਹੀਂ ਕੀਤੀ (ਇਹ ਖਰੀਫ਼ 2026 ਵਿੱਚ ਇਸ ਨੂੰ ਚਲਾਉਣ ਵਾਲੇ 25 ਰਾਜਾਂ ਅਤੇ ਕੇਂਦਰ ਸ਼ਾਸਤ ਪ੍ਰਦੇਸ਼ਾਂ ਵਿੱਚ ਨਹੀਂ ਹੈ)। ਹਰਿਆਣਾ ਵਿੱਚ ਇਹ ਚੱਲਦੀ ਹੈ। ਪੰਜਾਬ ਵਿੱਚ ਫ਼ਸਲ ਦੇ ਨੁਕਸਾਨ ਲਈ ਰਾਜ ਸਰਕਾਰ ਦੀ ਰਾਹਤ ਬਾਰੇ ਆਪਣੇ ਜ਼ਿਲ੍ਹਾ ਖੇਤੀਬਾੜੀ ਦਫ਼ਤਰ ਤੋਂ ਪੁੱਛੋ।"
+      },
+      {
+        "query": "How do I claim if hail damages my wheat?",
+        "intent": "scheme_query",
+        "ms": 17,
+        "passed": true,
+        "problems": [],
+        "top_section": "Is PMFBY available in my state?",
+        "district": null,
+        "answer_source": "template_offline",
+        "answer": "PMFBY runs only in states whose government has joined it: it is voluntary for states. Punjab has not implemented PMFBY (it is not among the 25 States and UTs running it in Kharif 2026). Haryana does run it. In Punjab, ask your district agriculture office about state relief for crop loss.\n\nCovered: yield loss of the standing crop from drought, dry spells, floods, inundation, cyclones, hailstorms, lightning, pests and diseases (assessed for the whole notified area); prevented sowing because of bad weather (up to 25% of the sum insured); crops left to dry in the field after harvest, for up to 14 days, against cyclonic and unseasonal rain; and losses on your own field from hailstorm, landslide, inundation, cloud burst or natural fire. Not covered: losses outside notified areas or outside the crop period, war, riots, theft, and preventable or man-made losses.\n\nFor damage to your own field (hailstorm, landslide, inundation, cloud burst, natural fire) or to a harvested crop drying in the field, report it within 72 hours: first on the Crop Insurance App or the toll-free helpline 14447, or through your bank or the agriculture department. Give your name, survey number, crop, area damaged, PMFBY application number, mobile number and bank account. Losses over the whole area are assessed through crop-cutting experiments, with no report needed. Claims are meant to be paid within two months of harvest."
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "feature": "Kisan Credit Card: interest and collateral, in Hindi",
+    "passed": true,
+    "turns": [
+      {
+        "query": "किसान क्रेडिट कार्ड पर ब्याज कितना है?",
+        "intent": "scheme_query",
+        "ms": 4,
+        "passed": true,
+        "problems": [],
+        "top_section": "Interest rate and loan limit",
+        "district": null,
+        "answer_source": "template_offline",
+        "answer": "KCC के ज़रिए Rs 3 lakh तक के अल्पकालिक फसल ऋण 7% ब्याज पर मिलते हैं, और समय पर चुकाने वाले किसानों को 3% तक वापस मिलता है (Prompt Repayment Incentive), इस तरह वे 4% देते हैं। केंद्रीय बजट 2025-26 ने इस ब्याज योजना के तहत ऋण सीमा Rs 3 lakh से बढ़ाकर Rs 5 lakh की है, इसलिए अपने बैंक से पूछें कि आपके ऋण के कितने हिस्से पर कम ब्याज लगेगा। केवल पशुपालन या मछली पालन के ऋण पर, मई 2025 के निर्णय में ब्याज का लाभ Rs 2 lakh तक था।"
+      },
+      {
+        "query": "क्या गिरवी रखना ज़रूरी है?",
+        "intent": "scheme_query",
+        "ms": 22,
+        "passed": true,
+        "problems": [],
+        "top_section": "Interest rate and loan limit",
+        "district": null,
+        "answer_source": "template_offline",
+        "answer": "KCC के ज़रिए Rs 3 lakh तक के अल्पकालिक फसल ऋण 7% ब्याज पर मिलते हैं, और समय पर चुकाने वाले किसानों को 3% तक वापस मिलता है (Prompt Repayment Incentive), इस तरह वे 4% देते हैं। केंद्रीय बजट 2025-26 ने इस ब्याज योजना के तहत ऋण सीमा Rs 3 lakh से बढ़ाकर Rs 5 lakh की है, इसलिए अपने बैंक से पूछें कि आपके ऋण के कितने हिस्से पर कम ब्याज लगेगा। केवल पशुपालन या मछली पालन के ऋण पर, मई 2025 के निर्णय में ब्याज का लाभ Rs 2 lakh तक था।\n\n1 जनवरी 2025 से, बैंक प्रति कर्ज़दार Rs 2 lakh तक के कृषि ऋण (सहायक कामों सहित) के लिए कोई ज़मानत (collateral) या मार्जिन नहीं माँग सकते।"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "feature": "A scheme without checked information is referred, not answered with another scheme",
+    "passed": true,
+    "turns": [
+      {
+        "query": "How do I get a Soil Health Card?",
+        "intent": "scheme_query",
+        "ms": 0,
+        "passed": true,
+        "problems": [],
+        "top_section": null,
+        "district": null,
+        "answer_source": null,
+        "answer": "I don't have checked information on Soil Health Card yet, so I won't guess its rules. See the official website soilhealth.dac.gov.in, ask your district agriculture office, or call the Kisan Call Centre free on 1800-180-1551. I can help with: Kisan Credit Card, PM-KISAN, PMFBY crop insurance."
       }
     ]
   }

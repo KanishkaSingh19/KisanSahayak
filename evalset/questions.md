@@ -1,8 +1,8 @@
-# KisanSahayak feature test set: 25 questions
+# KisanSahayak feature test set: 28 questions
 
 Every feature of the app, with what counts as a pass. Expected answers come from the verified advisories in `data/raw/` and the PM-KISAN guidance in `data/schemes/pm_kisan.json`.
 
-- **Automatic:** cases 1–22 (typed questions, conversations and farm profiles) are run by `python evalset/run_evalset.py`.
+- **Automatic:** cases 1–22 and 26–28 (typed questions, conversations and farm profiles) are run by `python evalset/run_evalset.py`.
 - **Manual:** cases 23–25 need a real camera or microphone, so check them in the app.
 
 Leave the language on **English** and **My farm** empty unless a case says otherwise. Start a **New conversation** before each case, except inside case 1.
@@ -64,6 +64,14 @@ Ask the 8 turns in order, in the same chat.
 | 20 | PM Kisan mein kitna paisa milta hai? | **Rs 6,000 a year in 3 instalments of Rs 2,000**, source pmkisan.gov.in |
 | 21 | My farm → land in family's name **Yes**, **income tax payer** ticked: Am I eligible for PM-KISAN? → How do I apply? → untick income tax: Am I eligible? | **likely NOT eligible (income tax)**, then the application steps, then **likely eligible** |
 | 22 | My PM-KISAN instalment has stopped coming. Why? → Is eKYC compulsory? | payments **on hold for verification** (e.g. land after 1 Feb 2019, two family members), check **Know Your Status**; then **eKYC is mandatory** |
+
+## Crop insurance and Kisan Credit Card
+
+| # | Ask | Pass if the answer… |
+|---|---|---|
+| 26 | (Punjabi) ਕੀ ਪੰਜਾਬ ਵਿੱਚ ਫ਼ਸਲ ਬੀਮਾ ਮਿਲਦਾ ਹੈ? → How do I claim if hail damages my wheat? | in **Gurmukhi**: **Punjab has not implemented PMFBY**; then stays on crop insurance: report within **72 hours**, helpline **14447** |
+| 27 | (Hindi) किसान क्रेडिट कार्ड पर ब्याज कितना है? → क्या गिरवी रखना ज़रूरी है? | **7%**, **4%** with timely repayment; then **no collateral up to Rs 2 lakh** |
+| 28 | How do I get a Soil Health Card? | not covered: refers to **soilhealth.dac.gov.in**, no PM-KISAN rules |
 
 ## Photo and voice (manual)
 

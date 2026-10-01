@@ -123,6 +123,26 @@
       ]
     },
     {
+      "id": 26, "feature": "Crop insurance (PMFBY): not run in Punjab, and a claim follow-up", "mode": "text", "language": "pa",
+      "turns": [
+        {"query": "ਕੀ ਪੰਜਾਬ ਵਿੱਚ ਫ਼ਸਲ ਬੀਮਾ ਮਿਲਦਾ ਹੈ?", "expect": {"intent": ["scheme_query"], "script": "gurmukhi", "answer_all": ["ਪੰਜਾਬ ਨੇ PMFBY ਲਾਗੂ ਨਹੀਂ ਕੀਤੀ"]}},
+        {"query": "How do I claim if hail damages my wheat?", "language": "en", "expect": {"intent": ["scheme_query"], "answer_all": ["72 hours", "14447"]}}
+      ]
+    },
+    {
+      "id": 27, "feature": "Kisan Credit Card: interest and collateral, in Hindi", "mode": "text", "language": "hi",
+      "turns": [
+        {"query": "किसान क्रेडिट कार्ड पर ब्याज कितना है?", "expect": {"intent": ["scheme_query"], "script": "devanagari", "answer_all": ["7%", "4%"]}},
+        {"query": "क्या गिरवी रखना ज़रूरी है?", "expect": {"intent": ["scheme_query"], "answer_all": ["Rs 2 lakh"]}}
+      ]
+    },
+    {
+      "id": 28, "feature": "A scheme without checked information is referred, not answered with another scheme", "mode": "text", "language": "en",
+      "turns": [
+        {"query": "How do I get a Soil Health Card?", "expect": {"intent": ["scheme_query"], "answer_all": ["soilhealth.dac.gov.in"], "answer_none": ["6,000", "pmkisan.gov.in"]}}
+      ]
+    },
+    {
       "id": 23, "feature": "Photo diagnosis: upload and take a photo of a covered crop", "mode": "photo", "language": "en",
       "manual": "Photo -> Upload a photo -> data/sample_photos/02_wheat_leaf_rust.jpg. Pass: identifies rust on wheat, treatment from the advisory, 'AI estimate, confirm with your KVK' note. Repeat with Photo -> Take a photo on a phone."
     },

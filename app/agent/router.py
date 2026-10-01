@@ -6,6 +6,7 @@ from app.crops import COVERED_CROPS, CROP_NAMES, OTHER_PLANTS
 from app.textmatch import contains_term
 from app.agent.state import ConversationTurn, IntentResult
 from app.tools.location import detect_place
+from app.tools.schemes import OTHER_SCHEME_PREFIX, detect_other_scheme, detect_scheme
 
 # Lexicons for multilingual agricultural intent detection
 CROPS_DICT = {crop: CROP_NAMES[crop] for crop in COVERED_CROPS}
@@ -44,12 +45,12 @@ IRRIGATION_KEYWORDS = [
     "सिंचाई", "पानी", "ਸਿੰਚਾਈ", "ਪਾਣੀ",
 ]
 
-SCHEME_KEYWORDS = [
-    "pm kisan", "pm-kisan", "pmkisan", "kisan samman", "samman nidhi", "yojana", "yojna", "scheme",
-    "ekyc", "e-kyc", "6000", "6,000",
-    "पीएम किसान", "पीएम-किसान", "किसान सम्मान", "सम्मान निधि", "योजना",
-    "ਪੀਐਮ ਕਿਸਾਨ", "ਪੀਐਮ-ਕਿਸਾਨ", "ਕਿਸਾਨ ਸਨਮਾਨ", "ਸਨਮਾਨ ਨਿਧੀ", "ਯੋਜਨਾ",
-]
+# Words that keep a conversation about a scheme on that scheme even when a crop is named
+SCHEME_FOLLOW_UP_WORDS = ["claim", "compensation", "premium", "insured", "interest", "loan", "limit", "collateral",
+                          "dava", "daava", "muavza", "muaavza", "byaj", "karza", "दावा", "मुआवज़ा", "मुआवजा",
+                          "प्रीमियम", "ब्याज", "ऋण", "ਦਾਅਵਾ", "ਮੁਆਵਜ਼ਾ", "ਪ੍ਰੀਮੀਅਮ", "ਵਿਆਜ", "ਕਰਜ਼ਾ"]
+# "Scheme" in general; each scheme's own names are in its file in data/schemes/
+SCHEME_KEYWORDS = ["yojana", "yojna", "scheme", "schemes", "sarkari yojana", "योजना", "योजनाएं", "ਯੋਜਨਾ", "ਯੋਜਨਾਵਾਂ"]
 
 # Market prices: MSP and mandi rates
 MARKET_KEYWORDS = [
@@ -309,13 +310,17 @@ class IntentRouter:
             )
 
         # Rule 2. Government scheme questions (before the off-topic check: "minister" or "government"
-        # appear in legitimate eligibility questions)
-        if any(matches_keyword(k, clean) for k in SCHEME_KEYWORDS):
+        # appear in legitimate eligibility questions). A scheme we have no checked guidance for is
+        # recognised by name, so it is never answered with PM-KISAN's rules.
+        other = detect_other_scheme(clean)
+        scheme = None if other else detect_scheme(clean)
+        if other or scheme or any(matches_keyword(k, clean) for k in SCHEME_KEYWORDS):
+            topic = f"{OTHER_SCHEME_PREFIX}{other[0]}" if other else scheme  # None: no scheme named
             return IntentResult(
                 intent="scheme_query",
                 confidence=0.93,
-                detected_topic="PM-KISAN",
-                reasoning="Question about the PM-KISAN government scheme.",
+                detected_topic=topic,
+                reasoning=f"Question about a government scheme: {topic or 'not named'}.",
             )
 
         # Rule 3. Market prices (before the off-topic and crop checks: "MSP of maize" is a price question)
@@ -557,14 +562,16 @@ class IntentRouter:
 
     @staticmethod
     def _scheme_follow_up(query: str, result: IntentResult, history: List[ConversationTurn]) -> Optional[IntentResult]:
-        """"How do I apply?" / "What documents?" right after a PM-KISAN answer."""
-        if history[-1].intent == "scheme_query" and _names_no_subject(result) and result.intent in CROP_INTENTS:
+        """"How do I apply?" / "What documents?" right after a scheme answer: the same scheme. So is
+        "How do I claim if hail damages my wheat?" after a crop insurance answer, though it names a crop."""
+        about_scheme = _names_no_subject(result) or any(matches_keyword(w, query.lower()) for w in SCHEME_FOLLOW_UP_WORDS)
+        if history[-1].intent == "scheme_query" and about_scheme and result.intent in CROP_INTENTS:
             return IntentResult(
                 intent="scheme_query",
                 confidence=0.85,
-                detected_topic="PM-KISAN",
+                detected_topic=history[-1].topic,
                 follow_up_of=history[-1].query,
-                reasoning="Follow-up to the previous PM-KISAN question.",
+                reasoning=f"Follow-up to the previous question about {history[-1].topic or 'a scheme'}.",
             )
         return None
 

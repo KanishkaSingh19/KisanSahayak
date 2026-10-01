@@ -1,8 +1,10 @@
-"""Government scheme guidance (PM-KISAN), grounded in the official website's text.
+"""Government scheme guidance (PM-KISAN, PMFBY crop insurance, Kisan Credit Card), grounded in
+official text.
 
-Facts live in data/schemes/pm_kisan.json (checked against pmkisan.gov.in, date recorded in the
-file), with every section written in all four languages so answers work without the LLM.
-Eligibility is decided by fixed rules from the farmer profile, never by the LLM.
+Facts live in data/schemes/*.json, one file per scheme, each checked against official sources (listed
+in the file with the date checked), with every section written in all four languages so answers work
+without the LLM. PM-KISAN eligibility is decided by fixed rules from the farmer profile, never by the LLM.
+Other well-known schemes are recognised by name and referred to their official website.
 """
 
 import json
@@ -14,8 +16,21 @@ from app.agent.state import FarmerProfile
 from app.config import settings
 from app.rag.hybrid_retriever import RetrievalResult
 
-SCHEME_FILE = settings.DATA_DIR / "schemes" / "pm_kisan.json"
+SCHEME_DIR = settings.DATA_DIR / "schemes"
+SCHEME_FILE = SCHEME_DIR / "pm_kisan.json"
 DEFAULT_SECTIONS = ["benefit", "eligibility", "apply"]
+PM_KISAN = "PM-KISAN"
+OTHER_SCHEME_PREFIX = "other scheme: "  # detected_topic for a scheme we have no checked guidance for
+
+# Schemes farmers ask about that we have no checked guidance for: (name, words that name it, official site)
+OTHER_SCHEMES = [
+    ("Soil Health Card", ["soil health card", "soil card", "मृदा स्वास्थ्य कार्ड", "सॉइल हेल्थ कार्ड", "ਸੋਇਲ ਹੈਲਥ ਕਾਰਡ",
+                          "ਮਿੱਟੀ ਸਿਹਤ ਕਾਰਡ"], "soilhealth.dac.gov.in"),
+    ("PM-KISAN Maandhan pension", ["maandhan", "maan dhan", "mandhan", "मानधन", "ਮਾਨਧਨ"], "maandhan.in"),
+    ("PM-KUSUM solar pump", ["kusum", "solar pump", "सोलर पंप", "ਸੋਲਰ ਪੰਪ"], "pmkusum.mnre.gov.in"),
+    ("PM Krishi Sinchai Yojana (drip and sprinkler)", ["krishi sinchai", "pmksy", "per drop more crop", "drip subsidy",
+                                                       "कृषि सिंचाई योजना", "ਖੇਤੀ ਸਿੰਚਾਈ ਯੋਜਨਾ"], "pmksy.gov.in"),
+]
 
 # Profile field -> exclusion reason key in app.i18n (PM-KISAN exclusion categories)
 EXCLUSIONS = [
@@ -28,9 +43,36 @@ EXCLUSIONS = [
 ]
 
 
-@lru_cache(maxsize=1)
+@lru_cache(maxsize=None)
 def load_scheme(path: Path = SCHEME_FILE) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_schemes(scheme_dir: Path = SCHEME_DIR) -> dict:
+    """{short name: scheme data} for every scheme file ("PM-KISAN", "PMFBY crop insurance", ...)."""
+    schemes = {}
+    for path in sorted(Path(scheme_dir).glob("*.json")):
+        data = load_scheme(path)
+        schemes[data.get("short_name", path.stem)] = data
+    return schemes
+
+
+def _longest_name(clean: str, names) -> int:
+    return max((len(n) for n in names if _matches(n, clean)), default=0)
+
+
+def detect_scheme(text: str, schemes: Optional[dict] = None) -> Optional[str]:
+    """The covered scheme a message names; if names of several match, the longest match wins."""
+    clean = text.lower()
+    scored = [(_longest_name(clean, data.get("names", [])), name) for name, data in (schemes or load_schemes()).items()]
+    best = max(scored, default=(0, None))
+    return best[1] if best[0] else None
+
+
+def detect_other_scheme(text: str) -> Optional[Tuple[str, str]]:
+    """(name, official site) of a scheme we have no checked guidance for, if the message names one."""
+    clean = text.lower()
+    return next(((name, site) for name, words, site in OTHER_SCHEMES if any(_matches(w, clean) for w in words)), None)
 
 
 def _matches(keyword: str, text: str) -> bool:
@@ -43,6 +85,8 @@ class SchemeGuide:
     def __init__(self, data: Optional[dict] = None):
         self.data = data or load_scheme()
         self.sections = {s["id"]: s for s in self.data["sections"]}
+        self.name = self.data.get("short_name", PM_KISAN)
+        self.key = self.name.split()[0].lower().replace("-", "_")  # "pm_kisan", "pmfby", "kisan"
 
     @property
     def citation(self) -> str:
@@ -57,14 +101,16 @@ class SchemeGuide:
             if hits:
                 scored.append((hits, section))
         scored.sort(key=lambda pair: -pair[0])
-        chosen = [s for _, s in scored[:3]] or [self.sections[i] for i in DEFAULT_SECTIONS]
-        return chosen
+        chosen = [s for _, s in scored[:3]] or [self.sections[i] for i in self.data.get("default_sections", DEFAULT_SECTIONS)]
+        # Sections every answer needs ("PMFBY is not run in Punjab")
+        always = [self.sections[i] for i in self.data.get("always_sections", []) if self.sections[i] not in chosen]
+        return always + chosen
 
     def as_context(self, sections: List[dict]) -> List[RetrievalResult]:
         """Sections in English as retrieval results, so the LLM answers only from this text."""
         return [
             RetrievalResult(
-                chunk_id=f"pm_kisan_{s['id']}", text=f"{s['title']}: {s['text']['en']}", score=1.0,
+                chunk_id=f"{self.key}_{s['id']}", text=f"{s['title']}: {s['text']['en']}", score=1.0,
                 citation=f"{self.citation} [{s['title']}]", source_agency=self.data["source"],
                 crop="All Crops", section=s["title"],
             )

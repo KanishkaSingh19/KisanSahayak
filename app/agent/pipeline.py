@@ -5,7 +5,7 @@ from app.config import settings
 from app.crops import COVERED_CROPS
 from app.i18n import normalize_language, t
 from app.agent.state import ConversationTurn, FarmerProfile, GroundedAnswer, IntentResult
-from app.tools.schemes import SchemeGuide, check_eligibility
+from app.tools.schemes import OTHER_SCHEME_PREFIX, OTHER_SCHEMES, PM_KISAN, SchemeGuide, check_eligibility, load_schemes
 from app.agent.router import IntentRouter, asks_repeat_spray, weather_topics
 from app.agent.synthesizer import get_synthesizer
 from app.agent.guardrails import AgriculturalGuardrails
@@ -66,7 +66,9 @@ class KisanPipeline:
     ):
         self.vision = vision or CropVision()
         self.mandi = mandi or MarketPriceService()
-        self.scheme_guide = scheme_guide or SchemeGuide()
+        self.scheme_guide = scheme_guide or SchemeGuide()  # PM-KISAN
+        self.schemes = {name: SchemeGuide(data) for name, data in load_schemes().items()}
+        self.schemes[PM_KISAN] = self.scheme_guide
         self.router = router or IntentRouter()
         self.guardrails = guardrails or AgriculturalGuardrails()
         self.synthesizer = synthesizer or get_synthesizer()
@@ -411,10 +413,23 @@ class KisanPipeline:
         )
 
     def _answer_scheme(self, req: "Request") -> GroundedAnswer:
-        """PM-KISAN answer: rule-based eligibility from the profile + scheme text from the official website."""
-        lang, guide = req.lang, self.scheme_guide
+        """Scheme answer from the checked official text (PM-KISAN, PMFBY crop insurance, Kisan Credit
+        Card), with rule-based PM-KISAN eligibility from the profile. Other schemes are referred to their
+        official website; "which schemes?" lists the ones covered."""
+        lang, topic = req.lang, req.intent.detected_topic or ""
+        if topic.startswith(OTHER_SCHEME_PREFIX):
+            name = topic[len(OTHER_SCHEME_PREFIX):]
+            site = next(site for other, _, site in OTHER_SCHEMES if other == name)
+            return self._reply(req, t("scheme_not_covered", lang, name=name, site=site,
+                                      covered=", ".join(self.schemes)), meta={"detected_topic": None})
+        guide = self.schemes.get(topic)
+        if guide is None:
+            return self._reply(req, t("scheme_which", lang, covered=", ".join(self.schemes)),
+                               meta={"detected_topic": None})
         sections = guide.select_sections(" ".join(filter(None, [req.intent.follow_up_of, req.query])))
         context = guide.as_context(sections)
+        if guide.name != PM_KISAN:
+            return self._answer_other_scheme(req, guide, sections, context)
 
         # Eligibility is decided by fixed rules, never by the LLM
         status, reasons, may_be_withheld = check_eligibility(req.profile)
@@ -446,8 +461,31 @@ class KisanPipeline:
             retrieved_chunks=context,
             is_grounded=is_grounded or source != "llm",
             safety_disclaimers=[t("scheme_disclaimer", lang, date=guide.data["last_verified"])],
-            meta={"answer_source": source, "detected_topic": "PM-KISAN", "pmk_eligibility": status,
+            meta={"answer_source": source, "detected_topic": PM_KISAN, "pmk_eligibility": status,
                   "grounding_score": score, "top_section": sections[0]["title"]},
+        )
+
+    def _answer_other_scheme(self, req: "Request", guide: SchemeGuide, sections, context) -> GroundedAnswer:
+        """PMFBY or Kisan Credit Card: the checked official text (no eligibility rules: the bank or the
+        insurance company decides)."""
+        notes = [req.profile.summary()] if req.profile and not req.profile.is_empty() else []
+        draft, source = self.synthesizer.generate(
+            req.query, context, language=req.llm_language, history=req.history, context_note=" ".join(notes),
+        )
+        if source != "llm":
+            draft = guide.offline_answer(sections, req.lang)  # stored official text in the farmer's language
+        is_grounded, score = self.guardrails.validate_grounding(draft, [c.text for c in context])
+        site = guide.data.get("official_site")
+        disclaimer = (t("scheme_disclaimer_general", req.lang, site=site, date=guide.data["last_verified"]) if site
+                      else t("scheme_disclaimer_bank", req.lang, date=guide.data["last_verified"]))
+        return self._reply(
+            req, draft,
+            citations=[guide.citation],
+            retrieved_chunks=context,
+            is_grounded=is_grounded or source != "llm",
+            safety_disclaimers=[disclaimer],
+            meta={"answer_source": source, "detected_topic": guide.name, "grounding_score": score,
+                  "top_section": sections[0]["title"]},
         )
 
     def _answer_crop(self, req: "Request") -> GroundedAnswer:

@@ -1,12 +1,12 @@
-# Feature test set (25 questions)
+# Feature test set (28 questions)
 
 End-to-end checks that every feature of KisanSahayak works: crop advice in four languages, diagnosis from symptoms, multi-turn memory, safety guardrails, weather, the farm profile, PM-KISAN, photo diagnosis and voice.
 
 | File | What it is |
 |---|---|
-| [`questions.md`](questions.md) | The 25 questions with pass criteria, for testing by hand in the app |
+| [`questions.md`](questions.md) | The 28 questions with pass criteria, for testing by hand in the app |
 | [`questions.json`](questions.json) | The same cases in machine-readable form |
-| [`run_evalset.py`](run_evalset.py) | Runs cases 1–22 through the pipeline and checks them automatically |
+| [`run_evalset.py`](run_evalset.py) | Runs cases 1–22 and 26–28 through the pipeline and checks them automatically |
 | [`results.md`](results.md) | Latest results (written by the script) |
 | `results.json` | Every answer from the latest run, for review |
 

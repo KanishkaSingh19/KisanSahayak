@@ -596,6 +596,30 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hinglish": "Yojana ke niyam aur payment badal sakte hain. pmkisan.gov.in, PM-KISAN app, ya apne rajya ke nodal officer ya CSC se pushti karein. (Jaankari {date} ko jaanchi gayi.)",
         "hi": "योजना के नियम और भुगतान बदल सकते हैं। pmkisan.gov.in, पीएम-किसान ऐप, या अपने राज्य के नोडल अधिकारी या CSC से पुष्टि करें। (जानकारी {date} को जाँची गई।)",
     },
+    "scheme_disclaimer_general": {
+        "en": "Scheme rules, dates and limits can change. Confirm on {site}, with your bank or at a CSC. (Information checked on {date}.)",
+        "pa": "ਯੋਜਨਾ ਦੇ ਨਿਯਮ, ਤਾਰੀਖ਼ਾਂ ਅਤੇ ਹੱਦਾਂ ਬਦਲ ਸਕਦੀਆਂ ਹਨ। {site}, ਆਪਣੇ ਬੈਂਕ ਜਾਂ CSC ਤੋਂ ਪੁਸ਼ਟੀ ਕਰੋ। (ਜਾਣਕਾਰੀ {date} ਨੂੰ ਜਾਂਚੀ ਗਈ।)",
+        "hinglish": "Yojana ke niyam, tareekhein aur seemayein badal sakti hain. {site}, apne bank ya CSC se pushti karein. (Jaankari {date} ko jaanchi gayi.)",
+        "hi": "योजना के नियम, तारीखें और सीमाएँ बदल सकती हैं। {site}, अपने बैंक या CSC से पुष्टि करें। (जानकारी {date} को जाँची गई।)",
+    },
+    "scheme_disclaimer_bank": {
+        "en": "Loan limits and interest rates can change, and your bank decides your limit. Confirm with your bank branch. (Information checked on {date}.)",
+        "pa": "ਕਰਜ਼ੇ ਦੀਆਂ ਹੱਦਾਂ ਅਤੇ ਵਿਆਜ ਦਰਾਂ ਬਦਲ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਤੁਹਾਡੀ ਲਿਮਿਟ ਤੁਹਾਡਾ ਬੈਂਕ ਤੈਅ ਕਰਦਾ ਹੈ। ਆਪਣੀ ਬੈਂਕ ਸ਼ਾਖਾ ਤੋਂ ਪੁਸ਼ਟੀ ਕਰੋ। (ਜਾਣਕਾਰੀ {date} ਨੂੰ ਜਾਂਚੀ ਗਈ।)",
+        "hinglish": "Loan ki seemayein aur byaj daren badal sakti hain, aur aapki limit aapka bank tay karta hai. Apni bank shakha se pushti karein. (Jaankari {date} ko jaanchi gayi.)",
+        "hi": "ऋण सीमाएँ और ब्याज दरें बदल सकती हैं, और आपकी सीमा आपका बैंक तय करता है। अपनी बैंक शाखा से पुष्टि करें। (जानकारी {date} को जाँची गई।)",
+    },
+    "scheme_which": {
+        "en": "I have checked official information on these schemes: {covered}. Which one would you like to know about?",
+        "pa": "ਮੇਰੇ ਕੋਲ ਇਨ੍ਹਾਂ ਯੋਜਨਾਵਾਂ ਦੀ ਜਾਂਚੀ ਹੋਈ ਸਰਕਾਰੀ ਜਾਣਕਾਰੀ ਹੈ: {covered}। ਤੁਸੀਂ ਕਿਸ ਬਾਰੇ ਜਾਣਨਾ ਚਾਹੁੰਦੇ ਹੋ?",
+        "hinglish": "Mere paas in yojanaon ki jaanchi hui sarkari jaankari hai: {covered}. Aap kis ke baare mein jaanna chahte hain?",
+        "hi": "मेरे पास इन योजनाओं की जाँची हुई सरकारी जानकारी है: {covered}। आप किसके बारे में जानना चाहते हैं?",
+    },
+    "scheme_not_covered": {
+        "en": "I don't have checked information on {name} yet, so I won't guess its rules. See the official website {site}, ask your district agriculture office, or call the Kisan Call Centre free on 1800-180-1551. I can help with: {covered}.",
+        "pa": "ਮੇਰੇ ਕੋਲ ਅਜੇ {name} ਦੀ ਜਾਂਚੀ ਹੋਈ ਜਾਣਕਾਰੀ ਨਹੀਂ ਹੈ, ਇਸ ਲਈ ਮੈਂ ਇਸ ਦੇ ਨਿਯਮਾਂ ਦਾ ਅੰਦਾਜ਼ਾ ਨਹੀਂ ਲਗਾਵਾਂਗਾ। ਸਰਕਾਰੀ ਵੈੱਬਸਾਈਟ {site} ਵੇਖੋ, ਆਪਣੇ ਜ਼ਿਲ੍ਹਾ ਖੇਤੀਬਾੜੀ ਦਫ਼ਤਰ ਤੋਂ ਪੁੱਛੋ, ਜਾਂ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ ਨੂੰ ਮੁਫ਼ਤ ਨੰਬਰ 1800-180-1551 'ਤੇ ਫ਼ੋਨ ਕਰੋ। ਮੈਂ ਇਨ੍ਹਾਂ ਵਿੱਚ ਮਦਦ ਕਰ ਸਕਦਾ ਹਾਂ: {covered}।",
+        "hinglish": "Mere paas abhi {name} ki jaanchi hui jaankari nahi hai, isliye main iske niyamon ka andaza nahi lagaunga. Sarkari website {site} dekhein, apne zila krishi daftar se poochhein, ya Kisan Call Centre ko muft number 1800-180-1551 par call karein. Main in mein madad kar sakta hoon: {covered}.",
+        "hi": "मेरे पास अभी {name} की जाँची हुई जानकारी नहीं है, इसलिए मैं इसके नियमों का अनुमान नहीं लगाऊँगा। सरकारी वेबसाइट {site} देखें, अपने ज़िला कृषि कार्यालय से पूछें, या किसान कॉल सेंटर को मुफ़्त नंबर 1800-180-1551 पर कॉल करें। मैं इनमें मदद कर सकता हूँ: {covered}।",
+    },
     # ------------------------------------------------------------------ farmer profile
     "profile_header": {"en": "My farm (optional)", "pa": "ਮੇਰਾ ਖੇਤ (ਵਿਕਲਪਿਕ)", "hinglish": "Mera khet (vaikalpik)", "hi": "मेरा खेत (वैकल्पिक)"},
     "profile_privacy": {
