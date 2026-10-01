@@ -1,30 +1,33 @@
 {
-  "source_organization": "ICAR-National Rice Research Institute (NRRI) & PAU",
-  "document_title": "Paddy / Rice (Jhona/Dhan) Disease and Insect Pest Advisory",
+  "source_organization": "Punjab Agricultural University (PAU), Ludhiana",
+  "document_title": "Paddy / Rice (Jhona/Dhan) advisory from PAU Package of Practices for Crops of Punjab, Kharif 2026",
   "crop": "Paddy (Rice)",
   "season": "Kharif",
-  "publication_year": 2024,
+  "publication_year": 2026,
   "sections": [
     {
       "section_title": "Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy",
       "disease_pest_name": "Bacterial Leaf Blight (Xanthomonas oryzae pv. oryzae)",
-      "symptoms": "Water-soaked translucent lesions starting from leaf tips and margins, progressing downwards with wavy margins. Lesions turn yellow to straw-colored. In severe cases, wilting known as Kresek stage occurs.",
-      "recommended_action": "Avoid excessive nitrogen/urea application which aggravates BLB. Drain excess water from the affected field for 3-4 days. Spray Streptocycline @ 15 g plus Copper Oxychloride 50% WP @ 500 g in 200 liters of water per acre. Note: Antibiotic sprays have preventive efficacy only.",
-      "preventive_measures": "Sow resistant/tolerant varieties such as PR 126, PR 121, or Pusa Basmati 1847. Practice balanced NPK with recommended potash."
+      "symptoms": "Leaves turn yellow and dry from the tips and edges. Water-soaked translucent lesions starting from leaf tips and margins, progressing downwards with wavy margins. Lesions turn yellow to straw-colored. In severe cases, wilting known as Kresek stage occurs.",
+      "recommended_action": "PAU recommends no chemical spray for bacterial blight. Do not apply excess nitrogen, and no nitrogen later than six weeks after transplanting (unless using the leaf colour chart). Do not keep water standing in the field continuously. Do not raise the nursery under shade or near wheat straw stacks.",
+      "preventive_measures": "Grow varieties resistant to most bacterial blight pathotypes in Punjab: PR 133, PR 132, PR 131, PR 130, PR 129, PR 128, PR 127, PR 126, PR 122, PR 121 and PR 113. Use disease-free seed.",
+      "source_reference": "PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 16-19"
     },
     {
       "section_title": "Brown Planthopper (BPH / Bhoora Tilla) Management",
-      "disease_pest_name": "Brown Planthopper (Nilaparvata lugens)",
+      "disease_pest_name": "Brown Planthopper (Nilaparvata lugens) and White-backed Planthopper",
       "symptoms": "BPH nymphs and adults congregate at the base of rice tillers just above the water level. Severe infestation results in circular drying patches in fields called 'hopper burn'.",
-      "recommended_action": "Monitor tiller bases weekly. When ETL of 5-10 hoppers per hill is observed, spray Pymetrozine 50% WDG @ 120 g per acre or Triflumezopyrim 10% SC @ 94 ml per acre. Direct spray strictly towards the base of the plants using a hollow cone nozzle.",
-      "preventive_measures": "Drain water for 2-3 days during peak pest activity. Strictly avoid synthetic pyrethroids (like Cypermethrin or Deltamethrin) as they trigger extreme BPH resurgence by eliminating natural spiders."
+      "recommended_action": "From one month after transplanting, tilt a few plants and tap their base every week. When 5 or more planthoppers per hill (ETL) float on the water, spray 94 ml Pexalon 10 SC (triflumezopyrim) or 120 g Chess 50 WG (pymetrozine) or 60 g Ulala 50 WG (flonicamid) in 100 liters of water per acre, directing the spray at the base of the plants. At the start of the attack, 4 liters PAU homemade neem extract can be used instead.",
+      "preventive_measures": "If hopper burn appears, treat those patches and 3-4 metres around them at once. Avoid synthetic pyrethroids, which kill the spiders that eat planthoppers.",
+      "source_reference": "PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 14-16"
     },
     {
       "section_title": "Paddy Sheath Blight Management",
       "disease_pest_name": "Sheath Blight (Rhizoctonia solani)",
       "symptoms": "Oval or elliptical greenish-grey spots on leaf sheaths near water level. Spots enlarge with irregular dark brown margins like snake skin pattern.",
-      "recommended_action": "Spray Trifloxystrobin 25% + Tebuconazole 50% WG (Nativo) @ 80-100 g or Hexaconazole 5% SC @ 400 ml in 200 liters of water per acre at early disease appearance.",
-      "preventive_measures": "Keep bunds clean of grassy weeds. Avoid dense planting and excessive nitrogen."
+      "recommended_action": "From maximum tillering to boot stage, as soon as the disease appears, spray 80 g Nativo 75 WG (trifloxystrobin + tebuconazole) or 26.8 g Epic 75 WG (hexaconazole) or 200 ml Tilt/Bumper 25 EC (propiconazole) or 150 ml Pulsor 24 SC (thifluzamide) in 200 liters of water per acre. Give a second spray 15 days later.",
+      "preventive_measures": "Destroy the rice straw and stubble after harvesting an affected crop. Avoid excess nitrogen. Keep the bunds clean by removing grass.",
+      "source_reference": "PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 16-19"
     }
   ]
 }

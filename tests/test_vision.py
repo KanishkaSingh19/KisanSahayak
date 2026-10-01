@@ -58,7 +58,7 @@ def test_covered_disease_gets_advisory_treatment(pipeline, monkeypatch):
     assert res.intent == "image_diagnosis"
     assert "Yellow Rust" in res.retrieved_chunks[0].section
     assert "most likely **yellow rust**" in res.answer
-    assert "Propiconazole" in res.answer or "Tebuconazole" in res.answer  # dose from the advisory
+    assert "200 ml Tilt" in res.answer and "propiconazole" in res.answer  # dose from the advisory
     assert any("AI estimate" in d for d in res.safety_disclaimers)
 
 

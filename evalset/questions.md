@@ -16,11 +16,11 @@ Ask the 8 turns in order, in the same chat.
 | Turn | Ask | Pass if the answer… |
 |---|---|---|
 | 1a | My wheat leaves have yellow powdery stripes, and the powder sticks to my hands. What is it? | identifies **Yellow Rust** without the disease being named |
-| 1b | What should I spray? | **Propiconazole 25% EC 200 ml** or **Tebuconazole 25.9% EC 200 ml** in 200 L water per acre |
-| 1c | How many times? | **repeat after 15 days** if cloudy weather persists |
+| 1b | What should I spray? | **Tilt (propiconazole) 200 ml**, **Nativo 120 g** or **Taqat 300 g** in 200 L water per acre |
+| 1c | How many times? | keep monitoring and **repeat the spray as needed** |
 | 1d | Can I spray today in Ludhiana? | live **Ludhiana** weather with spray advice |
 | 1e | And in Sangrur? | **Sangrur** weather (keeps the question, changes the place) |
-| 1f | Which varieties resist this disease? | back to yellow rust: **PBW 725, HD 3086, DBW 187, DBW 222** |
+| 1f | Which varieties resist this disease? | back to yellow rust: PAU's resistant list, e.g. **PBW 725, PBW 752, Unnat PBW 550** |
 | 1g | Can I use Monocrotophos instead? | **banned pesticide warning** |
 | 1h | (Hindi) छिड़काव करते समय क्या सावधानी रखें? | answer in **Hindi** (Devanagari) |
 
@@ -28,16 +28,16 @@ Ask the 8 turns in order, in the same chat.
 
 | # | Language | Ask | Pass if the answer… |
 |---|---|---|---|
-| 2 | Punjabi | ਸਰ੍ਹੋਂ ਵਿੱਚ ਚੇਪੇ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ? | is in **Gurmukhi**; mustard aphid: spray at 1.5–2 cm colony or 20–25% plants, **Dimethoate 30% EC 250–300 ml** or **Thiamethoxam 25% WG 50–80 g** per acre, after 3:30 PM |
-| 3 | Hinglish | Dhaan mein bhoora tela lag gaya hai, kya karein? | brown planthopper: 5–10 hoppers per hill, **Pymetrozine 50% WDG 120 g** or **Triflumezopyrim 10% SC 94 ml** per acre |
-| 4 | Hindi | धान की पत्तियाँ किनारों से पीली होकर सूख रही हैं, क्या करूँ? | is in **Hindi**; bacterial leaf blight: less urea, drain 3–4 days, **Streptocycline 15 g + Copper Oxychloride 500 g** per acre |
-| 5 | English | How do I control pink bollworm in cotton? | **pheromone traps 5 per acre**, 8 moths/trap/night for 3 nights or 10% damaged bolls, **Profenofos 500 ml** or **Emamectin Benzoate 100 g** per acre |
-| 6 | Hindi | कपास के पत्ते नीचे की ओर मुड़ रहे हैं और सफेद मक्खी दिख रही है, क्या करें? | is in **Hindi**; whitefly: 6–8 adults per leaf, **Diafenthiuron 250 g** or **Pyriproxyfen 500 ml** per acre |
-| 7 | English | When should I sow wheat and how much seed per acre? | **25 Oct – 15 Nov**, **40–45 kg per acre**, first irrigation at CRI (20–25 days) |
-| 8 | English | How much fertilizer does mustard need? | **80 kg N, 40 kg P₂O₅, 40 kg K₂O per ha**; sulphur 20–25 kg/ha adds 2–3% oil |
-| 9 | Punjabi | ਸਰ੍ਹੋਂ ਦੇ ਪੱਤਿਆਂ ਦੇ ਹੇਠਾਂ ਚਿੱਟੇ ਛਾਲੇ ਪੈ ਗਏ ਹਨ, ਕੀ ਕਰੀਏ? | is in **Gurmukhi**; white rust: seed treatment **Metalaxyl 35% WS 6 g/kg**, spray **Ridomil MZ 2 g per litre** |
-| 10 | English | Some of my wheat grains have turned into black powder and smell like rotten fish. What is this? | **Karnal bunt** from symptoms alone; **Propiconazole 200 ml** per acre at ear emergence |
-| 11 | Hinglish | Dhaan ke tane par paani ke paas saanp ki khaal jaise dhabbe hain | **sheath blight**: **Nativo 80–100 g** or **Hexaconazole 5% SC 400 ml** per acre |
+| 2 | Punjabi | ਸਰ੍ਹੋਂ ਵਿੱਚ ਚੇਪੇ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ? | is in **Gurmukhi**; mustard aphid: spray at 50–60 aphids per 10 cm shoot or 40–50% plants, **Actara 40 g** or **Rogor 400 ml** in 80–125 L water per acre |
+| 3 | Hinglish | Dhaan mein bhoora tela lag gaya hai, kya karein? | brown planthopper: 5 hoppers per hill, **Pexalon (triflumezopyrim) 94 ml** or **Chess (pymetrozine) 120 g** per acre |
+| 4 | Hindi | धान की पत्तियाँ किनारों से पीली होकर सूख रही हैं, क्या करूँ? | is in **Hindi**; bacterial leaf blight: **no chemical spray** (PAU); no excess nitrogen, no standing water, resistant PR varieties |
+| 5 | English | How do I control pink bollworm in cotton? | **pheromone traps**, mating disruption paste, spray at 5% damaged flowers and bolls: **Proclaim (emamectin benzoate) 100 g** or **Curacron (profenophos) 500 ml** per acre |
+| 6 | Hindi | कपास के पत्ते नीचे की ओर मुड़ रहे हैं और सफेद मक्खी दिख रही है, क्या करें? | is in **Hindi**; whitefly: 6 adults per leaf, **Polo (diafenthiuron) 200 g** or **Lano (pyriproxyfen) 500 ml** per acre |
+| 7 | English | When should I sow wheat and how much seed per acre? | **first fortnight of November**, **40 kg per acre**, first irrigation 3–4 weeks after sowing |
+| 8 | English | How much fertilizer does mustard need? | **40 kg N and 12 kg P₂O₅ per acre** (90 kg urea, 75 kg superphosphate); gypsum for sulphur |
+| 9 | Punjabi | ਸਰ੍ਹੋਂ ਦੇ ਪੱਤਿਆਂ ਦੇ ਹੇਠਾਂ ਚਿੱਟੇ ਛਾਲੇ ਪੈ ਗਏ ਹਨ, ਕੀ ਕਰੀਏ? | is in **Gurmukhi**; white rust: **Ridomil Gold 250 g** in 100 L water per acre at 60 and 80 days after sowing |
+| 10 | English | Some of my wheat grains have turned into black powder and smell like rotten fish. What is this? | **Karnal bunt** from symptoms alone; Tilt (propiconazole) 200 ml **only for a seed crop**, resistant varieties |
+| 11 | Hinglish | Dhaan ke tane par paani ke paas saanp ki khaal jaise dhabbe hain | **sheath blight**: **Nativo 80 g**, **Epic (hexaconazole) 26.8 g** or Tilt 200 ml per acre |
 
 ## Scope and safety
 

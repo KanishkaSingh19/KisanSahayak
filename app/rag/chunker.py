@@ -36,6 +36,9 @@ class AgriculturalChunker:
             action = sec.get("recommended_action", "")
             preventive = sec.get("preventive_measures", "")
             warning = sec.get("critical_safety_warning", "")
+            # Printed pages for the citation ("PAU Package of Practices ..., pages 18-21"); kept out of the
+            # chunk text so the same words in every chunk don't sway retrieval
+            reference = sec.get("source_reference", "")
 
             # Compose coherent structured textual chunk
             text_parts = [
@@ -55,44 +58,29 @@ class AgriculturalChunker:
                 text_parts.append(f"Safety Warning: {warning}")
 
             full_section_text = "\n".join(text_parts)
+            metadata = {
+                "doc_id": doc_id,
+                "source": source_org,
+                "title": doc_title,
+                "crop": crop,
+                "season": season,
+                "section": sec_title,
+                "pest_or_topic": pest_or_topic,
+                "has_warning": bool(warning),
+                "reference": reference,
+            }
 
             # If section fits within chunk_size, keep as a single atomic chunk
             if len(full_section_text) <= self.chunk_size:
-                chunk = DocumentChunk(
-                    chunk_id=f"{doc_id}_s{sec_idx}_c0",
-                    text=full_section_text,
-                    metadata={
-                        "doc_id": doc_id,
-                        "source": source_org,
-                        "title": doc_title,
-                        "crop": crop,
-                        "season": season,
-                        "section": sec_title,
-                        "pest_or_topic": pest_or_topic,
-                        "has_warning": bool(warning),
-                    },
-                )
-                chunks.append(chunk)
+                chunks.append(DocumentChunk(chunk_id=f"{doc_id}_s{sec_idx}_c0", text=full_section_text,
+                                            metadata=dict(metadata)))
             else:
                 # Sub-chunk while retaining the crop & section header
                 header = f"Crop: {crop} | Topic: {sec_title} | Source: {source_org}\n"
                 sub_chunks = self._sliding_window_split(full_section_text, header)
                 for c_idx, sub_text in enumerate(sub_chunks):
-                    chunk = DocumentChunk(
-                        chunk_id=f"{doc_id}_s{sec_idx}_c{c_idx}",
-                        text=sub_text,
-                        metadata={
-                            "doc_id": doc_id,
-                            "source": source_org,
-                            "title": doc_title,
-                            "crop": crop,
-                            "season": season,
-                            "section": sec_title,
-                            "pest_or_topic": pest_or_topic,
-                            "has_warning": bool(warning),
-                        },
-                    )
-                    chunks.append(chunk)
+                    chunks.append(DocumentChunk(chunk_id=f"{doc_id}_s{sec_idx}_c{c_idx}", text=sub_text,
+                                                metadata=dict(metadata)))
 
         return chunks
 

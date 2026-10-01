@@ -10,7 +10,8 @@
 
 ## 2. What the team did
 - Chose the problem, users, features and design, and directed every change. Reviewed and tested the app, and decided what to keep: for example, catching a wrong weather district, advice that wasn't asked for, lost conversation memory and misplaced UI buttons.
-- Chose the knowledge sources (ICAR, PAU and CIBRC advisories; pmkisan.gov.in; the Government of India MSP decisions; Kisan Call Centre logs) and remains responsible for their accuracy.
+- Chose the knowledge sources (PAU Package of Practices for Crops of Punjab, ICAR and CIBRC advisories; pmkisan.gov.in; the Government of India MSP decisions; Kisan Call Centre logs) and remains responsible for their accuracy.
+- Had the crop advisories checked against PAU's *Package of Practices* (Rabi 2025-26, Kharif 2026). The first versions, drafted with AI help, had doses, thresholds and varieties that differed from PAU (for example the wheat aphid dose, rust-resistant varieties and an antibiotic spray for bacterial blight that PAU does not recommend). These were corrected to PAU's recommendations, and each section now cites PAU's page numbers. PAU states that it accepts no legal responsibility for the use of its recommendations.
 - Tested the app by hand: voice, camera, the four languages, the live deployment.
 - Managed the API keys, the Streamlit Community Cloud deployment and the GitHub repository. Contributed sample crop photos for testing.
 

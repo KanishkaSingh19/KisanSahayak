@@ -16,8 +16,8 @@
 
 | Metric | Result |
 |---|---|
-| Retrieval: right advisory in top 3 (covered questions) | **25/25 (100%)** |
-| Retrieval: right advisory first | 21/25 (84%) |
+| Retrieval: right advisory in top 3 (covered questions) | **23/25 (92%)** |
+| Retrieval: right advisory first | 20/25 (80%) |
 | Banned-pesticide questions warned | 1/1 (100%) |
 | Weather questions answered with weather | 15/15 (100%) |
 | Weather for the right district | 15/15 (100%) |
@@ -25,7 +25,7 @@
 | Price questions answered with the MSP / mandi price | 4/4 (100%) |
 | Outside our advisories: referred to KVK (not shown another topic's advice) | **134/140 (96%)** |
 | Answer in the requested language (script) | 200/200 (100%) |
-| Response time median / p95 | 4 ms / 927 ms |
+| Response time median / p95 | 3 ms / 1020 ms |
 
 | Language | Answer in the right script |
 |---|---|
@@ -33,6 +33,11 @@
 | hi | 50/50 (100%) |
 | pa | 50/50 (100%) |
 | hinglish | 50/50 (100%) |
+
+## Covered questions where the right advisory was not in the top 3
+
+- (pa) "ਕਣਕ ਦੀ ਫ਼ਸਲ ਵਿੱਚ ਪਾਣੀ ਦਾ ਪ੍ਰਬੰਧ ਕਿਵੇਂ ਕਰੀਏ?" → got Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management, Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy, Brown Planthopper (BPH / Bhoora Tilla) Management; expected Wheat Sowing
+- (hi) "तिलहन फसलों में सिंचाई का प्रबंधन कैसे करें?" → got Brown Planthopper (BPH / Bhoora Tilla) Management, Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy, Pink Bollworm (Gulabi Sundhi) Integrated Management; expected Mustard Fertilizer
 
 ## Notes
 

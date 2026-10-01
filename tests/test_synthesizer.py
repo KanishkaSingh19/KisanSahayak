@@ -138,9 +138,9 @@ def test_offline_answer_has_the_whole_advisory_field():
     from app.rag.hybrid_retriever import RetrievalResult
 
     chunk = RetrievalResult(
-        chunk_id="wheat_s0_c0", text="Recommended Action & Chemical Dosage: Spray Propiconazole 25% EC @ 200 ml.",
+        chunk_id="wheat_s0_c0", text="Recommended Action & Chemical Dosage: Monitor the crop from the 2nd week of December onward.",
         score=1.0, citation="PAU", source_agency="PAU", crop="Wheat",
         section="Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
     )
     answer = DeterministicGroundedSynthesizer().synthesize("What should I spray?", [chunk], language="en")
-    assert "Repeat spray after 15 days" in answer
+    assert "repeat the spray as needed" in answer

@@ -32,7 +32,7 @@
   "intent": "general_agriculture",
   "top_sections": [
    "Mustard Fertilizer and Irrigation Management",
-   "Personal Protective Equipment (PPE) and Spraying Precautions",
+   "Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy",
    "Personal Protective Equipment (PPE) and Spraying Precautions"
   ],
   "top3": false
@@ -70,8 +70,8 @@
   "intent": "crop_question",
   "top_sections": [
    "Wheat Aphid (Mahu) Control",
-   "Mustard Aphid (Chetpa/Mahu) Management",
-   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control"
+   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
+   "Mustard Aphid (Chetpa/Mahu) Management"
   ],
   "top3": true
  },
@@ -150,9 +150,9 @@
   },
   "intent": "general_agriculture",
   "top_sections": [
-   "Karnal Bunt (Tilletia indica) Management in Wheat",
    "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
-   "Personal Protective Equipment (PPE) and Spraying Precautions"
+   "Wheat Aphid (Mahu) Control",
+   "Karnal Bunt (Tilletia indica) Management in Wheat"
   ],
   "referred": false
  },
@@ -188,9 +188,9 @@
   },
   "intent": "general_agriculture",
   "top_sections": [
-   "Wheat Aphid (Mahu) Control",
    "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages",
-   "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management"
+   "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
+   "Karnal Bunt (Tilletia indica) Management in Wheat"
   ],
   "top3": true
  },
@@ -205,7 +205,7 @@
   "top_sections": [
    "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages",
    "Mustard Fertilizer and Irrigation Management",
-   "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management"
+   "Pink Bollworm (Gulabi Sundhi) Integrated Management"
   ],
   "referred": false
  },
@@ -229,8 +229,8 @@
   },
   "intent": "crop_question",
   "top_sections": [
-   "Wheat Aphid (Mahu) Control",
-   "Karnal Bunt (Tilletia indica) Management in Wheat",
+   "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
+   "Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy",
    "White Rust (Safed Kungi) and Blight Management in Mustard"
   ],
   "referred": false
@@ -324,7 +324,7 @@
   },
   "intent": "crop_question",
   "top_sections": [
-   "Wheat Aphid (Mahu) Control",
+   "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
    "Karnal Bunt (Tilletia indica) Management in Wheat",
    "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control"
   ],
@@ -361,9 +361,9 @@
   },
   "intent": "general_agriculture",
   "top_sections": [
+   "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
    "Karnal Bunt (Tilletia indica) Management in Wheat",
-   "Wheat Aphid (Mahu) Control",
-   "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management"
+   "Brown Planthopper (BPH / Bhoora Tilla) Management"
   ],
   "referred": false
  },
@@ -661,9 +661,9 @@
   },
   "intent": "general_agriculture",
   "top_sections": [
-   "Pink Bollworm (Gulabi Sundhi) Integrated Management",
-   "Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy",
-   "Pink Bollworm (Gulabi Sundhi) Integrated Management"
+   "Wheat Aphid (Mahu) Control",
+   "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
+   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control"
   ],
   "referred": false
  },
@@ -710,7 +710,7 @@
   "intent": "general_agriculture",
   "top_sections": [
    "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
-   "Personal Protective Equipment (PPE) and Spraying Precautions",
+   "Pink Bollworm (Gulabi Sundhi) Integrated Management",
    "Personal Protective Equipment (PPE) and Spraying Precautions"
   ],
   "referred": false
@@ -726,8 +726,8 @@
   "intent": "crop_question",
   "top_sections": [
    "Pink Bollworm (Gulabi Sundhi) Integrated Management",
-   "Pink Bollworm (Gulabi Sundhi) Integrated Management",
-   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control"
+   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
+   "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management"
   ],
   "top3": true
  },
@@ -740,8 +740,8 @@
   },
   "intent": "crop_question",
   "top_sections": [
+   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
    "Pink Bollworm (Gulabi Sundhi) Integrated Management",
-   "White Rust (Safed Kungi) and Blight Management in Mustard",
    "Personal Protective Equipment (PPE) and Spraying Precautions"
   ],
   "referred": false
@@ -756,7 +756,7 @@
   "intent": "crop_question",
   "top_sections": [
    "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
-   "Personal Protective Equipment (PPE) and Spraying Precautions",
+   "Pink Bollworm (Gulabi Sundhi) Integrated Management",
    "Personal Protective Equipment (PPE) and Spraying Precautions"
   ],
   "referred": false
@@ -873,7 +873,7 @@
   "top_sections": [
    "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
    "Pink Bollworm (Gulabi Sundhi) Integrated Management",
-   "Pink Bollworm (Gulabi Sundhi) Integrated Management"
+   "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management"
   ],
   "referred": false
  },
@@ -887,8 +887,8 @@
   "intent": "general_agriculture",
   "top_sections": [
    "Pink Bollworm (Gulabi Sundhi) Integrated Management",
-   "Pink Bollworm (Gulabi Sundhi) Integrated Management",
-   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control"
+   "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
+   "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages"
   ],
   "referred": false
  },
@@ -934,9 +934,9 @@
   },
   "intent": "general_agriculture",
   "top_sections": [
-   "White Rust (Safed Kungi) and Blight Management in Mustard",
    "Mustard Fertilizer and Irrigation Management",
-   "Mustard Aphid (Chetpa/Mahu) Management"
+   "Mustard Aphid (Chetpa/Mahu) Management",
+   "White Rust (Safed Kungi) and Blight Management in Mustard"
   ],
   "referred": false
  },

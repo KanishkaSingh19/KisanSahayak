@@ -89,7 +89,11 @@ Farmer Query (Text or Voice Note)
 
 Orchestrated end-to-end by `app/agent/pipeline.py` (`KisanPipeline`).
 
-**Chunking** (`app/rag/chunker.py`): each advisory section (one crop, one disease or pest) becomes one chunk, so topics are never mixed. Sections longer than `CHUNK_SIZE` (1000 characters) are split at sentence boundaries. Each piece repeats the crop, topic and source in a header and starts with up to `CHUNK_OVERLAP` (150) characters from the end of the previous piece: whole sentences when they fit, otherwise the last words. 14 sections give 18 chunks. A saved index is rebuilt automatically when the advisories or chunk settings change.
+**Chunking** (`app/rag/chunker.py`): each advisory section (one crop, one disease or pest) becomes one chunk, so topics are never mixed. Sections longer than `CHUNK_SIZE` (1000 characters) are split at sentence boundaries. Each piece repeats the crop, topic and source in a header and starts with up to `CHUNK_OVERLAP` (150) characters from the end of the previous piece: whole sentences when they fit, otherwise the last words. 14 sections give 22 chunks. A saved index is rebuilt automatically when the advisories or chunk settings change.
+
+**Ranking by section** (`app/rag/hybrid_retriever.py`): dense and BM25 results are each reduced to the best chunk per advisory section before Reciprocal Rank Fusion, so a long section split into several chunks cannot fill every slot. The top 3 sections are returned, followed by their other matching chunks so the LLM sees the whole advisory.
+
+**Advisory sources:** the crop advisories follow PAU's *Package of Practices for Crops of Punjab* (Rabi 2025-26 and Kharif 2026). Each section records the printed pages it comes from (`source_reference`), and citations show them, e.g. "PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 18-21".
 
 ---
 
@@ -122,7 +126,7 @@ KisanSahayak/
 │       ├── vision.py             # Gemini Vision crop-photo diagnosis
 │       └── schemes.py            # PM-KISAN sections and rule-based eligibility check
 ├── data/
-│   ├── raw/                      # Curated ICAR, PAU & CIBRC advisories (JSON)
+│   ├── raw/                      # Crop advisories from PAU's Package of Practices (with page numbers) & CIBRC safety (JSON)
 │   │   ├── wheat_pau_icar.json
 │   │   ├── mustard_crop_guide.json
 │   │   ├── paddy_rice_management.json
@@ -236,7 +240,7 @@ See [`AI_DISCLOSURE.md`](AI_DISCLOSURE.md): which AI tools helped build the proj
 
 | Metric | MiniLM search (local) | Gemini search (live app) |
 |---|---|---|
-| Right advisory ranked 1st | 93% (39/42) | **98% (41/42)** |
+| Right advisory ranked 1st | 83% (35/42) | **98% (41/42)** |
 | Right advisory in top 3 | 98% (41/42) | **100% (42/42)** |
 | Question type recognised | 98% (41/42) | 98% (41/42) |
 | Weather: right place detected | 100% (8/8) | 100% (8/8) |
@@ -244,7 +248,7 @@ See [`AI_DISCLOSURE.md`](AI_DISCLOSURE.md): which AI tools helped build the proj
 | Banned-pesticide questions warned (incl. Hindi/Punjabi script) | **100% (5/5)** | **100% (5/5)** |
 | False banned-pesticide warnings | 0 of 39 | 0 of 39 |
 | Follow-up questions kept context | 100% (6/6) | 100% (6/6) |
-| Search + safety time, without LLM (median) | ~36 ms | ~0.5 s |
+| Search + safety time, without LLM (median) | ~43 ms | ~0.6 s |
 
 On 8 real Gemini answers: **8/8** written by Gemini, **8/8** in the requested script, **8/8** with no numbers (doses, dates) that aren't in the source advisories; median 3.3 s.
 
@@ -263,7 +267,7 @@ Full reports, including every failure: `eval/results_minilm.md`, `eval/results_g
 
 | Metric | Result |
 |---|---|
-| Right advisory in top 3 (questions our advisories cover) | 25/25 (100%) |
+| Right advisory in top 3 (questions our advisories cover) | 23/25 (92%) |
 | Banned-pesticide question warned | 1/1 |
 | Weather for the right district / PM-KISAN recognised | 15/15 / 15/15 |
 | Price (MSP) questions answered with the price | 4/4 |
@@ -274,7 +278,7 @@ Only 26 of the 200 real questions fall within our 4-crop advisories: most calls 
 
 ### Feature test set (25 questions)
 
-[`evalset/`](evalset/) checks every feature end to end: whole conversations with follow-ups, all four languages, the farm profile, PM-KISAN eligibility, weather, safety guardrails, the "crop not covered" guard, photo and voice. Cases 1–22 run automatically (**22/22 pass**, 34/34 conversation turns, with offline answers and with real Gemini answers: all 25 written by Gemini Flash-Lite, see [`evalset/results_llm.md`](evalset/results_llm.md)); photo and voice (23–25) are checked by hand.
+[`evalset/`](evalset/) checks every feature end to end: whole conversations with follow-ups, all four languages, the farm profile, PM-KISAN eligibility, weather, safety guardrails, the "crop not covered" guard, photo and voice. Cases 1–22 run automatically: **21/22 pass** (33/34 conversation turns) with offline answers after the PAU update; the miss is a Hindi symptom-only bacterial blight question ranked under brown planthopper by the local MiniLM search. The earlier run with real Gemini answers ([`evalset/results_llm.md`](evalset/results_llm.md), 22/22) predates the PAU update; photo and voice (23–25) are checked by hand.
 
 ```bash
 python evalset/run_evalset.py

@@ -17,7 +17,7 @@
       "turns": [
         {"query": "My wheat leaves have yellow powdery stripes, and the powder sticks to my hands. What is it?", "expect": {"section": "Yellow Rust"}},
         {"query": "What should I spray?", "expect": {"section": "Yellow Rust", "answer_any": ["Propiconazole", "Tebuconazole"]}},
-        {"query": "How many times?", "expect": {"section": "Yellow Rust", "answer_any": ["15 days"]}},
+        {"query": "How many times?", "expect": {"section": "Yellow Rust", "answer_any": ["repeat the spray"]}},
         {"query": "Can I spray today in Ludhiana?", "expect": {"intent": ["weather"], "district": "Ludhiana"}},
         {"query": "And in Sangrur?", "expect": {"intent": ["weather"], "district": "Sangrur"}},
         {"query": "Which varieties resist this disease?", "expect": {"section": "Yellow Rust", "answer_any": ["PBW 725", "HD 3086", "DBW 187", "DBW 222"]}},
@@ -47,11 +47,11 @@
     },
     {
       "id": 7, "feature": "Crop planning: wheat sowing time and seed rate", "mode": "text", "language": "en",
-      "turns": [{"query": "When should I sow wheat and how much seed per acre?", "expect": {"section": "Wheat Sowing", "answer_all": ["40-45 kg"]}}]
+      "turns": [{"query": "When should I sow wheat and how much seed per acre?", "expect": {"section": "Wheat Sowing", "answer_all": ["40 kg"]}}]
     },
     {
       "id": 8, "feature": "Fertilizer: mustard NPK and sulphur", "mode": "text", "language": "en",
-      "turns": [{"query": "How much fertilizer does mustard need?", "expect": {"section": "Mustard Fertilizer", "answer_any": ["80 kg"]}}]
+      "turns": [{"query": "How much fertilizer does mustard need?", "expect": {"section": "Mustard Fertilizer", "answer_any": ["40 kg N"]}}]
     },
     {
       "id": 9, "feature": "Punjabi, symptoms: mustard white rust", "mode": "text", "language": "pa",

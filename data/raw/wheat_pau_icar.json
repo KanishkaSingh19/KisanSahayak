@@ -1,38 +1,42 @@
 {
-  "source_organization": "Punjab Agricultural University (PAU) & ICAR",
-  "document_title": "Wheat (Kanak/Gehun) Package of Practices & Disease Management",
+  "source_organization": "Punjab Agricultural University (PAU), Ludhiana",
+  "document_title": "Wheat (Kanak/Gehun) advisory from PAU Package of Practices for Crops of Punjab, Rabi 2025-26",
   "crop": "Wheat",
   "season": "Rabi",
-  "publication_year": 2024,
+  "publication_year": 2025,
   "sections": [
     {
       "section_title": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
-      "disease_pest_name": "Yellow Rust (Puccinia striiformis)",
-      "symptoms": "Yellow powdery pustules arranged in linear rows or stripes along leaf veins. On shaking affected leaves, yellow powder sticks to clothes and hands. Appears in cool, moist, and cloudy weather (10-20°C).",
-      "recommended_action": "Inspect fields regularly from mid-December to February, especially in sub-mountainous tracts. If initial disease foci are spotted, immediately spray Propiconazole 25% EC (Tilt/Bumper) @ 200 ml or Tebuconazole 25.9% EC (Folicur) @ 200 ml in 200 liters of water per acre. Repeat spray after 15 days if cloudy weather persists.",
-      "preventive_measures": "Cultivate resistant varieties like PBW 725, HD 3086, DBW 187 (Karan Vandana), and DBW 222. Avoid monoculture of susceptible older varieties like PBW 343 or HD 2967 in rust-prone areas.",
-      "critical_safety_warning": "Do not spray fungicide during high wind velocity to avoid chemical drift. Always wear protective masks."
+      "disease_pest_name": "Yellow Rust (Puccinia striiformis f.sp. tritici)",
+      "symptoms": "Yellow powdery pustules in stripes on the leaves; the yellow powder sticks to hands. It appears first in the sub-mountainous areas, in cool humid weather (7-13°C nights, 15-24°C days); rain with wind in February-March spreads it.",
+      "recommended_action": "Monitor the crop from the second week of December onward, especially after irrigation or rain. As soon as the disease is noticed, spray 200 ml Tilt/Bumper 25 EC (propiconazole) or 120 g Nativo 75 WG (trifloxystrobin + tebuconazole) or 300 g Taqat 75 WP (captan + hexaconazole) in 200 liters of water per acre. At first spray only the infected patches and around them. Keep monitoring and repeat the spray as needed.",
+      "preventive_measures": "Grow rust resistant varieties: PBW Biscuit 1, PBW Zinc 2, PBW RS1, PBW 725, Unnat PBW 550, PBW 752, WHD 943, PDW 291 and PBW 660. In the sub-mountainous zone, do not sow in October.",
+      "critical_safety_warning": "Do not spray fungicide during high wind velocity to avoid chemical drift. Always wear protective masks.",
+      "source_reference": "PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 18-21"
     },
     {
       "section_title": "Karnal Bunt (Tilletia indica) Management in Wheat",
-      "disease_pest_name": "Karnal Bunt",
+      "disease_pest_name": "Karnal Bunt (Neovossia indica / Tilletia indica)",
       "symptoms": "Only a few grains in a spike are partially transformed into a black powdery mass of teliospores. Crushed grains give an unpleasant rotten-fish odor due to trimethylamine.",
-      "recommended_action": "Spray Propiconazole 25% EC @ 200 ml in 200 liters of water per acre at the ear-emergence (boot leaf) stage if weather is cloudy or light rainfall occurs during flowering.",
-      "preventive_measures": "Use disease-free certified seeds. Avoid excessive nitrogenous fertilizers. Avoid continuous wheat cropping in heavily infested fields."
+      "recommended_action": "PAU recommends a single spray of 200 ml Tilt 25 EC (propiconazole) in 200 liters of water per acre at ear emergence only for wheat grown for seed, to produce Karnal bunt free seed. For wheat grown for grain, PAU does not recommend this spray: grow resistant varieties and use clean seed.",
+      "preventive_measures": "Grow the resistant varieties WHD 943 and PDW 291. Use clean, certified seed. In a seed crop, remove off-type and diseased plants at frequent intervals.",
+      "source_reference": "PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 17 and 19-21"
     },
     {
       "section_title": "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages",
       "disease_pest_name": "Agronomic Practices",
       "symptoms": "N/A",
-      "recommended_action": "Optimum sowing time for timely sown wheat is October 25 to November 15. Recommended seed rate is 40-45 kg per acre. Fertilizer recommendation is 120 kg Nitrogen (approx 130 kg Urea in splits), 60 kg P2O5 (150 kg SSP or 55 kg DAP), and 40 kg K2O (66 kg MOP) per hectare.",
-      "preventive_measures": "First critical irrigation must be given at Crown Root Initiation (CRI) stage, 20-25 days after sowing. Avoid waterlogging which causes yellowing of seedlings."
+      "recommended_action": "The first fortnight of November is the best sowing time for wheat; long-duration varieties can be sown from the fourth week of October. Each week of delay cuts yield by about 150 kg per acre. Seed rate is 40 kg per acre (45 kg for PBW 869 and Unnat PBW 550; 45 kg with a Happy Seeder). Fertilizer on medium soils: 55 kg DAP at sowing, then 45 kg urea per acre with each of the first two irrigations.",
+      "preventive_measures": "Give a heavy pre-sowing irrigation, except after rice. Give the first irrigation, a light one, 3 weeks after sowing for October-sown wheat and 4 weeks after sowing for later sowing.",
+      "source_reference": "PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 4-6, 9-11 and 16-17"
     },
     {
       "section_title": "Wheat Aphid (Mahu) Control",
-      "disease_pest_name": "Aphids (Sitobion avenae)",
+      "disease_pest_name": "Aphids (Mahu)",
       "symptoms": "Small green insects clustering on leaves and earheads during February-March. They suck sap, resulting in shrivelled grain and reduced yield.",
-      "recommended_action": "Spray only when population exceeds Economic Threshold Level (ETL: 5 aphids per earhead). Spray Clothianidin 50% WDG @ 10-12 g per acre or Thiamethoxam 25% WG @ 50 g per acre in 150 liters of water.",
-      "preventive_measures": "Conserve natural predators like ladybird beetles and syrphid fly larvae which naturally control aphid colonies."
+      "recommended_action": "Spray only if aphids exceed the economic threshold of 5 aphids per earhead (count 10 random earheads in each of the 4 quarters of one acre). Give two sprays of 2 liters PAU homemade neem extract at a weekly interval, or a single spray of 20 g Actara/Taiyo 25 WG (thiamethoxam) in 80-100 liters of water per acre with a knapsack sprayer (30 liters of water with a power sprayer). Apply insecticide only if aphids attack at the earhead stage.",
+      "preventive_measures": "Aphids appear first on the field borders, so spray only the infested strip. Spraying only above the threshold also spares ladybird beetles and other natural enemies.",
+      "source_reference": "PAU Package of Practices for Crops of Punjab, Rabi 2025-26, page 17"
     }
   ]
 }

@@ -1,30 +1,34 @@
 {
-  "source_organization": "ICAR-Directorate of Rapeseed-Mustard Research (DRMR) Bharatpur",
-  "document_title": "Mustard (Sarson/Raya) Package of Practices & Pest Management",
+  "source_organization": "Punjab Agricultural University (PAU), Ludhiana",
+  "document_title": "Mustard (Sarson/Raya) advisory from PAU Package of Practices for Crops of Punjab, Rabi 2025-26",
   "crop": "Mustard",
   "season": "Rabi",
-  "publication_year": 2024,
+  "publication_year": 2025,
   "sections": [
     {
       "section_title": "Mustard Aphid (Chetpa/Mahu) Management",
       "disease_pest_name": "Mustard Aphid (Lipaphis erysimi)",
       "symptoms": "Nymphs and adults suck cell sap from tender twigs, inflorescence, leaves, and siliquae (pods). Infested plants show curling of leaves, stunted growth, and pod failure. Secretes honeydew leading to sooty mold development.",
-      "recommended_action": "Spray only when ETL is reached (1.5–2.0 cm aphid colony on the central shoot or 20-25% infested plants). Apply Dimethoate 30% EC @ 250-300 ml or Thiamethoxam 25% WG @ 50-80 g in 150-200 liters of water per acre. To protect honeybees and pollinators, spray strictly in the late afternoon (after 3:30 PM).",
-      "preventive_measures": "Early sowing between October 10 and October 25 minimizes aphid attack. Yellow sticky traps @ 10-15 traps per acre help in early monitoring and trapping."
+      "recommended_action": "From the first week of January, check 12-16 scattered plants per acre twice a week. Spray when there are 50-60 aphids per 10 cm of the central shoot tip, or 0.5 to 1.0 cm of the tip is covered by aphids, or 40-50% of plants are infested. Spray 40 g Actara 25 WG (thiamethoxam) or 400 ml Rogor 30 EC (dimethoate) or 400 ml Metasystox 25 EC (oxydemeton methyl) in 80-125 liters of water per acre. Repeat whenever the threshold is reached again.",
+      "preventive_measures": "Sow at the recommended time, preferably by the third week of October, and apply the recommended dose of fertilizers.",
+      "critical_safety_warning": "Spray in the late afternoon to protect honeybees visiting the flowers.",
+      "source_reference": "PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 54-55"
     },
     {
       "section_title": "White Rust (Safed Kungi) and Blight Management in Mustard",
-      "disease_pest_name": "White Rust (Albugo candida) and Alternaria Blight",
-      "symptoms": "Prominent chalky white blisters appear on the lower surface of leaves. Hypertrophy and malformation of floral parts (Staghead formation) leading to sterile flowers without seeds.",
-      "recommended_action": "Treat seeds before sowing with Metalaxyl 35% WS (Apron) @ 6 g per kg seed. On appearance of disease on foliage, spray Metalaxyl 8% + Mancozeb 64% WP (Ridomil MZ) @ 2 g per liter of water (approx 400 g in 200 liters of water per acre).",
-      "preventive_measures": "Use resistant or tolerant varieties like RH-749, NRCHB 101, and DRMRIJ 31 (Giriraj). Maintain balanced plant nutrition and ensure proper field drainage."
+      "disease_pest_name": "White Rust (Albugo candida) and Alternaria Blight (Alternaria brassicae)",
+      "symptoms": "Prominent chalky white blisters appear on the lower surface of leaves. Hypertrophy and malformation of floral parts (Staghead formation) leading to sterile flowers without seeds. Alternaria blight: brown to black spots with concentric rings on leaves, pods and stems.",
+      "recommended_action": "For white rust, spray 250 g Ridomil Gold (metalaxyl 4% + mancozeb 64%) dissolved in 100 liters of water per acre at 60 and 80 days after sowing. If needed, repeat the spray after 20 days.",
+      "preventive_measures": "Destroy diseased crop debris from the previous crop; this reduces both white rust and Alternaria blight.",
+      "source_reference": "PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 55-56"
     },
     {
       "section_title": "Mustard Fertilizer and Irrigation Management",
       "disease_pest_name": "Nutrient and Water Management",
       "symptoms": "N/A",
-      "recommended_action": "Apply 80 kg N, 40 kg P2O5, and 40 kg K2O per hectare. Application of Sulphur @ 20-25 kg/ha through elemental sulphur or Gypsum (200 kg/ha) increases oil content by 2-3%.",
-      "preventive_measures": "First irrigation should be given 30-35 days after sowing at rosette stage, and second irrigation at siliquae formation stage (60-65 days after sowing)."
+      "recommended_action": "Fertilizer for irrigated mustard (raya, gobhi sarson): 40 kg N and 12 kg P2O5 per acre, that is 90 kg urea and 75 kg single superphosphate. Give half the urea and all the superphosphate at sowing and the other half of the urea with the first irrigation. Single superphosphate also supplies sulphur; if it is not available, apply 80 kg gypsum per acre at sowing on sulphur-deficient soils. Apply 10 kg muriate of potash per acre only on potassium-deficient soils.",
+      "preventive_measures": "Irrigation: give the first irrigation 3 to 4 weeks after sowing. In gobhi sarson, give the second irrigation at the end of December and the last in the second fortnight of February; irrigating after that can cause lodging.",
+      "source_reference": "PAU Package of Practices for Crops of Punjab, Rabi 2025-26, pages 50-53"
     }
   ]
 }

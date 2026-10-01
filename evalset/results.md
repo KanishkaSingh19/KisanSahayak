@@ -4,8 +4,8 @@
 
 | Result | Value |
 |---|---|
-| Automated cases passed | **22/22** |
-| Conversation turns passed | 34/34 |
+| Automated cases passed | **21/22** |
+| Conversation turns passed | 33/34 |
 | Manual cases (photo, voice) | 3, see `evalset/questions.md` |
 | Answers by source | template_offline: 25 |
 
@@ -14,7 +14,7 @@
 | 1 | Multi-turn memory: symptoms, follow-ups, topic switches, banned pesticide, language switch | pass |
 | 2 | Punjabi answer: mustard aphid | pass |
 | 3 | Hinglish answer: brown planthopper | pass |
-| 4 | Hindi, symptoms only: bacterial leaf blight | pass |
+| 4 | Hindi, symptoms only: bacterial leaf blight | FAIL |
 | 5 | Cotton pink bollworm: traps, threshold and dose | pass |
 | 6 | Hindi, symptoms: cotton whitefly and leaf curl | pass |
 | 7 | Crop planning: wheat sowing time and seed rate | pass |
@@ -36,3 +36,8 @@
 | 23 | Photo diagnosis: upload and take a photo of a covered crop | manual |
 | 24 | Photo diagnosis: crop the advisories do not cover | manual |
 | 25 | Voice: live recording in English and Punjabi, answer read aloud | manual |
+
+## Failures
+
+- **4. Hindi, symptoms only: bacterial leaf blight**
+  - turn 1 ("धान की पत्तियाँ किनारों से पीली होकर सूख रही हैं, क्या करूँ?"): top advisory 'Brown Planthopper (BPH / Bhoora Tilla) Management', expected 'Bacterial Leaf Blight'

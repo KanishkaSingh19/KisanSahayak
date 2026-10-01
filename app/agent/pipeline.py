@@ -471,7 +471,8 @@ class KisanPipeline:
         if intent.detected_crop:
             # Equal fusion scores (e.g. wheat vs mustard aphid) must not put another crop first
             crop = intent.detected_crop.lower()
-            retrieved.sort(key=lambda c: (c.crop or "").lower() != crop)
+            # (the ranked sections stay ahead of the extra chunks that complete them)
+            retrieved.sort(key=lambda c: (bool(c.rank_details.get("same_section_as_above")), (c.crop or "").lower() != crop))
 
         if hasattr(self.synthesizer, "generate"):
             draft, source = self.synthesizer.generate(

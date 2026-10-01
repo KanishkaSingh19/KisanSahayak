@@ -6,12 +6,12 @@
     "by_language": {
       "en": {
         "total": 14,
-        "top1": 13,
+        "top1": 14,
         "top3": 14
       },
       "hi": {
         "total": 10,
-        "top1": 10,
+        "top1": 9,
         "top3": 10
       },
       "pa": {
@@ -27,7 +27,7 @@
     }
   },
   "embedding_fallbacks": 0,
-  "date": "2026-09-29",
+  "date": "2026-10-01",
   "embeddings": "gemini",
   "intent": {
     "correct": 41,
@@ -52,12 +52,12 @@
     "total": 6
   },
   "latency_ms": {
-    "median": 516.5578000014648,
-    "p95": 559.8065999802202
+    "median": 600.7333000015933,
+    "p95": 695.5878000007942
   },
   "llm": null,
   "failures": [
     "Intent: \"White flies under cotton leaves and the leaves are curling, what should I do?\" → general_agriculture, expected crop_question",
-    "Retrieval: \"Aphids on my mustard crop, how to control them?\" → got *Wheat Aphid (Mahu) Control*, expected *Mustard Aphid*"
+    "Retrieval: \"सरसों में सफेद रतुआ रोग का उपचार\" → got *Mustard Aphid (Chetpa/Mahu) Management*, expected *White Rust*"
   ]
 }

@@ -40,3 +40,29 @@ def test_hybrid_retriever_pipeline(tmp_path):
     loaded_results = new_retriever.retrieve("Mustard aphids Dimethoate")
     assert len(loaded_results) >= 1
     assert loaded_results[0].crop == "Mustard"
+
+
+def _chunk(cid, section, text, **meta):
+    return DocumentChunk(chunk_id=cid, text=text, metadata={"doc_id": "d", "section": section, "crop": "Paddy", **meta})
+
+
+def test_a_long_section_does_not_crowd_out_other_sections():
+    """Three chunks of one section must not take all three result slots."""
+    retriever = HybridRetriever(embeddings=LocalDenseEmbedder(dimension=128), final_top_k=2)
+    retriever.build_indices([
+        _chunk("bph_0", "Brown Planthopper", "planthopper hoppers spray base of plants"),
+        _chunk("bph_1", "Brown Planthopper", "planthopper hopper burn patches spray"),
+        _chunk("bph_2", "Brown Planthopper", "planthopper neem extract spray"),
+        _chunk("sb_0", "Sheath Blight", "sheath blight lesions spray Nativo"),
+    ])
+    results = retriever.retrieve("planthopper spray")
+    assert [r.section for r in results[:2]] == ["Brown Planthopper", "Sheath Blight"]
+    # The section's other chunks follow, so an LLM answer still sees the whole advisory
+    assert {r.chunk_id for r in results} >= {"bph_0", "bph_1", "bph_2"}
+
+
+def test_citation_shows_the_page_reference():
+    retriever = HybridRetriever(embeddings=LocalDenseEmbedder(dimension=128), final_top_k=1)
+    retriever.build_indices([_chunk("sb_0", "Sheath Blight", "sheath blight Nativo",
+                                    reference="PAU Package of Practices, Kharif 2026, pages 16-19")])
+    assert retriever.retrieve("sheath blight")[0].citation == "PAU Package of Practices, Kharif 2026, pages 16-19 [Sheath Blight]"

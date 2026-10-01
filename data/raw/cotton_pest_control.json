@@ -1,23 +1,27 @@
 {
-  "source_organization": "ICAR-Central Institute for Cotton Research (CICR) Nagpur",
-  "document_title": "Cotton (Narma/Kapas) Pest and Disease Integrated Management",
+  "source_organization": "Punjab Agricultural University (PAU), Ludhiana",
+  "document_title": "Cotton (Narma/Kapas) advisory from PAU Package of Practices for Crops of Punjab, Kharif 2026",
   "crop": "Cotton",
   "season": "Kharif",
-  "publication_year": 2024,
+  "publication_year": 2026,
   "sections": [
     {
       "section_title": "Pink Bollworm (Gulabi Sundhi) Integrated Management",
       "disease_pest_name": "Pink Bollworm (Pectinophora gossypiella)",
       "symptoms": "Larvae bore into squares, flowers, and developing bolls. Infested flowers do not open properly, showing a characteristic 'rosette flower' appearance. Exit holes with frass visible on mature green bolls; lint staining and seed destruction.",
-      "recommended_action": "Install pheromone traps @ 5 traps/acre for monitoring at 45 days after sowing. When trap catch exceeds ETL of 8 moths/trap/night for 3 consecutive days or 10% damaged green bolls, spray Profenofos 50% EC @ 500 ml or Emamectin Benzoate 5% SG @ 100 g in 150-200 liters of water per acre. Alternatively, release Trichogramma egg parasitoids @ 60,000/acre weekly.",
-      "preventive_measures": "Strictly follow termination of crop by end of January to break the pest cycle. Avoid stacking cotton stalks in fields. Do not allow ratoon cotton."
+      "recommended_action": "Monitor with pheromone (gossyplure) traps from flowering, recording moth catch every alternate day. Mating disruption: apply 125 g per acre of gossyplure 4% paste (CREMIT-PBW/Natamate-PBW) as peanut-size dollops at 400 spots per acre from square formation (45-55 days after sowing), then two more applications at 30-day intervals. Spray when 5 percent of flowers and green bolls are damaged: 170 ml Delegate 11.7 SC (spinetoram) or 100 g Proclaim 5 SG (emamectin benzoate) or 500 ml Curacron 50 EC (profenophos) per acre.",
+      "preventive_measures": "Sun-dry seed cotton in a thin layer for 3-4 days in April (it can hold larvae). Give the last irrigation by the end of September. Do not move cotton sticks from infested areas; shred infested fields after the final picking.",
+      "critical_safety_warning": "Do not use synthetic pyrethroids before 15 September (they cause whitefly resurgence), and do not tank-mix insecticides or use ready-made mixtures.",
+      "source_reference": "PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 45 and 51-58"
     },
     {
       "section_title": "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
       "disease_pest_name": "Whitefly (Bemisia tabaci) and Cotton Leaf Curl Virus",
       "symptoms": "Adults and nymphs suck sap from undersides of leaves, causing yellowing and downward leaf curling. They transmit Cotton Leaf Curl Virus leading to thickening of veins and enation (leaf-like outgrowths) on lower side of leaves.",
-      "recommended_action": "Spray when ETL is reached (6-8 whitefly adults per leaf across top, middle, bottom leaves). Spray Diafenthiuron 50% WP @ 250 g or Pyriproxyfen 10% EC @ 500 ml or Afidopyropen 50 g/l DC @ 400 ml in 150 liters of water per acre.",
-      "preventive_measures": "Sow recommended CLCuD-tolerant hybrids. Eradicate alternative weed hosts like Kanghi buti (Abutilon indicum) and Peeli buti around borders."
+      "recommended_action": "Spray when whitefly reaches 6 adults per leaf in the upper canopy (count before 10 AM) or when honeydew appears on 50 percent of plants. Use 400 ml Sefina 50 DC (afidopyropen) or 200 g Polo 50 WP (diafenthiuron) or 80 g Ulala 50 WG (flonicamid) or 500 ml Lano 10 EC (pyriproxyfen, against nymphs) per acre, or 1200 ml PAU homemade neem extract. There is no spray for leaf curl virus itself: uproot diseased plants and control the whitefly.",
+      "preventive_measures": "Complete sowing by 15 May. Put up 40 yellow sticky traps per acre early in the season. Destroy weed hosts such as kanghi buti and peeli buti. Where whitefly and leaf curl are severe, prefer desi cotton, which resists leaf curl.",
+      "critical_safety_warning": "Do not use synthetic pyrethroids before 15 September (they cause whitefly resurgence), and do not tank-mix insecticides or use ready-made mixtures.",
+      "source_reference": "PAU Package of Practices for Crops of Punjab, Kharif 2026, pages 45 and 51-61"
     }
   ]
 }
