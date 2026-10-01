@@ -1,10 +1,15 @@
 import hashlib
 import time
 import unicodedata
-from typing import List, Optional
+from pathlib import Path
+from typing import Dict, List, Optional
 import numpy as np
 
 from app.config import settings
+
+# Gemini document vectors computed once (scripts/build_embedding_cache.py) and committed, so that a
+# cold start on Streamlit Cloud does not re-embed every chunk against the free tier's per-minute limit
+GEMINI_CACHE_PATH = settings.DATA_DIR / "vectors" / "gemini_embedding_cache.npz"
 
 
 class BaseEmbeddings:
@@ -79,6 +84,15 @@ class LocalDenseEmbedder(BaseEmbeddings):
         return self.dimension
 
 
+def gemini_cache_key(text: str, model: str = "gemini-embedding-001", dimension: int = 768) -> str:
+    return hashlib.sha1(f"{model}|{dimension}|{text}".encode("utf-8")).hexdigest()
+
+
+def gemini_cached_keys(path: Path = GEMINI_CACHE_PATH) -> set:
+    """Keys of the shipped Gemini document vectors (no API client needed)."""
+    return set(np.load(path)["keys"].tolist()) if Path(path).exists() else set()
+
+
 class GeminiEmbedder(BaseEmbeddings):
     """Embeddings via the Gemini API (gemini-embedding-001, 768-dim).
 
@@ -88,8 +102,10 @@ class GeminiEmbedder(BaseEmbeddings):
 
     DIMENSION = 768
     BATCH_SIZE = 50
-    RATE_LIMIT_RETRIES = 3  # per batch, while building the index
     RATE_LIMIT_WAIT_SEC = 30
+    RATE_LIMIT_RETRIES = 2  # per batch
+    MAX_RATE_LIMIT_WAIT_SEC = 60  # in total, per index build: the app must start
+
 
     def __init__(self, api_key: str, model: str = "gemini-embedding-001"):
         from google import genai
@@ -100,6 +116,7 @@ class GeminiEmbedder(BaseEmbeddings):
         self.model = model
         self._fallback = LocalDenseEmbedder(self.DIMENSION)
         self.fallback_count = 0  # texts embedded locally because the API call failed
+        self._cache: Optional[Dict[str, np.ndarray]] = None
 
     def _embed(self, texts: List[str], task_type: str) -> np.ndarray:
         from google.genai import types
@@ -121,32 +138,65 @@ class GeminiEmbedder(BaseEmbeddings):
             self.fallback_count += 1
             return self._fallback.embed_text(text)
 
-    def _embed_with_rate_limit(self, batch: List[str]) -> np.ndarray:
-        """Embed a batch of documents, waiting out the free tier's per-minute limit (429) a few times:
-        building the index happens once, and a batch embedded locally instead would search badly."""
+    def cache_key(self, text: str) -> str:
+        return gemini_cache_key(text, self.model, self.DIMENSION)
+
+    def load_cache(self, path: Path = GEMINI_CACHE_PATH) -> Dict[str, np.ndarray]:
+        """Document vectors computed earlier ({sha1 of model, size and text: vector}), shipped with the
+        app so a cold start does not re-embed hundreds of texts against the free tier's limits."""
+        if self._cache is None:
+            self._cache = {}
+            if Path(path).exists():
+                data = np.load(path)
+                self._cache = dict(zip(data["keys"].tolist(), data["vectors"]))
+        return self._cache
+
+    def save_cache(self, path: Path = GEMINI_CACHE_PATH) -> None:
+        cache = self.load_cache(path)
+        Path(path).parent.mkdir(parents=True, exist_ok=True)
+        np.savez_compressed(path, keys=np.array(list(cache)), vectors=np.array(list(cache.values()), dtype=np.float32))
+
+    def missing_from_cache(self, texts: List[str]) -> int:
+        cache = self.load_cache()
+        return sum(self.cache_key(t) not in cache for t in texts)
+
+    def _embed_with_rate_limit(self, batch: List[str], deadline: float) -> np.ndarray:
+        """Embed a batch of documents, waiting out the free tier's per-minute limit (429) until
+        `deadline` at most: past it, the app must start rather than wait."""
         for attempt in range(self.RATE_LIMIT_RETRIES + 1):
             try:
                 return self._embed(batch, "RETRIEVAL_DOCUMENT")
             except Exception as e:
-                if "429" not in str(e) or attempt == self.RATE_LIMIT_RETRIES:
+                last_try = attempt == self.RATE_LIMIT_RETRIES or time.time() + self.RATE_LIMIT_WAIT_SEC > deadline
+                if "429" not in str(e) or last_try:
                     raise
                 print(f"[Info] Gemini embedding rate limit: waiting {self.RATE_LIMIT_WAIT_SEC} s before retrying.")
                 time.sleep(self.RATE_LIMIT_WAIT_SEC)
-        raise RuntimeError("unreachable")
+        raise RuntimeError("unreachable: the last attempt re-raises")
 
-    def embed_documents(self, texts: List[str]) -> np.ndarray:
-        batches = []
-        for start in range(0, len(texts), self.BATCH_SIZE):
-            batch = texts[start : start + self.BATCH_SIZE]
+    def embed_documents(self, texts: List[str], max_wait_sec: Optional[float] = None) -> np.ndarray:
+        """Vectors for `texts`: from the shipped cache where possible, from the API otherwise. Waits for
+        rate limits for `max_wait_sec` in total; once the quota is out, the rest use the local embedder."""
+        cache = self.load_cache()
+        deadline = time.time() + (self.MAX_RATE_LIMIT_WAIT_SEC if max_wait_sec is None else max_wait_sec)
+        missing = [t for t in dict.fromkeys(texts) if self.cache_key(t) not in cache]
+        quota_out = False
+        for start in range(0, len(missing), self.BATCH_SIZE):
+            batch = missing[start : start + self.BATCH_SIZE]
             try:
-                batches.append(self._embed_with_rate_limit(batch))
+                if quota_out:
+                    raise RuntimeError("quota used up earlier in this build")
+                vectors = self._embed_with_rate_limit(batch, deadline)
+                cache.update({self.cache_key(t): v for t, v in zip(batch, vectors)})
             except Exception as e:
+                quota_out = quota_out or "429" in str(e)
                 print(f"[Warning] Gemini embedding failed: {str(e)[:120]}. Using local embedder for this batch.")
                 self.fallback_count += len(batch)
-                batches.append(self._fallback.embed_documents(batch))
-        if not batches:
+                local = {t: v for t, v in zip(batch, self._fallback.embed_documents(batch))}
+                cache.update({f"local:{t}": v for t, v in local.items()})  # this run only, never saved
+        if not texts:
             return np.zeros((0, self.DIMENSION), dtype=np.float32)
-        return np.vstack(batches).astype(np.float32)
+        return np.array([cache.get(self.cache_key(t), cache.get(f"local:{t}")) for t in texts], dtype=np.float32)
 
     def get_dimension(self) -> int:
         return self.DIMENSION

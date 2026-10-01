@@ -12,7 +12,10 @@ from typing import List
 from app.config import settings
 from app.rag.chunker import AgriculturalChunker, DocumentChunk
 from app.rag.hybrid_retriever import HybridRetriever
+from app.rag.embeddings import gemini_cache_key, gemini_cached_keys
 from app.rag.pau_kb import pau_kb_files
+
+PAU_MAX_UNCACHED = 20  # PAU chunks the app may embed itself on a cold start (one small batch)
 
 
 def load_knowledge_chunks(raw_dir: Path = settings.RAW_DATA_DIR) -> List[DocumentChunk]:
@@ -21,7 +24,17 @@ def load_knowledge_chunks(raw_dir: Path = settings.RAW_DATA_DIR) -> List[Documen
     chunker = AgriculturalChunker(chunk_size=settings.CHUNK_SIZE, chunk_overlap=settings.CHUNK_OVERLAP)
     chunks = chunker.load_and_chunk_directory(raw_dir)
     if settings.USE_PAU_KB and pau_kb_files():
-        chunks += chunker.load_and_chunk_directory(settings.PAU_KB_DIR)
+        pau = chunker.load_and_chunk_directory(settings.PAU_KB_DIR)
+        if settings.EMBEDDING_PROVIDER == "gemini":
+            # Embedding ~400 PAU chunks on a cold start exceeds the free Gemini quota (13 minutes, then
+            # local vectors anyway): use PAU only when the shipped vector cache covers it
+            cached = gemini_cached_keys()
+            missing = sum(gemini_cache_key(c.text) not in cached for c in pau)
+            if missing > PAU_MAX_UNCACHED:
+                print(f"[Warning] {missing} PAU chunks have no cached Gemini vectors "
+                      "(run scripts/build_embedding_cache.py): starting without PAU's chapters.")
+                return chunks
+        chunks += pau
     return chunks
 
 

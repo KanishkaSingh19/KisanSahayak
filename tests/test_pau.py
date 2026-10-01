@@ -122,3 +122,24 @@ def test_a_missing_pau_build_never_breaks_the_app(tmp_path, monkeypatch):
 
     monkeypatch.setattr(pau_kb, "build_pau_kb", offline)
     assert pau_kb.ensure_pau_kb(tmp_path / "kb") is False
+
+
+def test_on_gemini_pau_is_left_out_without_cached_vectors(tmp_path, monkeypatch):
+    """Embedding ~400 PAU chunks on a cold start took 13 minutes on the free quota: start without them."""
+    import json
+
+    from app.rag import ingest
+
+    kb = tmp_path / "kb"
+    kb.mkdir()
+    big = {**FAKE_WHEAT, "sections": [{**FAKE_WHEAT["sections"][0], "section_title": f"Wheat - Topic {i}"}
+                                      for i in range(ingest.PAU_MAX_UNCACHED + 5)]}
+    (kb / "pau_rabi_wheat.json").write_text(json.dumps(big), encoding="utf-8")
+    monkeypatch.setattr(settings, "USE_PAU_KB", True)
+    monkeypatch.setattr(settings, "PAU_KB_DIR", kb)
+    monkeypatch.setattr(ingest, "pau_kb_files", lambda: [kb / "pau_rabi_wheat.json"])
+    monkeypatch.setattr(ingest, "gemini_cached_keys", lambda: set())
+    monkeypatch.setattr(settings, "EMBEDDING_PROVIDER", "gemini")
+    assert not any(c.metadata.get("kind") == "pau" for c in ingest.load_knowledge_chunks())
+    monkeypatch.setattr(settings, "EMBEDDING_PROVIDER", "minilm")  # local embeddings: no quota to run out
+    assert any(c.metadata.get("kind") == "pau" for c in ingest.load_knowledge_chunks())

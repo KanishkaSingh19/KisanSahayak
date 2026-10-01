@@ -34,4 +34,4 @@ edge-tts>=6.1.0   # English and Hindi/Hinglish voices
 gTTS>=2.5.0       # Punjabi voice (Edge-TTS has none)
 
 # PAU Package of Practices: reads the PDFs when building data/pau/kb (app/rag/pau_kb.py)
-pymupdf>=1.24.0
+pymupdf==1.28.2  # pinned: the shipped Gemini vector cache (data/vectors) needs identical extracted text

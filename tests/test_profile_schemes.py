@@ -180,3 +180,12 @@ def test_claim_follow_up_stays_on_crop_insurance():
                                 topic="PMFBY crop insurance")
     res = IntentRouter().classify_with_context("How do I claim if hail damages my wheat?", [previous])
     assert res.intent == "scheme_query" and res.detected_topic == "PMFBY crop insurance"
+
+
+def test_crop_insurance_follow_up_about_another_state(pipeline):
+    """"What about UP?" after a Punjab answer: stays on crop insurance and says whether UP runs PMFBY."""
+    first = pipeline.process_query("Can PMFBY be applied in Punjab?", language="en", generate_audio=False)
+    res = pipeline.process_query("what about up?", language="en", generate_audio=False,
+                                 history=[ConversationTurn.from_answer(first)])
+    assert res.processing_metadata["detected_topic"] == "PMFBY crop insurance"
+    assert "Uttar Pradesh" in res.answer

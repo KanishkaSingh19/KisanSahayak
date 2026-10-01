@@ -53,3 +53,22 @@ def test_rate_limit_is_waited_out_while_building_the_index():
     vectors = emb.embed_documents(["a", "b"])
     assert vectors.shape == (2, 768) and emb.fallback_count == 0
     assert len(emb.client.models.calls) == 3
+
+
+def test_cached_vectors_need_no_api_call(tmp_path):
+    """The shipped cache is used first: a cold start must not re-embed hundreds of chunks."""
+    emb = make()
+    emb.embed_documents(["a", "b"])  # computed once...
+    emb.save_cache(tmp_path / "cache.npz")
+    fresh = make(fail=True)
+    fresh.load_cache(tmp_path / "cache.npz")
+    vectors = fresh.embed_documents(["a", "b"])  # ...then read back, with the API failing
+    assert fresh.client.models.calls == [] and fresh.fallback_count == 0 and vectors.shape == (2, 768)
+
+
+def test_used_up_quota_does_not_hold_up_the_start():
+    """Once the quota is out, later batches go straight to the local embedder (no waiting per batch)."""
+    emb = make(fail=True)
+    emb.embed_documents([f"doc {i}" for i in range(120)])
+    assert len(emb.client.models.calls) == emb.RATE_LIMIT_RETRIES + 1  # the first batch only
+    assert emb.fallback_count == 120
