@@ -13,6 +13,7 @@ from app.rag.hybrid_retriever import HybridRetriever
 from app.rag.ingest import load_knowledge_chunks
 from app.speech.stt import WhisperSTTAdapter
 from app.speech.tts import EdgeTTSAdapter
+from app.tools.dose import scale_doses
 from app.tools.location import STATES, state_named
 from app.tools.market import MarketPriceService, detect_commodity, load_msp, state_for
 from app.tools.vision import CropVision
@@ -539,6 +540,9 @@ class KisanPipeline:
 
         answer, disclaimers = self.guardrails.enforce_safety(draft, req.query, language=req.lang)
         is_grounded, grounding_score = self.guardrails.validate_grounding(answer, [c.text for c in retrieved])
+        # The land size in My farm: every per-acre amount also as a total for the farm (worked out in code)
+        acres = profile.land_acres if profile else None
+        answer, dose_totals = scale_doses(answer, acres, req.lang) if acres else (answer, False)
         audio = self._speak(req, answer) if settings.ENABLE_TTS else None
         return self._reply(
             req, answer,
@@ -556,5 +560,6 @@ class KisanPipeline:
                 "top_section": retrieved[0].section if retrieved else None,
                 "answer_source": source,
                 "knowledge": retrieved[0].kind if retrieved else (kind or "advisory"),
+                "dose_totals_for_acres": acres if dose_totals else None,
             },
         )

@@ -232,6 +232,18 @@ STRINGS: Dict[str, Dict[str, str]] = {
     },
     # ------------------------------------------------------------------ offline template headings
     "crop_advisory": {"en": "Crop Advisory", "pa": "ਫ਼ਸਲ ਸਲਾਹ", "hinglish": "Fasal Salah", "hi": "फसल परामर्श"},
+    "dose_total": {
+        "en": "{total} for your {acres} acres",
+        "pa": "ਤੁਹਾਡੇ {acres} ਏਕੜ ਲਈ {total}",
+        "hinglish": "aapke {acres} acre ke liye {total}",
+        "hi": "आपके {acres} एकड़ के लिए {total}",
+    },
+    "dose_total_note": {
+        "en": "Totals are for the {acres} acres in My farm. If only part of your land is under this crop, use that area. Check the dose on the product label.",
+        "pa": "ਕੁੱਲ ਮਾਤਰਾ 'ਮੇਰਾ ਖੇਤ' ਵਿੱਚ ਦਿੱਤੇ {acres} ਏਕੜ ਲਈ ਹੈ। ਜੇ ਇਸ ਫ਼ਸਲ ਹੇਠ ਤੁਹਾਡੀ ਜ਼ਮੀਨ ਦਾ ਸਿਰਫ਼ ਕੁਝ ਹਿੱਸਾ ਹੈ, ਤਾਂ ਉਸ ਰਕਬੇ ਨਾਲ ਹਿਸਾਬ ਲਗਾਓ। ਦਵਾਈ ਦੀ ਮਾਤਰਾ ਲੇਬਲ 'ਤੇ ਜਾਂਚੋ।",
+        "hinglish": "Kul matra 'My farm' mein diye {acres} acre ke liye hai. Agar is fasal ke neeche aapki zameen ka sirf kuch hissa hai, to us rakbe se hisaab lagayein. Dawai ki matra label par jaanchein.",
+        "hi": "कुल मात्रा 'मेरा खेत' में दिए {acres} एकड़ के लिए है। अगर इस फसल के नीचे आपकी ज़मीन का सिर्फ़ कुछ हिस्सा है, तो उस रकबे से हिसाब लगाएँ। दवा की मात्रा लेबल पर जाँचें।",
+    },
     "spray_ask_crop": {
         "en": (
             "Whether to spray again depends on the crop and the problem. Which crop is it, and which pest or disease "

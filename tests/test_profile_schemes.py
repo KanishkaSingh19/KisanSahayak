@@ -189,3 +189,10 @@ def test_crop_insurance_follow_up_about_another_state(pipeline):
                                  history=[ConversationTurn.from_answer(first)])
     assert res.processing_metadata["detected_topic"] == "PMFBY crop insurance"
     assert "Uttar Pradesh" in res.answer
+
+
+def test_land_size_turns_per_acre_doses_into_farm_totals(pipeline):
+    res = pipeline.process_query("How do I control aphids in mustard?", language="en", generate_audio=False,
+                                 profile=FarmerProfile(crops=["mustard"], land_acres=34))
+    assert res.processing_metadata["dose_totals_for_acres"] == 34
+    assert "for your 34 acres" in res.answer
