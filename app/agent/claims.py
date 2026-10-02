@@ -66,7 +66,10 @@ _DISEASE = re.compile(rf"\b((?:[a-z]+\s+){{1,2}})((?:{_DISEASE_NOUNS})(?:\s+(?:{
 _NOT_QUALIFIERS = {"the", "of", "in", "my", "from", "control", "treat", "treatment", "for", "is", "a", "with", "and",
                    "against", "how", "to", "what", "about", "cure", "has", "have", "got", "there", "this", "that", "or",
                    "kya", "ka", "ki", "ke", "mein", "me", "hai", "do", "i", "crop", "field", "plant", "plants",
-                   "wheat", "paddy", "rice", "cotton", "mustard", "on", "by", "any", "some", "stop", "prevent"}
+                   "wheat", "paddy", "rice", "cotton", "mustard", "on", "by", "any", "some", "stop", "prevent",
+                   # words that introduce a premise ("Since golden blight is spreading ...")
+                   "since", "because", "as", "heard", "said", "says", "think", "believe", "if", "when", "why",
+                   "kyunki", "kyonki", "chunki", "suna", "agar", "jab"}
 
 # ------------------------------------------------------------------ a pesticide named by its chemical name
 _CHEMICAL = re.compile(

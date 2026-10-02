@@ -33,6 +33,11 @@ PREMISE_CUE = re.compile(
 )
 QUALIFIED = "qualified"  # true only partly or under conditions the question leaves out
 VERDICTS = ("supported", "contradicted", QUALIFIED, "not_in_evidence")
+# A "claim" that starts like a question is the farmer's request, not something the question assumes
+_ASKS = re.compile(
+    r"^(how|what|where|when|which|why|who|should|can|could|shall|will|is|are|do|does|did|kaise|kya|kahan|kab|"
+    r"kitna|kitni|kaun|kyun)\b|^(कैसे|क्या|कहाँ|कहां|कब|कितना|कितनी|कौन|ਕਿਵੇਂ|ਕੀ|ਕਿੱਥੇ|ਕਦੋਂ|ਕਿੰਨਾ|ਕਿੰਨੀ|ਕੌਣ)",
+    re.IGNORECASE)
 MAX_EVIDENCE = 40  # sentences given to the verifier
 
 
@@ -105,7 +110,10 @@ For each claim give a verdict, using ONLY the evidence:
 - "contradicted": the evidence states something incompatible with it
 - "qualified": the evidence shows it is true only partly or only under conditions the claim leaves out
 - "not_in_evidence": the evidence does not say
-Cite the numbers of the evidence sentences that justify the verdict (none for not_in_evidence).
+Do not list what the farmer asks or wants to do ("how do I register", "where should I sell it").
+Cite the numbers of the evidence sentences that justify the verdict (none for not_in_evidence). For "contradicted"
+and "qualified", cite every sentence the farmer needs to see the correct position, including any options the
+evidence gives them.
 
 Return JSON only: {{"claims": [{{"claim": "...", "verdict": "...", "evidence": [1, 2]}}]}}"""
 
@@ -162,7 +170,7 @@ def judged_premises(question: str, raw: List[Dict], evidence: List[str], already
         verdict = item.get("verdict")
         numbers = item.get("evidence") if isinstance(item.get("evidence"), list) else []
         cited = [n for n in numbers if isinstance(n, int) and 1 <= n <= len(evidence)]
-        if not claim or verdict not in VERDICTS or any(_norm(a) and _norm(a) in _norm(claim) for a in already):
+        if not claim or _ASKS.match(claim) or verdict not in VERDICTS or any(_norm(a) and _norm(a) in _norm(claim) for a in already):
             continue
         if verdict in ("contradicted", "qualified") and not cited:
             continue

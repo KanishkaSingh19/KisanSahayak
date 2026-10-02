@@ -176,6 +176,22 @@ def test_verifier_output_is_validated():
     assert judged_premises(question, raw, evidence, already=["government will buy all"]) == []
 
 
+def test_the_farmers_request_is_not_taken_as_a_claim():
+    """Found with real Gemini: "how do I register" was labelled as an unverified claim."""
+    question = "Since PM-KISAN gives ₹12,000 per month to every farmer, how do I register?"
+    raw = [{"claim": "how do I register", "verdict": "not_in_evidence", "evidence": []},
+           {"claim": "कैसे करें", "verdict": "not_in_evidence", "evidence": []}]
+    assert judged_premises(question, raw, ["Some evidence sentence here."], already=[]) == []
+
+
+def test_premise_words_are_not_part_of_a_disease_name():
+    """Found with real Gemini: "Since golden blight is spreading" was read as the disease "since golden blight"."""
+    from app.agent.claims import unknown_disease_names
+
+    assert unknown_disease_names("Since golden blight is spreading in mustard, how do I control it?",
+                                 "White rust. Alternaria blight.") == ["golden blight"]
+
+
 def test_premise_cues_and_facts_in_every_language():
     assert asserts_something(MSP_QUERY) and not asserts_something("Where should I sell my wheat?")
     assert asserts_something("क्योंकि सरकार सारा गेहूं खरीदती है, कहाँ बेचूँ?")
