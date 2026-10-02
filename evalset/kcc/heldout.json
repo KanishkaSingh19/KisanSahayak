@@ -1164,11 +1164,7 @@
    "section": "Bacterial Leaf Blight"
   },
   "intent": "crop_question",
-  "top_sections": [
-   "Cotton - B. Diseases",
-   "Cotton - Desi Cotton - B. Diseases",
-   "Cotton - Desi Cotton - Improved Varieties"
-  ],
+  "top_sections": [],
   "top3": false
  },
  {

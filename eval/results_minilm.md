@@ -12,12 +12,7 @@
 | Banned-pesticide questions warned | **5/5 (100%)** |
 | False banned-pesticide warnings | 0 of 39 questions not about banned pesticides |
 | Follow-up questions kept context | 6/6 (100%) |
-| Response time without LLM (median / p95) | 57 ms / 68 ms |
-| Gemini answers generated (not fallback) | 24/24 (100%) |
-| Gemini answers in the right script | 24/24 (100%) |
-| Gemini answers replaced: a number not in the sources | 1/24 (4%) |
-| Answers shown with only source numbers | 24/24 (100%) |
-| Gemini response time (median) | 2.0 s |
+| Response time without LLM (median / p95) | 61 ms / 76 ms |
 
 ## Retrieval by language
 
@@ -38,7 +33,6 @@
 - Retrieval: "dhan mein sheath blight ki dawai batao" → got *Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy*, expected *Paddy Sheath Blight*
 - Retrieval: "kya endosulfan use kar sakte hain" → got *Bacterial Leaf Blight (BLB / Peela Jhulsa) in Paddy*, expected *Banned and Strictly*
 - Retrieval: "gehun ki bijai kab karein aur beej kitna lage" → got *Karnal Bunt (Tilletia indica) Management in Wheat*, expected *Wheat Sowing*
-- LLM: "sarson mein chepa ka ilaj kya hai": Gemini stated ['40 ml'], not in the sources (checked text shown)
 
 ## Notes
 

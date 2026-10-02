@@ -23,11 +23,11 @@
 | Weather for the right district | 15/15 (100%) |
 | PM-KISAN questions recognised | 15/15 (100%) |
 | Price questions answered with the MSP / mandi price | 4/4 (100%) |
-| Outside our advisories: answered from PAU's Package of Practices, right crop's chapter | **126/140 (90%)** |
-| Outside our advisories: referred to KVK | 8/140 (6%) |
+| Outside our advisories: answered from PAU's Package of Practices, right crop's chapter | **125/140 (89%)** |
+| Outside our advisories: referred to KVK | 9/140 (6%) |
 | Outside our advisories: shown advice on something else | 6/140 (4%) |
 | Answer in the requested language (script) | 200/200 (100%) |
-| Response time median / p95 | 59 ms / 838 ms |
+| Response time median / p95 | 65 ms / 919 ms |
 
 | Language | Answer in the right script |
 |---|---|

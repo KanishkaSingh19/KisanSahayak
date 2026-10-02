@@ -92,6 +92,12 @@ class SchemeGuide:
     def citation(self) -> str:
         return f"{self.data['source']} ({self.data['source_url']}), checked {self.data['last_verified']}"
 
+    def answers(self, query: str) -> bool:
+        """True when the question's own words match a section (not just the default sections), so the
+        official text answers it."""
+        clean = query.lower()
+        return any(_matches(k, clean) for section in self.data["sections"] for k in section["keywords"])
+
     def select_sections(self, query: str) -> List[dict]:
         """Sections whose keywords appear in the question, most matches first; a default set otherwise."""
         clean = query.lower()

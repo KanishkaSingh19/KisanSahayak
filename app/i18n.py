@@ -232,6 +232,47 @@ STRINGS: Dict[str, Dict[str, str]] = {
     },
     # ------------------------------------------------------------------ offline template headings
     "crop_advisory": {"en": "Crop Advisory", "pa": "ਫ਼ਸਲ ਸਲਾਹ", "hinglish": "Fasal Salah", "hi": "फसल परामर्श"},
+    # ------------------------------------------------------------------ claims in the question
+    "claim_corrected": {
+        "en": "**Small correction:** your question says “{claim}”, but the verified source says: {fact}",
+        "pa": "**ਛੋਟੀ ਸੋਧ:** ਤੁਹਾਡੇ ਸਵਾਲ ਵਿੱਚ “{claim}” ਲਿਖਿਆ ਹੈ, ਪਰ ਪ੍ਰਮਾਣਿਤ ਸਰੋਤ ਅਨੁਸਾਰ: {fact}",
+        "hinglish": "**Chhota sudhaar:** aapke sawal mein “{claim}” likha hai, lekin pramanit source ke anusaar: {fact}",
+        "hi": "**छोटा सुधार:** आपके सवाल में “{claim}” लिखा है, लेकिन प्रमाणित स्रोत के अनुसार: {fact}",
+    },
+    "claim_contradicted_live": {
+        "en": "**Small correction:** your question says “{claim}”, but the live data below does not show this.",
+        "pa": "**ਛੋਟੀ ਸੋਧ:** ਤੁਹਾਡੇ ਸਵਾਲ ਵਿੱਚ “{claim}” ਲਿਖਿਆ ਹੈ, ਪਰ ਹੇਠਾਂ ਦਿੱਤਾ ਤਾਜ਼ਾ ਡਾਟਾ ਇਹ ਨਹੀਂ ਦਿਖਾਉਂਦਾ।",
+        "hinglish": "**Chhota sudhaar:** aapke sawal mein “{claim}” likha hai, lekin neeche diya live data yeh nahi dikhata.",
+        "hi": "**छोटा सुधार:** आपके सवाल में “{claim}” लिखा है, लेकिन नीचे दिया गया ताज़ा डेटा यह नहीं दिखाता।",
+    },
+    "claim_unverified": {
+        "en": "**Could not verify:** your question says “{claim}”, but the verified sources I have do not confirm it, so please don't rely on it.",
+        "pa": "**ਪੁਸ਼ਟੀ ਨਹੀਂ ਹੋ ਸਕੀ:** ਤੁਹਾਡੇ ਸਵਾਲ ਵਿੱਚ “{claim}” ਲਿਖਿਆ ਹੈ, ਪਰ ਮੇਰੇ ਪ੍ਰਮਾਣਿਤ ਸਰੋਤ ਇਸ ਦੀ ਪੁਸ਼ਟੀ ਨਹੀਂ ਕਰਦੇ, ਇਸ ਲਈ ਇਸ 'ਤੇ ਭਰੋਸਾ ਨਾ ਕਰੋ।",
+        "hinglish": "**Pushti nahi ho saki:** aapke sawal mein “{claim}” likha hai, lekin mere pramanit source iski pushti nahi karte, isliye is par bharosa na karein.",
+        "hi": "**पुष्टि नहीं हो सकी:** आपके सवाल में “{claim}” लिखा है, लेकिन मेरे प्रमाणित स्रोत इसकी पुष्टि नहीं करते, इसलिए इस पर भरोसा न करें।",
+    },
+    "claim_unknown_problem": {
+        "en": "I could not find “{name}” in the verified advisories, so I won't suggest a treatment or dose for it. Please describe the symptoms, send a photo, or contact your nearest KVK or the Kisan Call Centre free on 1800-180-1551.",
+        "pa": "ਮੈਨੂੰ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹਾਂ ਵਿੱਚ “{name}” ਨਹੀਂ ਮਿਲਿਆ, ਇਸ ਲਈ ਮੈਂ ਇਸ ਦਾ ਇਲਾਜ ਜਾਂ ਦਵਾਈ ਦੀ ਮਾਤਰਾ ਨਹੀਂ ਦੱਸਾਂਗਾ। ਕਿਰਪਾ ਕਰਕੇ ਲੱਛਣ ਦੱਸੋ, ਫ਼ੋਟੋ ਭੇਜੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ KVK ਜਾਂ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ (ਮੁਫ਼ਤ 1800-180-1551) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
+        "hinglish": "Mujhe pramanit salah mein “{name}” nahi mila, isliye main iska ilaj ya dawai ki matra nahi bataunga. Kripya lakshan batayein, photo bhejein, ya apne nazdeeki KVK ya Kisan Call Centre (muft 1800-180-1551) se sampark karein.",
+        "hi": "मुझे प्रमाणित सलाह में “{name}” नहीं मिला, इसलिए मैं इसका इलाज या दवा की मात्रा नहीं बताऊँगा। कृपया लक्षण बताएँ, फ़ोटो भेजें, या अपने नज़दीकी KVK या किसान कॉल सेंटर (मुफ़्त 1800-180-1551) से संपर्क करें।",
+    },
+    "claim_unknown_product": {
+        "en": "**Note:** “{name}” is not among the products in the verified advice for this problem, so no dose is given for it. The verified recommendation is below.",
+        "pa": "**ਨੋਟ:** “{name}” ਇਸ ਸਮੱਸਿਆ ਲਈ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਦੀਆਂ ਦਵਾਈਆਂ ਵਿੱਚ ਨਹੀਂ ਹੈ, ਇਸ ਲਈ ਇਸ ਦੀ ਮਾਤਰਾ ਨਹੀਂ ਦਿੱਤੀ ਗਈ। ਪ੍ਰਮਾਣਿਤ ਸਿਫ਼ਾਰਸ਼ ਹੇਠਾਂ ਹੈ।",
+        "hinglish": "**Note:** “{name}” is samasya ke liye pramanit salah ki dawaiyon mein nahi hai, isliye iski matra nahi di gayi. Pramanit sifarish neeche hai.",
+        "hi": "**नोट:** “{name}” इस समस्या के लिए प्रमाणित सलाह की दवाओं में नहीं है, इसलिए इसकी मात्रा नहीं दी गई। प्रमाणित सिफ़ारिश नीचे है।",
+    },
+    # ------------------------------------------------------------------ answer statuses (shown as chips)
+    "evidence_verified": {"en": "Verified from source", "pa": "ਸਰੋਤ ਤੋਂ ਪ੍ਰਮਾਣਿਤ", "hinglish": "Source se pramanit", "hi": "स्रोत से प्रमाणित"},
+    "evidence_partially_verified": {"en": "Partially verified", "pa": "ਅੰਸ਼ਕ ਤੌਰ 'ਤੇ ਪ੍ਰਮਾਣਿਤ", "hinglish": "Aanshik pramanit", "hi": "आंशिक रूप से प्रमाणित"},
+    "evidence_not_verified": {"en": "Not verified", "pa": "ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ", "hinglish": "Pramanit nahi", "hi": "प्रमाणित नहीं"},
+    "review_recommended": {"en": "Expert review recommended", "pa": "ਮਾਹਿਰ ਦੀ ਜਾਂਚ ਦੀ ਸਲਾਹ", "hinglish": "Expert jaanch ki salah", "hi": "विशेषज्ञ जाँच की सलाह"},
+    "source_advisory": {"en": "PAU-checked advisory", "pa": "PAU ਨਾਲ ਜਾਂਚੀ ਸਲਾਹ", "hinglish": "PAU se jaanchi salah", "hi": "PAU से जाँची सलाह"},
+    "source_pau": {"en": "PAU Package of Practices", "pa": "PAU ਪੈਕੇਜ ਆਫ਼ ਪ੍ਰੈਕਟਿਸਿਜ਼", "hinglish": "PAU Package of Practices", "hi": "PAU पैकेज ऑफ़ प्रैक्टिसेज़"},
+    "source_scheme": {"en": "Official scheme text", "pa": "ਯੋਜਨਾ ਦਾ ਸਰਕਾਰੀ ਪਾਠ", "hinglish": "Yojana ka sarkari text", "hi": "योजना का सरकारी पाठ"},
+    "source_live_weather": {"en": "Live weather data", "pa": "ਤਾਜ਼ਾ ਮੌਸਮ ਡਾਟਾ", "hinglish": "Live mausam data", "hi": "ताज़ा मौसम डेटा"},
+    "source_market_data": {"en": "MSP / mandi data", "pa": "MSP / ਮੰਡੀ ਡਾਟਾ", "hinglish": "MSP / mandi data", "hi": "MSP / मंडी डेटा"},
     "dose_total": {
         "en": "{total} for your {acres} acres",
         "pa": "ਤੁਹਾਡੇ {acres} ਏਕੜ ਲਈ {total}",
@@ -515,12 +556,10 @@ STRINGS: Dict[str, Dict[str, str]] = {
     "metric_crop": {"en": "Crop / Region", "pa": "ਫ਼ਸਲ / ਖੇਤਰ", "hinglish": "Fasal / Kshetra", "hi": "फसल / क्षेत्र"},
     "general": {"en": "General", "pa": "ਆਮ", "hinglish": "Samanya", "hi": "सामान्य"},
     "metric_grounding": {"en": "Grounding", "pa": "ਪ੍ਰਮਾਣਿਕਤਾ", "hinglish": "Pramanikta", "hi": "प्रमाणीकरण"},
-    "grounded_yes": {"en": "Fully verified", "pa": "ਪੂਰੀ ਤਰ੍ਹਾਂ ਪ੍ਰਮਾਣਿਤ", "hinglish": "Poori tarah pramanit", "hi": "पूर्णतः प्रमाणित"},
     "kvk_review_chip": {
         "en": "Sent for KVK expert review", "pa": "ਕੇਵੀਕੇ ਮਾਹਿਰ ਦੀ ਜਾਂਚ ਲਈ ਭੇਜਿਆ",
         "hinglish": "KVK visheshagya ki jaanch ke liye bheja", "hi": "केवीके विशेषज्ञ जाँच के लिए भेजा गया",
     },
-    "grounded_partial": {"en": "Partially sourced", "pa": "ਅੰਸ਼ਕ ਹਵਾਲਾ", "hinglish": "Aanshik sandarbh", "hi": "आंशिक संदर्भ"},
     "weather_metrics_header": {
         "en": "Weather & Spray Conditions",
         "pa": "ਮੌਸਮ ਅਤੇ ਛਿੜਕਾਅ ਹਾਲਾਤ",

@@ -7,7 +7,7 @@
       {
         "query": "My wheat leaves have yellow powdery stripes, and the powder sticks to my hands. What is it?",
         "intent": "general_agriculture",
-        "ms": 245,
+        "ms": 506,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -18,7 +18,7 @@
       {
         "query": "What should I spray?",
         "intent": "general_agriculture",
-        "ms": 103,
+        "ms": 109,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -29,7 +29,7 @@
       {
         "query": "How many times?",
         "intent": "general_agriculture",
-        "ms": 85,
+        "ms": 87,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -40,29 +40,29 @@
       {
         "query": "Can I spray today in Ludhiana?",
         "intent": "weather",
-        "ms": 857,
+        "ms": 981,
         "passed": true,
         "problems": [],
         "top_section": null,
         "district": "Ludhiana",
         "answer_source": null,
-        "answer": "### Farm Weather Advisory: Ludhiana\n\nLudhiana: 24.4°C, humidity 78.0%, wind 3.9 km/h, and a 2.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
+        "answer": "### Farm Weather Advisory: Ludhiana\n\nLudhiana: 29.8°C, humidity 59.0%, wind 3.2 km/h, and a 0.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
       },
       {
         "query": "And in Sangrur?",
         "intent": "weather",
-        "ms": 1170,
+        "ms": 1178,
         "passed": true,
         "problems": [],
         "top_section": null,
         "district": "Sangrur",
         "answer_source": null,
-        "answer": "### Farm Weather Advisory: Sangrur\n\nSangrur: 22.2°C, humidity 88.0%, wind 4.5 km/h, and a 0.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
+        "answer": "### Farm Weather Advisory: Sangrur\n\nSangrur: 29.2°C, humidity 65.0%, wind 4.3 km/h, and a 0.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
       },
       {
         "query": "Which varieties resist this disease?",
         "intent": "general_agriculture",
-        "ms": 69,
+        "ms": 76,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -73,7 +73,7 @@
       {
         "query": "Can I use Monocrotophos instead?",
         "intent": "safety_query",
-        "ms": 74,
+        "ms": 75,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -84,7 +84,7 @@
       {
         "query": "छिड़काव करते समय क्या सावधानी रखें?",
         "intent": "safety_query",
-        "ms": 85,
+        "ms": 116,
         "passed": true,
         "problems": [],
         "top_section": "Yellow Rust (Pila Rataua / Peeli Kungi) Identification and Management",
@@ -102,7 +102,7 @@
       {
         "query": "ਸਰ੍ਹੋਂ ਵਿੱਚ ਚੇਪੇ ਦੀ ਰੋਕਥਾਮ ਕਿਵੇਂ ਕਰੀਏ?",
         "intent": "crop_question",
-        "ms": 64,
+        "ms": 68,
         "passed": true,
         "problems": [],
         "top_section": "Mustard Aphid (Chetpa/Mahu) Management",
@@ -120,7 +120,7 @@
       {
         "query": "Dhaan mein bhoora tela lag gaya hai, kya karein?",
         "intent": "crop_question",
-        "ms": 62,
+        "ms": 59,
         "passed": true,
         "problems": [],
         "top_section": "Brown Planthopper (BPH / Bhoora Tilla) Management",
@@ -138,7 +138,7 @@
       {
         "query": "धान की पत्तियाँ किनारों से पीली होकर सूख रही हैं, क्या करूँ?",
         "intent": "general_agriculture",
-        "ms": 67,
+        "ms": 75,
         "passed": false,
         "problems": [
           "top advisory 'Brown Planthopper (BPH / Bhoora Tilla) Management', expected 'Bacterial Leaf Blight'"
@@ -158,7 +158,7 @@
       {
         "query": "How do I control pink bollworm in cotton?",
         "intent": "crop_question",
-        "ms": 53,
+        "ms": 56,
         "passed": true,
         "problems": [],
         "top_section": "Pink Bollworm (Gulabi Sundhi) Integrated Management",
@@ -176,7 +176,7 @@
       {
         "query": "कपास के पत्ते नीचे की ओर मुड़ रहे हैं और सफेद मक्खी दिख रही है, क्या करें?",
         "intent": "crop_question",
-        "ms": 74,
+        "ms": 76,
         "passed": true,
         "problems": [],
         "top_section": "Cotton Whitefly and Leaf Curl Virus (CLCuD) Control",
@@ -194,7 +194,7 @@
       {
         "query": "When should I sow wheat and how much seed per acre?",
         "intent": "general_agriculture",
-        "ms": 57,
+        "ms": 61,
         "passed": true,
         "problems": [],
         "top_section": "Wheat Sowing Time, Seed Rate, and Critical Irrigation Stages",
@@ -212,7 +212,7 @@
       {
         "query": "How much fertilizer does mustard need?",
         "intent": "general_agriculture",
-        "ms": 55,
+        "ms": 61,
         "passed": true,
         "problems": [],
         "top_section": "Mustard Fertilizer and Irrigation Management",
@@ -248,7 +248,7 @@
       {
         "query": "Some of my wheat grains have turned into black powder and smell like rotten fish. What is this?",
         "intent": "general_agriculture",
-        "ms": 65,
+        "ms": 69,
         "passed": true,
         "problems": [],
         "top_section": "Karnal Bunt (Tilletia indica) Management in Wheat",
@@ -266,7 +266,7 @@
       {
         "query": "Dhaan ke tane par paani ke paas saanp ki khaal jaise dhabbe hain",
         "intent": "crop_question",
-        "ms": 111,
+        "ms": 67,
         "passed": true,
         "problems": [],
         "top_section": "Paddy Sheath Blight Management",
@@ -295,7 +295,7 @@
       {
         "query": "Who won the IPL this year?",
         "intent": "out_of_scope",
-        "ms": 1,
+        "ms": 2,
         "passed": true,
         "problems": [],
         "top_section": null,
@@ -313,7 +313,7 @@
       {
         "query": "क्या मैं बैंगन पर मोनोक्रोटोफॉस छिड़क सकता हूँ?",
         "intent": "safety_query",
-        "ms": 81,
+        "ms": 77,
         "passed": true,
         "problems": [],
         "top_section": "Pink Bollworm (Gulabi Sundhi) Integrated Management",
@@ -331,7 +331,7 @@
       {
         "query": "Pesticide fell on my skin while spraying. What should I do?",
         "intent": "general_agriculture",
-        "ms": 59,
+        "ms": 67,
         "passed": true,
         "problems": [],
         "top_section": "Personal Protective Equipment (PPE) and Spraying Precautions",
@@ -367,13 +367,13 @@
       {
         "query": "Will it rain in Patiala today? Can I spray pesticide?",
         "intent": "weather",
-        "ms": 1396,
+        "ms": 996,
         "passed": true,
         "problems": [],
         "top_section": null,
         "district": "Patiala",
         "answer_source": null,
-        "answer": "### Farm Weather Advisory: Patiala\n\nPatiala: 23.4°C, humidity 84.0%, wind 7.7 km/h, and a 0.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
+        "answer": "### Farm Weather Advisory: Patiala\n\nPatiala: 28.9°C, humidity 68.0%, wind 7.3 km/h, and a 0.0% chance of rain in the next 12 hours.\n\n**Spray Advisory:**\nGood time to spray: wind speed is normal. Spray between 8-11 AM or after 3:30 PM."
       }
     ]
   },
@@ -385,7 +385,7 @@
       {
         "query": "What's the weather in Atlantis?",
         "intent": "weather",
-        "ms": 1383,
+        "ms": 1479,
         "passed": true,
         "problems": [],
         "top_section": null,
@@ -403,24 +403,24 @@
       {
         "query": "Will it rain today?",
         "intent": "weather",
-        "ms": 933,
+        "ms": 1131,
         "passed": true,
         "problems": [],
         "top_section": null,
         "district": "Sangrur",
         "answer_source": null,
-        "answer": "### Farm Weather Advisory: Sangrur\n\nSangrur: 22.2°C, humidity 88.0%, wind 4.5 km/h, and a 0.0% chance of rain in the next 12 hours."
+        "answer": "### Farm Weather Advisory: Sangrur\n\nSangrur: 29.2°C, humidity 65.0%, wind 4.3 km/h, and a 0.0% chance of rain in the next 12 hours."
       },
       {
         "query": "Will it rain today?",
         "intent": "weather",
-        "ms": 931,
+        "ms": 1134,
         "passed": true,
         "problems": [],
         "top_section": null,
         "district": "Noida",
         "answer_source": null,
-        "answer": "### Farm Weather Advisory: Noida\n\nNoida: 23.2°C, humidity 80.0%, wind 4.9 km/h, and a 2.0% chance of rain in the next 12 hours."
+        "answer": "### Farm Weather Advisory: Noida\n\nNoida: 30.1°C, humidity 61.0%, wind 7.3 km/h, and a 0.0% chance of rain in the next 12 hours."
       }
     ]
   },
@@ -432,7 +432,7 @@
       {
         "query": "How do I control aphids?",
         "intent": "crop_question",
-        "ms": 55,
+        "ms": 65,
         "passed": true,
         "problems": [],
         "top_section": "Mustard Aphid (Chetpa/Mahu) Management",
@@ -468,7 +468,7 @@
       {
         "query": "Am I eligible for PM-KISAN?",
         "intent": "scheme_query",
-        "ms": 2,
+        "ms": 3,
         "passed": true,
         "problems": [],
         "top_section": "Who is eligible",
@@ -479,7 +479,7 @@
       {
         "query": "How do I apply?",
         "intent": "scheme_query",
-        "ms": 12,
+        "ms": 15,
         "passed": true,
         "problems": [],
         "top_section": "Who is eligible",
@@ -490,7 +490,7 @@
       {
         "query": "Am I eligible for PM-KISAN?",
         "intent": "scheme_query",
-        "ms": 6,
+        "ms": 9,
         "passed": true,
         "problems": [],
         "top_section": "Who is eligible",
@@ -508,7 +508,7 @@
       {
         "query": "My PM-KISAN instalment has stopped coming. Why?",
         "intent": "scheme_query",
-        "ms": 2,
+        "ms": 3,
         "passed": true,
         "problems": [],
         "top_section": "What PM-KISAN gives",
@@ -519,7 +519,7 @@
       {
         "query": "Is eKYC compulsory for PM-KISAN?",
         "intent": "scheme_query",
-        "ms": 2,
+        "ms": 3,
         "passed": true,
         "problems": [],
         "top_section": "eKYC",
@@ -537,7 +537,7 @@
       {
         "query": "ਕੀ ਪੰਜਾਬ ਵਿੱਚ ਫ਼ਸਲ ਬੀਮਾ ਮਿਲਦਾ ਹੈ?",
         "intent": "scheme_query",
-        "ms": 4,
+        "ms": 5,
         "passed": true,
         "problems": [],
         "top_section": "Is PMFBY available in my state?",
@@ -548,7 +548,7 @@
       {
         "query": "How do I claim if hail damages my wheat?",
         "intent": "scheme_query",
-        "ms": 15,
+        "ms": 17,
         "passed": true,
         "problems": [],
         "top_section": "Is PMFBY available in my state?",
@@ -566,7 +566,7 @@
       {
         "query": "किसान क्रेडिट कार्ड पर ब्याज कितना है?",
         "intent": "scheme_query",
-        "ms": 3,
+        "ms": 13,
         "passed": true,
         "problems": [],
         "top_section": "Interest rate and loan limit",

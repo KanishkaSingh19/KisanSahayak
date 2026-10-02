@@ -103,6 +103,11 @@ class AskResponse(BaseModel):
     sent_for_review: Optional[str] = Field(
         None, description="Review-queue id when the answer was sent for KVK expert review (pesticide, uncertain, not covered)"
     )
+    evidence_status: str = Field(
+        "not_applicable", description="verified, partially_verified, not_verified or not_applicable (nothing to verify)"
+    )
+    source_type: Optional[str] = Field(None, description="advisory, pau, scheme, live_weather or market_data")
+    review_status: str = Field("not_required", description="not_required, recommended or sent (KVK expert review)")
     turn: ConversationTurn = Field(..., description="Append this to `history` for the next question")
 
 
@@ -153,6 +158,9 @@ def to_response(result: GroundedAnswer, review_queue: Optional[ReviewQueue] = No
         photo_diagnosis=meta.get("vision"),
         latency_ms=meta.get("latency_ms"),
         sent_for_review=meta.get("kvk_review"),
+        evidence_status=result.evidence_status,
+        source_type=result.source_type,
+        review_status=result.review_status,
         turn=ConversationTurn.from_answer(result),
     )
 

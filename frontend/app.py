@@ -106,6 +106,7 @@ st.markdown(
     .ks-chip { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; margin: 0 6px 6px 0; }
     .ks-chip-crop { background: #EAF3E3; color: #1F4D2B; }
     .ks-chip-ok { background: #E1F3E6; color: #1B6B35; }
+    .ks-chip-source { background: #EEF0F4; color: #3B4252; }
     .ks-chip-warn { background: #FFF1D0; color: #8A5A00; }
     .disclaimer-card {
         background: #FFF6E0; border-left: 4px solid var(--ks-gold); color: #4A3A10;
@@ -266,15 +267,22 @@ def render_answer(result, pipeline, lang: str, msg_id: int, speak_now: bool = Fa
     topic = meta.get("detected_topic")
     if topic and topic not in ("Agronomy/General", "Ag-Weather & Spray Window Advisory"):
         crop_label = f"{crop_label} · {topic}"
-    if result.is_grounded:
-        grounded_chip = f'<span class="ks-chip ks-chip-ok">{t("grounded_yes", lang)}</span>'
-    else:
-        grounded_chip = f'<span class="ks-chip ks-chip-warn">{t("grounded_partial", lang)}</span>'
-    review_chip = (
-        f'<span class="ks-chip ks-chip-warn">{t("kvk_review_chip", lang)}</span>' if meta.get("kvk_review") else ""
-    )
+    # Three separate statuses, so they never contradict each other: is the answer backed by a source,
+    # which kind of source, and has it gone (or should it go) to a KVK expert
+    evidence = {
+        "verified": ("ks-chip-ok", "evidence_verified"),
+        "partially_verified": ("ks-chip-warn", "evidence_partially_verified"),
+        "not_verified": ("ks-chip-warn", "evidence_not_verified"),
+    }.get(result.evidence_status)
+    evidence_chip = f'<span class="ks-chip {evidence[0]}">{t(evidence[1], lang)}</span>' if evidence else ""
+    source_key = {"advisory": "source_advisory", "pau": "source_pau", "scheme": "source_scheme",
+                  "live_weather": "source_live_weather", "market_data": "source_market_data"}.get(result.source_type)
+    source_chip = (f'<span class="ks-chip ks-chip-source">{t(source_key, lang)}</span>'
+                   if source_key and result.evidence_status != "not_verified" else "")
+    review_key = {"sent": "kvk_review_chip", "recommended": "review_recommended"}.get(result.review_status)
+    review_chip = f'<span class="ks-chip ks-chip-warn">{t(review_key, lang)}</span>' if review_key else ""
     st.markdown(
-        f'<span class="ks-chip ks-chip-crop">{html.escape(crop_label)}</span>{grounded_chip}{review_chip}',
+        f'<span class="ks-chip ks-chip-crop">{html.escape(crop_label)}</span>{evidence_chip}{source_chip}{review_chip}',
         unsafe_allow_html=True,
     )
 

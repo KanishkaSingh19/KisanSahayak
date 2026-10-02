@@ -10,8 +10,9 @@ SYSTEM_PROMPT = """You are KisanSahayak, an expert agricultural AI assistant gro
 
 STRICT GROUNDING RULES:
 1. Answer the farmer's question ONLY using the factual context provided below.
-2. If the context does not contain the answer, clearly say that verified ICAR/PAU information on this topic was not found,
-   and advise the farmer to contact their nearest Krishi Vigyan Kendra (KVK).
+2. If the context does not contain the answer, start your reply with the exact marker [NOT_FOUND], then clearly say that
+   verified ICAR/PAU information on this topic was not found, and advise the farmer to contact their nearest Krishi
+   Vigyan Kendra (KVK). Never use the marker when the context does answer the question.
 3. Do not invent any pesticide dosage, chemical name, or agricultural advice.
 4. Clearly state chemical dosages and precautions if mentioned in the context.
 5. End your response by listing the official sources used.
@@ -58,6 +59,8 @@ SOURCE_TEMPLATE_LLM_FAILED = "template_llm_failed"  # LLM call failed (busy, net
 SOURCE_NO_RESULTS = "no_results"            # nothing relevant retrieved
 # The LLM answer stated a number the sources do not, so the checked text was shown instead
 SOURCE_NUMBERS_REPLACED = "template_numbers_replaced"
+# The LLM said the sources do not answer the question, but the official text matched it: that text is shown
+SOURCE_LLM_DECLINED = "template_llm_declined"
 
 
 TRANSLATIONS_PATH = settings.DATA_DIR / "translations.json"

@@ -7,8 +7,11 @@ from app.i18n import normalize_language, t
 from app.agent.state import ConversationTurn, FarmerProfile, GroundedAnswer, IntentResult
 from app.tools.schemes import OTHER_SCHEME_PREFIX, OTHER_SCHEMES, PM_KISAN, SchemeGuide, check_eligibility, load_schemes
 from app.agent.router import IntentRouter, asks_repeat_spray, topic_search_terms, weather_topics
-from app.agent.synthesizer import SOURCE_NUMBERS_REPLACED, DeterministicGroundedSynthesizer, get_synthesizer
+from app.agent.synthesizer import (SOURCE_LLM_DECLINED, SOURCE_NUMBERS_REPLACED, DeterministicGroundedSynthesizer,
+                                   get_synthesizer)
 from app.agent.guardrails import AgriculturalGuardrails, unbacked_numbers
+from app.agent.claims import (CONTRADICTED, UNKNOWN_PRODUCT, UNKNOWN_PROBLEM, UNVERIFIED, check_claims,
+                              localize_fact, unknown_disease_names, without_claims)
 from app.rag.hybrid_retriever import HybridRetriever
 from app.rag.ingest import load_knowledge_chunks
 from app.speech.stt import WhisperSTTAdapter
@@ -18,6 +21,21 @@ from app.tools.location import STATES, state_named
 from app.tools.market import MarketPriceService, detect_commodity, load_msp, state_for
 from app.tools.vision import CropVision
 from app.tools.weather_tool import AgWeatherTool
+
+# The LLM starts its reply with this when the sources it was given do not answer the question (see the
+# system prompt); the pipeline removes it and reports the answer as not verified
+NOT_FOUND_MARKER = "[NOT_FOUND]"
+# Answers that state no facts, so there is nothing to verify
+NO_EVIDENCE_INTENTS = ("greeting", "out_of_scope", "empty", "error", "voice_stt_unavailable", "image_unavailable")
+
+
+def strip_not_found(draft: str):
+    """(the reply without the marker, whether the LLM said the sources do not answer the question)."""
+    text = draft.lstrip()
+    if text.startswith(NOT_FOUND_MARKER):
+        return text[len(NOT_FOUND_MARKER):].lstrip(" :\n"), True
+    return draft, False
+
 
 def is_confident(results, keyword_only: bool = False) -> bool:
     """The meaning-based (dense) and keyword (BM25) searches both rank the top result first (or just
@@ -185,6 +203,17 @@ class KisanPipeline:
         history: Optional[List[ConversationTurn]] = None,
         profile: Optional[FarmerProfile] = None,
     ) -> GroundedAnswer:
+        """Diagnose a crop photo (see `_photo_answer`), with the answer's evidence and review status."""
+        return self._with_status(self._photo_answer(image_bytes, question, language, history, profile))
+
+    def _photo_answer(
+        self,
+        image_bytes: bytes,
+        question: str = "",
+        language: Optional[str] = None,
+        history: Optional[List[ConversationTurn]] = None,
+        profile: Optional[FarmerProfile] = None,
+    ) -> GroundedAnswer:
         """Diagnose a crop photo with Gemini Vision, then answer from the verified advisories.
 
         The vision model only names the likely problem; treatment and doses come from retrieval +
@@ -239,6 +268,8 @@ class KisanPipeline:
             llm_query, retrieved, language=lang if language else None, history=history or [],
             context_note=profile.summary() if profile else "",
         )
+        draft, not_found = strip_not_found(draft)
+        meta["llm_not_found"] = not_found
         # Every number must come from the advisories (or what the photo model and farmer said)
         unbacked = self._unbacked(draft, source, [f"{c.text} {c.citation}" for c in retrieved] + [llm_query, summary],
                                   history, profile)
@@ -289,7 +320,7 @@ class KisanPipeline:
         try:
             intent = self.router.classify_with_context(clean_query, history or [])
             req = Request(clean_query, detected_lang, language, history or [], profile, intent, start_time, generate_audio)
-            return self._handler(intent.intent)(req)
+            return self._with_status(self._handler(intent.intent)(req))
         except Exception as e:
             return GroundedAnswer(
                 query=clean_query,
@@ -374,12 +405,15 @@ class KisanPipeline:
         if "irrigation" in topics:
             parts.append(f"**{t('irrigation_advice', lang)}:**\n{report.irrigation_advisory}")
         answer = "\n\n".join(parts)
+        # A stated temperature or "it will rain" is checked against the live report
+        checks = check_claims(req.query, [answer], [answer], weather=report.model_dump())
+        answer = self._with_premise_notes(answer, checks, lang)
         citations = [report.source_notice] + (["ICAR Agromet Advisory Guidelines"] if topics else [])
         return self._reply(
             req, answer, citations=citations, audio_output_path=self._speak(req, answer),
             weather_report=report.model_dump(),
             meta={"district": report.district, "district_from_profile": from_profile, "location_found": True,
-                  "is_live_weather": report.is_live},
+                  "is_live_weather": report.is_live, "claim_checks": self._claims_meta(checks)},
         )
 
     def _answer_market(self, req: "Request") -> GroundedAnswer:
@@ -404,7 +438,7 @@ class KisanPipeline:
 
         if not commodity:
             crops = ", ".join(crop_name(k) for k in msp_data["crops"])
-            return self._reply(req, t("market_which_crop", lang, crops=crops), meta=meta)
+            return self._reply(req, t("market_which_crop", lang, crops=crops), meta={**meta, "asks_back": True})
 
         meta["detected_crop"] = commodity.title()
         parts, citations = [], []
@@ -455,8 +489,12 @@ class KisanPipeline:
                 parts.append("\n" + t("market_mandi_unavailable", lang))
                 meta["mandi_error"] = lookup.error
 
+        answer = "\n".join(parts)
+        # A stated price or MSP is checked against the MSP table and the mandi prices just fetched
+        checks = check_claims(req.query, [answer], [answer])
+        meta.update({"claim_checks": self._claims_meta(checks), "market_data": "Rs " in answer})
         return self._reply(
-            req, "\n".join(parts), meta=meta, citations=citations,
+            req, self._with_premise_notes(answer, checks, lang), meta=meta, citations=citations,
             safety_disclaimers=[t("market_disclaimer", lang, date=msp_data["last_verified"])],
         )
 
@@ -473,11 +511,15 @@ class KisanPipeline:
         guide = self.schemes.get(topic)
         if guide is None:
             return self._reply(req, t("scheme_which", lang, covered=", ".join(self.schemes)),
-                               meta={"detected_topic": None})
+                               meta={"detected_topic": None, "asks_back": True})
         sections = guide.select_sections(" ".join(filter(None, [req.intent.follow_up_of, req.query])))
         context = guide.as_context(sections)
+        # Claims in the question are checked against the whole official text of the scheme, not only the
+        # sections chosen for the answer ("₹12,000 per month ... how do I register?")
+        checks = check_claims(req.query, [s["text"]["en"] for s in guide.data["sections"]],
+                              [s["text"].get(lang, s["text"]["en"]) for s in guide.data["sections"]])
         if guide.name != PM_KISAN:
-            return self._answer_other_scheme(req, guide, sections, context)
+            return self._answer_other_scheme(req, guide, sections, context, checks)
 
         # Eligibility is decided by fixed rules, never by the LLM
         status, reasons, may_be_withheld = check_eligibility(req.profile)
@@ -497,38 +539,49 @@ class KisanPipeline:
             notes.append(f"Rule-based PM-KISAN eligibility check from the profile: {status.replace('_', ' ')} "
                          "(already shown to the farmer; do not contradict it).")
         draft, source = self.synthesizer.generate(
-            req.query, context, language=req.llm_language, history=req.history, context_note=" ".join(notes),
+            req.query, context, language=req.llm_language, history=req.history,
+            context_note=" ".join(notes + [self._premise_note_for_llm(checks)]),
         )
-        unbacked = self._unbacked(draft, source, [f"{c.text} {c.citation}" for c in context] + notes + [req.query],
-                                  req.history, req.profile)
-        if source != "llm" or unbacked:
+        draft, not_found = strip_not_found(draft)
+        unbacked = self._unbacked(draft, source, [f"{c.text} {c.citation}" for c in context] + notes
+                                  + [without_claims(req.query)] + self._evidence_of(checks), req.history, req.profile)
+        # The LLM declined although the question's own words matched official sections: show that text
+        declined = not_found and guide.answers(" ".join(filter(None, [req.intent.follow_up_of, req.query])))
+        if source != "llm" or unbacked or declined:
             draft = guide.offline_answer(sections, lang)  # stored official text in the farmer's language
-            source = SOURCE_NUMBERS_REPLACED if unbacked else source
+            source = SOURCE_NUMBERS_REPLACED if unbacked else SOURCE_LLM_DECLINED if declined else source
+            not_found = False
 
         is_grounded, score = self.guardrails.validate_grounding(draft, [c.text for c in context])
+        answer = f"{eligibility_text}\n\n{draft}" if eligibility_text else draft
         return self._reply(
-            req, f"{eligibility_text}\n\n{draft}" if eligibility_text else draft,
+            req, self._with_premise_notes(answer, checks, lang),
             citations=[guide.citation],
             retrieved_chunks=context,
             is_grounded=is_grounded or source != "llm",
             safety_disclaimers=[t("scheme_disclaimer", lang, date=guide.data["last_verified"])],
             meta={"answer_source": source, "unbacked_numbers": unbacked, "detected_topic": PM_KISAN,
-                  "pmk_eligibility": status,
+                  "pmk_eligibility": status, "claim_checks": self._claims_meta(checks), "llm_not_found": not_found,
                   "grounding_score": score, "top_section": sections[0]["title"]},
         )
 
-    def _answer_other_scheme(self, req: "Request", guide: SchemeGuide, sections, context) -> GroundedAnswer:
+    def _answer_other_scheme(self, req: "Request", guide: SchemeGuide, sections, context, checks) -> GroundedAnswer:
         """PMFBY or Kisan Credit Card: the checked official text (no eligibility rules: the bank or the
         insurance company decides)."""
         notes = [req.profile.summary()] if req.profile and not req.profile.is_empty() else []
         draft, source = self.synthesizer.generate(
-            req.query, context, language=req.llm_language, history=req.history, context_note=" ".join(notes),
+            req.query, context, language=req.llm_language, history=req.history,
+            context_note=" ".join(notes + [self._premise_note_for_llm(checks)]),
         )
-        unbacked = self._unbacked(draft, source, [f"{c.text} {c.citation}" for c in context] + [req.query],
-                                  req.history, req.profile)
-        if source != "llm" or unbacked:
+        draft, not_found = strip_not_found(draft)
+        unbacked = self._unbacked(draft, source, [f"{c.text} {c.citation}" for c in context]
+                                  + [without_claims(req.query)] + self._evidence_of(checks), req.history, req.profile)
+        declined = not_found and guide.answers(" ".join(filter(None, [req.intent.follow_up_of, req.query])))
+        if source != "llm" or unbacked or declined:
             draft = guide.offline_answer(sections, req.lang)  # stored official text in the farmer's language
-            source = SOURCE_NUMBERS_REPLACED if unbacked else source
+            source = SOURCE_NUMBERS_REPLACED if unbacked else SOURCE_LLM_DECLINED if declined else source
+            not_found = False
+        draft = self._with_premise_notes(draft, checks, req.lang)
         is_grounded, score = self.guardrails.validate_grounding(draft, [c.text for c in context])
         site = guide.data.get("official_site")
         disclaimer = (t("scheme_disclaimer_general", req.lang, site=site, date=guide.data["last_verified"]) if site
@@ -540,7 +593,7 @@ class KisanPipeline:
             is_grounded=is_grounded or source != "llm",
             safety_disclaimers=[disclaimer],
             meta={"answer_source": source, "unbacked_numbers": unbacked, "detected_topic": guide.name,
-                  "grounding_score": score,
+                  "grounding_score": score, "claim_checks": self._claims_meta(checks), "llm_not_found": not_found,
                   "top_section": sections[0]["title"]},
         )
 
@@ -560,6 +613,80 @@ class KisanPipeline:
         """The template that writes answers from the checked text alone (no LLM)."""
         return getattr(self.synthesizer, "fallback", None) or DeterministicGroundedSynthesizer()
 
+    # ------------------------------------------------------------------ claims in the question
+    @staticmethod
+    def _premise_note_for_llm(checks) -> str:
+        """Tells the LLM which assumptions in the question the sources contradict, so it does not repeat
+        them (the correction itself is added by the pipeline, from the source text)."""
+        return " ".join(
+            f'The farmer\'s question assumes "{c.claim}", but the sources say: "{c.evidence[0]}". '
+            "A correction with the right figure is shown above your answer, so do not mention the farmer's "
+            "figure, and do not accept it; just answer the rest of the question."
+            for c in checks if c.status == CONTRADICTED and c.evidence
+        )
+
+    @staticmethod
+    def _evidence_of(checks) -> List[str]:
+        """The source sentences the checks quote: the LLM saw them, so their numbers are backed."""
+        return [e for c in checks for e in c.evidence]
+
+    @staticmethod
+    def _with_premise_notes(answer: str, checks, lang: str) -> str:
+        """`answer` with a note before it for every claim in the question that the evidence contradicts,
+        could not confirm, or names a product the evidence does not recommend."""
+        notes = []
+        for c in checks:
+            if c.status == CONTRADICTED:
+                fact = localize_fact(c.evidence[0], [answer]) if c.evidence and c.fact == c.evidence[0] else c.fact
+                notes.append(t("claim_corrected", lang, claim=c.claim, fact=fact.strip("* ")) if fact
+                             else t("claim_contradicted_live", lang, claim=c.claim))
+            elif c.status == UNVERIFIED:
+                notes.append(t("claim_unverified", lang, claim=c.claim))
+            elif c.status == UNKNOWN_PRODUCT:
+                notes.append(t("claim_unknown_product", lang, name=c.claim))
+        return "\n\n".join(notes + [answer]) if notes else answer
+
+    @staticmethod
+    def _claims_meta(checks) -> list:
+        return [{"kind": c.kind, "claim": c.claim, "status": c.status, "evidence": c.evidence[:1]} for c in checks]
+
+    # ------------------------------------------------------------------ statuses shown with the answer
+    def _with_status(self, result: GroundedAnswer) -> GroundedAnswer:
+        """Sets three separate statuses: whether the facts are backed by an authoritative source, which
+        kind of source, and whether a KVK expert should review the answer. "Verified" needs evidence
+        that answers this question, not merely some related text that was retrieved."""
+        from app.review import review_reasons
+
+        meta = result.processing_metadata
+        checks = meta.get("claim_checks") or []
+        kinds = {c.kind for c in result.retrieved_chunks if not c.rank_details.get("same_section_as_above")}
+        if result.intent == "weather":
+            source = "live_weather" if result.weather_report else None
+        elif result.intent == "market_price":
+            source = "market_data" if meta.get("market_data") else None
+        elif result.intent == "scheme_query":
+            source = "scheme" if result.retrieved_chunks else None
+        else:
+            source = (result.retrieved_chunks[0].kind if result.retrieved_chunks else None) if kinds else None
+
+        if (result.intent in NO_EVIDENCE_INTENTS or meta.get("needs_place") or meta.get("needs_crop")
+                or meta.get("asks_back")):
+            status = "not_applicable"
+        elif (result.intent in ("crop_not_covered", "topic_not_covered") or meta.get("llm_not_found")
+              or any(c["status"] == UNKNOWN_PROBLEM for c in checks) or source is None):
+            status = "not_verified"
+        else:
+            weak = (
+                (meta.get("answer_source") == "llm" and not result.is_grounded)
+                or meta.get("retrieval") == "low_confidence"
+                or any(c["status"] in (UNVERIFIED, UNKNOWN_PRODUCT) for c in checks)
+                or (meta.get("vision") or {}).get("confidence") not in (None, "high")
+            )
+            status = "partially_verified" if weak else "verified"
+        result.evidence_status, result.source_type = status, source
+        result.review_status = "recommended" if review_reasons(result) else "not_required"
+        return result
+
     def _search(self, req: "Request", search: str, kind: Optional[str]) -> List:
         intent = req.intent
         # A PAU answer comes from the farmer's crop's chapter (or the general spraying chapter)
@@ -572,6 +699,16 @@ class KisanPipeline:
                                           not (c.crop or "").lower().startswith(crop)))
         return retrieved
 
+    @staticmethod
+    def _names_the_question(req: "Request", retrieved) -> bool:
+        """The top advisory is titled for the pest the question names, on the crop it names ("aphids in
+        mustard" -> "Mustard Aphid (Chetpa/Mahu) Management")."""
+        topic, crop = req.intent.detected_topic, req.intent.detected_crop
+        main = [c for c in retrieved if not c.rank_details.get("same_section_as_above")]
+        if not (main and topic and crop) or topic in ("Agronomy/General",):
+            return False
+        return topic.lower() in main[0].section.lower() and main[0].crop.lower().startswith(crop.lower())
+
     def _search_with_check(self, req: "Request", search: str, kind: Optional[str]):
         """Search, check the result, and correct it once if it looks unreliable.
 
@@ -582,7 +719,7 @@ class KisanPipeline:
         to KVK expert review (see app/review.py).
         """
         retrieved = self._search(req, search, kind)
-        if is_confident(retrieved):
+        if is_confident(retrieved) or self._names_the_question(req, retrieved):
             return retrieved, "confident"
         terms = topic_search_terms(req.query.lower().strip())
         retry = " ".join(filter(None, [req.intent.detected_crop, terms]))
@@ -627,24 +764,53 @@ class KisanPipeline:
             search = " ".join(context_terms)
         retrieved, retrieval = self._search_with_check(req, search, kind)
 
+        # Claims in the question, checked against what was retrieved. A disease the evidence does not
+        # mention gets no treatment (the nearest advisory would be about something else)
+        # (a pest or disease the router recognised is known, so only other names are checked)
+        known_pest = bool(intent.detected_topic) and not intent.use_pau and intent.detected_topic != "Agronomy/General"
+        checks = check_claims(req.query, [c.text for c in retrieved], check_names=intent.intent != "safety_query",
+                              check_diseases=not known_pest)
+        unknown = [c for c in checks if c.status == UNKNOWN_PROBLEM]
+        if unknown:
+            # Only a name the whole knowledge base for this crop never mentions is unknown: a synonym or a
+            # spelling the retrieved text lacks ("stripe rust", PAU's "Parawilt") is not refused
+            crop = (intent.detected_crop or "").lower()
+            known = " ".join(c.text for c in self.retriever.dense_retriever.chunks
+                             if str(c.metadata.get("crop", "")).lower().startswith(crop))
+            if not unknown_disease_names(req.query, known):
+                checks = [c for c in checks if c.status != UNKNOWN_PROBLEM]
+                unknown = []
+        if unknown:
+            return self._reply(
+                req, t("claim_unknown_problem", req.lang, name=unknown[0].claim),
+                meta={"detected_crop": intent.detected_crop, "detected_topic": unknown[0].claim,
+                      "claim_checks": self._claims_meta(checks), "retrieval": retrieval},
+            )
+
         if hasattr(self.synthesizer, "generate"):
             draft, source = self.synthesizer.generate(
                 req.query, retrieved, language=req.llm_language, history=req.history,
-                context_note=profile.summary() if profile else "",
+                context_note=" ".join(filter(None, [profile.summary() if profile else "",
+                                                    self._premise_note_for_llm(checks)])),
             )
         else:
             draft, source = self.synthesizer.synthesize(req.query, retrieved, language=req.llm_language), "unknown"
-        # Every number must come from the sources: an LLM answer with any other number is replaced
+        draft, not_found = strip_not_found(draft)
+        # Every number must come from the sources: an LLM answer with any other number is replaced (the
+        # farmer's own claimed amounts do not count as a source)
         unbacked = self._unbacked(draft, source, [f"{c.text} {c.citation}" for c in retrieved]
-                                  + [req.query, req.intent.follow_up_of or ""], req.history, profile)
+                                  + [without_claims(req.query), req.intent.follow_up_of or ""] + self._evidence_of(checks),
+                                  req.history, profile)
         if unbacked:
             draft, source = self._offline().synthesize(req.query, retrieved, language=req.llm_language), SOURCE_NUMBERS_REPLACED
+            not_found = False
 
         answer, disclaimers = self.guardrails.enforce_safety(draft, req.query, language=req.lang)
         is_grounded, grounding_score = self.guardrails.validate_grounding(answer, [c.text for c in retrieved])
         # The land size in My farm: every per-acre amount also as a total for the farm (worked out in code)
         acres = profile.land_acres if profile else None
         answer, dose_totals = scale_doses(answer, acres, req.lang) if acres else (answer, False)
+        answer = self._with_premise_notes(answer, checks, req.lang)
         audio = self._speak(req, answer) if settings.ENABLE_TTS else None
         return self._reply(
             req, answer,
@@ -665,5 +831,7 @@ class KisanPipeline:
                 "knowledge": retrieved[0].kind if retrieved else (kind or "advisory"),
                 "dose_totals_for_acres": acres if dose_totals else None,
                 "retrieval": retrieval,
+                "claim_checks": self._claims_meta(checks),
+                "llm_not_found": not_found,
             },
         )

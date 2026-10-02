@@ -118,6 +118,7 @@ class ReviewQueue:
             with self.path.open("a", encoding="utf-8") as f:
                 f.write(json.dumps(item, ensure_ascii=False) + "\n")
         result.processing_metadata["kvk_review"] = item["id"]  # shown to the farmer as "sent for expert review"
+        result.review_status = "sent"
         return item["id"]
 
     def items(self, status: Optional[str] = None) -> List[Dict]:

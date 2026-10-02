@@ -68,6 +68,13 @@ class GroundedAnswer(BaseModel):
     weather_report: Optional[Dict[str, Any]] = None
     detected_language: str = "hi"
     processing_metadata: Dict[str, Any] = Field(default_factory=dict)
+    # Three separate statuses, so they can never contradict each other on screen:
+    # whether the answer's facts are backed by an authoritative source ...
+    evidence_status: str = "not_applicable"  # verified | partially_verified | not_verified | not_applicable
+    # ... which kind of source that is ...
+    source_type: Optional[str] = None  # advisory | pau | scheme | live_weather | market_data
+    # ... and whether a KVK expert should look at it (decided by app/review.py)
+    review_status: str = "not_required"  # not_required | recommended | sent
 
 
 class ConversationTurn(BaseModel):

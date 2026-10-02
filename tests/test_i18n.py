@@ -86,7 +86,7 @@ ANSWER_KEYS = [
     "greeting", "out_of_scope", "stt_failed", "spray_rain", "spray_wind", "spray_ok", "irrigation_stop",
     "irrigation_light", "irrigation_normal", "fallback_spray", "fallback_irrigation", "statutory_disclaimer",
     "monocrotophos_warning", "endosulfan_warning", "location_default", "location_not_found",
-    "note_template_llm_failed", "note_template_offline", "voice_unavailable", "grounded_yes", "grounded_partial",
+    "note_template_llm_failed", "note_template_offline", "voice_unavailable", "evidence_verified", "evidence_partially_verified", "evidence_not_verified", "claim_corrected",
     "listen_header", "safety_header", "sources_header", "evidence_header", "details_header", "chat_welcome",
 ]
 
