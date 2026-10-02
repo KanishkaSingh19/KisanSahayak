@@ -10,6 +10,14 @@
 
 Farmers ask about crops, pests, pesticides or weather in Hindi, Punjabi, Hinglish or English — by text or voice note. Answers are grounded strictly in curated ICAR, PAU Ludhiana and CIBRC advisories, with citations, banned-chemical checks and spray disclaimers.
 
+**Evaluated on 200 real Kisan Call Centre queries from Punjab (Jan–Jul 2025)** in English, Hindi, Punjabi and Hinglish:
+- answered in the requested language for 200/200;
+- weather given for the right district for 15/15;
+- the right advisory in the top 3 for 25/25 of the queries our advisories cover;
+- 125/140 (89%) of the other queries answered from the right crop's chapter of PAU's *Package of Practices*.
+
+It is backed by safety and adversarial tests and 414 automated tests in CI. See [Evaluation](#-evaluation).
+
 ---
 
 ## ✨ Features
@@ -242,53 +250,102 @@ See [`AI_DISCLOSURE.md`](AI_DISCLOSURE.md): which AI tools helped build the proj
 
 ## 📊 Evaluation
 
-`scripts/evaluate.py` scores the assistant on **67 hand-written test questions** in English, Punjabi, Hinglish and Hindi (`eval/test_set.json`), covering all 14 advisory sections, weather, greetings/off-topic, banned pesticides and follow-up questions. The core checks don't call the LLM, so they are repeatable and use no API quota.
+The assistant is evaluated in three layers, each answering a different question:
+
+| Layer | Question it answers |
+|---|---|
+| **1. Real farmer queries** | Does the system work on the questions farmers actually ask? |
+| **2. Safety & adversarial tests** | Does it resist wrong assumptions, unsupported problems and unsafe inputs? |
+| **3. Automated tests & CI** | Does the implementation stay reproducible and regression-safe? |
+
+All numbers below are copied from the committed reports linked in each section; every report lists its failures too.
+
+### 1. Real-world farmer evaluation: 200 Kisan Call Centre queries
+
+**Evaluated on 200 real Kisan Call Centre queries from Punjab (Jan–Jul 2025), covering English, Hindi, Punjabi and Hinglish** (50 each), chosen by how often farmers asked them, not by whether KisanSahayak can answer them. Report: [`evalset/kcc/results.md`](evalset/kcc/results.md).
+
+| Metric | Result | Scope |
+|---|---|---|
+| Answer in the requested language (script) | **200/200 (100%)** | all 200 queries |
+| Weather answered for the right district | **15/15 (100%)** | weather queries |
+| Right advisory in the top 3 | **25/25 (100%)** | queries our own advisories cover |
+| Right advisory ranked first | **23/25 (92%)** | queries our own advisories cover |
+| PM-KISAN questions recognised | 15/15 (100%) | PM-KISAN queries |
+| Price questions answered with the MSP / mandi price | 4/4 (100%) | price queries |
+| Banned-pesticide question warned | 1/1 | banned-pesticide queries |
+| Answered from the right crop's chapter of PAU's *Package of Practices* | **125/140 (89%)** | queries outside our own advisories |
+| … referred to the KVK / Kisan Call Centre instead | 9/140 (6%) | queries outside our own advisories |
+| … shown advice on something else | 6/140 (4%) | queries outside our own advisories |
+
+**Held-out check** (85 further real queries, ranked after the 200 and never used for tuning; [`evalset/kcc/heldout_results.md`](evalset/kcc/heldout_results.md)):
+
+| Metric | Result | Scope |
+|---|---|---|
+| Answered from the right crop's PAU chapter | **55/74 (74%)** | held-out queries outside our own advisories |
+| … shown advice on something else | 13/74 (18%) | held-out queries outside our own advisories |
+| Right advisory in the top 3 | 4/7 (57%) | held-out queries our own advisories cover |
+
+**Scope, stated plainly:**
+- Only 26 of the 200 queries fall inside our own 4-crop advisories (crop and safety advisories); most calls are about weeds, nutrient deficiencies and varieties. The retrieval percentages above apply to that covered subset, not to all farmer questions.
+- These are retrieval, routing and language checks, run with offline answers and local MiniLM search. They do not measure agronomic accuracy: answer and dose accuracy need an agronomist. [`evalset/kcc/review_sheet.csv`](evalset/kcc/review_sheet.csv) puts each answer next to the Kisan Call Centre advisor's answer for that review.
+- English queries are the exact logged text; the Hindi, Punjabi and Hinglish queries are translations of other real queries (the logs are in English). Source: data.gov.in KCC transcripts via [huggingface.co/datasets/whitesnek/punjab_kcc](https://huggingface.co/datasets/whitesnek/punjab_kcc).
+
+```bash
+python evalset/kcc/run_kcc.py      # the 200 queries
+python evalset/kcc/heldout.py      # the held-out queries
+```
+
+### 2. Safety & adversarial evaluation
+
+**Controlled test set: 67 hand-written questions** in English, Punjabi, Hinglish and Hindi ([`eval/test_set.json`](eval/test_set.json)). It covers all 14 advisory sections (42 questions) plus targeted cases: weather places (8), greetings and off-topic questions (6), banned pesticides (5) and follow-ups (6). Reports: [`eval/results_minilm.md`](eval/results_minilm.md) and [`eval/results_gemini.md`](eval/results_gemini.md).
 
 | Metric | MiniLM search (local) | Gemini search (live app) |
 |---|---|---|
-| Right advisory ranked 1st | 83% (35/42) | **98% (41/42)** |
-| Right advisory in top 3 | 98% (41/42) | **100% (42/42)** |
-| Question type recognised | 98% (41/42) | 98% (41/42) |
-| Weather: right place detected | 100% (8/8) | 100% (8/8) |
-| Greetings / off-topic handled | 100% (6/6) | 100% (6/6) |
-| Banned-pesticide questions warned (incl. Hindi/Punjabi script) | **100% (5/5)** | **100% (5/5)** |
+| Banned-pesticide questions warned (incl. Hindi/Punjabi script) | **5/5 (100%)** | **5/5 (100%)** |
 | False banned-pesticide warnings | 0 of 39 | 0 of 39 |
-| Follow-up questions kept context | 100% (6/6) | 100% (6/6) |
-| Search + safety time, without LLM (median) | ~43 ms | ~0.6 s |
+| Follow-up questions kept context | 6/6 (100%) | 6/6 (100%) |
+| Greetings / off-topic handled | 6/6 (100%) | 6/6 (100%) |
+| Weather: right place detected | 8/8 (100%) | 8/8 (100%) |
+| Right advisory in top 3 | 41/42 (98%) | **42/42 (100%)** |
+| Right advisory ranked 1st | 35/42 (83%) | **41/42 (98%)** |
+| Question type recognised | 41/42 (98%) | 41/42 (98%) |
 
-**Every number comes from a source or from code.** Weather, PM-KISAN eligibility, banned pesticides, MSP, mandi prices and farm totals are decided by data and rules; the LLM only explains and converses. Every Gemini answer is checked before it is shown: each amount ("400 g") must appear in the retrieved text with the same unit, and any other number must appear in it (harmless rewording such as "second week" / "2nd week" is allowed). Otherwise the checked advisory text is shown instead, with a note. On 24 real Gemini answers: 24/24 in the requested script, 23 kept, **1 replaced** (Gemini wrote "40 ml" where PAU says "40 g Actara"), so 24/24 answers shown contained only source numbers; median 2.0 s. On the 29 Gemini answers of the feature test set, none was replaced.
+These questions were written by the team, not collected from farmers.
+
+**Real Gemini answers, number check** ([`eval/results_llm.md`](eval/results_llm.md)): every Gemini answer is checked before it is shown. Each amount ("400 g") must appear in the sources with the same unit, and every other number must appear in them; otherwise the checked advisory text is shown instead. On 24 real Gemini answers:
+- 24/24 were in the requested script;
+- 1 was replaced: Gemini wrote "40 ml" where PAU says "40 g Actara";
+- so 24/24 answers shown contained only source numbers.
+
+**Adversarial and failure cases covered by the automated tests**:
+
+| Failure mode | What is checked | Tests |
+|---|---|---|
+| False premises | A wrong figure in the question (₹12,000/month PM-KISAN, 100 g Actara, a false MSP, "it will rain") is corrected from the source. A worded assumption ("Since MSP guarantees the government will buy all my wheat…") is corrected with the cited official text. Correct premises are left alone. The badge never says plain "Verified" after a correction. | [`test_false_premise.py`](tests/test_false_premise.py) (16), [`test_worded_premises.py`](tests/test_worded_premises.py) (15) |
+| Unsupported / fake diseases | A disease the knowledge base never mentions ("golden blight") gets no treatment or dose. Synonyms and spellings it does know are not refused. | `test_false_premise.py`, `test_worded_premises.py` |
+| Pesticide safety & banned chemicals | CIBRC banned-chemical scan in Latin, Devanagari and Gurmukhi script; spray disclaimers; no dose for a product the evidence does not recommend | [`test_guardrails.py`](tests/test_guardrails.py), [`test_router.py`](tests/test_router.py), `test_false_premise.py` |
+| Cross-crop contamination | Uncovered crops and topics are referred, not answered with another crop's advisory; PAU answers come from the asked crop's chapter | `test_router.py`, [`test_pau.py`](tests/test_pau.py) |
+| Missing evidence | The LLM's "not found" marker makes the answer *not verified*. Unbacked numbers are replaced. A declined scheme answer falls back to official text. | `test_false_premise.py`, [`test_numbers_check.py`](tests/test_numbers_check.py) |
+| Follow-ups / context retention | Crop, pest and place carried across turns, topic switches, "spray again?" asks which crop | [`test_conversation.py`](tests/test_conversation.py) |
+| Weather / market / tool failures | Unknown place reported (not silently replaced), mandi API offline, missing PAU index, missing speech keys, failed photo diagnosis | [`test_location.py`](tests/test_location.py), [`test_market.py`](tests/test_market.py), `test_pau.py`, [`test_speech.py`](tests/test_speech.py), [`test_vision.py`](tests/test_vision.py) |
 
 ```bash
 python scripts/evaluate.py                      # offline, uses EMBEDDING_PROVIDER from .env
 python scripts/evaluate.py --embeddings gemini  # the live app's search
 python scripts/evaluate.py --llm 8              # also check 8 real Gemini answers (uses quota)
 ```
-Full reports, including every failure: `eval/results_minilm.md`, `eval/results_gemini.md`; the real Gemini answer check (with the full answers) is in `eval/results_llm.md` and `eval/results_llm.json`. The test questions were written by the team, not collected from farmers; a field test set is future work.
 
----
+### 3. Automated testing & reliability
 
-### Real farmer questions: Kisan Call Centre (200 questions)
-
-[`evalset/kcc/`](evalset/kcc/) tests the assistant on **200 real farmer queries from Punjab Kisan Call Centre logs** (Jan–Jul 2025), 50 each in English, Hindi, Punjabi and Hinglish, chosen by how often farmers asked them.
-
-| Metric | Result |
-|---|---|
-| Right advisory in top 3 (questions our advisories cover) | 25/25 (100%); first 23/25 |
-| Banned-pesticide question warned | 1/1 |
-| Weather for the right district / PM-KISAN recognised | 15/15 / 15/15 |
-| Price (MSP) questions answered with the price | 4/4 |
-| Answer in the requested language | 200/200 (100%) |
-| Questions outside our advisories answered from the right crop's chapter of PAU's *Package of Practices* | **126/140 (90%)**; 55/74 (74%) on held-out queries not used for tuning |
-| … referred to the Kisan Call Centre / KVK / shown advice on something else | 8/140 / 6/140 (held-out: 6/74 / 13/74) |
-
-Only 26 of the 200 real questions fall within our 4-crop advisories: most calls are about weeds, nutrient deficiencies and varieties. For the four covered crops, those are now answered from PAU's *Package of Practices* chapter for that crop, citing PAU's pages ([`evalset/pau/`](evalset/pau/): on 28 questions written for it, 28/28 answered from PAU and the expected section in the top 3 for all; 23/28 before adding words that first run missed). Other crops and questions that name no crop are referred to the Kisan Call Centre (1800-180-1551). Answer and dose accuracy still need an agronomist: `evalset/kcc/review_sheet.csv` puts each answer next to the KCC advisor's answer for review.
-
-### Feature test set (28 questions)
-
-[`evalset/`](evalset/) checks every feature end to end: whole conversations with follow-ups, all four languages, the farm profile, PM-KISAN eligibility, crop insurance and Kisan Credit Card answers, weather, safety guardrails, the "crop not covered" guard, photo and voice. Cases 1–22 and 26–28 run automatically: **24/25 pass** (38/39 conversation turns) with offline answers; the miss is a Hindi symptom-only bacterial blight question ranked under brown planthopper by the local MiniLM search. The earlier run with real Gemini answers ([`evalset/results_llm.md`](evalset/results_llm.md), 22/22) predates the PAU update; photo and voice (23–25) are checked by hand.
+- **414 automated tests** (`pytest`) run on every push and pull request in GitHub Actions ([`.github/workflows/tests.yml`](.github/workflows/tests.yml)). They need no API keys: the tests force the offline answer template and local embeddings, so results are repeatable.
+- **End-to-end feature scenarios** ([`evalset/results.md`](evalset/results.md)): 28 cases covering whole conversations in all four languages, the farm profile, PM-KISAN eligibility, crop insurance, Kisan Credit Card, weather, guardrails, photo and voice. The 25 automated cases pass **24/25** (38/39 conversation turns). The one failure is a Hindi symptoms-only bacterial blight question that local MiniLM search ranks under brown planthopper. Photo and voice (3 cases) are checked by hand.
+- **PAU *Package of Practices* answers** ([`evalset/pau/results.md`](evalset/pau/results.md)): on 28 team-written questions outside our own advisories, 28/28 were answered from the right crop's chapter and the expected section was in the top 3 for 28/28.
+- **Cold start**: Streamlit Cloud used to re-embed ~400 PAU chunks against the free Gemini quota, about 13 minutes. A shipped Gemini embedding cache ([`scripts/build_embedding_cache.py`](scripts/build_embedding_cache.py)) brought this to about 15 seconds. Both were observed on the deployed app, not measured with a benchmark script.
 
 ```bash
-python evalset/run_evalset.py
+pytest -q                          # 414 tests
+python evalset/run_evalset.py      # end-to-end feature scenarios
+python evalset/pau/run_pau.py      # PAU answers
 ```
 
 ## 🐳 Running with Docker
