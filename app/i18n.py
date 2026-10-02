@@ -37,24 +37,27 @@ STRINGS: Dict[str, Dict[str, str]] = {
     "greeting": {
         "en": (
             "Namaste! I am KisanSahayak, your farming assistant.\n\n"
-            "I can help with pests, diseases, fertilizer, seeds, weather and pesticide safety for wheat, "
-            "mustard, paddy, cotton and other crops. You can type your question or ask by voice."
+            "I can help with pests, diseases, fertilizer, seeds and pesticide safety for wheat, mustard, "
+            "paddy and cotton, the weather, MSP and mandi prices, and PM-KISAN, crop insurance and the Kisan "
+            "Credit Card. You can type your question, ask by voice or send a photo."
         ),
         "pa": (
             "ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਕਿਸਾਨ ਵੀਰੋ! ਮੈਂ ਕਿਸਾਨ ਸਹਾਇਕ (KisanSahayak) ਹਾਂ।\n\n"
-            "ਮੈਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨਾ, ਨਰਮਾ ਅਤੇ ਹੋਰ ਫ਼ਸਲਾਂ ਵਿੱਚ ਕੀੜੇ, ਬਿਮਾਰੀਆਂ, ਖਾਦ, ਬੀਜ, ਮੌਸਮ ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ "
-            "ਬਾਰੇ ਤੁਹਾਡੀ ਮਦਦ ਲਈ ਤਿਆਰ ਹਾਂ। ਤੁਸੀਂ ਆਪਣਾ ਸਵਾਲ ਲਿਖ ਕੇ ਜਾਂ ਬੋਲ ਕੇ ਪੁੱਛ ਸਕਦੇ ਹੋ।"
+            "ਮੈਂ ਕਣਕ, ਸਰ੍ਹੋਂ, ਝੋਨਾ ਅਤੇ ਨਰਮੇ ਵਿੱਚ ਕੀੜੇ, ਬਿਮਾਰੀਆਂ, ਖਾਦ, ਬੀਜ ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ, ਮੌਸਮ, MSP ਅਤੇ "
+            "ਮੰਡੀ ਦੇ ਭਾਅ, ਅਤੇ PM-KISAN, ਫ਼ਸਲ ਬੀਮਾ ਅਤੇ ਕਿਸਾਨ ਕ੍ਰੈਡਿਟ ਕਾਰਡ ਬਾਰੇ ਤੁਹਾਡੀ ਮਦਦ ਲਈ ਤਿਆਰ ਹਾਂ। "
+            "ਤੁਸੀਂ ਆਪਣਾ ਸਵਾਲ ਲਿਖ ਕੇ, ਬੋਲ ਕੇ ਜਾਂ ਫ਼ੋਟੋ ਭੇਜ ਕੇ ਪੁੱਛ ਸਕਦੇ ਹੋ।"
         ),
         "hinglish": (
             "Namaste kisan bhai! Main KisanSahayak hoon.\n\n"
-            "Main gehun, sarson, dhan, kapas aur doosri faslon mein keet, rog, khad, beej, mausam aur "
-            "keetnashak suraksha se jude sawalon mein aapki madad ke liye taiyaar hoon. "
-            "Aap apna sawal likh kar ya bol kar pooch sakte hain."
+            "Main gehun, sarson, dhan aur kapas mein keet, rog, khad, beej aur keetnashak suraksha, mausam, "
+            "MSP aur mandi bhav, aur PM-KISAN, fasal bima aur Kisan Credit Card se jude sawalon mein aapki "
+            "madad ke liye taiyaar hoon. Aap apna sawal likh kar, bol kar ya photo bhej kar pooch sakte hain."
         ),
         "hi": (
             "नमस्ते किसान भाई! मैं किसान सहायक (KisanSahayak) हूँ।\n\n"
-            "मैं गेहूं, सरसों, धान, कपास और अन्य फसलों में कीट, रोग, खाद, बीज, मौसम एवं कृषि सुरक्षा "
-            "से संबंधित आपकी सहायता के लिए तैयार हूँ। आप अपनी समस्या लिखकर या बोलकर पूछ सकते हैं।"
+            "मैं गेहूं, सरसों, धान और कपास में कीट, रोग, खाद, बीज और कीटनाशक सुरक्षा, मौसम, MSP और मंडी भाव, "
+            "और PM-KISAN, फसल बीमा और किसान क्रेडिट कार्ड से जुड़े सवालों में आपकी सहायता के लिए तैयार हूँ। "
+            "आप अपनी समस्या लिखकर, बोलकर या फ़ोटो भेजकर पूछ सकते हैं।"
         ),
     },
     "market_msp": {
@@ -178,19 +181,23 @@ STRINGS: Dict[str, Dict[str, str]] = {
     "out_of_scope": {
         "en": (
             "This question does not seem to be about farming. KisanSahayak only answers questions about "
-            "crop care, pest and disease control, fertilizer, weather and pesticide safety. Please ask a farming question."
+            "crop care, pest and disease control, fertilizer, weather, pesticide safety, crop prices and farmer "
+            "schemes. Please ask a farming question."
         ),
         "pa": (
             "ਇਹ ਸਵਾਲ ਖੇਤੀਬਾੜੀ ਨਾਲ ਸਬੰਧਤ ਨਹੀਂ ਜਾਪਦਾ। ਕਿਸਾਨ ਸਹਾਇਕ ਸਿਰਫ਼ ਫ਼ਸਲਾਂ ਦੀ ਦੇਖਭਾਲ, ਕੀੜੇ ਅਤੇ ਬਿਮਾਰੀਆਂ ਦੀ ਰੋਕਥਾਮ, "
-            "ਖਾਦ, ਮੌਸਮ ਅਤੇ ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ ਬਾਰੇ ਸਵਾਲਾਂ ਦੇ ਜਵਾਬ ਦਿੰਦਾ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਖੇਤੀ ਨਾਲ ਸਬੰਧਤ ਸਵਾਲ ਪੁੱਛੋ।"
+            "ਖਾਦ, ਮੌਸਮ, ਕੀਟਨਾਸ਼ਕ ਸੁਰੱਖਿਆ, ਫ਼ਸਲਾਂ ਦੇ ਭਾਅ ਅਤੇ ਕਿਸਾਨ ਯੋਜਨਾਵਾਂ ਬਾਰੇ ਸਵਾਲਾਂ ਦੇ ਜਵਾਬ ਦਿੰਦਾ ਹੈ। "
+            "ਕਿਰਪਾ ਕਰਕੇ ਖੇਤੀ ਨਾਲ ਸਬੰਧਤ ਸਵਾਲ ਪੁੱਛੋ।"
         ),
         "hinglish": (
             "Yeh sawal kheti se juda nahi lagta. KisanSahayak sirf fasal ki dekhbhal, keet aur rog niyantran, "
-            "khad, mausam aur keetnashak suraksha ke sawalon ke liye hai. Kripya kheti se juda sawal poochein."
+            "khad, mausam, keetnashak suraksha, fasal ke bhav aur kisan yojanaon ke sawalon ke liye hai. "
+            "Kripya kheti se juda sawal poochein."
         ),
         "hi": (
             "यह प्रश्न कृषि क्षेत्र से संबंधित नहीं प्रतीत होता है। "
-            "किसान सहायक केवल फसलों की देखभाल, रोग नियंत्रण, उर्वरक, मौसम और कृषि सुरक्षा संबंधी "
+            "किसान सहायक केवल फसलों की देखभाल, कीट और रोग नियंत्रण, उर्वरक, मौसम, कीटनाशक सुरक्षा, फसलों के भाव "
+            "और किसान योजनाओं संबंधी "
             "प्रश्नों के लिए समर्पित है। कृपया कृषि से संबंधित प्रश्न पूछें।"
         ),
     },
@@ -523,14 +530,6 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hinglish": "Pramanit krishi research (ICAR/PAU) aur mausam par aadharit surakshit fasal salah",
         "hi": "प्रमाणित कृषि अनुसंधान (ICAR/PAU) एवं मौसम आधारित सुरक्षित फसल परामर्श",
     },
-    "tab_text": {"en": "✍️ Type your question", "pa": "✍️ ਲਿਖ ਕੇ ਪੁੱਛੋ", "hinglish": "✍️ Likh kar poochein", "hi": "✍️ लिखकर पूछें"},
-    "tab_voice": {"en": "🎙️ Ask by voice", "pa": "🎙️ ਬੋਲ ਕੇ ਪੁੱਛੋ", "hinglish": "🎙️ Bol kar poochein", "hi": "🎙️ बोलकर पूछें"},
-    "input_label": {
-        "en": "Ask about your crop, pest, disease or the weather:",
-        "pa": "ਆਪਣੀ ਫ਼ਸਲ, ਬਿਮਾਰੀ ਜਾਂ ਮੌਸਮ ਬਾਰੇ ਪੁੱਛੋ:",
-        "hinglish": "Apni fasal, rog ya mausam ke baare mein poochein:",
-        "hi": "अपनी फसल, रोग या मौसम के बारे में पूछें:",
-    },
     "input_placeholder": {
         "en": "Type, attach a photo or record your voice, then send",
         "pa": "ਲਿਖੋ, ਫ਼ੋਟੋ ਲਗਾਓ ਜਾਂ ਆਪਣੀ ਆਵਾਜ਼ ਰਿਕਾਰਡ ਕਰੋ, ਫਿਰ ਭੇਜੋ",
@@ -544,7 +543,6 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hi": "यह फ़ोटो आपके अगले संदेश के साथ भेजी जाएगी।",
     },
     "photo_remove": {"en": "Remove photo", "pa": "ਫ਼ੋਟੋ ਹਟਾਓ", "hinglish": "Photo hatayein", "hi": "फ़ोटो हटाएँ"},
-    "clear": {"en": "Clear", "pa": "ਸਾਫ਼ ਕਰੋ", "hinglish": "Saaf karein", "hi": "साफ़ करें"},
     "spinner_audio": {
         "en": "Transcribing your voice note and searching the knowledge base...",
         "pa": "ਆਡੀਓ ਨੂੰ ਲਿਖਤ ਵਿੱਚ ਬਦਲ ਕੇ ਖੇਤੀ ਗਿਆਨ-ਕੋਸ਼ ਵਿੱਚੋਂ ਖੋਜ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ...",
@@ -557,26 +555,13 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hinglish": "Krishi gyaankosh (ICAR/PAU/mausam) se pramanit salah taiyaar ki ja rahi hai...",
         "hi": "कृषि ज्ञानकोश (ICAR/PAU/मौसम) से सत्यापित परामर्श तैयार किया जा रहा है...",
     },
-    "warn_empty": {
-        "en": "Please type a question or upload an audio file.",
-        "pa": "ਕਿਰਪਾ ਕਰਕੇ ਸਵਾਲ ਲਿਖੋ ਜਾਂ ਆਡੀਓ ਫ਼ਾਈਲ ਅੱਪਲੋਡ ਕਰੋ।",
-        "hinglish": "Kripya sawal likhein ya audio file upload karein.",
-        "hi": "कृपया टेक्स्ट लिखें या ऑडियो फाइल अपलोड करें।",
-    },
     "metric_intent": {"en": "Detected topic", "pa": "ਪਛਾਣਿਆ ਵਿਸ਼ਾ", "hinglish": "Pehchana gaya vishay", "hi": "पहचाना गया विषय"},
     "metric_latency": {"en": "Response time", "pa": "ਜਵਾਬ ਦਾ ਸਮਾਂ", "hinglish": "Jawab ka samay", "hi": "प्रतिक्रिया समय"},
-    "metric_crop": {"en": "Crop / Region", "pa": "ਫ਼ਸਲ / ਖੇਤਰ", "hinglish": "Fasal / Kshetra", "hi": "फसल / क्षेत्र"},
     "general": {"en": "General", "pa": "ਆਮ", "hinglish": "Samanya", "hi": "सामान्य"},
     "metric_grounding": {"en": "Grounding", "pa": "ਪ੍ਰਮਾਣਿਕਤਾ", "hinglish": "Pramanikta", "hi": "प्रमाणीकरण"},
     "kvk_review_chip": {
         "en": "Sent for KVK expert review", "pa": "ਕੇਵੀਕੇ ਮਾਹਿਰ ਦੀ ਜਾਂਚ ਲਈ ਭੇਜਿਆ",
         "hinglish": "KVK visheshagya ki jaanch ke liye bheja", "hi": "केवीके विशेषज्ञ जाँच के लिए भेजा गया",
-    },
-    "weather_metrics_header": {
-        "en": "Weather & Spray Conditions",
-        "pa": "ਮੌਸਮ ਅਤੇ ਛਿੜਕਾਅ ਹਾਲਾਤ",
-        "hinglish": "Mausam aur Chhidkaav Halaat",
-        "hi": "मौसम एवं छिड़काव विश्लेषण",
     },
     "note_template_llm_failed": {
         "en": (
@@ -640,12 +625,6 @@ STRINGS: Dict[str, Dict[str, str]] = {
     },
     "badge_languages": {"en": "4 languages · voice", "pa": "4 ਭਾਸ਼ਾਵਾਂ · ਆਵਾਜ਼", "hinglish": "4 bhashayein · awaaz", "hi": "4 भाषाएँ · आवाज़"},
     "badge_weather": {"en": "Live weather", "pa": "ਲਾਈਵ ਮੌਸਮ", "hinglish": "Live mausam", "hi": "लाइव मौसम"},
-    "empty_state": {
-        "en": "Ask your question above, or tap one of the sample questions, to get verified advice.",
-        "pa": "ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ ਲਈ ਉੱਪਰ ਆਪਣਾ ਸਵਾਲ ਪੁੱਛੋ, ਜਾਂ ਕੋਈ ਉਦਾਹਰਨ ਸਵਾਲ ਦਬਾਓ।",
-        "hinglish": "Pramanit salah ke liye upar apna sawal poochein, ya koi udaharan sawal dabayein.",
-        "hi": "प्रमाणित सलाह के लिए ऊपर अपना प्रश्न पूछें, या कोई उदाहरण प्रश्न दबाएँ।",
-    },
     # ------------------------------------------------------------------ PM-KISAN
     "pmk_likely_eligible": {
         "en": "**PM-KISAN check (from your profile):** you are likely eligible, as a land-holding farmer family not in any exclusion category. Final approval is done by your state government.",
@@ -834,7 +813,6 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hinglish": "Is bhasha mein awaaz wale jawab abhi uplabdh nahi hain.",
         "hi": "इस भाषा में आवाज़ वाले उत्तर अभी उपलब्ध नहीं हैं।",
     },
-    "response_header": {"en": "Verified Advice", "pa": "ਪ੍ਰਮਾਣਿਤ ਸਲਾਹ", "hinglish": "Pramanit Salah", "hi": "सत्यापित परामर्श"},
     "listen_header": {"en": "Listen to the advice", "pa": "ਆਵਾਜ਼ ਵਿੱਚ ਸੁਣੋ", "hinglish": "Awaaz mein sunein", "hi": "आवाज़ में सुनें"},
     "safety_header": {
         "en": "Safety Warnings",

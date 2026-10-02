@@ -8,7 +8,7 @@
 ### 🚀 Live app: **https://kisansahayak1.streamlit.app/**
 *(Free hosting sleeps when idle: if you see a "wake up" screen, click it and allow about a minute to start.)*
 
-Farmers ask about crops, pests, pesticides or weather in Hindi, Punjabi, Hinglish or English — by text or voice note. Answers are grounded strictly in curated ICAR, PAU Ludhiana and CIBRC advisories, with citations, banned-chemical checks and spray disclaimers.
+Farmers ask about crops, pests, pesticides, weather, crop prices or government schemes in Hindi, Punjabi, Hinglish or English — by text, voice note or crop photo. Answers are grounded in curated ICAR, PAU Ludhiana and CIBRC advisories, PAU's *Package of Practices* and official scheme and price sources, with citations, banned-chemical checks and spray disclaimers.
 
 **Evaluated on 200 real Kisan Call Centre queries from Punjab (Jan–Jul 2025)** in English, Hindi, Punjabi and Hinglish:
 - answered in the requested language for 200/200;
@@ -23,9 +23,9 @@ It is backed by safety and adversarial tests and 414 automated tests in CI. See 
 ## ✨ Features
 
 - **Crop & pest advisories** for wheat, mustard, paddy and cotton (yellow rust, karnal bunt, aphid, white rust, BLB, BPH, pink bollworm, whitefly), with multilingual aliases (e.g. *sarson* / सरसों / ਸਰ੍ਹੋਂ).
-- **Grounded answers only** — responses come from `data/raw/` advisories and list their sources; if nothing relevant is found, the farmer is referred to their local KVK.
+- **Grounded answers only** — responses come from the `data/raw/` advisories or, for other topics of the four covered crops, PAU's *Package of Practices* chapters, and list their sources; if nothing relevant is found, the farmer is referred to their local KVK.
 - **Pesticide safety guardrails** — CIBRC banned-chemical scan (Monocrotophos, Endosulfan, DDT, Phorate, Paraquat, …) and a statutory disclaimer on any spray/dosage answer.
-- **Ag-weather & spray window** — live [Open-Meteo](https://open-meteo.com/) data for 15 districts (Punjab, Haryana, UP, MP, Rajasthan, Bihar) with spray and irrigation advice; falls back to seasonal defaults when offline.
+- **Ag-weather & spray window** — live [Open-Meteo](https://open-meteo.com/) data for any place in India (44 common districts and towns built in, others found with Open-Meteo's place search) with spray and irrigation advice when asked; a whole state asks which district; falls back to seasonal defaults when offline.
 - **System status sidebar** — shows which LLM and speech-to-text services are actually active.
 - **Voice input** — spoken questions are transcribed with Whisper Large v3 via Groq (Gemini audio for Punjabi, and as a backup); the API's `/ask/voice` also accepts voice-note files (WAV/MP3/M4A/OGG).
 - **Voice output** — tap Listen to hear the answer: English, Hindi and Hinglish via Edge-TTS, Punjabi via gTTS (Edge-TTS has no Punjabi voice).
@@ -52,12 +52,13 @@ Every AI component is optional. Without API keys the app runs fully offline-capa
 | Component | Provider / Model | Needs | Fallback when not configured |
 |---|---|---|---|
 | Answer generation | Google Gemini (`GEMINI_MODEL`) or OpenAI `gpt-4o-mini` (`OPENAI_MODEL`) | `LLM_PROVIDER` + matching API key | Deterministic template filled from retrieved advisory text |
-| Speech-to-text | Groq-hosted `whisper-large-v3` | `GROQ_API_KEY` | Voice tab asks the farmer to type instead |
+| Speech-to-text | Groq-hosted `whisper-large-v3`; Gemini audio for Punjabi and as backup | `GROQ_API_KEY` (and `GEMINI_API_KEY`) | The farmer is asked to try again or type the question |
 | Photo diagnosis | Gemini Vision (same main/backup models) identifies crop, likely problem and confidence; never gives treatment | `GEMINI_API_KEY` | "Couldn't analyse the photo" message |
 | Text-to-speech | Microsoft Edge-TTS (`en-IN-NeerjaNeural`, `hi-IN-MadhurNeural`); gTTS for Punjabi, since Edge-TTS has no Punjabi voice | `edge-tts` and `gTTS` packages + internet, no key | Text-only answer |
 | Dense embeddings | Hugging Face `paraphrase-multilingual-MiniLM-L12-v2` (384-dim, runs locally) | `EMBEDDING_PROVIDER=minilm` + `sentence-transformers` (one-time ~470 MB model download) | Local embedder |
 | | Gemini `gemini-embedding-001` (768-dim) | `EMBEDDING_PROVIDER=gemini` + `GEMINI_API_KEY` | Local embedder |
 | | Local hashed word + character n-gram vectors (256-dim) | Nothing (default, `EMBEDDING_PROVIDER=local`) | — |
+| Premise check | Gemini labels assumptions stated in words against numbered evidence sentences (figures are checked in code) | `GEMINI_API_KEY` | Official statements shown, assumption marked unchecked |
 | Intent routing | Rule-based multilingual keyword lexicons (no model) | — | — |
 
 > **Note:** `LLM_PROVIDER` defaults to `mock` in `app/config.py`. With no `.env` file, no LLM is called and answers come from the deterministic template.
@@ -67,34 +68,38 @@ Every AI component is optional. Without API keys the app runs fully offline-capa
 ## 🚀 Architecture
 
 ```
-Farmer Query (Text or Voice Note)
+Farmer message: text, voice note and/or photo (one chat box)
    │
-   ├── Voice ──► [Groq Whisper STT] (app/speech/stt.py) ──► transcript
+   ├── Voice ──► [Whisper STT via Groq; Gemini audio for Punjabi] (app/speech/stt.py) ──► transcript
+   ├── Photo ──► [Gemini Vision: likely problem + confidence] (app/tools/vision.py) ──► search terms
    │
    ▼
 [Language Detection + Intent & Entity Extraction] (app/agent/router.py)
-   │   crop · pest/disease · district
+   │   crop · pest/disease · place · scheme · follow-ups from the conversation
    │
-   ├── Greeting / Out-of-Scope ────► Polite Redirection / Scope Advisory
-   ├── Weather ────────────────────► [Open-Meteo Ag-Weather Tool] (app/tools/weather_tool.py)
-   │                                   spray window + irrigation advice
+   ├── Greeting / off-topic / crop not covered ──► Polite redirect or KVK / Kisan Call Centre referral
+   ├── Weather ──► [Open-Meteo Ag-Weather Tool] (app/tools/weather_tool.py): spray / irrigation advice
+   ├── Prices ───► [MSP table + data.gov.in / Agmarknet mandi prices] (app/tools/market.py)
+   ├── Schemes ──► [PM-KISAN, PMFBY, KCC official texts + eligibility rules] (app/tools/schemes.py)
    ▼ Crop / Safety / General Agriculture
 [Hybrid Agricultural RAG] (app/rag/hybrid_retriever.py)
    ├── Dense Semantic Search (FAISS / app/rag/faiss_retriever.py)
    ├── Sparse Keyword Search (BM25Okapi / app/rag/bm25_retriever.py)
-   └── Reciprocal Rank Fusion (k=60 / app/rag/rrf.py)
-   │
+   ├── Reciprocal Rank Fusion (k=60 / app/rag/rrf.py)
+   └── Corrective search: retry in English terms when the two searches disagree (app/agent/pipeline.py)
+   │   our advisories, or PAU's Package of Practices chapter for the crop (app/rag/pau_kb.py)
    ▼
 [Grounded Answer Synthesizer] (app/agent/synthesizer.py)
-   │   Gemini / OpenAI / Deterministic
+   │   Gemini (main → backup model) / OpenAI / deterministic template
    ▼
-[Safety Guardrails & Grounding Validator] (app/agent/guardrails.py)
-   ├── Banned Chemical Scan (CIBRC Schedule)
-   ├── Grounding & Overlap Verification
-   └── Statutory Spray Disclaimers
+[Checks on every answer]
+   ├── Numbers: every amount must be in the sources (app/agent/guardrails.py); per-acre totals in code (app/tools/dose.py)
+   ├── Claims in the question: figures in code (app/agent/claims.py), worded premises (app/agent/premises.py)
+   ├── Banned Chemical Scan (CIBRC) and Statutory Spray Disclaimers (app/agent/guardrails.py)
+   └── Evidence / source / KVK review statuses (app/review.py)
    │
    ▼
-[Structured Response with ICAR/PAU Citations] ──► [Edge-TTS Audio] (app/speech/tts.py)
+[Answer with citations and status badges] ──► [Edge-TTS / gTTS audio] (app/speech/tts.py)
 ```
 
 Orchestrated end-to-end by `app/agent/pipeline.py` (`KisanPipeline`).
@@ -117,45 +122,62 @@ Orchestrated end-to-end by `app/agent/pipeline.py` (`KisanPipeline`).
 KisanSahayak/
 ├── app/
 │   ├── config.py                 # Pydantic Settings & environment config
+│   ├── api.py                    # FastAPI REST API over the same pipeline (/ask, /ask/image, /ask/voice, /weather, /speak)
+│   ├── i18n.py                   # All farmer-facing text in English, Punjabi, Hinglish and Hindi
+│   ├── crops.py                  # Covered crops and their names in every language
+│   ├── textmatch.py              # Word matching in Latin, Devanagari and Gurmukhi script
+│   ├── review.py                 # KVK expert review queue
 │   ├── agent/
-│   │   ├── state.py              # Pydantic schemas for query, intent & response
-│   │   ├── router.py             # Intent classification & crop/pest/district extraction
-│   │   ├── synthesizer.py        # Grounded response generator (Gemini/OpenAI/Deterministic)
-│   │   ├── guardrails.py         # CIBRC banned chemical filter & grounding checks
-│   │   └── pipeline.py           # End-to-end pipeline orchestrator (text + voice)
+│   │   ├── state.py              # Pydantic schemas for intent, answer, conversation turn, farm profile
+│   │   ├── router.py             # Intent classification & crop/pest/place/scheme extraction
+│   │   ├── synthesizer.py        # Grounded response generator (Gemini/OpenAI/deterministic template)
+│   │   ├── guardrails.py         # CIBRC banned chemical filter, grounding and number checks
+│   │   ├── claims.py             # Checks figures and names stated in the question
+│   │   ├── premises.py           # Checks assumptions stated in words (Gemini verifier, cited evidence)
+│   │   └── pipeline.py           # End-to-end orchestrator (text, voice, photo)
 │   ├── rag/
 │   │   ├── chunker.py            # Structured agricultural chunking with metadata
-│   │   ├── embeddings.py         # Local hashed n-gram / MiniLM / Gemini dense embeddings
+│   │   ├── embeddings.py         # Local hashed n-gram / MiniLM / Gemini dense embeddings (+ Gemini vector cache)
 │   │   ├── faiss_retriever.py    # FAISS dense index with cosine ranking
 │   │   ├── bm25_retriever.py     # BM25Okapi sparse keyword index
 │   │   ├── rrf.py                # Reciprocal Rank Fusion algorithm
 │   │   ├── hybrid_retriever.py   # Hybrid FAISS + BM25 + RRF coordinator
-│   │   └── ingest.py             # Ingestion CLI for raw advisory docs
+│   │   ├── pau_kb.py             # Builds PAU's Package of Practices chapters (downloaded, git-ignored)
+│   │   └── ingest.py             # Ingestion CLI for the advisories (and PAU's chapters)
 │   ├── speech/
-│   │   ├── stt.py                # Groq Whisper speech-to-text adapter
-│   │   └── tts.py                # Edge-TTS Hindi/Punjabi speech synthesis
+│   │   ├── stt.py                # Whisper (Groq) speech-to-text; Gemini audio for Punjabi
+│   │   └── tts.py                # Edge-TTS (English, Hindi, Hinglish) and gTTS (Punjabi)
 │   └── tools/
 │       ├── weather_tool.py       # Open-Meteo ag-weather & spray window advisory
 │       ├── location.py           # Place-name lookup (any place in India)
+│       ├── market.py             # MSP table and live mandi prices
+│       ├── dose.py               # Per-acre doses scaled to the farm size
 │       ├── vision.py             # Gemini Vision crop-photo diagnosis
 │       └── schemes.py            # Scheme guidance (PM-KISAN, PMFBY, KCC), PM-KISAN eligibility rules
 ├── data/
 │   ├── raw/                      # Crop advisories from PAU's Package of Practices (with page numbers) & CIBRC safety (JSON)
-│   │   ├── wheat_pau_icar.json
-│   │   ├── mustard_crop_guide.json
-│   │   ├── paddy_rice_management.json
-│   │   ├── cotton_pest_control.json
-│   │   └── pesticide_safety_cibrc.json
+│   ├── translations.json         # Punjabi, Hindi and Hinglish versions of the advisories
 │   ├── schemes/                  # PM-KISAN, PMFBY crop insurance, Kisan Credit Card (official sources, 4 languages)
-│   ├── indices/                  # Serialized FAISS & BM25 indices
+│   ├── market/msp.json           # Minimum Support Prices with source and date
+│   ├── facts/                    # Sourced official statements for checking premises (4 languages)
+│   ├── vectors/                  # Shipped Gemini embedding cache (numbers only)
+│   ├── sample_photos/            # Crop photos for trying the photo diagnosis
+│   ├── indices/                  # Serialized FAISS & BM25 indices (generated)
 │   └── audio/                    # Generated TTS audio files
 ├── frontend/
-│   └── app.py                    # Streamlit chat UI (4 languages, voice, weather card)
-├── app/api.py                    # FastAPI REST API over the same pipeline (/ask, /weather, /speak)
-├── tests/                        # pytest suite (RAG, router, guardrails, pipeline, speech, weather)
-├── run_verification.py           # Runs benchmark example queries through the pipeline
+│   ├── app.py                    # Streamlit chat UI (4 languages, text/voice/photo, weather card, farm profile)
+│   ├── pages/1_KVK_expert_review.py  # Review page for KVK experts
+│   └── requirements.txt          # Lightweight requirements for Streamlit Community Cloud
+├── tests/                        # pytest suite (414 tests)
+├── eval/                         # 67-question accuracy set and reports (scripts/evaluate.py)
+├── evalset/                      # Feature scenarios, Kisan Call Centre (kcc/) and PAU (pau/) test sets
+├── scripts/                      # Evaluation, cost estimate, PAU build, embedding cache, translation
+├── docs/cost_estimate.md         # Cost per question
+├── run_verification.py           # Runs 6 example queries through the pipeline
+├── Dockerfile
 ├── .env.example
 ├── requirements.txt
+├── AI_DISCLOSURE.md
 └── README.md
 ```
 
@@ -174,12 +196,16 @@ Copy `.env.example` to `.env` and fill in the keys for the features you want:
 | Variable | Purpose |
 |---|---|
 | `LLM_PROVIDER` | `gemini`, `openai`, or `mock` (default, no LLM) |
-| `GEMINI_API_KEY` / `GEMINI_MODEL` | Gemini answer generation (and optional embeddings) |
+| `GEMINI_API_KEY` / `GEMINI_MODEL` | Gemini answers, photo diagnosis, premise checks (and optional embeddings) |
+| `GEMINI_FALLBACK_MODEL` | Backup model when the main one is busy (default `gemini-flash-lite-latest`) |
 | `OPENAI_API_KEY` / `OPENAI_MODEL` | OpenAI answer generation |
 | `GROQ_API_KEY` | Voice input (Whisper STT) |
 | `ENABLE_TTS` | Spoken answers (default `True`) |
 | `EMBEDDING_PROVIDER` | `local` (default), `minilm`, or `gemini` |
 | `HF_CACHE_DIR` | Folder for the MiniLM model download (empty = Hugging Face default cache) |
+| `USE_PAU_KB` / `PAU_AUTO_BUILD` | Search PAU's *Package of Practices* chapters / build them on first start (both default `True`) |
+| `DATA_GOV_API_KEY` | Live mandi prices from data.gov.in (the public sample key is used if empty) |
+| `REVIEW_PASSCODE` / `REVIEW_QUEUE_PATH` | Passcode for the KVK expert review page / where the queue file is kept |
 
 > Changing `EMBEDDING_PROVIDER` changes the vector size; the saved index is detected as stale and rebuilt automatically on next start (or run the ingest step below).
 
@@ -198,10 +224,11 @@ pytest -v
 
 All tests also run automatically on GitHub on every push and pull request (`.github/workflows/tests.yml`), with no API keys needed.
 
-### 5. Run Benchmark Queries
+### 5. Try Example Queries
 ```bash
 python run_verification.py
 ```
+Prints the answers to 6 example questions. For scored results, see [Evaluation](#-evaluation).
 
 ### 6. Run the Streamlit Interface
 ```bash
@@ -242,7 +269,7 @@ curl -X POST http://localhost:8000/ask -H "Content-Type: application/json" \
 
 ## 💰 Cost per question
 
-Measured with real token counts (`python scripts/cost_estimate.py`, details in [`docs/cost_estimate.md`](docs/cost_estimate.md)): a typed question costs about **Rs 0.15** with Gemini 3.7 Flash, a voice question about Rs 0.18, and a photo diagnosis about Rs 0.34. Weather, market prices and referrals use no LLM. Every kind of question stays well under Rs 1.
+Measured with real token counts (`python scripts/cost_estimate.py`, details in [`docs/cost_estimate.md`](docs/cost_estimate.md)): a typed question costs about **Rs 0.15** with Gemini 3.7 Flash, a voice question about Rs 0.18, and a photo diagnosis about Rs 0.34. Weather, market prices and referrals use no LLM, except one short check when the question states an assumption ("since ...", "I heard ..."). Every kind of question stays well under Rs 1.
 
 ## 🤖 AI tools disclosure
 
@@ -361,7 +388,7 @@ Then open http://localhost:8501. The first visit after start-up loads the models
 
 ## ☁️ Deploying on Streamlit Community Cloud (free)
 
-The cloud version uses `frontend/requirements.txt` (no PyTorch, so it fits the memory limit) and **Gemini embeddings** for search instead of the local MiniLM model. In our 8-question check, Gemini embeddings put the right crop first for 8/8 questions (MiniLM: 6/8).
+The cloud version uses `frontend/requirements.txt` (no PyTorch, so it fits the memory limit) and **Gemini embeddings** for search instead of the local MiniLM model. On the 67-question test set, Gemini embeddings rank the right advisory first for 41/42 questions (MiniLM: 35/42; see [Evaluation](#-evaluation)).
 
 1. Sign in at https://share.streamlit.io with GitHub and click **Create app → Deploy a public app from GitHub**.
 2. Repository `KanishkaSingh19/KisanSahayak`, branch `main`, main file path **`frontend/app.py`**.
@@ -372,6 +399,6 @@ The cloud version uses `frontend/requirements.txt` (no PyTorch, so it fits the m
    LLM_PROVIDER = "gemini"
    EMBEDDING_PROVIDER = "gemini"
    ```
-4. Click **Deploy**. The first start installs packages and builds the search index (a few minutes).
+4. Click **Deploy**. The first start installs packages, downloads PAU's *Package of Practices* and builds the search index; the shipped Gemini vector cache means no chunks need re-embedding.
 
 **After each push to `main`, reboot the app** (share.streamlit.io → ⋮ next to the app → **Reboot app**). The app turns Streamlit's file watcher off (`.streamlit/config.toml`, which keeps local runs with MiniLM fast), so a running app keeps its old code until it restarts. Apps sleep after a period without visitors; open the link before a demo so it's awake.

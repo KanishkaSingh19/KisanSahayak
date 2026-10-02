@@ -31,17 +31,17 @@ class Settings(BaseSettings):
     GEMINI_FALLBACK_MODEL: str = "gemini-flash-lite-latest"
     OPENAI_MODEL: str = "gpt-4o-mini"
 
-    # Speech Configuration (Phase 2)
+    # Speech: Whisper (Groq) for voice input; Edge-TTS voices, and gTTS for Punjabi, for spoken answers
     GROQ_API_KEY: str = ""
     GROQ_WHISPER_MODEL: str = "whisper-large-v3"
     ENABLE_TTS: bool = True
     DEFAULT_HINDI_VOICE: str = "hi-IN-MadhurNeural"
-    DEFAULT_PUNJABI_VOICE: str = ""  # Edge-TTS has no Punjabi (pa-IN) voice; empty = text-only
+    DEFAULT_PUNJABI_VOICE: str = ""  # Edge-TTS has no Punjabi (pa-IN) voice; empty = Punjabi is spoken with gTTS
     DEFAULT_ENGLISH_VOICE: str = "en-IN-NeerjaNeural"
     AUDIO_OUTPUT_DIR: Path = BASE_DIR / "data" / "audio"
 
-    # Embedding Provider: "local", "minilm", "gemini", "openai"
-    EMBEDDING_PROVIDER: Literal["local", "minilm", "gemini", "openai"] = "local"
+    # Embedding Provider: "local" (hashed n-grams), "minilm" (multilingual MiniLM) or "gemini"
+    EMBEDDING_PROVIDER: Literal["local", "minilm", "gemini"] = "local"
     EMBEDDING_DIM: int = 256  # For lightweight local deterministic dense projection
     MINILM_MODEL: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
     HF_CACHE_DIR: str = ""  # Where Hugging Face models are downloaded; empty = default cache

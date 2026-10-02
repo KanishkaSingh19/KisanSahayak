@@ -4,7 +4,7 @@
 
 | Tool | What it was used for |
 |---|---|
-| **Claude Code (Anthropic, Claude Opus)** | Coding assistant for most of the implementation, under the team's direction and review. Work covered: the agent pipeline and router, hybrid RAG search, guardrails, Streamlit UI and FastAPI backend, voice and photo features, farm profile, PM-KISAN and market-price modules, the KVK review queue, the tests (290) and GitHub Actions, the evaluation scripts, the README and deployment setup. It also selected and labelled the 200 Kisan Call Centre questions using the rules in `evalset/kcc/`, translated 150 of them, and drafted slide text. |
+| **Claude Code (Anthropic, Claude Opus)** | Coding assistant for most of the implementation, under the team's direction and review. Work covered: the agent pipeline and router, hybrid RAG search, guardrails, Streamlit UI and FastAPI backend, voice and photo features, farm profile, PM-KISAN and market-price modules, the KVK review queue, the claim and premise checks, the tests (414) and GitHub Actions, the evaluation scripts, the README and deployment setup. It also selected and labelled the 200 Kisan Call Centre questions using the rules in `evalset/kcc/`, translated 150 of them, and drafted slide text. |
 | **ChatGPT (OpenAI)** | Generating the architecture and technology-stack diagram images for the presentation, from our written descriptions. |
 | **Google Gemini** | One-time translation of the advisories into Punjabi, Hindi and Hinglish for offline answers (`scripts/translate_advisories.py`). A translation was rejected automatically if any number (dose, percentage, date) changed. |
 
@@ -22,6 +22,7 @@
 | Writing answers | Google Gemini 3.7 Flash, with Gemini Flash-Lite as backup, then a deterministic offline template (no AI) |
 | Crop photo diagnosis | Gemini Vision. It names the likely problem only; the treatment always comes from the verified advisories. |
 | Answers from PAU's *Package of Practices* | Not AI: PAU's own text, found by the same search and shown with its page numbers. Gemini, when available, translates and summarises the passages; offline answers show PAU's English text with a note in the farmer's language. |
+| Checking assumptions stated in words | Gemini labels each assumption against numbered evidence sentences and cites them; the correction shown is the cited official text. Figures are checked in code. |
 | Search embeddings | `gemini-embedding-001` on the cloud; multilingual MiniLM-L12-v2 offline |
 | Speech-to-text | Whisper Large v3 via Groq; Gemini audio for Punjabi and as backup |
 | Text-to-speech | Microsoft Edge-TTS; Google gTTS for Punjabi |
@@ -40,5 +41,5 @@
 - **AI-generated text in the data:** the Punjabi, Hindi and Hinglish advisory translations (`data/translations.json`), the scheme guidance texts (PM-KISAN from pmkisan.gov.in; PMFBY crop insurance and the Kisan Credit Card from the PMFBY operational guidelines and PIB releases, in `data/schemes/`; Claude read the official pages and wrote the text and its translations, keeping every number identical), and the 150 non-English test questions (`evalset/kcc/translations.json`). None of this has yet been checked by native speakers or experts.
 - **Test questions:**
   - The 200-question test set uses real Kisan Call Centre queries. Its English questions are the exact logged text; the others are AI translations of real queries.
-  - The earlier 67- and 25-question sets were written by the team.
+  - The 67-question accuracy set (`eval/`), the 28-question feature set (`evalset/`) and the 28 PAU questions (`evalset/pau/`) were written by the team.
 - **Expert review:** answer and dose accuracy have not yet been checked by an agronomist. `evalset/kcc/review_sheet.csv` is prepared for that review.

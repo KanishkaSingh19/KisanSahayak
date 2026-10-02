@@ -1,4 +1,4 @@
-"""Run the 25-question feature test set (evalset/questions.json) through the KisanSahayak pipeline.
+"""Run the 28-question feature test set (evalset/questions.json; 25 run automatically) through the KisanSahayak pipeline.
 
     python evalset/run_evalset.py          # offline answers: repeatable, no Gemini quota
     python evalset/run_evalset.py --llm    # real Gemini answers (uses API quota)

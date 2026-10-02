@@ -12,7 +12,7 @@ from app.agent.pipeline import KisanPipeline
 
 def run_example_queries():
     print("=" * 80)
-    print("🌾 KISANSAHAYAK PHASE 1 MVP - 5 BENCHMARK EVALUATION QUERIES")
+    print("🌾 KISANSAHAYAK - 6 EXAMPLE QUERIES (for the scored evaluation see scripts/evaluate.py)")
     print("=" * 80)
 
     pipeline = KisanPipeline()
@@ -79,7 +79,7 @@ def run_example_queries():
             print(f"  📌 {cit}")
 
     print("\n" + "=" * 80)
-    print("All 5 queries processed successfully.")
+    print(f"All {len(test_queries)} queries processed.")
     print("=" * 80)
 
 

@@ -29,3 +29,5 @@
 | groq-whisper-large-v3 | $0.111/hour of audio | billed for at least 10 s per request |
 
 Free-tier API keys (used for this hackathon) cost nothing but are rate-limited. Answer tokens are the visible text; if the model also bills internal "thinking" tokens, the answer cost can be a few times higher, still well under Rs 1. Prices change: re-check Google AI and Groq pricing pages before quoting.
+
+Not measured above: a question that states an assumption ("since ...", "I heard ...") makes one extra Gemini call to check it (`app/agent/premises.py`), including on weather and price questions.

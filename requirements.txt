@@ -29,7 +29,7 @@ openai>=1.12.0
 # Testing
 pytest>=7.4.0
 
-# Speech Services (Phase 2 - Optional / Isolated)
+# Speech services (optional): spoken answers
 edge-tts>=6.1.0   # English and Hindi/Hinglish voices
 gTTS>=2.5.0       # Punjabi voice (Edge-TTS has none)
 

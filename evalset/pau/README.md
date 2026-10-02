@@ -24,11 +24,11 @@ Follow-ups stay on PAU ("And weeds?" after a wheat question; "What is the dose?"
 | Expected PAU section first | 20/28 | **24/28** |
 | Expected PAU section in the top 3 | 23/28 | 28/28 |
 
-With Gemini embeddings (the live app's search), after adding the keywords: 28/28 from PAU, expected section first **27/28**, in the top 3 28/28.
+With Gemini embeddings (the live app's search), after adding the keywords: 28/28 from PAU, expected section first **27/28**, in the top 3 28/28 (a manual run; its report is not saved in the repository).
 
 The first run is the fair number: these 28 questions were written after the search was built. Its 5 misses were all routing (mealybug, painted bug, paddy straw, Bt hybrids, Punjabi "ਜੈਸਿਡ" were not in the topic word lists, so they went to an unrelated advisory). The words were then added, so the second column is no longer a held-out score.
 
-On the 200 real Kisan Call Centre questions, the 140 outside our advisories are now: **126 answered from the right crop's PAU chapter**, 8 referred to the KVK, 6 shown advice on something else (as before). On 74 held-out KCC queries: 55 from PAU, 6 referred, 13 something else (unchanged).
+On the 200 real Kisan Call Centre questions, the 140 outside our advisories are now: **125 answered from the right crop's PAU chapter**, 9 referred to the KVK, 6 shown advice on something else (`../kcc/results.md`). On 74 held-out KCC queries: 55 from PAU, 6 referred, 13 something else (unchanged).
 
 ## Fast start on Streamlit Cloud
 

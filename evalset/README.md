@@ -28,7 +28,7 @@ Cases 23–25 (photo upload, taking a photo, and voice) need a real camera or mi
 
 ## How it differs from `eval/`
 
-- **`eval/`** measures *accuracy*: 67 short questions scoring how often the right advisory is found (93–98% first).
+- **`eval/`** measures *accuracy*: 67 short questions scoring how often the right advisory is found (ranked first: 83% with local MiniLM search, 98% with Gemini search).
 - **`evalset/`** checks *features*:
   - whole conversations
   - farm profiles

@@ -80,7 +80,8 @@ def detect_language(text: str) -> str:
 
 
 class KisanPipeline:
-    """End-to-End Orchestrator for KisanSahayak with Phase 2 Voice & Weather."""
+    """Answers a farmer's message (text, voice or photo): routes it, answers from the right source, checks the
+    claims in the question and sets the answer's statuses."""
 
     def __init__(
         self,

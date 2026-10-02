@@ -106,7 +106,7 @@ class EdgeTTSAdapter:
         if not clean_text:
             return None
 
-        # Truncate overly long text for audio efficiency (max 500 chars for voice summary)
+        # Long answers are cut to their first 600 characters, with a note to read the rest on screen
         if len(clean_text) > 600:
             clean_text = clean_text[:600] + t("tts_see_screen", language)
 
