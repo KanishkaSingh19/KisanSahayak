@@ -251,6 +251,12 @@ STRINGS: Dict[str, Dict[str, str]] = {
         "hinglish": "**Pushti nahi ho saki:** aapke sawal mein “{claim}” likha hai, lekin mere pramanit source iski pushti nahi karte, isliye is par bharosa na karein.",
         "hi": "**पुष्टि नहीं हो सकी:** आपके सवाल में “{claim}” लिखा है, लेकिन मेरे प्रमाणित स्रोत इसकी पुष्टि नहीं करते, इसलिए इस पर भरोसा न करें।",
     },
+    "premise_unchecked": {
+        "en": "**Please note:** your question assumes “{claim}”, which I could not check automatically. What the official source says: {facts}",
+        "pa": "**ਧਿਆਨ ਦਿਓ:** ਤੁਹਾਡਾ ਸਵਾਲ ਮੰਨਦਾ ਹੈ ਕਿ “{claim}”, ਜਿਸ ਦੀ ਮੈਂ ਆਪਣੇ-ਆਪ ਜਾਂਚ ਨਹੀਂ ਕਰ ਸਕਿਆ। ਸਰਕਾਰੀ ਸਰੋਤ ਕਹਿੰਦਾ ਹੈ: {facts}",
+        "hinglish": "**Dhyan dein:** aapka sawal maanta hai ki “{claim}”, jiski main apne aap jaanch nahi kar saka. Sarkari source kehta hai: {facts}",
+        "hi": "**ध्यान दें:** आपका सवाल मानता है कि “{claim}”, जिसकी मैं अपने-आप जाँच नहीं कर सका। सरकारी स्रोत कहता है: {facts}",
+    },
     "claim_unknown_problem": {
         "en": "I could not find “{name}” in the verified advisories, so I won't suggest a treatment or dose for it. Please describe the symptoms, send a photo, or contact your nearest KVK or the Kisan Call Centre free on 1800-180-1551.",
         "pa": "ਮੈਨੂੰ ਪ੍ਰਮਾਣਿਤ ਸਲਾਹਾਂ ਵਿੱਚ “{name}” ਨਹੀਂ ਮਿਲਿਆ, ਇਸ ਲਈ ਮੈਂ ਇਸ ਦਾ ਇਲਾਜ ਜਾਂ ਦਵਾਈ ਦੀ ਮਾਤਰਾ ਨਹੀਂ ਦੱਸਾਂਗਾ। ਕਿਰਪਾ ਕਰਕੇ ਲੱਛਣ ਦੱਸੋ, ਫ਼ੋਟੋ ਭੇਜੋ, ਜਾਂ ਆਪਣੇ ਨੇੜਲੇ KVK ਜਾਂ ਕਿਸਾਨ ਕਾਲ ਸੈਂਟਰ (ਮੁਫ਼ਤ 1800-180-1551) ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
@@ -265,6 +271,12 @@ STRINGS: Dict[str, Dict[str, str]] = {
     },
     # ------------------------------------------------------------------ answer statuses (shown as chips)
     "evidence_verified": {"en": "Verified from source", "pa": "ਸਰੋਤ ਤੋਂ ਪ੍ਰਮਾਣਿਤ", "hinglish": "Source se pramanit", "hi": "स्रोत से प्रमाणित"},
+    "evidence_premise_corrected": {
+        "en": "Verified · premise corrected",
+        "pa": "ਪ੍ਰਮਾਣਿਤ · ਸਵਾਲ ਦੀ ਧਾਰਨਾ ਠੀਕ ਕੀਤੀ",
+        "hinglish": "Pramanit · sawal ki dharna sudhari gayi",
+        "hi": "प्रमाणित · सवाल की धारणा सुधारी गई",
+    },
     "evidence_partially_verified": {"en": "Partially verified", "pa": "ਅੰਸ਼ਕ ਤੌਰ 'ਤੇ ਪ੍ਰਮਾਣਿਤ", "hinglish": "Aanshik pramanit", "hi": "आंशिक रूप से प्रमाणित"},
     "evidence_not_verified": {"en": "Not verified", "pa": "ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ", "hinglish": "Pramanit nahi", "hi": "प्रमाणित नहीं"},
     "review_recommended": {"en": "Expert review recommended", "pa": "ਮਾਹਿਰ ਦੀ ਜਾਂਚ ਦੀ ਸਲਾਹ", "hinglish": "Expert jaanch ki salah", "hi": "विशेषज्ञ जाँच की सलाह"},

@@ -75,6 +75,9 @@ class GroundedAnswer(BaseModel):
     source_type: Optional[str] = None  # advisory | pau | scheme | live_weather | market_data
     # ... and whether a KVK expert should look at it (decided by app/review.py)
     review_status: str = "not_required"  # not_required | recommended | sent
+    # Whether an assumption in the question was corrected (contradicted or only true under conditions)
+    # or could not be checked: a corrected premise is never shown as plain "verified"
+    premise_status: str = "none"  # none | corrected | unverified
 
 
 class ConversationTurn(BaseModel):

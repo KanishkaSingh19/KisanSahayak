@@ -1,0 +1,48 @@
+{
+  "topic": "MSP and government procurement",
+  "source": "PIB: 'Procurement at MSP', Ministry of Agriculture & Farmers Welfare, written reply in Lok Sabha, 16 March 2021",
+  "source_url": "https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=1705185",
+  "last_verified": "2026-10-02",
+  "keywords": ["msp", "minimum support price", "support price", "procurement", "procure", "government will buy",
+               "government buy", "government purchase", "sarkar", "sarkari kharid", "sarkari khareed", "fci",
+               "एमएसपी", "समर्थन मूल्य", "सरकारी खरीद", "सरकार खरीदेगी", "खरीद",
+               "ਐਮਐਸਪੀ", "ਸਮਰਥਨ ਮੁੱਲ", "ਸਰਕਾਰੀ ਖਰੀਦ", "ਖਰੀਦ"],
+  "facts": [
+    {
+      "id": "msp_agencies",
+      "text": {
+        "en": "The Government extends price support to wheat and paddy through the Food Corporation of India (FCI) and State agencies.",
+        "hi": "सरकार भारतीय खाद्य निगम (FCI) और राज्य एजेंसियों के माध्यम से गेहूं और धान को मूल्य समर्थन देती है।",
+        "pa": "ਸਰਕਾਰ ਭਾਰਤੀ ਖੁਰਾਕ ਨਿਗਮ (FCI) ਅਤੇ ਰਾਜ ਏਜੰਸੀਆਂ ਰਾਹੀਂ ਕਣਕ ਅਤੇ ਝੋਨੇ ਨੂੰ ਕੀਮਤ ਸਹਾਇਤਾ ਦਿੰਦੀ ਹੈ।",
+        "hinglish": "Sarkar Food Corporation of India (FCI) aur rajya agencies ke zariye gehun aur dhan ko mulya samarthan deti hai."
+      }
+    },
+    {
+      "id": "msp_conditions",
+      "text": {
+        "en": "Farmers register on an online portal, and grain that registered farmers offer within the stipulated procurement period and that meets the prescribed quality specifications is purchased at MSP by Government agencies including FCI.",
+        "hi": "किसान ऑनलाइन पोर्टल पर पंजीकरण करते हैं, और पंजीकृत किसान जो अनाज तय खरीद अवधि के भीतर देते हैं और जो निर्धारित गुणवत्ता मानकों पर खरा उतरता है, उसे FCI सहित सरकारी एजेंसियाँ MSP पर खरीदती हैं।",
+        "pa": "ਕਿਸਾਨ ਆਨਲਾਈਨ ਪੋਰਟਲ 'ਤੇ ਰਜਿਸਟਰ ਕਰਦੇ ਹਨ, ਅਤੇ ਰਜਿਸਟਰਡ ਕਿਸਾਨ ਜੋ ਅਨਾਜ ਤੈਅ ਖਰੀਦ ਸਮੇਂ ਦੇ ਅੰਦਰ ਦਿੰਦੇ ਹਨ ਅਤੇ ਜੋ ਤੈਅ ਗੁਣਵੱਤਾ ਮਿਆਰਾਂ 'ਤੇ ਪੂਰਾ ਉਤਰਦਾ ਹੈ, ਉਸ ਨੂੰ FCI ਸਮੇਤ ਸਰਕਾਰੀ ਏਜੰਸੀਆਂ MSP 'ਤੇ ਖਰੀਦਦੀਆਂ ਹਨ।",
+        "hinglish": "Kisan online portal par registration karte hain, aur registered kisan jo anaj tay kharid avadhi ke andar dete hain aur jo nirdharit gunvatta maanakon par khara utarta hai, use FCI samet sarkari agencies MSP par kharidti hain."
+      }
+    },
+    {
+      "id": "msp_centres",
+      "text": {
+        "en": "Government agencies buy at Agriculture Produce Market Committees (APMCs), temporary purchase centres and aggregation points, which are opened by or in consultation with the State Government.",
+        "hi": "सरकारी एजेंसियाँ कृषि उपज मंडी समितियों (APMC), अस्थायी खरीद केंद्रों और एकत्रीकरण केंद्रों पर खरीद करती हैं, जो राज्य सरकार द्वारा या उसके परामर्श से खोले जाते हैं।",
+        "pa": "ਸਰਕਾਰੀ ਏਜੰਸੀਆਂ ਖੇਤੀ ਉਪਜ ਮੰਡੀ ਕਮੇਟੀਆਂ (APMC), ਆਰਜ਼ੀ ਖਰੀਦ ਕੇਂਦਰਾਂ ਅਤੇ ਇਕੱਠ ਕੇਂਦਰਾਂ 'ਤੇ ਖਰੀਦ ਕਰਦੀਆਂ ਹਨ, ਜੋ ਰਾਜ ਸਰਕਾਰ ਵੱਲੋਂ ਜਾਂ ਉਸ ਦੀ ਸਲਾਹ ਨਾਲ ਖੋਲ੍ਹੇ ਜਾਂਦੇ ਹਨ।",
+        "hinglish": "Sarkari agencies Agriculture Produce Market Committees (APMC), asthayi kharid kendron aur aggregation points par kharid karti hain, jo rajya sarkar dwara ya uske paramarsh se khole jaate hain."
+      }
+    },
+    {
+      "id": "msp_open_market",
+      "text": {
+        "en": "Farmers have the option to sell at Government purchase centres, and if they get better terms and price than MSP, they are free to sell their produce in the open market.",
+        "hi": "किसान सरकारी खरीद केंद्रों पर बेच सकते हैं, और अगर उन्हें MSP से बेहतर शर्तें और दाम मिलें, तो वे अपनी उपज खुले बाज़ार में बेचने के लिए स्वतंत्र हैं।",
+        "pa": "ਕਿਸਾਨ ਸਰਕਾਰੀ ਖਰੀਦ ਕੇਂਦਰਾਂ 'ਤੇ ਵੇਚ ਸਕਦੇ ਹਨ, ਅਤੇ ਜੇ ਉਨ੍ਹਾਂ ਨੂੰ MSP ਨਾਲੋਂ ਵਧੀਆ ਸ਼ਰਤਾਂ ਅਤੇ ਭਾਅ ਮਿਲੇ, ਤਾਂ ਉਹ ਆਪਣੀ ਉਪਜ ਖੁੱਲ੍ਹੀ ਮੰਡੀ ਵਿੱਚ ਵੇਚਣ ਲਈ ਆਜ਼ਾਦ ਹਨ।",
+        "hinglish": "Kisan sarkari kharid kendron par bech sakte hain, aur agar unhe MSP se behtar sharten aur daam milein, to ve apni upaj khule bazaar mein bechne ke liye svatantra hain."
+      }
+    }
+  ]
+}

@@ -108,6 +108,9 @@ class AskResponse(BaseModel):
     )
     source_type: Optional[str] = Field(None, description="advisory, pau, scheme, live_weather or market_data")
     review_status: str = Field("not_required", description="not_required, recommended or sent (KVK expert review)")
+    premise_status: str = Field(
+        "none", description="none, corrected (an assumption in the question was corrected) or unverified"
+    )
     turn: ConversationTurn = Field(..., description="Append this to `history` for the next question")
 
 
@@ -161,6 +164,7 @@ def to_response(result: GroundedAnswer, review_queue: Optional[ReviewQueue] = No
         evidence_status=result.evidence_status,
         source_type=result.source_type,
         review_status=result.review_status,
+        premise_status=result.premise_status,
         turn=ConversationTurn.from_answer(result),
     )
 

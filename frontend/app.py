@@ -274,6 +274,8 @@ def render_answer(result, pipeline, lang: str, msg_id: int, speak_now: bool = Fa
         "partially_verified": ("ks-chip-warn", "evidence_partially_verified"),
         "not_verified": ("ks-chip-warn", "evidence_not_verified"),
     }.get(result.evidence_status)
+    if evidence and result.premise_status == "corrected":  # the sources are verified, the question's premise was not
+        evidence = ("ks-chip-warn", "evidence_premise_corrected")
     evidence_chip = f'<span class="ks-chip {evidence[0]}">{t(evidence[1], lang)}</span>' if evidence else ""
     source_key = {"advisory": "source_advisory", "pau": "source_pau", "scheme": "source_scheme",
                   "live_weather": "source_live_weather", "market_data": "source_market_data"}.get(result.source_type)

@@ -10,8 +10,10 @@ from app.agent.router import IntentRouter, asks_repeat_spray, topic_search_terms
 from app.agent.synthesizer import (SOURCE_LLM_DECLINED, SOURCE_NUMBERS_REPLACED, DeterministicGroundedSynthesizer,
                                    get_synthesizer)
 from app.agent.guardrails import AgriculturalGuardrails, unbacked_numbers
-from app.agent.claims import (CONTRADICTED, UNKNOWN_PRODUCT, UNKNOWN_PROBLEM, UNVERIFIED, check_claims,
+from app.agent.claims import (CONTRADICTED, SUPPORTED, UNKNOWN_PRODUCT, UNKNOWN_PROBLEM, UNVERIFIED, check_claims,
                               localize_fact, unknown_disease_names, without_claims)
+from app.agent.premises import (QUALIFIED, asserts_something, evidence_sentences, facts_for, get_premise_verifier,
+                                judged_premises, premise_clause)
 from app.rag.hybrid_retriever import HybridRetriever
 from app.rag.ingest import load_knowledge_chunks
 from app.speech.stt import WhisperSTTAdapter
@@ -92,7 +94,10 @@ class KisanPipeline:
         vision: Optional[CropVision] = None,
         scheme_guide: Optional[SchemeGuide] = None,
         mandi: Optional[MarketPriceService] = None,
+        premise_verifier=None,
     ):
+        # Checks assumptions stated in words ("Since MSP guarantees ..."); None without an LLM
+        self.premise_verifier = premise_verifier or get_premise_verifier()
         self.vision = vision or CropVision()
         self.mandi = mandi or MarketPriceService()
         self.scheme_guide = scheme_guide or SchemeGuide()  # PM-KISAN
@@ -204,7 +209,8 @@ class KisanPipeline:
         profile: Optional[FarmerProfile] = None,
     ) -> GroundedAnswer:
         """Diagnose a crop photo (see `_photo_answer`), with the answer's evidence and review status."""
-        return self._with_status(self._photo_answer(image_bytes, question, language, history, profile))
+        result = self._photo_answer(image_bytes, question, language, history, profile)
+        return self._with_status(self._check_premises(question, result.detected_language, result))
 
     def _photo_answer(
         self,
@@ -320,7 +326,9 @@ class KisanPipeline:
         try:
             intent = self.router.classify_with_context(clean_query, history or [])
             req = Request(clean_query, detected_lang, language, history or [], profile, intent, start_time, generate_audio)
-            return self._with_status(self._handler(intent.intent)(req))
+            result = self._handler(intent.intent)(req)
+            # Assumptions in the question are checked the same way whatever kind of answer it got
+            return self._with_status(self._check_premises(clean_query, detected_lang, result))
         except Exception as e:
             return GroundedAnswer(
                 query=clean_query,
@@ -413,7 +421,8 @@ class KisanPipeline:
             req, answer, citations=citations, audio_output_path=self._speak(req, answer),
             weather_report=report.model_dump(),
             meta={"district": report.district, "district_from_profile": from_profile, "location_found": True,
-                  "is_live_weather": report.is_live, "claim_checks": self._claims_meta(checks)},
+                  "is_live_weather": report.is_live, "claim_checks": self._claims_meta(checks),
+                  "premise_evidence": [answer]},
         )
 
     def _answer_market(self, req: "Request") -> GroundedAnswer:
@@ -492,7 +501,8 @@ class KisanPipeline:
         answer = "\n".join(parts)
         # A stated price or MSP is checked against the MSP table and the mandi prices just fetched
         checks = check_claims(req.query, [answer], [answer])
-        meta.update({"claim_checks": self._claims_meta(checks), "market_data": "Rs " in answer})
+        meta.update({"claim_checks": self._claims_meta(checks), "market_data": "Rs " in answer,
+                     "premise_evidence": [answer]})
         return self._reply(
             req, self._with_premise_notes(answer, checks, lang), meta=meta, citations=citations,
             safety_disclaimers=[t("market_disclaimer", lang, date=msp_data["last_verified"])],
@@ -562,7 +572,8 @@ class KisanPipeline:
             safety_disclaimers=[t("scheme_disclaimer", lang, date=guide.data["last_verified"])],
             meta={"answer_source": source, "unbacked_numbers": unbacked, "detected_topic": PM_KISAN,
                   "pmk_eligibility": status, "claim_checks": self._claims_meta(checks), "llm_not_found": not_found,
-                  "grounding_score": score, "top_section": sections[0]["title"]},
+                  "grounding_score": score, "top_section": sections[0]["title"],
+                  "premise_evidence": [s["text"]["en"] for s in guide.data["sections"]]},
         )
 
     def _answer_other_scheme(self, req: "Request", guide: SchemeGuide, sections, context, checks) -> GroundedAnswer:
@@ -594,7 +605,8 @@ class KisanPipeline:
             safety_disclaimers=[disclaimer],
             meta={"answer_source": source, "unbacked_numbers": unbacked, "detected_topic": guide.name,
                   "grounding_score": score, "claim_checks": self._claims_meta(checks), "llm_not_found": not_found,
-                  "top_section": sections[0]["title"]},
+                  "top_section": sections[0]["title"],
+                  "premise_evidence": [s["text"]["en"] for s in guide.data["sections"]]},
         )
 
     @staticmethod
@@ -650,6 +662,62 @@ class KisanPipeline:
     def _claims_meta(checks) -> list:
         return [{"kind": c.kind, "claim": c.claim, "status": c.status, "evidence": c.evidence[:1]} for c in checks]
 
+    def _check_premises(self, question: str, lang: str, result: GroundedAnswer) -> GroundedAnswer:
+        """Assumptions stated in words ("Since MSP guarantees that the government will buy all my wheat")
+        checked against the evidence the answer used plus the official statements on the question's topic
+        (app/agent/premises.py). A contradicted or conditional premise gets a correction made of the cited
+        official sentences before the answer; one the evidence does not cover is flagged as unverified."""
+        meta = result.processing_metadata
+        branch = meta.pop("premise_evidence", None) or [c.text for c in result.retrieved_chunks]
+        if result.intent in NO_EVIDENCE_INTENTS or meta.get("asks_back") or not asserts_something(question):
+            return result
+        facts = facts_for(question)
+        evidence = evidence_sentences([f["text"]["en"] for f in facts] + branch)
+        raw = None
+        if self.premise_verifier is not None and evidence:
+            try:
+                raw = self.premise_verifier.verify(question, evidence)
+            except Exception as e:  # the check must never break an answer
+                print(f"[Warning] Premise check failed: {str(e)[:120]}")
+        checks = meta.setdefault("claim_checks", [])
+        if raw is None:  # no verifier answered (offline, quota): the premise is not passed as verified
+            return self._premise_unchecked(question, lang, result, facts, checks)
+        judged = judged_premises(question, raw, evidence, already=[c["claim"] for c in checks])
+        local = {f["text"]["en"]: f["text"].get(lang, f["text"]["en"]) for f in facts}
+        notes, used = [], set()
+        for j in judged:
+            cited = [evidence[n - 1] for n in j["cited"]]
+            if j["verdict"] in (CONTRADICTED, QUALIFIED):
+                fact = " ".join(local.get(s) or localize_fact(s, [result.answer]) for s in cited)
+                notes.append(t("claim_corrected", lang, claim=j["claim"], fact=fact.strip("* ")))
+                used |= {f["source"] for f in facts if f["text"]["en"] in cited}
+            elif j["verdict"] == "not_in_evidence":
+                notes.append(t("claim_unverified", lang, claim=j["claim"]))
+            status = {"not_in_evidence": UNVERIFIED, "supported": SUPPORTED}.get(j["verdict"], j["verdict"])
+            checks.append({"kind": "premise", "claim": j["claim"], "status": status, "evidence": cited[:2]})
+        if notes:
+            result.answer = "\n\n".join(notes + [result.answer])
+            result.citations = list(dict.fromkeys(result.citations + sorted(used)))
+        meta["premise_checked"] = True
+        return result
+
+    @staticmethod
+    def _premise_unchecked(question: str, lang: str, result: GroundedAnswer, facts, checks) -> GroundedAnswer:
+        """No verifier could judge the premise. Unless a form-based check already handled a claim in the
+        question, the premise is marked unverified, with the official statements on its topic if any."""
+        clause = premise_clause(question)
+        if checks or len(clause.split()) < 2:
+            return result
+        if facts:
+            note = t("premise_unchecked", lang, claim=clause,
+                     facts=" ".join(f["text"].get(lang, f["text"]["en"]) for f in facts))
+            result.citations = list(dict.fromkeys(result.citations + [f["source"] for f in facts]))
+        else:
+            note = t("claim_unverified", lang, claim=clause)
+        checks.append({"kind": "premise", "claim": clause, "status": UNVERIFIED, "evidence": []})
+        result.answer = f"{note}\n\n{result.answer}"
+        return result
+
     # ------------------------------------------------------------------ statuses shown with the answer
     def _with_status(self, result: GroundedAnswer) -> GroundedAnswer:
         """Sets three separate statuses: whether the facts are backed by an authoritative source, which
@@ -669,7 +737,9 @@ class KisanPipeline:
         else:
             source = (result.retrieved_chunks[0].kind if result.retrieved_chunks else None) if kinds else None
 
-        if (result.intent in NO_EVIDENCE_INTENTS or meta.get("needs_place") or meta.get("needs_crop")
+        # Asking for a place states no facts, unless the answer already gives the MSP or corrects a premise
+        stated = meta.get("market_data") or any(c["status"] in (CONTRADICTED, QUALIFIED) for c in checks)
+        if (result.intent in NO_EVIDENCE_INTENTS or (meta.get("needs_place") and not stated) or meta.get("needs_crop")
                 or meta.get("asks_back")):
             status = "not_applicable"
         elif (result.intent in ("crop_not_covered", "topic_not_covered") or meta.get("llm_not_found")
@@ -684,6 +754,10 @@ class KisanPipeline:
             )
             status = "partially_verified" if weak else "verified"
         result.evidence_status, result.source_type = status, source
+        statuses = {c["status"] for c in checks}
+        result.premise_status = ("corrected" if statuses & {CONTRADICTED, QUALIFIED}
+                                 else "unverified" if statuses & {UNVERIFIED, UNKNOWN_PROBLEM, UNKNOWN_PRODUCT}
+                                 else "none")
         result.review_status = "recommended" if review_reasons(result) else "not_required"
         return result
 
